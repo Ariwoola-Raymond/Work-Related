@@ -59,6 +59,8 @@ From a sales standpoint, competing teams should not be able to see campaigns fro
 - Highlight top sales performers. Interview them and promote the 
 - A section on the portal where users can voice out their feedback and experiences which will be automatically populated on the portal for all users to see. For example, a forum. Top performers can create posts on how they are able to achieve the sales.
 - Turn the platform into a social media platform --- Joke???
+- talk about how different we are from our competitors. Write our strengths and weaknesses.
+- Include incentive calculator. Preferably on the front page.
 
 __
 * Auto loan article on KM Pro contains repetitive summary.
