@@ -2,3 +2,15 @@ This document outlines a content governance framework that includes both content
 
 
 The document has been reviewed and approved by the content governance committee, and any changes or updates to the document must be submitted to the committee for review and approval. This is to ensure that any updates align with the organization's goals and objectives and that the framework remains effective and relevant. The committee will review the changes, and if approved, they will be implemented and communicated to all stakeholders.
+
+
+
+### The content governance framework is divided into three main categories: Content Creation, Content Management/Maintenance, and Version Control.
+
+Content Creation: This category focuses on the process of creating new content and ensuring that it is accurate, relevant, and compliant with organizational policies and standards. It includes defining roles and responsibilities, creating workflows and approval processes, and establishing standards and guidelines for tone, style, formatting, and branding.
+
+Content Management/Maintenance: This category focuses on managing and maintaining existing content. It includes implementing search and discovery functionality, security and access controls, and retention and archiving policies. Additionally, it includes measuring the performance of the content and implementing continuous improvement processes to ensure that the content remains relevant and effective.
+
+Version Control: This category focuses on tracking changes to the content and ensuring that users are working with the most up-to-date version of a document. It includes implementing version control mechanisms, such as document versioning and change tracking, to ensure that users can access the most recent version of the content and that the history of changes is easily accessible.
+
+Overall, the framework provides a comprehensive approach to ensure the quality, relevance and accessibility of the organization's digital content, while also ensuring compliance with the organization's policies and standards. It's designed to be adaptable to the organization's needs and goals, and provides guidance for all stakeholders involved in the creation and management of the content.
