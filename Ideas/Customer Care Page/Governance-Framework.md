@@ -95,3 +95,16 @@ Analyze.
 
 Edit over time. 
 
+
+_____
+
+Content creators should be aware of the following when gathering and researching content:
+
+Identify the purpose and audience of the content: This will help determine the types of information that need to be gathered and the sources that should be consulted.
+Research relevant sources: This includes researching internal and external sources such as industry reports, previous research, and competitor information.
+Verify the accuracy and credibility of the information: This includes evaluating the credibility of the sources and checking for any biases.
+Organize and analyze the information: This includes organizing the information in a way that is easy to understand and analyze and selecting the most relevant information to include in the final content.
+Follow the organization's guidelines and policies: This includes following any guidelines or policies related to content gathering and research, such as copyright laws and data privacy laws.
+
+
+In summary, content creators should be aware of the importance of gathering and researching accurate and relevant information in order to create high-quality content that meets the needs of the target audience. It's essential for them to follow the organization's guidelines and policies, and to use credible and trustworthy sources to ensure the accuracy and credibility of the final content.
