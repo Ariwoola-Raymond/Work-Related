@@ -72,3 +72,12 @@ __
 
 #### Attendees - KO Team.
 
+- Share all loans related links for customer care page. Personal loan team did not review the draft prior to it being published.
+- Can we upload staff loan related policies on the portal? - **Answered by Jess.**
+- Re-look at the division tag set, remove PSB from the name and just keep the product or campaign so as to avoid confusion with the segments. Sub-Department is being understood as a product instead of a sub department.
+- SME will be added eventually. - **Jess confirmed**
+- Does product team need to categorize each campaign based on tag sets on KM Pro? - **This was answered and clarified by Jess.**
+- Hashmiya will be the point of contact for all loan products.
+- Hashmiya will support on the CPR updates, Policies, calculators.
+- We need a link to the IIS calculator as well as the eligibility calculator.
+- Leverage the portal for the onboarding process details through tablet banking. Create the step by step guide for the same. A pilot is currently happening on the new version, Hashmiya will provide the updated details.

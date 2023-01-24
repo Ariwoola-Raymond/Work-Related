@@ -14,3 +14,8 @@ Thank you for your attention to this matter.
 
 Best,
 [Your name]
+
+
+<hr>
+
+Thank you so much for attending the meeting yesterday. Your presence was invaluable and your insights were incredibly helpful in shaping our strategy going forward. I appreciate your time and effort in being there.
