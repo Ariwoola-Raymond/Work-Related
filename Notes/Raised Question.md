@@ -44,7 +44,7 @@ From a sales standpoint, competing teams should not be able to see campaigns fro
 
 
 
-## Retail Products Team (Loans) - 19th January 2023
+## Retail Products Team (Auto Loans) - 19th January 2023
 #### Attendees - KO Team, 
 
 - Customer care page, processing fee error. SHould be corrected.
@@ -64,3 +64,11 @@ From a sales standpoint, competing teams should not be able to see campaigns fro
 
 __
 * Auto loan article on KM Pro contains repetitive summary.
+
+
+<hr>
+
+## Retail Products Team (Personal Loans) - 24th January 2023
+
+#### Attendees - KO Team.
+

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background: #333;
+        }
+        
+        h1#headerNames {
+            margin-top: 10%;
+            color: #fff;
+            font-family: Georgia, serif;
+            font-size: 150px;
+            text-align: center;
+            cursor: pointer;
+        }
+        
+        .button {
+            width: 150px;
+            margin: auto;
+            padding: 20px;
+            background: #1fa91f;
+            border: 3px solid #fff;
+            border-radius: 10px;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            font-size: 30px;
+            font-weight: bold;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            display: block;
+            cursor: pointer;
+        }
+        
+        #stopButton {
+            background: #ff0000;
+            display: none;
+        }
+        
+        #timerWrapper {
+            margin: 50px 0;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            font-size: 50px;
+            text-align: center;
+            opacity: 0;
+            transition: opacity 1s;
+        }
+        #timerWrapper.visible {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="headerNames">?</h1>
+<div class="button" id="startButton">start</div>
+<div class="button" id="stopButton">stop</div>
+
+<script>
+    "use strict";
+const showTimer = true;
+// Add list of names here
+const namesList = [
+	'Jess',
+	'Maged',
+	'Rakesh', 
+	'Kareem',
+	'Maryam',
+	'Rajat',
+	'Raymond'
+];
+
+// Default variables
+let i = 0;
+let x = 0;
+let intervalHandle = null;
+const startButton = document.getElementById('startButton');
+const stopButton = document.getElementById('stopButton');
+const headerOne = document.getElementById('headerNames');
+
+// Optional countdown timer
+// Add zero in front of numbers < 10
+function checkSecond(sec) {
+  if (sec < 10 && sec >= 0) {
+		sec = "0" + sec;
+	} 
+  if (sec < 0) {
+		sec = "59";
+	}
+  return sec;
+}
+// Start or stop the name shuffle on the button click
+startButton.addEventListener('click', function() {
+	this.style.display = "none";
+	stopButton.style.display = "block";
+	intervalHandle = setInterval(function () {
+		headerNames.textContent = namesList[i++ % namesList.length];
+	}, 50);
+	if (showTimer===true) {
+		timerWrapper.classList.remove('visible');
+	}
+});
+stopButton.addEventListener('click', function() {
+	this.style.display = "none";
+	startButton.style.display = "block";
+	clearInterval(intervalHandle);
+	timer.innerHTML = time;
+	if (showTimer===true) {
+		timerWrapper.classList.add('visible');
+	}
+	startTimer();
+});
+
+// Allow use of spacebar to start/stop name shuffle
+document.body.onkeyup = function(e) {
+	if (e.keyCode == 32) {
+		if (x%2===0) {
+			startButton.style.display = "none";
+			stopButton.style.display = "block";
+			intervalHandle = setInterval(function () {
+				headerNames.textContent = namesList[i++ % namesList.length];
+			}, 50);
+			if (showTimer===true) {
+				timerWrapper.classList.remove('visible');
+			}
+		} else {
+			startButton.style.display = "block";
+			stopButton.style.display = "none";
+			clearInterval(intervalHandle);
+			timer.innerHTML = time;
+			if (showTimer===true) {
+				timerWrapper.classList.add('visible');
+			}
+			startTimer();
+		}
+		x++; 
+	}
+}
+</script>
+</body>
+</html>
