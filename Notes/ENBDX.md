@@ -1,0 +1,1 @@
+NTB activating new card - 
