@@ -92,3 +92,5 @@ __
 - Implementation should commence within immediately
   - How many users will be using the portal?
 - Refining the search criteria.
+- Suggested content will be well vetted by the team and only make changes post verification and validation from actual product/process owner.
+- Information/content will flow into KO team from C&IB team.
