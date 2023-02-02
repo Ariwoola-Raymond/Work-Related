@@ -81,3 +81,14 @@ __
 - Hashmiya will support on the CPR updates, Policies, calculators.
 - We need a link to the IIS calculator as well as the eligibility calculator.
 - Leverage the portal for the onboarding process details through tablet banking. Create the step by step guide for the same. A pilot is currently happening on the new version, Hashmiya will provide the updated details.
+
+
+## C&IB - 2nd February 2023
+
+#### Attendees - KO Team, Roque, Pranjal, Malik
+
+- Portal will be beneficial to the team as they have been seeking a similar solution for content management.
+- Malik will be the Knowledge Champion (POC).
+- Implementation should commence within immediately
+  - How many users will be using the portal?
+- Refining the search criteria.
