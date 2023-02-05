@@ -1,0 +1,14 @@
+' Here's an example of the macro in VBA (Visual Basic for Applications) that toggles between the light and dark modes:
+
+Sub ToggleTheme()
+    Dim currentTheme As String
+
+    currentTheme = Application.Themes(1).Name
+
+    If currentTheme = "Colorful" Then
+        Application.Themes.Apply "Basic Gray"
+    Else
+        Application.Themes.Apply "Colorful"
+    End If
+End Sub
+
