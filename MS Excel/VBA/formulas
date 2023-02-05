@@ -1,4 +1,3 @@
-=SUM(IF('Non-ENBD X'!$F:$F="Raymond", IF('Non-ENBD X'!I:I="YES" OR('Non-ENBD X'!I:I="NO") ,1,0)))
+=SUM(IF('Non-ENBD X'!$F:$F="Raymond", IF('Non-ENBD X'!I:I="YES",1,0))) + SUM(IF('Non-ENBD X'!$F:$F="Raymond", IF('Non-ENBD X'!I:I="NO",1,0)))
 
-=SUM(IF('Non-ENBD X'!$F:$F="Raymond", IF('Non-ENBD X'!I:I="YES" OR ('Non-ENBD X'!I:I="NO"),1,0)))
 
