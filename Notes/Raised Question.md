@@ -97,3 +97,9 @@ __
 
 
 
+## RLTB - 7th February 2023
+
+#### Attendees - KO Team
+
+- Accesses for the team to navigate the portal
+- When are we planning to onboard everyone - Date???
