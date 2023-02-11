@@ -23,4 +23,8 @@ while True:
     os.system('git commit -m "Update file"')
     os.system("git push origin main")
 
+    print("Current time: " + str(time.time()) + "\n Current Quote: " + random.choice(quotes))
+    
+    # Wait for 15 minutes
     time.sleep(900) # Wait for 900 seconds(15 minutes) before updating the file again
+    
