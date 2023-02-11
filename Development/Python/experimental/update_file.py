@@ -13,6 +13,6 @@ while True:
     # os.system("git add " + filename)
     os.system("git add .")
     os.system('git commit -m "Update file"')
-    os.system("git push origin master")
+    os.system("git push origin main")
 
     time.sleep(60) # Wait for 60 seconds before updating the file again
