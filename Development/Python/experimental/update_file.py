@@ -15,4 +15,4 @@ while True:
     os.system('git commit -m "Update file"')
     os.system("git push origin main")
 
-    time.sleep(60) # Wait for 60 seconds before updating the file again
+    time.sleep(900) # Wait for 900 seconds(15 minutes) before updating the file again
