@@ -4,8 +4,8 @@ import random
 from twilio.rest import Client
 from dotenv import load_dotenv
 
-filename = "/Users/raymond/Documents/GitHub/Work Related/file.txt"
-repo_path = "/Users/raymond/Documents/GitHub/Work Related"
+filename = "/Users/raymond/Documents/GitHub/Work-Related/file.txt"
+repo_path = "/Users/raymond/Documents/GitHub/Work-Related"
 quotes = ["The best way to predict the future is to create it. - Abraham Lincoln",
           "Don't watch the clock; do what it does. Keep going. - Sam Levenson",
           "You can't build a reputation on what you are going to do. - Henry Ford",
