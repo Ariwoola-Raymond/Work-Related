@@ -13,6 +13,14 @@ def search(query):
         return 'An error occurred while trying to search the internet'
 
 # Example usage
-query = 'example search query'
+query = 'Oluwatobiloba Raymond Ariwoola'
 result = search(query)
+
+
+filename = "/Users/raymond/Documents/GitHub/Work Related/Development/Python/Web Scrapping/test.html"
+
+with open(filename, "w") as f:
+        # Update the contents of the file
+        f.write(result)
+
 print(result)
