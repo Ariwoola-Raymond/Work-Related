@@ -1,8 +1,8 @@
 import time
 import os
 import random
-from twilio.rest import Client
-from dotenv import load_dotenv
+# from twilio.rest import Client
+# from dotenv import load_dotenv
 
 filename = "/Users/raymond/Documents/GitHub/Work-Related/file.txt"
 repo_path = "/Users/raymond/Documents/GitHub/Work-Related"
