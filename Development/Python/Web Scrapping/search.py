@@ -16,3 +16,4 @@ def search(query):
 query = 'example search query'
 result = search(query)
 print(result)
+
