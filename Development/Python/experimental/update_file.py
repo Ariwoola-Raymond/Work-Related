@@ -30,6 +30,7 @@ quotes = ["The best way to predict the future is to create it. - Abraham Lincoln
 # Load environment variables from .env file
 # load_dotenv()
 
+
 # Twilio credentials
 # account_sid = os.getenv("TWILIO_ACCOUNT_SID")
 # auth_token = os.getenv("TWILIO_AUTH_TOKEN")
