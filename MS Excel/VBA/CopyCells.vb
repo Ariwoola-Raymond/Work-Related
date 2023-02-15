@@ -35,34 +35,39 @@ End Sub
 
 
 
-' Recorded Macro
 Sub copier()
 '
 ' copier Macro
 '
 ' Keyboard Shortcut: Ctrl+q
 '
-    Range("B2").Select
+Dim i As Integer
+For i = 2 To 10 ' Change the range as per your requirement
+    Range("B" & i).Select
     Windows("FAQs_Content_English.xlsm").Activate
-    Range("D2").Select
+    Range("D" & i).Select
     Selection.End(xlToLeft).Select
     Selection.End(xlToLeft).Select
     Range(Selection, Selection.End(xlToRight)).Select
     Selection.Copy
     Windows("Book1").Activate
+    Range("A" & i).Select ' Change the column as per your requirement
     Selection.PasteSpecial Paste:=xlPasteAll, Operation:=xlNone, SkipBlanks:= _
         False, Transpose:=True
-    Columns("B:B").EntireColumn.AutoFit
-    Range("B8").Select
+    Columns("A:A").EntireColumn.AutoFit ' Change the column as per your requirement
+    Range("B" & i + 6).Select ' Change the row offset as per your requirement
     Windows("FAQs_Content_English.xlsm").Activate
-    Range("E3").Select
+    Range("E" & i).Select
     Selection.End(xlToLeft).Select
     Range(Selection, Selection.End(xlToRight)).Select
     Application.CutCopyMode = False
     Selection.Copy
     Windows("Book1").Activate
+    Range("A" & i + 6).Select ' Change the column and row offset as per your requirement
     Selection.PasteSpecial Paste:=xlPasteAll, Operation:=xlNone, SkipBlanks:= _
         False, Transpose:=True
+Next i
 End Sub
+
 
 
