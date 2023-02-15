@@ -31,3 +31,38 @@ Sub CopyCells()
         destRow = destRow + 2 ' Add 2 to destination row to leave an empty row
     Next i
 End Sub
+
+
+
+
+' Recorded Macro
+Sub copier()
+'
+' copier Macro
+'
+' Keyboard Shortcut: Ctrl+q
+'
+    Range("B2").Select
+    Windows("FAQs_Content_English.xlsm").Activate
+    Range("D2").Select
+    Selection.End(xlToLeft).Select
+    Selection.End(xlToLeft).Select
+    Range(Selection, Selection.End(xlToRight)).Select
+    Selection.Copy
+    Windows("Book1").Activate
+    Selection.PasteSpecial Paste:=xlPasteAll, Operation:=xlNone, SkipBlanks:= _
+        False, Transpose:=True
+    Columns("B:B").EntireColumn.AutoFit
+    Range("B8").Select
+    Windows("FAQs_Content_English.xlsm").Activate
+    Range("E3").Select
+    Selection.End(xlToLeft).Select
+    Range(Selection, Selection.End(xlToRight)).Select
+    Application.CutCopyMode = False
+    Selection.Copy
+    Windows("Book1").Activate
+    Selection.PasteSpecial Paste:=xlPasteAll, Operation:=xlNone, SkipBlanks:= _
+        False, Transpose:=True
+End Sub
+
+
