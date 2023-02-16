@@ -1,8 +1,7 @@
 import time
 import os
 import random
-# from twilio.rest import Client
-# from dotenv import load_dotenv
+import sys
 
 filename = "/Users/raymond/Documents/GitHub/Work-Related/file.txt"
 repo_path = "/Users/raymond/Documents/GitHub/Work-Related"
@@ -27,43 +26,27 @@ quotes = ["The best way to predict the future is to create it. - Abraham Lincoln
           "The only way to do great work is to love what you do. If you haven't found it yet, keep looking. Don't settle. As with all matters of the heart, you'll know when you find it. -Steve Jobs"
           ]
 
-# Load environment variables from .env file
-# load_dotenv()
 
-
-# Twilio credentials
-# account_sid = os.getenv("TWILIO_ACCOUNT_SID")
-# auth_token = os.getenv("TWILIO_AUTH_TOKEN")
-# twilio_number = os.getenv("TWILIO_NUMBER")
-# recipient_number = os.getenv("RECIPIENT_NUMBER")
-
-
-# Initialize the Twilio client
-# client = Client(account_sid, auth_token)
-
-while True:
+def update_file():
     selected_quote = random.choice(quotes)
+
     with open(filename, "w") as f:
-        # Update the contents of the file
-        f.write("Current time: " + str(time.time()) +
-                "\n Current Quote: " + selected_quote)
+        # Update the contents of the file with the selected quote
+        f.write(selected_quote)
 
     os.chdir(repo_path)
-    # os.system("git add " + filename)
-    os.system("git add .")
-    os.system('git commit -m "Update file"')
+    os.system("git add " + filename)
+    os.system('git commit -m "Update quotes"')
     os.system("git push origin main")
 
-    print("Current time: " + str(time.time()) +
-          "\n Current Quote: " + selected_quote)
+def run_at_interval(interval):
+    while True:
+        update_file()
+        time.sleep(interval)
 
- # Send an SMS with the selected quote
-    # message = client.messages.create(
-    #     to=recipient_number, 
-    #     from_=twilio_number, 
-    #     body=selected_quote
-    # )
-
-    # Wait for 15 minutes
-    # Wait for 900 seconds(15 minutes) before updating the file again
-    time.sleep(900)
+if __name__ == "__main__":
+    if len(sys.argv) > 1 and sys.argv[1] == "update":
+        update_file()
+    else:
+        interval = 900 # update every 900 seconds(15 minutes) 
+        run_at_interval(interval)
