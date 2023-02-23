@@ -6,5 +6,5 @@
 - Job profile to be shared by Jess
 - Under what function should the individual reside - LnD?
 - Share current mapping used by KO team - content lifecycle
-- Provide basic article structure/template that can help the team
+- Provide basic article structure/template that can help the team start building content
 - 
