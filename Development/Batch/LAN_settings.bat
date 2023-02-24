@@ -1,1 +1,1 @@
-cmd.exe /c "start ms-settings:network-proxy?proxy=SettingsPageNetworkProxy"
+cmd.exe /c "start ms-settings:network-proxy?ismore=0&tab=proxy&proxtType=lan"
