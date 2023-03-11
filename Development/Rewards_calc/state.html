@@ -14,36 +14,41 @@
             justify-content: center;
             min-height: 365px;
             position: relative;
-          }
-          
-          .canvas-con-inner {
+        }
+
+        .canvas-con-inner {
             height: 100%;
-          }
-          
-          .canvas-con-inner, .legend-con {
+        }
+
+        .canvas-con-inner,
+        .legend-con {
             display: inline-block;
-          }
-          
-          .legend-con {
+        }
+
+        .legend-con {
             font-family: Roboto;
             display: inline-block;
-          }
-          .legend-con ul {
+        }
+
+        .legend-con ul {
             list-style: none;
-          }
-          .legend-con li {
+        }
+
+        .legend-con li {
             display: flex;
             align-items: center;
             margin-bottom: 4px;
-          }
-          .legend-con li span {
+        }
+
+        .legend-con li span {
             display: inline-block;
-          }
-          .legend-con li span.chart-legend {
+        }
+
+        .legend-con li span.chart-legend {
             width: 25px;
             height: 25px;
             margin-right: 10px;
-          }
+        }
     </style>
 
 </head>
@@ -56,8 +61,8 @@
         <div id="my-legend-con" class="legend-con"></div>
     </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.bundle.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.bundle.js"></script>
     <script>
         var chartData = [{ "visitor": 39, "visit": 1 }, { "visitor": 18, "visit": 2 }, { "visitor": 9, "visit": 3 }, { "visitor": 5, "visit": 4 }, { "visitor": 6, "visit": 5 }, { "visitor": 5, "visit": 6 }]
 
@@ -124,6 +129,131 @@
         console.log(document.getElementById('my-legend-con'));
 
     </script>
+
+
+
+
+    <script>
+        $.ajax({
+            url: _spPageContextInfo.webAbsoluteUrl + "/_api/web/lists/getbytitle('rewardsCalculatorUsers')/items?$filter=DisplayUser eq 'NO'",
+            type: "GET",
+            headers: {
+                "Accept": "application/json;odata=verbose"
+            },
+            success: function (data) {
+                var items = data.d.results;
+                console.log(items);
+            },
+            error: function (error) {
+                console.log(JSON.stringify(error));
+            }
+        });
+
+    </script>
+
+
+    <script>
+        var chartData = [];
+
+        $.ajax({
+            url: _spPageContextInfo.webAbsoluteUrl + "/_api/web/lists/getbytitle('rewardsCalculatorUsers')/items?$expand=Author",
+            type: "GET",
+            headers: {
+                "Accept": "application/json;odata=verbose"
+            },
+            success: function (data) {
+                var items = data.d.results;
+
+                // Create an object to store the number of visits for each user
+                var userVisits = {};
+
+                // Loop through each item and add the number of visits for each user
+                for (var i = 0; i < items.length; i++) {
+                    var createdBy = items[i].Author.Title;
+                    var numberOfVisits = items[i].numberOfVisits;
+                    if (createdBy in userVisits) {
+                        userVisits[createdBy] += numberOfVisits;
+                    } else {
+                        userVisits[createdBy] = numberOfVisits;
+                    }
+                }
+
+                // Convert the userVisits object to an array of objects in the desired format
+                for (var user in userVisits) {
+                    chartData.push({ "visitor": user, "visit": userVisits[user] });
+                }
+
+                console.log(chartData);
+            },
+            error: function (error) {
+                console.log(JSON.stringify(error));
+            }
+        });
+
+    </script>
+
+    <script>
+        let userId = _spPageContextInfo.userId;
+
+        $.ajax({
+            url: _spPageContextInfo.webAbsoluteUrl + `/_api/web/siteusers/getbyid(${userId})`,
+            type: "GET",
+            headers: {
+              "Accept": "application/json;odata=verbose"
+            },
+            success: function (data) {
+              var user = data.d;
+          
+              console.log("User ID: " + user.Id);
+              console.log("User name: " + user.Title);
+              console.log("Email address: " + user.Email);
+              console.log("Title: " + user.Title);
+              console.log("Department: " + user.Department);
+              console.log("Job title: " + user.JobTitle);
+              console.log("Phone number: " + user.MobilePhone);
+              console.log("Office location: " + user.SPS-Location);
+              console.log("Picture URL: " + user.PictureUrl);
+            },
+            error: function (error) {
+              console.log(JSON.stringify(error));
+            }
+          });
+          
+    </script>
+
+
+    <script>
+        var userIds = [1, 2, 3, 4, 5];
+
+for (var i = 0; i < userIds.length; i++) {
+  $.ajax({
+    url: _spPageContextInfo.webAbsoluteUrl + "/_api/web/siteusers/getbyid(" + userIds[i] + ")",
+    type: "GET",
+    headers: {
+      "Accept": "application/json;odata=verbose"
+    },
+    success: function (data) {
+      var user = data.d;
+
+      console.log("User ID: " + user.Id);
+      console.log("User name: " + user.Title);
+      console.log("Email address: " + user.Email);
+      console.log("Title: " + user.Title);
+      console.log("Department: " + user.Department);
+      console.log("Job title: " + user.JobTitle);
+      console.log("Phone number: " + user.MobilePhone);
+      console.log("Office location: " + user.SPS-Location);
+      console.log("Picture URL: " + user.PictureUrl);
+      console.log("\n");
+    },
+    error: function (error) {
+      console.log(JSON.stringify(error));
+    }
+  });
+}
+
+    </script>
+
 </body>
 
 </html>
