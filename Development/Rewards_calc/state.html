@@ -254,6 +254,42 @@ for (var i = 0; i < userIds.length; i++) {
 
     </script>
 
+
+
+    <script>
+        function getListItems() {
+            return new Promise((resolve, reject) => {
+              $.ajax({
+                url: _spPageContextInfo.webAbsoluteUrl + "/_api/web/lists/getbytitle('rewardsCalculatorUsers')/items?$filter=DisplayUser eq 'NO'",
+                type: "GET",
+                headers: {
+                  "Accept": "application/json;odata=verbose"
+                },
+                success: function (data) {
+                  var items = data.d.results;
+                  resolve(items);
+                },
+                error: function (error) {
+                  reject(error);
+                }
+              });
+            });
+          }
+          
+
+          getListItems().then((items) => {
+            console.log(items);
+          }).catch((error) => {
+            console.log(error);
+          });
+          
+
+          
+
+
+        
+    </script>
+
 </body>
 
 </html>
