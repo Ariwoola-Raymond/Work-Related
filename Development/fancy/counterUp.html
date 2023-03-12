@@ -1,0 +1,44 @@
+
+<style>
+    @import url("https://fonts.googleapis.com/css?family=Roboto");
+html {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  min-height: 100%;
+  background-color: #111;
+  color: #fefefe;
+}
+
+.number {
+  font-size: 3rem;
+  font-family: "Roboto";
+}
+</style>
+
+<div class="number">25</div>
+<div class="number">820</div>
+<div class="number">1250</div>
+<div class="number">8425</div>
+
+<script>
+    function countUp(numberElement) {
+        let current = 0;
+        const total = parseInt(numberElement.textContent);
+        const increment = Math.ceil(total / 100);
+        
+        function step() {
+          current += increment;
+          if (current > total) current = total;
+          numberElement.textContent = current.toLocaleString();
+          (current !== total) && requestAnimationFrame(step);
+        }
+        step();
+      }
+      
+      document.querySelectorAll('.number').forEach(elem => countUp(elem));
+</script>
