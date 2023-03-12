@@ -1,0 +1,88 @@
+
+
+<style>
+    /* ==========================================
+    FOR DEMO PURPOSE
+  ========================================== */
+.bg-light {
+    background: #eef0f4;
+  }
+  
+  .choices__list--dropdown .choices__item--selectable {
+    padding-right: 1rem;
+  }
+  
+  .choices__list--single {
+    padding: 0;
+  }
+  
+  .card {
+    transform: translateY(-50%);
+  }
+  
+  .choices[data-type*=select-one]:after {
+    right: 1.5rem;
+  }
+  
+  .shadow {
+    box-shadow: 0.3rem 0.3rem 1rem rgba(178, 200, 244, 0.23);
+  }
+  
+  a {
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.3s;
+  }
+  
+</style>
+
+<section class="pb-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="card border-0">
+                    <div class="card-body p-0">
+
+                        <!-- AUTO COMPLETE DROPDOWN -->
+                        <select class="selectpicker form-control border-0 mb-1 px-4 py-4 rounded shadow">
+                            <option value="Ultrasound Knee Right">Ultrasound Knee Right</option>
+                            <option value="Ultrasound Knee Left">Ultrasound Knee Left</option>
+                            <option value="MRI Knee Right">MRI Knee Right</option>
+                            <option value="MRI Knee Left">MRI Knee Left</option>
+                            <option value="MRI Forearm/Elbow Right">MRI Forearm/Elbow Right</option>
+                            <option value="MRI Forearm/Elbow Left">MRI Forearm/Elbow Left</option>
+                            <option value="CT Knee Right">CT Knee Right</option>
+                            <option value="CT Knee Left">CT Knee Left</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    /* ==============================================
+    CUSTOM SELECT
+  ============================================== */
+const sorting = document.querySelector('.selectpicker');
+const commentSorting = document.querySelector('.selectpicker');
+const sortingchoices = new Choices(sorting, {
+    placeholder: false,
+    itemSelectText: ''
+});
+
+
+// Trick to apply your custom classes to generated dropdown menu
+let sortingClass = sorting.getAttribute('class');
+window.onload= function () {
+    sorting.parentElement.setAttribute('class', sortingClass);
+}
+
+</script>
+
+<!-- https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css
+https://cdn.jsdelivr.net/npm/choices.js@9.0.1/public/assets/styles/choices.min.css
+https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css
+https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js
+https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js -->
