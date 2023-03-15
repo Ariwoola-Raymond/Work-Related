@@ -1,5 +1,15 @@
 https://workplace.emiratesnbd.com/sites/GCE/Pages/PageNotFoundError.aspx?requestUrl=https://workplace.emiratesnbd.com/sites/GCE/CXBooth/Pages/home.asspx
    
+var str = "https://workplace.emiratesnbd.com/sites/GCE/Pages/PageNotFoundError.aspx?requestUrl=https://workplace.emiratesnbd.com/sites/GCE/CXBooth/Pages/home.asspx";
+var regex = /GCE\/[^\/]*\/Pages/;
+var result = regex.exec(str);
+if (result) {
+    var extractedText = result[0].replace("GCE/", "").replace("/Pages", "");
+    console.log(extractedText);
+}
+
+
+
 document.addEventListener("DOMContentLoaded", function() {
       var refererURL = document.referrer;
       if (refererURL.indexOf("/sites/") !== -1) {
