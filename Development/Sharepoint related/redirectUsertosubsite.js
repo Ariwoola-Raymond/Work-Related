@@ -1,5 +1,6 @@
-
-   document.addEventListener("DOMContentLoaded", function() {
+https://workplace.emiratesnbd.com/sites/GCE/Pages/PageNotFoundError.aspx?requestUrl=https://workplace.emiratesnbd.com/sites/GCE/CXBooth/Pages/home.asspx
+   
+document.addEventListener("DOMContentLoaded", function() {
       var refererURL = document.referrer;
       if (refererURL.indexOf("/sites/") !== -1) {
          window.location.href = refererURL;
