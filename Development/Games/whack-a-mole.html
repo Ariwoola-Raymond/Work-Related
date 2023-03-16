@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Whack-a-Mole Game</title>
+  </head>
+  <body>
+    <h1>Whack-a-Mole Game</h1>
+    <p>Click on the moles as they appear to earn points!</p>
+    <p id="score">Score: 0</p>
+    <p id="timer">Time Left: 30</p>
+    <div id="gameBoard">
+      <!-- The moles will appear here -->
+    </div>
+
+    <script>
+      let score = 0;
+      let timeLeft = 30;
+
+      // Start the game countdown timer
+      const timerInterval = setInterval(() => {
+        timeLeft--;
+        document.getElementById("timer").innerHTML = "Time Left: " + timeLeft;
+
+        if (timeLeft <= 0) {
+          clearInterval(timerInterval);
+          document.getElementById("gameBoard").innerHTML = "Game Over! Your final score is " + score + ".";
+        }
+      }, 1000);
+
+      // Create an array of mole image URLs
+      const moleImages = [
+        "https://image.flaticon.com/icons/png/128/2276/2276742.png",
+        "https://image.flaticon.com/icons/png/128/2276/2276767.png",
+        "https://image.flaticon.com/icons/png/128/2276/2276768.png",
+        "https://image.flaticon.com/icons/png/128/2276/2276769.png"
+      ];
+
+      // Generate a random mole image URL from the array
+      function getRandomMoleImage() {
+        const randomIndex = Math.floor(Math.random() * moleImages.length);
+        return moleImages[randomIndex];
+      }
+
+      // Create a mole and add it to the game board
+      function createMole() {
+        const mole = document.createElement("img");
+        mole.src = getRandomMoleImage();
+        mole.style.position = "absolute";
+        mole.style.left = Math.floor(Math.random() * 500) + "px";
+        mole.style.top = Math.floor(Math.random() * 300) + "px";
+        mole.onclick = () => {
+          score++;
+          document.getElementById("score").innerHTML = "Score: " + score;
+          mole.remove();
+        };
+        document.getElementById("gameBoard").appendChild(mole);
+
+        // Remove the mole after 1 second if it hasn't been clicked
+        setTimeout(() => {
+          mole.remove();
+        }, 1000);
+      }
+
+      // Generate a new mole every 2 seconds
+      setInterval(() => {
+        createMole();
+      }, 2000);
+    </script>
+  </body>
+</html>
