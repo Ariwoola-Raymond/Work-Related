@@ -209,7 +209,19 @@ A centralized knowledge management system, along with a culture of knowledge sha
 
 
 
+
+
 #######
 
 This report provides findings and recommendations from a Current State Analysis for a Business Banking contact center team, identifying areas of improvement in workflows, standardization, knowledge management, training, and customer service. Implementing the recommendations is expected to enhance efficiency, consistency, and quality of service.
 
+
+
+######
+
+Platform engagement refers to the level of interaction and involvement of users with a particular platform or system, such as a knowledge management platform. It can be measured by various metrics, such as the frequency and duration of platform usage, the number of knowledge articles created and shared, the number of searches conducted, and the feedback from users on the platform's usefulness and effectiveness. Higher levels of engagement indicate that users are actively using and benefiting from the platform, which can lead to increased efficiency, productivity, and better outcomes.
+
+
+
+###########
+Platform efficiency refers to the ability of a platform or system to perform its intended functions effectively and efficiently. It can be measured by various metrics, such as the platform's uptime, speed, reliability, and responsiveness to user requests. A highly efficient platform is one that minimizes downtime, operates at optimal speed, and can handle high volumes of user requests without compromising performance. An efficient platform can improve productivity, reduce costs, and enhance the overall user experience.
