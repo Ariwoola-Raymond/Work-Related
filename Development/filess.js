@@ -7,4 +7,10 @@ const m=["January","February","March","April","May","June","July","August","Sept
 
 
 
+Why are we still using the legacy tool?
+We have identified several throttling issues on the legacy system in the past for which I created a newer version of the tool. We did a pilot using 2 agents and other agents were supposed to be migrated onto the new tool.
+Please understand that these tools takes several hours and days to develop (outside my BAUs & pro) only for them to not be used.
+Even if KM access is provided to the below users, this wouldn’t change the fact that the tool is on it’s last leg and can suddenly stop working due or be completely unusable. I highly recommend that you migrate your agents to the new tool since the new tool was built outside KM with no dependency on KM access.
+Lastly, as discussed from the onset of the tool creation, this was supposed to be a temporary solution until the people at Freshworks are able to provide the appropriate inbuilt system functionality. Having the tool on SharePoint is not sustainable and given my new job role, I may not be able to support the team with the maintenance of the tool.
+
 
