@@ -1,23 +1,11 @@
-give me a one line decription on content governance workflow
-Content governance workflow is the process of creating, reviewing, approving, publishing, and maintaining digital content in a structured and controlled manner, ensuring consistency, accuracy, and compliance with organizational policies and standards.
+Dear Susanna,
 
+I hope this email finds you well. I am writing to request some information related to Service Quality. We are currently conducting a CSA on the migration and transformation of CCO's contents, and we require the following information:
 
+Average wrong SQ score for CCO Inbound Team and Liv. Team for the past 7 months broken down based on agent tenure.
+Fatal reasons for the last 7 months: repeated calls, chats, and emails (repeated contact by the customer for the same issue).
+If the above analyses are not readily available, we would appreciate it if you could share the raw data with us, and we will extract the necessary information from there.
 
+We would appreciate it if you could provide us with the information as soon as possible. The data will be treated with the utmost confidentiality and will only be used for the purpose of the current state assessment.
 
-raymondariwoola@gmail.com
-give me one line on synchronizing repositories for governance
-Synchronizing repositories for governance is the practice of unifying and updating digital content across multiple platforms or systems to ensure consistency, accuracy, and compliance with established policies and standards.
-
-
-
-
-raymondariwoola@gmail.com
-one line one tracking mechanisms and notification system
-Tracking mechanisms and notification systems are tools and processes that enable content managers to monitor and manage content effectively by providing real-time alerts, updates, and reports on changes, issues, and performance metrics.
-
-
-
-
-raymondariwoola@gmail.com
-one line on content version control
-Content version control is the process of managing changes and revisions made to digital content, enabling content managers to track, compare, and restore previous versions and ensure accuracy and consistency over time.
+Thank you for your cooperation. If you have any questions or concerns, please do not hesitate to contact us.
