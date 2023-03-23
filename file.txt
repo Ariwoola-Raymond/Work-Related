@@ -11,3 +11,8 @@ For the date, in another cell (let's say D1), input the formula =INT(C1). This w
 For the time, in another cell (let's say E1), input the formula =MOD(C1, 1). This will extract the time portion of the datetime value (e.g., 4:04 PM).
 
 Now you have the date and time in two separate cells (D1 and E1).
+
+
+
+
+https://app.resumekraft.com/resumes?id=8&name=Urban
