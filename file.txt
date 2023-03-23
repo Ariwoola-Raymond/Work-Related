@@ -1,10 +1,13 @@
-Current Date: 03/22/2023
- Current Time: 23:13:04
- Current Quote: Don't watch the clock; do what it does. Keep going. - Sam Levenson
- 
- 
-VibrantSapphireSingsInSpring
+To convert the text into a proper datetime format:
 
+In a new cell (let's say B1), input the formula =SUBSTITUTE(A1, " at", ""). This will remove the " at" part from the text.
 
+In another cell (let's say C1), input the formula =DATEVALUE(MID(B1,1,FIND(",",B1,1)-1)&MID(B1,FIND(",",B1,1)+1,LEN(B1))) + TIMEVALUE(MID(B1,FIND(" ",B1,FIND(",",B1,1)+1)+1,LEN(B1))). This will convert the remaining text into a proper datetime format.
 
-Wednesday, February 8, 2023 at 4:04 PM
+To separate the date and time:
+
+For the date, in another cell (let's say D1), input the formula =INT(C1). This will extract the date portion of the datetime value (e.g., 2/8/2023).
+
+For the time, in another cell (let's say E1), input the formula =MOD(C1, 1). This will extract the time portion of the datetime value (e.g., 4:04 PM).
+
+Now you have the date and time in two separate cells (D1 and E1).
