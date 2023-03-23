@@ -15,4 +15,24 @@ Now you have the date and time in two separate cells (D1 and E1).
 
 
 
+
+=DATEVALUE(MID(A1,FIND(",",A1)+2,FIND(" at",A1)-FIND(",",A1)-2)) + TIMEVALUE(MID(A1,FIND(" at",A1)+3,LEN(A1)))
+
+
+For the date:
+
+In a new cell (let's say B1), input the formula:
+=DATEVALUE(MID(A1, FIND(",", A1) + 2, FIND(" at", A1) - FIND(",", A1) - 2))
+This formula will extract the date portion of the text and display it as a date (e.g., 2/8/2023).
+For the time:
+
+In another cell (let's say C1), input the formula:
+=TIMEVALUE(MID(A1, FIND(" at", A1) + 3, LEN(A1)))
+This formula will extract the time portion of the text and display it as a time (e.g., 4:04 PM).
+
+
+
+
+
+
 https://app.resumekraft.com/resumes?id=8&name=Urban
