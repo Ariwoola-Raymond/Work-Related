@@ -8,3 +8,5 @@ Current Date: 03/22/2023
 
  have selected all necessary tag sets to view an article, but the system is showing an error that the article doesn't match your current filter option. 
  
+
+the system does not have a feature that allows authors to manually adjust the size of tables or images. Instead, the system automatically applies a default size, which may not be suitable for the content or layout of the article.
