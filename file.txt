@@ -27,3 +27,8 @@ function splitAt(text) {
 const input = "Wednesday, March 1, 2023 at 10:46 AM";
 const result = splitAt(input);
 console.log(result); // { Date: "Wednesday, March 1, 2023", time: "10:46 AM" }
+
+
+
+Conducted data analysis to evaluate the effectiveness of the employee wellbeing program, using tools like Power Query to extract, transform, and load data from various sources.
+Developed and presented reports to senior management on key performance indicators related to employee wellbeing, using visualizations and dashboards in Power BI to communicate insights.
