@@ -1,38 +1,12 @@
-To convert the text into a proper datetime format:
-
-In a new cell (let's say B1), input the formula =SUBSTITUTE(A1, " at", ""). This will remove the " at" part from the text.
-
-In another cell (let's say C1), input the formula =DATEVALUE(MID(B1,1,FIND(",",B1,1)-1)&MID(B1,FIND(",",B1,1)+1,LEN(B1))) + TIMEVALUE(MID(B1,FIND(" ",B1,FIND(",",B1,1)+1)+1,LEN(B1))). This will convert the remaining text into a proper datetime format.
-
-To separate the date and time:
-
-For the date, in another cell (let's say D1), input the formula =INT(C1). This will extract the date portion of the datetime value (e.g., 2/8/2023).
-
-For the time, in another cell (let's say E1), input the formula =MOD(C1, 1). This will extract the time portion of the datetime value (e.g., 4:04 PM).
-
-Now you have the date and time in two separate cells (D1 and E1).
-
-
-
-
-
-=DATEVALUE(MID(A1,FIND(",",A1)+2,FIND(" at",A1)-FIND(",",A1)-2)) + TIMEVALUE(MID(A1,FIND(" at",A1)+3,LEN(A1)))
-
-
-For the date:
-
-In a new cell (let's say B1), input the formula:
-=DATEVALUE(MID(A1, FIND(",", A1) + 2, FIND(" at", A1) - FIND(",", A1) - 2))
-This formula will extract the date portion of the text and display it as a date (e.g., 2/8/2023).
-For the time:
-
-In another cell (let's say C1), input the formula:
-=TIMEVALUE(MID(A1, FIND(" at", A1) + 3, LEN(A1)))
-This formula will extract the time portion of the text and display it as a time (e.g., 4:04 PM).
-
-
-
-
-
-
-https://app.resumekraft.com/resumes?id=8&name=Urban
+function dateTimeNow() {
+                        const dateTimeOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric' };
+                        const timeOptions = { hour: 'numeric', minute: 'numeric' };
+                        const dateOnlyOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+                        const dateTimeNow = new Date().toLocaleDateString('en-US', dateTimeOptions);
+                        const dateOnlyNow = new Date().toLocaleDateString('en-US', dateOnlyOptions);
+                        const timeOnlyNow = new Date().toLocaleDateString('en-US', timeOptions);
+                        const dateOnlyMonth = new Date().toLocaleDateString('en-US', { month: 'long' });
+                        const dateDayMonthOnly = new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric' });
+                        const yearOnly = new Date().toLocaleDateString('en-US', {  year: 'numeric' });
+                        return { dateTimeNow, dateOnlyNow, dateOnlyMonth, dateDayMonthOnly, yearOnly,timeOnlyNow };
+                    }
