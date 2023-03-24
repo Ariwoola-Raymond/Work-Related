@@ -14,3 +14,16 @@ function dateTimeNow() {
 
 
 "Wednesday, March 1, 2023 at 10:46 AM"
+
+
+function splitAt(text) {
+  if (text.includes(' at ')) {
+    const [datePart, timePart] = text.split(' at ');
+    return { Date: datePart, time: timePart };
+  }
+  return null;
+}
+
+const input = "Wednesday, March 1, 2023 at 10:46 AM";
+const result = splitAt(input);
+console.log(result); // { Date: "Wednesday, March 1, 2023", time: "10:46 AM" }
