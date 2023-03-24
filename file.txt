@@ -10,3 +10,7 @@ function dateTimeNow() {
                         const yearOnly = new Date().toLocaleDateString('en-US', {  year: 'numeric' });
                         return { dateTimeNow, dateOnlyNow, dateOnlyMonth, dateDayMonthOnly, yearOnly,timeOnlyNow };
                     }
+
+
+
+"Wednesday, March 1, 2023 at 10:46 AM"
