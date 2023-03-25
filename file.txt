@@ -30,5 +30,16 @@ console.log(result); // { Date: "Wednesday, March 1, 2023", time: "10:46 AM" }
 
 
 
-Conducted data analysis to evaluate the effectiveness of the employee wellbeing program, using tools like Power Query to extract, transform, and load data from various sources.
-Developed and presented reports to senior management on key performance indicators related to employee wellbeing, using visualizations and dashboards in Power BI to communicate insights.
+
+
+
+
+
+Thank you for reaching out to us regarding the review and recreation of the credit card benefits page on our public website.
+
+At this time, our team is occupied with the critical clean up and maintenance activity of the help and support section of the website. This activity is our top priority, and we are working hard to ensure that the content is accurate and usable for our customers.
+
+Once this activity is completed, we will be able to focus our attention on your request. We understand the importance of the credit card benefits page, and we are currently researching the best way to recreate and represent its content on the website. We will ensure that it aligns with your team's goals and expectations.
+
+We appreciate your patience and understanding as we work through our current workload. We will provide you with further updates as soon as we have them.
+
