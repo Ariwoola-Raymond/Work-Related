@@ -32,14 +32,6 @@ console.log(result); // { Date: "Wednesday, March 1, 2023", time: "10:46 AM" }
 
 
 
-
-
-
-Thank you for reaching out to us regarding the review and recreation of the credit card benefits page on our public website.
-
-At this time, our team is occupied with the critical clean up and maintenance activity of the help and support section of the website. This activity is our top priority, and we are working hard to ensure that the content is accurate and usable for our customers.
-
-Once this activity is completed, we will be able to focus our attention on your request. We understand the importance of the credit card benefits page, and we are currently researching the best way to recreate and represent its content on the website. We will ensure that it aligns with your team's goals and expectations.
-
-We appreciate your patience and understanding as we work through our current workload. We will provide you with further updates as soon as we have them.
-
+We are now currently working on the crucial cleaning and maintenance of the website's help and support part, as we need to ensure that the content is relevant, correct, and useable for our clients.
+Along with the maintenance activity, we are also researching the best way to recreate and represent content related to Cards Rewards and Benefits. We understand the importance of this and we will ensure that it aligns with your team's goals and expectations.
+If you have any suggestions or ideas, please share them with us so that we can add them to our pool of researched material.
