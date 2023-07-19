@@ -1,13 +1,6 @@
 {
-    "jupyter.kernels.filter": [
-
-        {
-            "path": "/usr/local/bin/python3",
-            "type": "pythonEnvironment"
-        },
-        {
-            "path": "/usr/bin/python3",
-            "type": "pythonEnvironment"
-        }
+    "jupyter.kernels.excludePythonEnvironments": [
+        "/usr/local/bin/python3",
+        "/usr/bin/python3"
     ]
 }
