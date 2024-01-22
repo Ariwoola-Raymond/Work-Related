@@ -66,9 +66,9 @@ try:
         #     body=selected_quote
         # )
 
-        # Wait for 15 minutes
-        # Wait for 900 seconds(15 minutes) before updating the file again
-        time.sleep(900)
+        # Wait for 30 minutes
+        # Wait for 1800 seconds(30 minutes) before updating the file again
+        time.sleep(1800)
     
 except Exception as e:
     print("An error occurred:", str(e))
