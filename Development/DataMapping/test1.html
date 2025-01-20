@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Mapping</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
+
+</head>
+
+<body>
+    <h1>Department Data Mapping</h1>
+    <input type="file" id="upload" accept=".csv" />
+    <script>
+        const campaignMapping = {
+            entityAndDivision: [
+                { businessUnit: "tanfeeth llc", division: "tanfeeth", subDivision: "cco", campaignEntity: "Tanfeeth", campaignDivision: "CCO" },
+                { businessUnit: "emirates nbd pjsc", division: "tanfeeth", subDivision: "cco", campaignEntity: "Tanfeeth", campaignDivision: "CCO" }
+            ],
+            ccoDepartment: [
+                { ccoDepartment: "cco inbound", campaignEntity: "Tanfeeth", campaignDivision: "CCO" }
+            ],
+            processRole: [
+                { ccoProcess: "liv blend", campaignRole: "ENBD Inbound - Agent" },
+                { ccoProcess: "prb", campaignRole: "ENBD Inbound - Agent" },
+                { ccoProcess: "prb-pb", campaignRole: "ENBD Inbound - Agent" },
+                { ccoProcess: "psb", campaignRole: "ENBD Inbound - Agent" },
+                { ccoProcess: "psb rak", campaignRole: "ENBD Inbound - Agent" },
+                { ccoProcess: "liv", campaignRole: "ENBD Inbound - Agent" },
+                { ccoProcess: "whatsapp core", campaignRole: "ENBD Inbound - Agent" }
+            ]
+        };
+
+        function caseInsensitiveCompare(input, target) {
+            return input?.toLowerCase() === target?.toLowerCase();
+        }
+
+        function processRow(row) {
+            let newRow = { ...row };
+
+            const entityAndDept = campaignMapping.entityAndDivision.find(
+                rule =>
+                    caseInsensitiveCompare(row["Business Unit"], rule.businessUnit) &&
+                    caseInsensitiveCompare(row["Division"], rule.division) &&
+                    caseInsensitiveCompare(row["Sub Division"], rule.subDivision)
+            );
+            if (entityAndDept) {
+                newRow["Campaign.Entity"] = entityAndDept.campaignEntity;
+                newRow["Campaign.Division"] = entityAndDept.campaignDivision;
+            } else {
+                newRow["Campaign.Entity"] = "";
+                newRow["Campaign.Division"] = "";
+            }
+
+            const dept = campaignMapping.ccoDepartment.find(
+                rule => caseInsensitiveCompare(row["CCO_.Department"], rule.ccoDepartment)
+            );
+            if (dept) {
+                newRow["Campaign.Entity"] = dept.campaignEntity;
+                newRow["Campaign.Division"] = dept.campaignDivision;
+            }
+
+            const processRole = campaignMapping.processRole.find(
+                rule => caseInsensitiveCompare(row["CCO_.Process"], rule.ccoProcess)
+            );
+            if (processRole) {
+                newRow["Campaign.Role"] = processRole.campaignRole;
+                newRow["Campaign.Department"] = processRole.campaignRole;
+            } else {
+                newRow["Campaign.Role"] = "";
+            }
+
+            return newRow;
+        }
+
+        function processCSV(inputFile, callback) {
+            Papa.parse(inputFile, {
+                header: true,
+                skipEmptyLines: true,
+                complete: function (results) {
+                    const inputRows = results.data;
+
+                    console.log("Input Rows:", inputRows);
+
+                    const transformedData = inputRows.map(processRow);
+
+                    console.log("Transformed Data:", transformedData);
+
+                    callback(transformedData);
+                }
+            });
+        }
+
+        function reorderColumns(data) {
+            return data.map(row => {
+                return {
+                    "Campaign.Entity": row["Campaign.Entity"],
+                    "Campaign.Division": row["Campaign.Division"],
+                    "Campaign.Department": row["Campaign.Department"],
+                    "Campaign.Role": row["Campaign.Role"], ...row
+                };
+            });
+        }
+
+        function downloadCSV(data) {
+            const reorderedData = reorderColumns(data);
+            const csv = Papa.unparse(reorderedData);
+            const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+            const link = document.createElement("a");
+            link.href = URL.createObjectURL(blob);
+            link.download = "transformed_data.csv";
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        document.getElementById("upload").addEventListener("change", function (event) {
+            const file = event.target.files[0];
+            processCSV(file, transformedData => {
+                downloadCSV(transformedData);
+            });
+        });
+
+    </script>
+</body>
+
+</html>
