@@ -1,0 +1,89 @@
+{
+  "mappingGroups": [
+    {
+      "name": "CCO",
+      "entityDivisionRules": [
+        {
+          "conditions": {
+            "Business Unit": "tanfeeth llc",
+            "Division": "tanfeeth",
+            "Sub Division": "cco"
+          },
+          "output": {
+            "Campaign.Entity": "Tanfeeth",
+            "Campaign.Division": "CCO"
+          }
+        },
+        {
+          "conditions": {
+            "Business Unit": "emirates nbd pjsc",
+            "Division": "tanfeeth",
+            "Sub Division": "cco"
+          },
+          "output": {
+            "Campaign.Entity": "Tanfeeth",
+            "Campaign.Division": "CCO"
+          }
+        }
+      ],
+      "departmentRules": [
+        {
+          "conditions": {
+            "CCO_.Department": "cco inbound"
+          },
+          "output": {
+            "Campaign.Entity": "Tanfeeth",
+            "Campaign.Division": "CCO"
+          }
+        }
+      ],
+      "roleRules": [
+        {
+          "conditions": {
+            "CCO_.Process": ["liv blend", "prb", "prb-pb", "psb", "psb rak", "liv", "whatsapp core"]
+          },
+          "output": {
+            "Campaign.Role": "ENBD Inbound - Agent",
+            "Campaign.Department": "ENBD Inbound - Agent"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Branch",
+      "entityDivisionRules": [
+        {
+          "conditions": {
+            "Business Unit": "emirates nbd pjsc",
+            "Division": "retail banking",
+            "Sub Division": "distribution"
+          },
+          "output": {
+            "Campaign.Entity": "ENBD",
+            "Campaign.Division": "Retail Distribution"
+          }
+        }
+      ],
+      "positionRules": [
+        {
+          "conditions": {
+            "Position Title": ["teller"]
+          },
+          "output": {
+            "Campaign.Role": "Teller",
+            "Campaign.Department": "Teller"
+          }
+        },
+        {
+          "conditions": {
+            "Position Title": ["customer care advisor"]
+          },
+          "output": {
+            "Campaign.Role": "CCA",
+            "Campaign.Department": "CCA"
+          }
+        }
+      ]
+    }
+  ]
+}

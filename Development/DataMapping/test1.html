@@ -13,138 +13,93 @@
     <h1>Department Data Mapping</h1>
     <input type="file" id="upload" accept=".csv" />
     <script>
-        const campaignMapping = {
-            entityAndDivision: [
-                { businessUnit: "tanfeeth llc", division: "tanfeeth", subDivision: "cco", campaignEntity: "Tanfeeth", campaignDivision: "CCO" },
-                { businessUnit: "emirates nbd pjsc", division: "tanfeeth", subDivision: "cco", campaignEntity: "Tanfeeth", campaignDivision: "CCO" }
-            ],
-            ccoDepartment: [
-                { ccoDepartment: "cco inbound", campaignEntity: "Tanfeeth", campaignDivision: "CCO" }
-            ],
-            processRole: [
-                { ccoProcess: "liv blend", campaignRole: "ENBD Inbound - Agent" },
-                { ccoProcess: "prb", campaignRole: "ENBD Inbound - Agent" },
-                { ccoProcess: "prb-pb", campaignRole: "ENBD Inbound - Agent" },
-                { ccoProcess: "psb", campaignRole: "ENBD Inbound - Agent" },
-                { ccoProcess: "psb rak", campaignRole: "ENBD Inbound - Agent" },
-                { ccoProcess: "liv", campaignRole: "ENBD Inbound - Agent" },
-                { ccoProcess: "whatsapp core", campaignRole: "ENBD Inbound - Agent" }
-            ]
-        };
+        let mappingRules = null;
 
-        const BranchMapping = {
-            entityAndDivision: [
-                { businessUnit: "emirates nbd pjsc", division: "retail banking", subDivision: "distribution", campaignEntity: "ENBD", campaignDivision: "Retail Distribution" },
-            ],
-            processRole: [
-                { positionTitle: "teller", campaignRole: "Teller" },
-                { positionTitle: "customer care advisor", campaignRole: "CCA" },
-                { positionTitle: "personal banking advisor", campaignRole: "PBA" },
-                { positionTitle: "service ambasador", campaignRole: "Service ambassadors" },
-                { positionTitle: "service ambassador", campaignRole: "Service ambassadors" }
-            ]
-        };
+        // Load mapping rules before allowing file processing
+        async function loadMappingRules() {
+            try {
+                const response = await fetch('mappings.json');
+                mappingRules = await response.json();
+                document.getElementById('upload').disabled = false;
+            } catch (error) {
+                console.error('Failed to load mapping rules:', error);
+                alert('Failed to load mapping rules. Please refresh the page.');
+            }
+        }
 
-        function caseInsensitiveCompare(input, target) {
-            return input?.toLowerCase() === target?.toLowerCase();
+        function matchConditions(row, conditions) {
+            return Object.entries(conditions).every(([key, value]) => {
+                if (Array.isArray(value)) {
+                    return value.some(v => containsAllWords(row[key], v));
+                }
+                return caseInsensitiveCompare(row[key], value);
+            });
+        }
+
+        function applyOutput(row, output) {
+            Object.entries(output).forEach(([key, value]) => {
+                row[key] = value;
+            });
+        }
+
+        function processRow(row) {
+            let newRow = { ...row };
+            let groupContext = null;
+
+            // Apply entity/division rules
+            for (const group of mappingRules.mappingGroups) {
+                const matchedRule = group.entityDivisionRules.find(rule => 
+                    matchConditions(row, rule.conditions)
+                );
+
+                if (matchedRule) {
+                    applyOutput(newRow, matchedRule.output);
+                    groupContext = group.name;
+                    break;
+                }
+            }
+
+            // Apply group-specific rules
+            const activeGroup = mappingRules.mappingGroups.find(g => g.name === groupContext);
+            if (activeGroup) {
+                // Apply department rules if they exist
+                if (activeGroup.departmentRules) {
+                    const deptRule = activeGroup.departmentRules.find(rule => 
+                        matchConditions(row, rule.conditions)
+                    );
+                    if (deptRule) applyOutput(newRow, deptRule.output);
+                }
+
+                // Apply role/position rules
+                if (activeGroup.roleRules) {
+                    const roleRule = activeGroup.roleRules.find(rule => 
+                        matchConditions(row, rule.conditions)
+                    );
+                    if (roleRule) applyOutput(newRow, roleRule.output);
+                }
+
+                if (activeGroup.positionRules) {
+                    const posRule = activeGroup.positionRules.find(rule => 
+                        matchConditions(row, rule.conditions)
+                    );
+                    if (posRule) applyOutput(newRow, posRule.output);
+                }
+            }
+
+            return newRow;
         }
 
         function containsAllWords(inputString, searchPhrase) {
             if (!inputString || !searchPhrase) return false;
-            
-            // Split both strings into words and convert to lowercase
             const inputWords = inputString.toLowerCase().split(/\s+/);
             const searchWords = searchPhrase.toLowerCase().split(/\s+/);
-            
-            // Check if all search words are present in input
             return searchWords.every(searchWord => 
                 inputWords.some(inputWord => inputWord.includes(searchWord))
             );
         }
 
-        function processRow(row) {
-            let newRow = { ...row };
-            let isBranchEmployee = false;  // Flag to track if this is a branch employee
-
-            // Check CCO mapping first
-            const ccoDeptMapping = campaignMapping.entityAndDivision.find(
-                rule =>
-                    caseInsensitiveCompare(row["Business Unit"], rule.businessUnit) &&
-                    caseInsensitiveCompare(row["Division"], rule.division) &&
-                    caseInsensitiveCompare(row["Sub Division"], rule.subDivision)
-            );
-
-            // Then check Branch mapping
-            const branchMapping = BranchMapping.entityAndDivision.find(
-                rule =>
-                    caseInsensitiveCompare(row["Business Unit"], rule.businessUnit) &&
-                    caseInsensitiveCompare(row["Division"], rule.division) &&
-                    caseInsensitiveCompare(row["Sub Division"], rule.subDivision)
-            );
-
-            console.log('Initial check:', {
-                businessUnit: row["Business Unit"],
-                division: row["Division"],
-                subDivision: row["Sub Division"],
-                branchMapping: branchMapping,
-                ccoDeptMapping: ccoDeptMapping
-            });
-
-            if (ccoDeptMapping) {
-                newRow["Campaign.Entity"] = ccoDeptMapping.campaignEntity;
-                newRow["Campaign.Division"] = ccoDeptMapping.campaignDivision;
-                console.log('CCO mapping applied:', row["Business Unit"]);
-            } else if (branchMapping) {
-                newRow["Campaign.Entity"] = branchMapping.campaignEntity;
-                newRow["Campaign.Division"] = branchMapping.campaignDivision;
-                isBranchEmployee = true;
-                console.log('Branch mapping applied - Set isBranchEmployee to true for:', row["Business Unit"]);
-            } else {
-                newRow["Campaign.Entity"] = "";
-                newRow["Campaign.Division"] = "";
-                console.log('No mapping found for:', row["Business Unit"]);
-            }
-
-            // CCO Department mapping
-            const dept = campaignMapping.ccoDepartment.find(
-                rule => caseInsensitiveCompare(row["CCO_.Department"], rule.ccoDepartment)
-            );
-            if (dept) {
-                newRow["Campaign.Entity"] = dept.campaignEntity;
-                newRow["Campaign.Division"] = dept.campaignDivision;
-                isBranchEmployee = false;
-                console.log('CCO Department override - Reset isBranchEmployee to false for:', row["Business Unit"]);
-            }
-
-            console.log('Final isBranchEmployee status:', {
-                businessUnit: row["Business Unit"],
-                isBranchEmployee: isBranchEmployee,
-                entity: newRow["Campaign.Entity"],
-                division: newRow["Campaign.Division"]
-            });
-
-            // Process/Role mapping
-            const processRole = campaignMapping.processRole.find(
-                rule => caseInsensitiveCompare(row["CCO_.Process"], rule.ccoProcess)
-            );
-
-            // Position Title mapping - only if this is a branch employee
-            const positionMapping = isBranchEmployee ? BranchMapping.processRole.find(
-                rule => containsAllWords(row["Position Title"], rule.positionTitle)
-            ) : null;
-
-            if (processRole) {
-                newRow["Campaign.Role"] = processRole.campaignRole;
-                newRow["Campaign.Department"] = processRole.campaignRole;
-            } else if (positionMapping && isBranchEmployee) {
-                newRow["Campaign.Role"] = positionMapping.campaignRole;
-                newRow["Campaign.Department"] = positionMapping.campaignRole;
-            } else {
-                newRow["Campaign.Role"] = "";
-                newRow["Campaign.Department"] = "";
-            }
-
-            return newRow;
+        function caseInsensitiveCompare(input, target) {
+            return input?.toLowerCase() === target?.toLowerCase();
         }
 
         function processCSV(inputFile, callback) {
@@ -188,7 +143,13 @@
             document.body.removeChild(link);
         }
 
-        document.getElementById("upload").addEventListener("change", function (event) {
+        document.getElementById("upload").disabled = true; // Disable until rules are loaded
+        loadMappingRules(); // Load rules when page loads
+        document.getElementById("upload").addEventListener("change", function(event) {
+            if (!mappingRules) {
+                alert('Mapping rules not loaded yet. Please wait.');
+                return;
+            }
             const file = event.target.files[0];
             processCSV(file, transformedData => {
                 downloadCSV(transformedData);
