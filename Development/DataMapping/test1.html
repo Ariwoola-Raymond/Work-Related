@@ -51,6 +51,7 @@
 
         function processRow(row) {
             let newRow = { ...row };
+            let isBranchEmployee = false;  // Flag to track if this is a branch employee
 
             // Check CCO mapping first
             const ccoDeptMapping = campaignMapping.entityAndDivision.find(
@@ -74,6 +75,7 @@
             } else if (branchMapping) {
                 newRow["Campaign.Entity"] = branchMapping.campaignEntity;
                 newRow["Campaign.Division"] = branchMapping.campaignDivision;
+                isBranchEmployee = true;  // Set flag if branch mapping matches
             } else {
                 newRow["Campaign.Entity"] = "";
                 newRow["Campaign.Division"] = "";
@@ -86,22 +88,23 @@
             if (dept) {
                 newRow["Campaign.Entity"] = dept.campaignEntity;
                 newRow["Campaign.Division"] = dept.campaignDivision;
+                isBranchEmployee = false;  // Reset flag if CCO dept matches
             }
 
             // Process/Role mapping
             const processRole = campaignMapping.processRole.find(
                 rule => caseInsensitiveCompare(row["CCO_.Process"], rule.ccoProcess)
             );
-            
-            // Position Title mapping
-            const positionMapping = BranchMapping.processRole.find(
+
+            // Position Title mapping - only if this is a branch employee
+            const positionMapping = isBranchEmployee ? BranchMapping.processRole.find(
                 rule => row["Position Title"]?.toLowerCase().includes(rule.positionTitle)
-            );
+            ) : null;
 
             if (processRole) {
                 newRow["Campaign.Role"] = processRole.campaignRole;
                 newRow["Campaign.Department"] = processRole.campaignRole;
-            } else if (positionMapping) {
+            } else if (positionMapping && isBranchEmployee) {
                 newRow["Campaign.Role"] = positionMapping.campaignRole;
                 newRow["Campaign.Department"] = positionMapping.campaignRole;
             } else {
