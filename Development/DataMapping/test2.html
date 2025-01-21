@@ -32,18 +32,8 @@
             ]
         };
 
-        const BranchMapping = {
-            entityAndDivision: [
-                { businessUnit: "emirates nbd pjsc", division: "retail banking", subDivision: "distribution", campaignEntity: "ENBD", campaignDivision: "Retail Distribution" },
-            ],
-            processRole: [
-                { positionTitle: "teller", campaignRole: "Teller" },
-                { positionTitle: "customer care advisor", campaignRole: "CCA" },
-                { positionTitle: "personal banking advisor", campaignRole: "PBA" },
-                { positionTitle: "service ambasador", campaignRole: "Service ambassadors" },
-                { positionTitle: "service ambassador", campaignRole: "Service ambassadors" }
-            ]
-        };
+
+
 
         function caseInsensitiveCompare(input, target) {
             return input?.toLowerCase() === target?.toLowerCase();
@@ -52,34 +42,20 @@
         function processRow(row) {
             let newRow = { ...row };
 
-            // Check CCO mapping first
-            const ccoDeptMapping = campaignMapping.entityAndDivision.find(
+            const entityAndDept = campaignMapping.entityAndDivision.find(
                 rule =>
                     caseInsensitiveCompare(row["Business Unit"], rule.businessUnit) &&
                     caseInsensitiveCompare(row["Division"], rule.division) &&
                     caseInsensitiveCompare(row["Sub Division"], rule.subDivision)
             );
-
-            // Then check Branch mapping
-            const branchMapping = BranchMapping.entityAndDivision.find(
-                rule =>
-                    caseInsensitiveCompare(row["Business Unit"], rule.businessUnit) &&
-                    caseInsensitiveCompare(row["Division"], rule.division) &&
-                    caseInsensitiveCompare(row["Sub Division"], rule.subDivision)
-            );
-
-            if (ccoDeptMapping) {
-                newRow["Campaign.Entity"] = ccoDeptMapping.campaignEntity;
-                newRow["Campaign.Division"] = ccoDeptMapping.campaignDivision;
-            } else if (branchMapping) {
-                newRow["Campaign.Entity"] = branchMapping.campaignEntity;
-                newRow["Campaign.Division"] = branchMapping.campaignDivision;
+            if (entityAndDept) {
+                newRow["Campaign.Entity"] = entityAndDept.campaignEntity;
+                newRow["Campaign.Division"] = entityAndDept.campaignDivision;
             } else {
                 newRow["Campaign.Entity"] = "";
                 newRow["Campaign.Division"] = "";
             }
 
-            // CCO Department mapping
             const dept = campaignMapping.ccoDepartment.find(
                 rule => caseInsensitiveCompare(row["CCO_.Department"], rule.ccoDepartment)
             );
@@ -88,25 +64,14 @@
                 newRow["Campaign.Division"] = dept.campaignDivision;
             }
 
-            // Process/Role mapping
             const processRole = campaignMapping.processRole.find(
                 rule => caseInsensitiveCompare(row["CCO_.Process"], rule.ccoProcess)
             );
-            
-            // Position Title mapping
-            const positionMapping = BranchMapping.processRole.find(
-                rule => row["Position Title"]?.toLowerCase().includes(rule.positionTitle)
-            );
-
             if (processRole) {
                 newRow["Campaign.Role"] = processRole.campaignRole;
                 newRow["Campaign.Department"] = processRole.campaignRole;
-            } else if (positionMapping) {
-                newRow["Campaign.Role"] = positionMapping.campaignRole;
-                newRow["Campaign.Department"] = positionMapping.campaignRole;
             } else {
                 newRow["Campaign.Role"] = "";
-                newRow["Campaign.Department"] = "";
             }
 
             return newRow;
@@ -140,6 +105,7 @@
                 };
             });
         }
+
 
         function downloadCSV(data) {
             const reorderedData = reorderColumns(data);
