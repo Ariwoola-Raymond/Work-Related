@@ -69,16 +69,27 @@
                     caseInsensitiveCompare(row["Sub Division"], rule.subDivision)
             );
 
+            console.log('Initial check:', {
+                businessUnit: row["Business Unit"],
+                division: row["Division"],
+                subDivision: row["Sub Division"],
+                branchMapping: branchMapping,
+                ccoDeptMapping: ccoDeptMapping
+            });
+
             if (ccoDeptMapping) {
                 newRow["Campaign.Entity"] = ccoDeptMapping.campaignEntity;
                 newRow["Campaign.Division"] = ccoDeptMapping.campaignDivision;
+                console.log('CCO mapping applied:', row["Business Unit"]);
             } else if (branchMapping) {
                 newRow["Campaign.Entity"] = branchMapping.campaignEntity;
                 newRow["Campaign.Division"] = branchMapping.campaignDivision;
-                isBranchEmployee = true;  // Set flag if branch mapping matches
+                isBranchEmployee = true;
+                console.log('Branch mapping applied - Set isBranchEmployee to true for:', row["Business Unit"]);
             } else {
                 newRow["Campaign.Entity"] = "";
                 newRow["Campaign.Division"] = "";
+                console.log('No mapping found for:', row["Business Unit"]);
             }
 
             // CCO Department mapping
@@ -88,8 +99,16 @@
             if (dept) {
                 newRow["Campaign.Entity"] = dept.campaignEntity;
                 newRow["Campaign.Division"] = dept.campaignDivision;
-                isBranchEmployee = false;  // Reset flag if CCO dept matches
+                isBranchEmployee = false;
+                console.log('CCO Department override - Reset isBranchEmployee to false for:', row["Business Unit"]);
             }
+
+            console.log('Final isBranchEmployee status:', {
+                businessUnit: row["Business Unit"],
+                isBranchEmployee: isBranchEmployee,
+                entity: newRow["Campaign.Entity"],
+                division: newRow["Campaign.Division"]
+            });
 
             // Process/Role mapping
             const processRole = campaignMapping.processRole.find(
