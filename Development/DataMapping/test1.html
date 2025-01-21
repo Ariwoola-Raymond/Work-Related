@@ -49,6 +49,19 @@
             return input?.toLowerCase() === target?.toLowerCase();
         }
 
+        function containsAllWords(inputString, searchPhrase) {
+            if (!inputString || !searchPhrase) return false;
+            
+            // Split both strings into words and convert to lowercase
+            const inputWords = inputString.toLowerCase().split(/\s+/);
+            const searchWords = searchPhrase.toLowerCase().split(/\s+/);
+            
+            // Check if all search words are present in input
+            return searchWords.every(searchWord => 
+                inputWords.some(inputWord => inputWord.includes(searchWord))
+            );
+        }
+
         function processRow(row) {
             let newRow = { ...row };
             let isBranchEmployee = false;  // Flag to track if this is a branch employee
@@ -117,7 +130,7 @@
 
             // Position Title mapping - only if this is a branch employee
             const positionMapping = isBranchEmployee ? BranchMapping.processRole.find(
-                rule => row["Position Title"]?.toLowerCase().includes(rule.positionTitle)
+                rule => containsAllWords(row["Position Title"], rule.positionTitle)
             ) : null;
 
             if (processRole) {
