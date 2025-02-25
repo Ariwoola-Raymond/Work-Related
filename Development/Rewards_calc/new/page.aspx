@@ -564,7 +564,8 @@ Author: Oluwatobiloba Raymond Ariwoola
             src="/sites/GCE/public/SiteAssets/javascript/third-party/bootstrap.bundle.min.js"></script>
 
         <!-- Calculator JS -->
-        <script src="/sites/GCE/public/SiteAssets/javascript/CC-rewards-calc/calculator.js?version=5"></script>
+        <!-- <script src="/sites/GCE/public/SiteAssets/javascript/CC-rewards-calc/calculator.js?version=5"></script> -->
+        <script src="script.js"></script>
 
 
     </body>
