@@ -10,7 +10,7 @@ const cardData = [
         { category: "Categorized Earning 1", rate: 0.004 },
         { category: "Categorized Earning 2", rate: 0.002 }
       ],
-      cardImage: "<img class='cardImage lazy' data-src='/sites/GCE/public/SiteAssets/mediafiles/images/CCImages/Webshopper_Front.png'>"
+      cardImage: "<img class='cardImage lazy' data-src='/sites/GCE/public/SiteAssets/mediafiles/images/CCImages/Webshopper_Front.png' alt='Webshopper Card Image'>"
     },
     // Add other cards here in similar fashion
   ];
@@ -90,6 +90,14 @@ const cardData = [
     }
   });
   
+  // Keyboard Accessibility for Submit Button
+  document.getElementById("submit-button").addEventListener("keydown", (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      document.getElementById("submit-button").click();
+    }
+  });
+  
   // Input Validation (inputValidator.js)
   document.getElementById("txnAmount").addEventListener("input", (e) => {
     const value = e.target.value;
@@ -103,6 +111,7 @@ const cardData = [
   function showLoadingSpinner(show) {
     const spinner = document.getElementById("loadingSpinner");
     if (show) {
+      spinner.setAttribute("aria-live", "assertive");
       spinner.style.display = "block";
     } else {
       spinner.style.display = "none";
@@ -117,5 +126,14 @@ const cardData = [
     } else {
       cardContainer.classList.remove("mobile-layout");
     }
+  });
+  
+  // Accessibility: Focus Management for Modals
+  document.getElementById("cardType").addEventListener("focus", (e) => {
+    e.target.setAttribute("aria-label", "Select card type");
+  });
+  
+  document.getElementById("txnAmount").addEventListener("focus", (e) => {
+    e.target.setAttribute("aria-label", "Enter transaction amount");
   });
   
