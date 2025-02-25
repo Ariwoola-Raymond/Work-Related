@@ -10,7 +10,7 @@ const cardData = [
         { category: "Categorized Earning 1", rate: 0.004 },
         { category: "Categorized Earning 2", rate: 0.002 }
       ],
-      cardImage: "<img class='cardImage' src='/sites/GCE/public/SiteAssets/mediafiles/images/CCImages/Webshopper_Front.png'>"
+      cardImage: "<img class='cardImage lazy' data-src='/sites/GCE/public/SiteAssets/mediafiles/images/CCImages/Webshopper_Front.png'>"
     },
     // Add other cards here in similar fashion
   ];
@@ -27,6 +27,23 @@ const cardData = [
     `;
     document.querySelector(".selectedCardDescription").innerHTML = cardDetails;
     document.querySelector(".selectedCardImage").innerHTML = card.cardImage;
+    lazyLoadImages();
+  }
+  
+  // Lazy Load Images
+  function lazyLoadImages() {
+    const lazyImages = document.querySelectorAll("img.lazy");
+    const observer = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const img = entry.target;
+          img.src = img.dataset.src;
+          img.classList.remove("lazy");
+          observer.unobserve(img);
+        }
+      });
+    });
+    lazyImages.forEach(img => observer.observe(img));
   }
   
   // Reward Calculation (rewardCalculator.js)
@@ -61,9 +78,13 @@ const cardData = [
     const selectedCard = cardData.find((card) => card.name === selectedCardName);
   
     if (selectedCard && !isNaN(transactionAmount) && transactionAmount > 0) {
-      const rewardResults = calculateRewards(selectedCard, transactionAmount);
-      const resultsHtml = rewardResults.map((result) => `<p>${result}</p>`).join("");
-      document.getElementById("rewardResults").innerHTML = resultsHtml;
+      showLoadingSpinner(true);
+      setTimeout(() => {
+        const rewardResults = calculateRewards(selectedCard, transactionAmount);
+        const resultsHtml = rewardResults.map((result) => `<p>${result}</p>`).join("");
+        document.getElementById("rewardResults").innerHTML = resultsHtml;
+        showLoadingSpinner(false);
+      }, 1000);
     } else {
       showError("Please select a valid card and enter a valid transaction amount.");
     }
@@ -75,6 +96,26 @@ const cardData = [
     if (!/^[0-9]*\.?[0-9]*$/.test(value)) {
       showError("Please enter a valid numeric value.");
       e.target.value = value.slice(0, -1);
+    }
+  });
+  
+  // Loading Spinner
+  function showLoadingSpinner(show) {
+    const spinner = document.getElementById("loadingSpinner");
+    if (show) {
+      spinner.style.display = "block";
+    } else {
+      spinner.style.display = "none";
+    }
+  }
+  
+  // Responsive Design Enhancements
+  window.addEventListener("resize", () => {
+    const cardContainer = document.querySelector(".card-container");
+    if (window.innerWidth < 768) {
+      cardContainer.classList.add("mobile-layout");
+    } else {
+      cardContainer.classList.remove("mobile-layout");
     }
   });
   
