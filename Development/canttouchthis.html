@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moving Dialog</title>
+    <style>
+        dialog {
+            position: fixed;
+            transition: background-color 0.3s;
+        }
+        #okButton {
+            position: absolute;
+            transition: transform 0.3s;
+        }
+        .max-width-height {
+            max-width: 90vw;
+            max-height: 90vh;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+<div class="max-width-height">
+    <dialog open id="trickyDialog">
+        <p>Greetings, one and all!</p>
+        <form method="dialog">
+          <button id="okButton">OK</button>
+        </form>
+      </dialog>
+</div>
+
+<script>
+    const dialog = document.getElementById('trickyDialog');
+    const button = document.getElementById('okButton');
+
+    function getRandomColor() {
+        const letters = '0123456789ABCDEF';
+        let color = '#';
+        for (let i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+    }
+
+    button.addEventListener('mouseenter', () => {
+        const maxX = window.innerWidth - dialog.clientWidth;
+        const maxY = window.innerHeight - dialog.clientHeight;
+        
+        const randomX = Math.random() * maxX;
+        const randomY = Math.random() * maxY;
+
+        if (Math.random() > 0.8) { // 20% chance to move the button
+            // Move the button within the dialog box
+            const buttonMaxX = dialog.clientWidth - button.clientWidth;
+            const buttonMaxY = dialog.clientHeight - button.clientHeight;
+            const buttonRandomX = Math.random() * buttonMaxX;
+            const buttonRandomY = Math.random() * buttonMaxY;
+
+            button.style.left = `${buttonRandomX}px`;
+            button.style.top = `${buttonRandomY}px`;
+            button.style.transform = `rotate(${Math.random() * 360}deg)`;
+        } else { // 80% chance to move the dialog box
+            // Move the dialog box
+            dialog.style.left = `${randomX}px`;
+            dialog.style.top = `${randomY}px`;
+            dialog.style.backgroundColor = getRandomColor();
+        }
+    });
+</script>
+
+</body>
+</html>
