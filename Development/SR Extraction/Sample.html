@@ -1,0 +1,2341 @@
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+	<title>Ask-KMPRO &gt; ENBD &gt; ENBD X Troubleshooting - Registration and Reset Issues</title>
+	<link media="all" rel="stylesheet" href="/enterprise/statics/67adc649/css/enbd.min.css">
+	<link media="all" rel="stylesheet" href="/enterprise/statics/67adc649/css/datatable.css">
+	<script src="/enterprise/statics/67adc649/js/moment.js"></script>
+	<script src="/enterprise/statics/67adc649/js/jquery.js"></script>
+	<script src="/enterprise/statics/67adc649/js/datepicker.js"></script>
+	<script src="/enterprise/statics/67adc649/js/datatable.js"></script>
+	<script src="/enterprise/statics/67adc649/js/navigation.js"></script>
+	<script src="/enterprise/statics/67adc649/js/core.js"></script>
+  <script src="/enterprise/statics/67adc649/js/pdfobject.min.js"></script>
+</head><body class="enbd" data-brand="enbd" data-statsroot="/action/logStatistics">
+	<span id="loading-mask"></span>
+	<header>
+		<div id="search_overlay">
+			<div class="inner">
+				<div id="searchfilterbar">
+					<form id="search-filters" action="" method="post">
+						<h6>Search filters</h6>
+	
+	<input type="hidden" name="srch_canary" value="caged" id="h_srch_canary">
+	
+																	<fieldset id="srch_fieldset_division">
+						<legend>Department / Division</legend>
+																					<div class="styledcheckbox "><!--
+	--><a href="#" class="mf_checkbox_wrapper nojsnav" aria-labelledby="label_srch_division_enbd-personal-banking"></a><!--
+	--><input class="checkbox__input" type="checkbox" name="srch_division[]" value="enbd-personal-banking" id="srch_division_enbd-personal-banking"><!--
+	--><label class="checkbox__label radio__label--button" for="srch_division_enbd-personal-banking"></label><!--
+	--><label class="checkbox__label" for="srch_division_enbd-personal-banking" id="label_srch_division_enbd-personal-banking"> Retail Banking Sales </label><!--
+--></div>																												<div class="styledcheckbox "><!--
+	--><a href="#" class="mf_checkbox_wrapper nojsnav" aria-labelledby="label_srch_division_CCO"></a><!--
+	--><input class="checkbox__input" type="checkbox" name="srch_division[]" value="CCO" id="srch_division_CCO" checked="checked"><!--
+	--><label class="checkbox__label radio__label--button" for="srch_division_CCO"></label><!--
+	--><label class="checkbox__label" for="srch_division_CCO" id="label_srch_division_CCO">CCO</label><!--
+--></div>																												<div class="styledcheckbox "><!--
+	--><a href="#" class="mf_checkbox_wrapper nojsnav" aria-labelledby="label_srch_division_cib-bb-ops"></a><!--
+	--><input class="checkbox__input" type="checkbox" name="srch_division[]" value="cib-bb-ops" id="srch_division_cib-bb-ops"><!--
+	--><label class="checkbox__label radio__label--button" for="srch_division_cib-bb-ops"></label><!--
+	--><label class="checkbox__label" for="srch_division_cib-bb-ops" id="label_srch_division_cib-bb-ops">Client Service Center</label><!--
+--></div>																												<div class="styledcheckbox " style="display: none;"><!--
+	--><a href="#" class="mf_checkbox_wrapper nojsnav" aria-labelledby="label_srch_division_ei-branch-network"></a><!--
+	--><input class="checkbox__input" type="checkbox" name="srch_division[]" value="ei-branch-network" id="srch_division_ei-branch-network" disabled=""><!--
+	--><label class="checkbox__label radio__label--button" for="srch_division_ei-branch-network"></label><!--
+	--><label class="checkbox__label" for="srch_division_ei-branch-network" id="label_srch_division_ei-branch-network">EI Branch Network</label><!--
+--></div>																												<div class="styledcheckbox " style="display: none;"><!--
+	--><a href="#" class="mf_checkbox_wrapper nojsnav" aria-labelledby="label_srch_division_Branches"></a><!--
+	--><input class="checkbox__input" type="checkbox" name="srch_division[]" value="Branches" id="srch_division_Branches" disabled=""><!--
+	--><label class="checkbox__label radio__label--button" for="srch_division_Branches"></label><!--
+	--><label class="checkbox__label" for="srch_division_Branches" id="label_srch_division_Branches">EI Branch Operations</label><!--
+--></div>																												<div class="styledcheckbox " style="display: none;"><!--
+	--><a href="#" class="mf_checkbox_wrapper nojsnav" aria-labelledby="label_srch_division_ei-personal-banking"></a><!--
+	--><input class="checkbox__input" type="checkbox" name="srch_division[]" value="ei-personal-banking" id="srch_division_ei-personal-banking" disabled=""><!--
+	--><label class="checkbox__label radio__label--button" for="srch_division_ei-personal-banking"></label><!--
+	--><label class="checkbox__label" for="srch_division_ei-personal-banking" id="label_srch_division_ei-personal-banking">EI Sales</label><!--
+--></div>																												<div class="styledcheckbox "><!--
+	--><a href="#" class="mf_checkbox_wrapper nojsnav" aria-labelledby="label_srch_division_tanfeeth-FR"></a><!--
+	--><input class="checkbox__input" type="checkbox" name="srch_division[]" value="tanfeeth-FR" id="srch_division_tanfeeth-FR"><!--
+	--><label class="checkbox__label radio__label--button" for="srch_division_tanfeeth-FR"></label><!--
+	--><label class="checkbox__label" for="srch_division_tanfeeth-FR" id="label_srch_division_tanfeeth-FR">Financial Remediation</label><!--
+--></div>																												<div class="styledcheckbox "><!--
+	--><a href="#" class="mf_checkbox_wrapper nojsnav" aria-labelledby="label_srch_division_enbd-priority-banking"></a><!--
+	--><input class="checkbox__input" type="checkbox" name="srch_division[]" value="enbd-priority-banking" id="srch_division_enbd-priority-banking"><!--
+	--><label class="checkbox__label radio__label--button" for="srch_division_enbd-priority-banking"></label><!--
+	--><label class="checkbox__label" for="srch_division_enbd-priority-banking" id="label_srch_division_enbd-priority-banking">Priority Banking</label><!--
+--></div>																												<div class="styledcheckbox "><!--
+	--><a href="#" class="mf_checkbox_wrapper nojsnav" aria-labelledby="label_srch_division_tanfeeth-retail-credit-ops"></a><!--
+	--><input class="checkbox__input" type="checkbox" name="srch_division[]" value="tanfeeth-retail-credit-ops" id="srch_division_tanfeeth-retail-credit-ops"><!--
+	--><label class="checkbox__label radio__label--button" for="srch_division_tanfeeth-retail-credit-ops"></label><!--
+	--><label class="checkbox__label" for="srch_division_tanfeeth-retail-credit-ops" id="label_srch_division_tanfeeth-retail-credit-ops">Retail Credit Operations</label><!--
+--></div>																												<div class="styledcheckbox "><!--
+	--><a href="#" class="mf_checkbox_wrapper nojsnav" aria-labelledby="label_srch_division_enbd-retail-distribution"></a><!--
+	--><input class="checkbox__input" type="checkbox" name="srch_division[]" value="enbd-retail-distribution" id="srch_division_enbd-retail-distribution"><!--
+	--><label class="checkbox__label radio__label--button" for="srch_division_enbd-retail-distribution"></label><!--
+	--><label class="checkbox__label" for="srch_division_enbd-retail-distribution" id="label_srch_division_enbd-retail-distribution">Retail Distribution</label><!--
+--></div>																		</fieldset>
+																<fieldset id="srch_fieldset_segment">
+						<legend>Segment</legend>
+																					<div class="styledcheckbox "><!--
+	--><a href="#" class="mf_checkbox_wrapper nojsnav" aria-labelledby="label_srch_segment_Business-Banking"></a><!--
+	--><input class="checkbox__input" type="checkbox" name="srch_segment[]" value="Business-Banking" id="srch_segment_Business-Banking" checked="checked"><!--
+	--><label class="checkbox__label radio__label--button" for="srch_segment_Business-Banking"></label><!--
+	--><label class="checkbox__label" for="srch_segment_Business-Banking" id="label_srch_segment_Business-Banking">Business Banking</label><!--
+--></div>																												<div class="styledcheckbox " style="display: none;"><!--
+	--><a href="#" class="mf_checkbox_wrapper nojsnav" aria-labelledby="label_srch_segment_Advantage-Banking"></a><!--
+	--><input class="checkbox__input" type="checkbox" name="srch_segment[]" value="Advantage-Banking" id="srch_segment_Advantage-Banking" disabled=""><!--
+	--><label class="checkbox__label radio__label--button" for="srch_segment_Advantage-Banking"></label><!--
+	--><label class="checkbox__label" for="srch_segment_Advantage-Banking" id="label_srch_segment_Advantage-Banking">EI Advantage Banking</label><!--
+--></div>																												<div class="styledcheckbox " style="display: none;"><!--
+	--><a href="#" class="mf_checkbox_wrapper nojsnav" aria-labelledby="label_srch_segment_Emarati"></a><!--
+	--><input class="checkbox__input" type="checkbox" name="srch_segment[]" value="Emarati" id="srch_segment_Emarati" disabled=""><!--
+	--><label class="checkbox__label radio__label--button" for="srch_segment_Emarati"></label><!--
+	--><label class="checkbox__label" for="srch_segment_Emarati" id="label_srch_segment_Emarati">EI Emarati</label><!--
+--></div>																												<div class="styledcheckbox "><!--
+	--><a href="#" class="mf_checkbox_wrapper nojsnav" aria-labelledby="label_srch_segment_internal-process"></a><!--
+	--><input class="checkbox__input" type="checkbox" name="srch_segment[]" value="internal-process" id="srch_segment_internal-process" checked="checked"><!--
+	--><label class="checkbox__label radio__label--button" for="srch_segment_internal-process"></label><!--
+	--><label class="checkbox__label" for="srch_segment_internal-process" id="label_srch_segment_internal-process">Internal Process</label><!--
+--></div>																												<div class="styledcheckbox " style="display: none;"><!--
+	--><a href="#" class="mf_checkbox_wrapper nojsnav" aria-labelledby="label_srch_segment_LivPrime"></a><!--
+	--><input class="checkbox__input" type="checkbox" name="srch_segment[]" value="LivPrime" id="srch_segment_LivPrime" disabled=""><!--
+	--><label class="checkbox__label radio__label--button" for="srch_segment_LivPrime"></label><!--
+	--><label class="checkbox__label" for="srch_segment_LivPrime" id="label_srch_segment_LivPrime">Liv</label><!--
+--></div>																												<div class="styledcheckbox "><!--
+	--><a href="#" class="mf_checkbox_wrapper nojsnav" aria-labelledby="label_srch_segment_Personal-Banking"></a><!--
+	--><input class="checkbox__input" type="checkbox" name="srch_segment[]" value="Personal-Banking" id="srch_segment_Personal-Banking" checked="checked"><!--
+	--><label class="checkbox__label radio__label--button" for="srch_segment_Personal-Banking"></label><!--
+	--><label class="checkbox__label" for="srch_segment_Personal-Banking" id="label_srch_segment_Personal-Banking">Personal Banking</label><!--
+--></div>																												<div class="styledcheckbox "><!--
+	--><a href="#" class="mf_checkbox_wrapper nojsnav" aria-labelledby="label_srch_segment_Priority-Banking"></a><!--
+	--><input class="checkbox__input" type="checkbox" name="srch_segment[]" value="Priority-Banking" id="srch_segment_Priority-Banking" checked="checked"><!--
+	--><label class="checkbox__label radio__label--button" for="srch_segment_Priority-Banking"></label><!--
+	--><label class="checkbox__label" for="srch_segment_Priority-Banking" id="label_srch_segment_Priority-Banking">Priority Banking</label><!--
+--></div>																												<div class="styledcheckbox "><!--
+	--><a href="#" class="mf_checkbox_wrapper nojsnav" aria-labelledby="label_srch_segment_Private-Banking"></a><!--
+	--><input class="checkbox__input" type="checkbox" name="srch_segment[]" value="Private-Banking" id="srch_segment_Private-Banking" checked="checked"><!--
+	--><label class="checkbox__label radio__label--button" for="srch_segment_Private-Banking"></label><!--
+	--><label class="checkbox__label" for="srch_segment_Private-Banking" id="label_srch_segment_Private-Banking">Private Banking</label><!--
+--></div>																		</fieldset>
+																<fieldset id="srch_fieldset_subdept">
+						<legend>Sub-Department</legend>
+																					<div class="styledcheckbox "><!--
+	--><a href="#" class="mf_checkbox_wrapper nojsnav" aria-labelledby="label_srch_subdept_enbd-test-subdept"></a><!--
+	--><input class="checkbox__input" type="checkbox" name="srch_subdept[]" value="enbd-test-subdept" id="srch_subdept_enbd-test-subdept" checked="checked"><!--
+	--><label class="checkbox__label radio__label--button" for="srch_subdept_enbd-test-subdept"></label><!--
+	--><label class="checkbox__label" for="srch_subdept_enbd-test-subdept" id="label_srch_subdept_enbd-test-subdept">Call Centre Inbound</label><!--
+--></div>																												<div class="styledcheckbox "><!--
+	--><a href="#" class="mf_checkbox_wrapper nojsnav" aria-labelledby="label_srch_subdept_business-support"></a><!--
+	--><input class="checkbox__input" type="checkbox" name="srch_subdept[]" value="business-support" id="srch_subdept_business-support" checked="checked"><!--
+	--><label class="checkbox__label radio__label--button" for="srch_subdept_business-support"></label><!--
+	--><label class="checkbox__label" for="srch_subdept_business-support" id="label_srch_subdept_business-support">CSC Business Support</label><!--
+--></div>																												<div class="styledcheckbox "><!--
+	--><a href="#" class="mf_checkbox_wrapper nojsnav" aria-labelledby="label_srch_subdept_businessonline"></a><!--
+	--><input class="checkbox__input" type="checkbox" name="srch_subdept[]" value="businessonline" id="srch_subdept_businessonline" checked="checked"><!--
+	--><label class="checkbox__label radio__label--button" for="srch_subdept_businessonline"></label><!--
+	--><label class="checkbox__label" for="srch_subdept_businessonline" id="label_srch_subdept_businessonline">CSC businessONLINE</label><!--
+--></div>																												<div class="styledcheckbox "><!--
+	--><a href="#" class="mf_checkbox_wrapper nojsnav" aria-labelledby="label_srch_subdept_trade-finance"></a><!--
+	--><input class="checkbox__input" type="checkbox" name="srch_subdept[]" value="trade-finance" id="srch_subdept_trade-finance" checked="checked"><!--
+	--><label class="checkbox__label radio__label--button" for="srch_subdept_trade-finance"></label><!--
+	--><label class="checkbox__label" for="srch_subdept_trade-finance" id="label_srch_subdept_trade-finance">CSC Trade Finance</label><!--
+--></div>																												<div class="styledcheckbox " style="display: none;"><!--
+	--><a href="#" class="mf_checkbox_wrapper nojsnav" aria-labelledby="label_srch_subdept_ei-bn-operations"></a><!--
+	--><input class="checkbox__input" type="checkbox" name="srch_subdept[]" value="ei-bn-operations" id="srch_subdept_ei-bn-operations" disabled=""><!--
+	--><label class="checkbox__label radio__label--button" for="srch_subdept_ei-bn-operations"></label><!--
+	--><label class="checkbox__label" for="srch_subdept_ei-bn-operations" id="label_srch_subdept_ei-bn-operations">EI BN Operations</label><!--
+--></div>																												<div class="styledcheckbox " style="display: none;"><!--
+	--><a href="#" class="mf_checkbox_wrapper nojsnav" aria-labelledby="label_srch_subdept_ei-bn-sales"></a><!--
+	--><input class="checkbox__input" type="checkbox" name="srch_subdept[]" value="ei-bn-sales" id="srch_subdept_ei-bn-sales" disabled=""><!--
+	--><label class="checkbox__label radio__label--button" for="srch_subdept_ei-bn-sales"></label><!--
+	--><label class="checkbox__label" for="srch_subdept_ei-bn-sales" id="label_srch_subdept_ei-bn-sales">EI BN Sales</label><!--
+--></div>																												<div class="styledcheckbox " style="display: none;"><!--
+	--><a href="#" class="mf_checkbox_wrapper nojsnav" aria-labelledby="label_srch_subdept_ei-bn-services"></a><!--
+	--><input class="checkbox__input" type="checkbox" name="srch_subdept[]" value="ei-bn-services" id="srch_subdept_ei-bn-services" disabled=""><!--
+	--><label class="checkbox__label radio__label--button" for="srch_subdept_ei-bn-services"></label><!--
+	--><label class="checkbox__label" for="srch_subdept_ei-bn-services" id="label_srch_subdept_ei-bn-services">EI BN Services</label><!--
+--></div>																												<div class="styledcheckbox " style="display: none;"><!--
+	--><a href="#" class="mf_checkbox_wrapper nojsnav" aria-labelledby="label_srch_subdept_EI-CCO-OB-Portfolio"></a><!--
+	--><input class="checkbox__input" type="checkbox" name="srch_subdept[]" value="EI-CCO-OB-Portfolio" id="srch_subdept_EI-CCO-OB-Portfolio" disabled=""><!--
+	--><label class="checkbox__label radio__label--button" for="srch_subdept_EI-CCO-OB-Portfolio"></label><!--
+	--><label class="checkbox__label" for="srch_subdept_EI-CCO-OB-Portfolio" id="label_srch_subdept_EI-CCO-OB-Portfolio">EI CCO Outbound Portfolio</label><!--
+--></div>																												<div class="styledcheckbox " style="display: none;"><!--
+	--><a href="#" class="mf_checkbox_wrapper nojsnav" aria-labelledby="label_srch_subdept_ei-psb-sales-accounts"></a><!--
+	--><input class="checkbox__input" type="checkbox" name="srch_subdept[]" value="ei-psb-sales-accounts" id="srch_subdept_ei-psb-sales-accounts" disabled=""><!--
+	--><label class="checkbox__label radio__label--button" for="srch_subdept_ei-psb-sales-accounts"></label><!--
+	--><label class="checkbox__label" for="srch_subdept_ei-psb-sales-accounts" id="label_srch_subdept_ei-psb-sales-accounts">EI Sales Accounts</label><!--
+--></div>																												<div class="styledcheckbox " style="display: none;"><!--
+	--><a href="#" class="mf_checkbox_wrapper nojsnav" aria-labelledby="label_srch_subdept_ei-psb-sales-auto-finance"></a><!--
+	--><input class="checkbox__input" type="checkbox" name="srch_subdept[]" value="ei-psb-sales-auto-finance" id="srch_subdept_ei-psb-sales-auto-finance" disabled=""><!--
+	--><label class="checkbox__label radio__label--button" for="srch_subdept_ei-psb-sales-auto-finance"></label><!--
+	--><label class="checkbox__label" for="srch_subdept_ei-psb-sales-auto-finance" id="label_srch_subdept_ei-psb-sales-auto-finance">EI Sales Auto Finance</label><!--
+--></div>																												<div class="styledcheckbox " style="display: none;"><!--
+	--><a href="#" class="mf_checkbox_wrapper nojsnav" aria-labelledby="label_srch_subdept_ei-psb-sales-credit-cards"></a><!--
+	--><input class="checkbox__input" type="checkbox" name="srch_subdept[]" value="ei-psb-sales-credit-cards" id="srch_subdept_ei-psb-sales-credit-cards" disabled=""><!--
+	--><label class="checkbox__label radio__label--button" for="srch_subdept_ei-psb-sales-credit-cards"></label><!--
+	--><label class="checkbox__label" for="srch_subdept_ei-psb-sales-credit-cards" id="label_srch_subdept_ei-psb-sales-credit-cards">EI Sales Credit Cards</label><!--
+--></div>																												<div class="styledcheckbox " style="display: none;"><!--
+	--><a href="#" class="mf_checkbox_wrapper nojsnav" aria-labelledby="label_srch_subdept_ei-psb-sales-home-finance"></a><!--
+	--><input class="checkbox__input" type="checkbox" name="srch_subdept[]" value="ei-psb-sales-home-finance" id="srch_subdept_ei-psb-sales-home-finance" disabled=""><!--
+	--><label class="checkbox__label radio__label--button" for="srch_subdept_ei-psb-sales-home-finance"></label><!--
+	--><label class="checkbox__label" for="srch_subdept_ei-psb-sales-home-finance" id="label_srch_subdept_ei-psb-sales-home-finance">EI Sales Home Finance</label><!--
+--></div>																												<div class="styledcheckbox " style="display: none;"><!--
+	--><a href="#" class="mf_checkbox_wrapper nojsnav" aria-labelledby="label_srch_subdept_ei-psb-sales-personal-finance"></a><!--
+	--><input class="checkbox__input" type="checkbox" name="srch_subdept[]" value="ei-psb-sales-personal-finance" id="srch_subdept_ei-psb-sales-personal-finance" disabled=""><!--
+	--><label class="checkbox__label radio__label--button" for="srch_subdept_ei-psb-sales-personal-finance"></label><!--
+	--><label class="checkbox__label" for="srch_subdept_ei-psb-sales-personal-finance" id="label_srch_subdept_ei-psb-sales-personal-finance">EI Sales Personal Finance</label><!--
+--></div>																												<div class="styledcheckbox "><!--
+	--><a href="#" class="mf_checkbox_wrapper nojsnav" aria-labelledby="label_srch_subdept_enbd-cco-vrm"></a><!--
+	--><input class="checkbox__input" type="checkbox" name="srch_subdept[]" value="enbd-cco-vrm" id="srch_subdept_enbd-cco-vrm"><!--
+	--><label class="checkbox__label radio__label--button" for="srch_subdept_enbd-cco-vrm"></label><!--
+	--><label class="checkbox__label" for="srch_subdept_enbd-cco-vrm" id="label_srch_subdept_enbd-cco-vrm">ENBD VRM</label><!--
+--></div>																												<div class="styledcheckbox "><!--
+	--><a href="#" class="mf_checkbox_wrapper nojsnav" aria-labelledby="label_srch_subdept_collections"></a><!--
+	--><input class="checkbox__input" type="checkbox" name="srch_subdept[]" value="collections" id="srch_subdept_collections" checked="checked"><!--
+	--><label class="checkbox__label radio__label--button" for="srch_subdept_collections"></label><!--
+	--><label class="checkbox__label" for="srch_subdept_collections" id="label_srch_subdept_collections">FR Collections</label><!--
+--></div>																												<div class="styledcheckbox "><!--
+	--><a href="#" class="mf_checkbox_wrapper nojsnav" aria-labelledby="label_srch_subdept_legal"></a><!--
+	--><input class="checkbox__input" type="checkbox" name="srch_subdept[]" value="legal" id="srch_subdept_legal" checked="checked"><!--
+	--><label class="checkbox__label radio__label--button" for="srch_subdept_legal"></label><!--
+	--><label class="checkbox__label" for="srch_subdept_legal" id="label_srch_subdept_legal">FR Legal</label><!--
+--></div>																												<div class="styledcheckbox "><!--
+	--><a href="#" class="mf_checkbox_wrapper nojsnav" aria-labelledby="label_srch_subdept_recoveries"></a><!--
+	--><input class="checkbox__input" type="checkbox" name="srch_subdept[]" value="recoveries" id="srch_subdept_recoveries" checked="checked"><!--
+	--><label class="checkbox__label radio__label--button" for="srch_subdept_recoveries"></label><!--
+	--><label class="checkbox__label" for="srch_subdept_recoveries" id="label_srch_subdept_recoveries">FR Recoveries</label><!--
+--></div>																												<div class="styledcheckbox "><!--
+	--><a href="#" class="mf_checkbox_wrapper nojsnav" aria-labelledby="label_srch_subdept_enbd-priority-banking-cro"></a><!--
+	--><input class="checkbox__input" type="checkbox" name="srch_subdept[]" value="enbd-priority-banking-cro" id="srch_subdept_enbd-priority-banking-cro" checked="checked"><!--
+	--><label class="checkbox__label radio__label--button" for="srch_subdept_enbd-priority-banking-cro"></label><!--
+	--><label class="checkbox__label" for="srch_subdept_enbd-priority-banking-cro" id="label_srch_subdept_enbd-priority-banking-cro">PRB CRO</label><!--
+--></div>																												<div class="styledcheckbox "><!--
+	--><a href="#" class="mf_checkbox_wrapper nojsnav" aria-labelledby="label_srch_subdept_enbd-priority-banking-csm"></a><!--
+	--><input class="checkbox__input" type="checkbox" name="srch_subdept[]" value="enbd-priority-banking-csm" id="srch_subdept_enbd-priority-banking-csm" checked="checked"><!--
+	--><label class="checkbox__label radio__label--button" for="srch_subdept_enbd-priority-banking-csm"></label><!--
+	--><label class="checkbox__label" for="srch_subdept_enbd-priority-banking-csm" id="label_srch_subdept_enbd-priority-banking-csm">PRB CSM</label><!--
+--></div>																												<div class="styledcheckbox "><!--
+	--><a href="#" class="mf_checkbox_wrapper nojsnav" aria-labelledby="label_srch_subdept_enbd-psb-rbs-accounts"></a><!--
+	--><input class="checkbox__input" type="checkbox" name="srch_subdept[]" value="enbd-psb-rbs-accounts" id="srch_subdept_enbd-psb-rbs-accounts" checked="checked"><!--
+	--><label class="checkbox__label radio__label--button" for="srch_subdept_enbd-psb-rbs-accounts"></label><!--
+	--><label class="checkbox__label" for="srch_subdept_enbd-psb-rbs-accounts" id="label_srch_subdept_enbd-psb-rbs-accounts">RBS Accounts</label><!--
+--></div>																												<div class="styledcheckbox "><!--
+	--><a href="#" class="mf_checkbox_wrapper nojsnav" aria-labelledby="label_srch_subdept_enbd-psb-rbs-auto-loans"></a><!--
+	--><input class="checkbox__input" type="checkbox" name="srch_subdept[]" value="enbd-psb-rbs-auto-loans" id="srch_subdept_enbd-psb-rbs-auto-loans" checked="checked"><!--
+	--><label class="checkbox__label radio__label--button" for="srch_subdept_enbd-psb-rbs-auto-loans"></label><!--
+	--><label class="checkbox__label" for="srch_subdept_enbd-psb-rbs-auto-loans" id="label_srch_subdept_enbd-psb-rbs-auto-loans">RBS Auto Loans</label><!--
+--></div>																												<div class="styledcheckbox "><!--
+	--><a href="#" class="mf_checkbox_wrapper nojsnav" aria-labelledby="label_srch_subdept_enbd-psb-rbs-credit-cards"></a><!--
+	--><input class="checkbox__input" type="checkbox" name="srch_subdept[]" value="enbd-psb-rbs-credit-cards" id="srch_subdept_enbd-psb-rbs-credit-cards" checked="checked"><!--
+	--><label class="checkbox__label radio__label--button" for="srch_subdept_enbd-psb-rbs-credit-cards"></label><!--
+	--><label class="checkbox__label" for="srch_subdept_enbd-psb-rbs-credit-cards" id="label_srch_subdept_enbd-psb-rbs-credit-cards">RBS Credit Cards</label><!--
+--></div>																												<div class="styledcheckbox "><!--
+	--><a href="#" class="mf_checkbox_wrapper nojsnav" aria-labelledby="label_srch_subdept_enbd-psb-rbs-homes-loans"></a><!--
+	--><input class="checkbox__input" type="checkbox" name="srch_subdept[]" value="enbd-psb-rbs-homes-loans" id="srch_subdept_enbd-psb-rbs-homes-loans" checked="checked"><!--
+	--><label class="checkbox__label radio__label--button" for="srch_subdept_enbd-psb-rbs-homes-loans"></label><!--
+	--><label class="checkbox__label" for="srch_subdept_enbd-psb-rbs-homes-loans" id="label_srch_subdept_enbd-psb-rbs-homes-loans">RBS Homes Loans</label><!--
+--></div>																												<div class="styledcheckbox "><!--
+	--><a href="#" class="mf_checkbox_wrapper nojsnav" aria-labelledby="label_srch_subdept_enbd-psb-rbs-personal-loans"></a><!--
+	--><input class="checkbox__input" type="checkbox" name="srch_subdept[]" value="enbd-psb-rbs-personal-loans" id="srch_subdept_enbd-psb-rbs-personal-loans" checked="checked"><!--
+	--><label class="checkbox__label radio__label--button" for="srch_subdept_enbd-psb-rbs-personal-loans"></label><!--
+	--><label class="checkbox__label" for="srch_subdept_enbd-psb-rbs-personal-loans" id="label_srch_subdept_enbd-psb-rbs-personal-loans">RBS Personal Loans</label><!--
+--></div>																												<div class="styledcheckbox "><!--
+	--><a href="#" class="mf_checkbox_wrapper nojsnav" aria-labelledby="label_srch_subdept_tanfeeth-rco-rdu"></a><!--
+	--><input class="checkbox__input" type="checkbox" name="srch_subdept[]" value="tanfeeth-rco-rdu" id="srch_subdept_tanfeeth-rco-rdu" checked="checked"><!--
+	--><label class="checkbox__label radio__label--button" for="srch_subdept_tanfeeth-rco-rdu"></label><!--
+	--><label class="checkbox__label" for="srch_subdept_tanfeeth-rco-rdu" id="label_srch_subdept_tanfeeth-rco-rdu">RCO RDU</label><!--
+--></div>																												<div class="styledcheckbox "><!--
+	--><a href="#" class="mf_checkbox_wrapper nojsnav" aria-labelledby="label_srch_subdept_enbd-rd-operations"></a><!--
+	--><input class="checkbox__input" type="checkbox" name="srch_subdept[]" value="enbd-rd-operations" id="srch_subdept_enbd-rd-operations" checked="checked"><!--
+	--><label class="checkbox__label radio__label--button" for="srch_subdept_enbd-rd-operations"></label><!--
+	--><label class="checkbox__label" for="srch_subdept_enbd-rd-operations" id="label_srch_subdept_enbd-rd-operations">RD Operations</label><!--
+--></div>																												<div class="styledcheckbox "><!--
+	--><a href="#" class="mf_checkbox_wrapper nojsnav" aria-labelledby="label_srch_subdept_enbd-rd-sales"></a><!--
+	--><input class="checkbox__input" type="checkbox" name="srch_subdept[]" value="enbd-rd-sales" id="srch_subdept_enbd-rd-sales" checked="checked"><!--
+	--><label class="checkbox__label radio__label--button" for="srch_subdept_enbd-rd-sales"></label><!--
+	--><label class="checkbox__label" for="srch_subdept_enbd-rd-sales" id="label_srch_subdept_enbd-rd-sales">RD Sales</label><!--
+--></div>																												<div class="styledcheckbox "><!--
+	--><a href="#" class="mf_checkbox_wrapper nojsnav" aria-labelledby="label_srch_subdept_enbd-rd-service"></a><!--
+	--><input class="checkbox__input" type="checkbox" name="srch_subdept[]" value="enbd-rd-service" id="srch_subdept_enbd-rd-service" checked="checked"><!--
+	--><label class="checkbox__label radio__label--button" for="srch_subdept_enbd-rd-service"></label><!--
+	--><label class="checkbox__label" for="srch_subdept_enbd-rd-service" id="label_srch_subdept_enbd-rd-service">RD Service</label><!--
+--></div>																												<div class="styledcheckbox "><!--
+	--><a href="#" class="mf_checkbox_wrapper nojsnav" aria-labelledby="label_srch_subdept_enbd-cco-inbound"></a><!--
+	--><input class="checkbox__input" type="checkbox" name="srch_subdept[]" value="enbd-cco-inbound" id="srch_subdept_enbd-cco-inbound" checked="checked"><!--
+	--><label class="checkbox__label radio__label--button" for="srch_subdept_enbd-cco-inbound"></label><!--
+	--><label class="checkbox__label" for="srch_subdept_enbd-cco-inbound" id="label_srch_subdept_enbd-cco-inbound">Test tag - ENBD CCO</label><!--
+--></div>																		</fieldset>
+																										<fieldset id="srch_fieldset_channel">
+						<legend>Channel</legend>
+																					<div class="styledcheckbox "><!--
+	--><a href="#" class="mf_checkbox_wrapper nojsnav" aria-labelledby="label_srch_channel_ATM"></a><!--
+	--><input class="checkbox__input" type="checkbox" name="srch_channel[]" value="ATM" id="srch_channel_ATM"><!--
+	--><label class="checkbox__label radio__label--button" for="srch_channel_ATM"></label><!--
+	--><label class="checkbox__label" for="srch_channel_ATM" id="label_srch_channel_ATM">ATM</label><!--
+--></div>																												<div class="styledcheckbox "><!--
+	--><a href="#" class="mf_checkbox_wrapper nojsnav" aria-labelledby="label_srch_channel_Branch"></a><!--
+	--><input class="checkbox__input" type="checkbox" name="srch_channel[]" value="Branch" id="srch_channel_Branch"><!--
+	--><label class="checkbox__label radio__label--button" for="srch_channel_Branch"></label><!--
+	--><label class="checkbox__label" for="srch_channel_Branch" id="label_srch_channel_Branch">Branch</label><!--
+--></div>																												<div class="styledcheckbox "><!--
+	--><a href="#" class="mf_checkbox_wrapper nojsnav" aria-labelledby="label_srch_channel_Business-Online"></a><!--
+	--><input class="checkbox__input" type="checkbox" name="srch_channel[]" value="Business-Online" id="srch_channel_Business-Online"><!--
+	--><label class="checkbox__label radio__label--button" for="srch_channel_Business-Online"></label><!--
+	--><label class="checkbox__label" for="srch_channel_Business-Online" id="label_srch_channel_Business-Online">businessONLINE</label><!--
+--></div>																												<div class="styledcheckbox "><!--
+	--><a href="#" class="mf_checkbox_wrapper nojsnav" aria-labelledby="label_srch_channel_CCO"></a><!--
+	--><input class="checkbox__input" type="checkbox" name="srch_channel[]" value="CCO" id="srch_channel_CCO"><!--
+	--><label class="checkbox__label radio__label--button" for="srch_channel_CCO"></label><!--
+	--><label class="checkbox__label" for="srch_channel_CCO" id="label_srch_channel_CCO">CCO</label><!--
+--></div>																												<div class="styledcheckbox "><!--
+	--><a href="#" class="mf_checkbox_wrapper nojsnav" aria-labelledby="label_srch_channel_CDM"></a><!--
+	--><input class="checkbox__input" type="checkbox" name="srch_channel[]" value="CDM" id="srch_channel_CDM"><!--
+	--><label class="checkbox__label radio__label--button" for="srch_channel_CDM"></label><!--
+	--><label class="checkbox__label" for="srch_channel_CDM" id="label_srch_channel_CDM">CDM</label><!--
+--></div>																												<div class="styledcheckbox "><!--
+	--><a href="#" class="mf_checkbox_wrapper nojsnav" aria-labelledby="label_srch_channel_ITM"></a><!--
+	--><input class="checkbox__input" type="checkbox" name="srch_channel[]" value="ITM" id="srch_channel_ITM"><!--
+	--><label class="checkbox__label radio__label--button" for="srch_channel_ITM"></label><!--
+	--><label class="checkbox__label" for="srch_channel_ITM" id="label_srch_channel_ITM">ITM</label><!--
+--></div>																												<div class="styledcheckbox "><!--
+	--><a href="#" class="mf_checkbox_wrapper nojsnav" aria-labelledby="label_srch_channel_Mobile-Banking"></a><!--
+	--><input class="checkbox__input" type="checkbox" name="srch_channel[]" value="Mobile-Banking" id="srch_channel_Mobile-Banking"><!--
+	--><label class="checkbox__label radio__label--button" for="srch_channel_Mobile-Banking"></label><!--
+	--><label class="checkbox__label" for="srch_channel_Mobile-Banking" id="label_srch_channel_Mobile-Banking">Mobile Banking</label><!--
+--></div>																												<div class="styledcheckbox "><!--
+	--><a href="#" class="mf_checkbox_wrapper nojsnav" aria-labelledby="label_srch_channel_Online-Banking"></a><!--
+	--><input class="checkbox__input" type="checkbox" name="srch_channel[]" value="Online-Banking" id="srch_channel_Online-Banking"><!--
+	--><label class="checkbox__label radio__label--button" for="srch_channel_Online-Banking"></label><!--
+	--><label class="checkbox__label" for="srch_channel_Online-Banking" id="label_srch_channel_Online-Banking">Online Banking</label><!--
+--></div>																												<div class="styledcheckbox "><!--
+	--><a href="#" class="mf_checkbox_wrapper nojsnav" aria-labelledby="label_srch_channel_phone-banking-ivr"></a><!--
+	--><input class="checkbox__input" type="checkbox" name="srch_channel[]" value="phone-banking-ivr" id="srch_channel_phone-banking-ivr"><!--
+	--><label class="checkbox__label radio__label--button" for="srch_channel_phone-banking-ivr"></label><!--
+	--><label class="checkbox__label" for="srch_channel_phone-banking-ivr" id="label_srch_channel_phone-banking-ivr">Phone Banking IVR</label><!--
+--></div>																												<div class="styledcheckbox "><!--
+	--><a href="#" class="mf_checkbox_wrapper nojsnav" aria-labelledby="label_srch_channel_sms"></a><!--
+	--><input class="checkbox__input" type="checkbox" name="srch_channel[]" value="sms" id="srch_channel_sms"><!--
+	--><label class="checkbox__label radio__label--button" for="srch_channel_sms"></label><!--
+	--><label class="checkbox__label" for="srch_channel_sms" id="label_srch_channel_sms">SMS</label><!--
+--></div>																												<div class="styledcheckbox "><!--
+	--><a href="#" class="mf_checkbox_wrapper nojsnav" aria-labelledby="label_srch_channel_Website"></a><!--
+	--><input class="checkbox__input" type="checkbox" name="srch_channel[]" value="Website" id="srch_channel_Website"><!--
+	--><label class="checkbox__label radio__label--button" for="srch_channel_Website"></label><!--
+	--><label class="checkbox__label" for="srch_channel_Website" id="label_srch_channel_Website">Website</label><!--
+--></div>																												<div class="styledcheckbox "><!--
+	--><a href="#" class="mf_checkbox_wrapper nojsnav" aria-labelledby="label_srch_channel_whatsapp"></a><!--
+	--><input class="checkbox__input" type="checkbox" name="srch_channel[]" value="whatsapp" id="srch_channel_whatsapp"><!--
+	--><label class="checkbox__label radio__label--button" for="srch_channel_whatsapp"></label><!--
+	--><label class="checkbox__label" for="srch_channel_whatsapp" id="label_srch_channel_whatsapp">WhatsApp</label><!--
+--></div>																		</fieldset>
+																<fieldset id="srch_fieldset_system">
+						<legend>System</legend>
+																					<div class="styledcheckbox "><!--
+	--><a href="#" class="mf_checkbox_wrapper nojsnav" aria-labelledby="label_srch_system_Base24"></a><!--
+	--><input class="checkbox__input" type="checkbox" name="srch_system[]" value="Base24" id="srch_system_Base24"><!--
+	--><label class="checkbox__label radio__label--button" for="srch_system_Base24"></label><!--
+	--><label class="checkbox__label" for="srch_system_Base24" id="label_srch_system_Base24">Base24</label><!--
+--></div>																												<div class="styledcheckbox "><!--
+	--><a href="#" class="mf_checkbox_wrapper nojsnav" aria-labelledby="label_srch_system_BPM"></a><!--
+	--><input class="checkbox__input" type="checkbox" name="srch_system[]" value="BPM" id="srch_system_BPM"><!--
+	--><label class="checkbox__label radio__label--button" for="srch_system_BPM"></label><!--
+	--><label class="checkbox__label" for="srch_system_BPM" id="label_srch_system_BPM">BPM</label><!--
+--></div>																												<div class="styledcheckbox "><!--
+	--><a href="#" class="mf_checkbox_wrapper nojsnav" aria-labelledby="label_srch_system_CRM"></a><!--
+	--><input class="checkbox__input" type="checkbox" name="srch_system[]" value="CRM" id="srch_system_CRM"><!--
+	--><label class="checkbox__label radio__label--button" for="srch_system_CRM"></label><!--
+	--><label class="checkbox__label" for="srch_system_CRM" id="label_srch_system_CRM">CRM</label><!--
+--></div>																												<div class="styledcheckbox "><!--
+	--><a href="#" class="mf_checkbox_wrapper nojsnav" aria-labelledby="label_srch_system_dcore"></a><!--
+	--><input class="checkbox__input" type="checkbox" name="srch_system[]" value="dcore" id="srch_system_dcore"><!--
+	--><label class="checkbox__label radio__label--button" for="srch_system_dcore"></label><!--
+	--><label class="checkbox__label" for="srch_system_dcore" id="label_srch_system_dcore">DCORE</label><!--
+--></div>																												<div class="styledcheckbox " style="display: none;"><!--
+	--><a href="#" class="mf_checkbox_wrapper nojsnav" aria-labelledby="label_srch_system_EI-Banknet"></a><!--
+	--><input class="checkbox__input" type="checkbox" name="srch_system[]" value="EI-Banknet" id="srch_system_EI-Banknet" disabled=""><!--
+	--><label class="checkbox__label radio__label--button" for="srch_system_EI-Banknet"></label><!--
+	--><label class="checkbox__label" for="srch_system_EI-Banknet" id="label_srch_system_EI-Banknet">EI Banknet</label><!--
+--></div>																												<div class="styledcheckbox " style="display: none;"><!--
+	--><a href="#" class="mf_checkbox_wrapper nojsnav" aria-labelledby="label_srch_system_EI-PCMS"></a><!--
+	--><input class="checkbox__input" type="checkbox" name="srch_system[]" value="EI-PCMS" id="srch_system_EI-PCMS" disabled=""><!--
+	--><label class="checkbox__label radio__label--button" for="srch_system_EI-PCMS"></label><!--
+	--><label class="checkbox__label" for="srch_system_EI-PCMS" id="label_srch_system_EI-PCMS">EI PCMS</label><!--
+--></div>																												<div class="styledcheckbox "><!--
+	--><a href="#" class="mf_checkbox_wrapper nojsnav" aria-labelledby="label_srch_system_Finacle"></a><!--
+	--><input class="checkbox__input" type="checkbox" name="srch_system[]" value="Finacle" id="srch_system_Finacle"><!--
+	--><label class="checkbox__label radio__label--button" for="srch_system_Finacle"></label><!--
+	--><label class="checkbox__label" for="srch_system_Finacle" id="label_srch_system_Finacle">Finacle</label><!--
+--></div>																												<div class="styledcheckbox "><!--
+	--><a href="#" class="mf_checkbox_wrapper nojsnav" aria-labelledby="label_srch_system_ETC"></a><!--
+	--><input class="checkbox__input" type="checkbox" name="srch_system[]" value="ETC" id="srch_system_ETC"><!--
+	--><label class="checkbox__label radio__label--button" for="srch_system_ETC"></label><!--
+	--><label class="checkbox__label" for="srch_system_ETC" id="label_srch_system_ETC">Finnone</label><!--
+--></div>																												<div class="styledcheckbox "><!--
+	--><a href="#" class="mf_checkbox_wrapper nojsnav" aria-labelledby="label_srch_system_maktaba"></a><!--
+	--><input class="checkbox__input" type="checkbox" name="srch_system[]" value="maktaba" id="srch_system_maktaba"><!--
+	--><label class="checkbox__label radio__label--button" for="srch_system_maktaba"></label><!--
+	--><label class="checkbox__label" for="srch_system_maktaba" id="label_srch_system_maktaba">Maktaba</label><!--
+--></div>																												<div class="styledcheckbox "><!--
+	--><a href="#" class="mf_checkbox_wrapper nojsnav" aria-labelledby="label_srch_system_Sales-Leads"></a><!--
+	--><input class="checkbox__input" type="checkbox" name="srch_system[]" value="Sales-Leads" id="srch_system_Sales-Leads"><!--
+	--><label class="checkbox__label radio__label--button" for="srch_system_Sales-Leads"></label><!--
+	--><label class="checkbox__label" for="srch_system_Sales-Leads" id="label_srch_system_Sales-Leads">Sales Leads</label><!--
+--></div>																												<div class="styledcheckbox "><!--
+	--><a href="#" class="mf_checkbox_wrapper nojsnav" aria-labelledby="label_srch_system_Tablet-Banking"></a><!--
+	--><input class="checkbox__input" type="checkbox" name="srch_system[]" value="Tablet-Banking" id="srch_system_Tablet-Banking"><!--
+	--><label class="checkbox__label radio__label--button" for="srch_system_Tablet-Banking"></label><!--
+	--><label class="checkbox__label" for="srch_system_Tablet-Banking" id="label_srch_system_Tablet-Banking">Tablet Banking</label><!--
+--></div>																												<div class="styledcheckbox "><!--
+	--><a href="#" class="mf_checkbox_wrapper nojsnav" aria-labelledby="label_srch_system_EI-Way4"></a><!--
+	--><input class="checkbox__input" type="checkbox" name="srch_system[]" value="EI-Way4" id="srch_system_EI-Way4"><!--
+	--><label class="checkbox__label radio__label--button" for="srch_system_EI-Way4"></label><!--
+	--><label class="checkbox__label" for="srch_system_EI-Way4" id="label_srch_system_EI-Way4">Way4</label><!--
+--></div>																		</fieldset>
+																<fieldset id="srch_fieldset_process">
+						<legend>Process</legend>
+																					<div class="styledcheckbox "><!--
+	--><a href="#" class="mf_checkbox_wrapper nojsnav" aria-labelledby="label_srch_process_Application"></a><!--
+	--><input class="checkbox__input" type="checkbox" name="srch_process[]" value="Application" id="srch_process_Application"><!--
+	--><label class="checkbox__label radio__label--button" for="srch_process_Application"></label><!--
+	--><label class="checkbox__label" for="srch_process_Application" id="label_srch_process_Application">Application</label><!--
+--></div>																												<div class="styledcheckbox "><!--
+	--><a href="#" class="mf_checkbox_wrapper nojsnav" aria-labelledby="label_srch_process_CSR"></a><!--
+	--><input class="checkbox__input" type="checkbox" name="srch_process[]" value="CSR" id="srch_process_CSR"><!--
+	--><label class="checkbox__label radio__label--button" for="srch_process_CSR"></label><!--
+	--><label class="checkbox__label" for="srch_process_CSR" id="label_srch_process_CSR">Closure / Settlement / Recoveries</label><!--
+--></div>																												<div class="styledcheckbox "><!--
+	--><a href="#" class="mf_checkbox_wrapper nojsnav" aria-labelledby="label_srch_process_complaints-feedback"></a><!--
+	--><input class="checkbox__input" type="checkbox" name="srch_process[]" value="complaints-feedback" id="srch_process_complaints-feedback"><!--
+	--><label class="checkbox__label radio__label--button" for="srch_process_complaints-feedback"></label><!--
+	--><label class="checkbox__label" for="srch_process_complaints-feedback" id="label_srch_process_complaints-feedback">Complaints &amp; Feedback</label><!--
+--></div>																												<div class="styledcheckbox "><!--
+	--><a href="#" class="mf_checkbox_wrapper nojsnav" aria-labelledby="label_srch_process_Fees-Charges"></a><!--
+	--><input class="checkbox__input" type="checkbox" name="srch_process[]" value="Fees-Charges" id="srch_process_Fees-Charges"><!--
+	--><label class="checkbox__label radio__label--button" for="srch_process_Fees-Charges"></label><!--
+	--><label class="checkbox__label" for="srch_process_Fees-Charges" id="label_srch_process_Fees-Charges">Fees &amp; Charges</label><!--
+--></div>																												<div class="styledcheckbox "><!--
+	--><a href="#" class="mf_checkbox_wrapper nojsnav" aria-labelledby="label_srch_process_Letters"></a><!--
+	--><input class="checkbox__input" type="checkbox" name="srch_process[]" value="Letters" id="srch_process_Letters"><!--
+	--><label class="checkbox__label radio__label--button" for="srch_process_Letters"></label><!--
+	--><label class="checkbox__label" for="srch_process_Letters" id="label_srch_process_Letters">Letters</label><!--
+--></div>																												<div class="styledcheckbox "><!--
+	--><a href="#" class="mf_checkbox_wrapper nojsnav" aria-labelledby="label_srch_process_Maintenance"></a><!--
+	--><input class="checkbox__input" type="checkbox" name="srch_process[]" value="Maintenance" id="srch_process_Maintenance"><!--
+	--><label class="checkbox__label radio__label--button" for="srch_process_Maintenance"></label><!--
+	--><label class="checkbox__label" for="srch_process_Maintenance" id="label_srch_process_Maintenance">Maintenance &amp; KYC</label><!--
+--></div>																												<div class="styledcheckbox "><!--
+	--><a href="#" class="mf_checkbox_wrapper nojsnav" aria-labelledby="label_srch_process_Payments"></a><!--
+	--><input class="checkbox__input" type="checkbox" name="srch_process[]" value="Payments" id="srch_process_Payments"><!--
+	--><label class="checkbox__label radio__label--button" for="srch_process_Payments"></label><!--
+	--><label class="checkbox__label" for="srch_process_Payments" id="label_srch_process_Payments">Payments &amp; Transfers</label><!--
+--></div>																												<div class="styledcheckbox "><!--
+	--><a href="#" class="mf_checkbox_wrapper nojsnav" aria-labelledby="label_srch_process_Rewards"></a><!--
+	--><input class="checkbox__input" type="checkbox" name="srch_process[]" value="Rewards" id="srch_process_Rewards"><!--
+	--><label class="checkbox__label radio__label--button" for="srch_process_Rewards"></label><!--
+	--><label class="checkbox__label" for="srch_process_Rewards" id="label_srch_process_Rewards">Rewards &amp; Benefits</label><!--
+--></div>																												<div class="styledcheckbox "><!--
+	--><a href="#" class="mf_checkbox_wrapper nojsnav" aria-labelledby="label_srch_process_Security"></a><!--
+	--><input class="checkbox__input" type="checkbox" name="srch_process[]" value="Security" id="srch_process_Security"><!--
+	--><label class="checkbox__label radio__label--button" for="srch_process_Security"></label><!--
+	--><label class="checkbox__label" for="srch_process_Security" id="label_srch_process_Security">Security</label><!--
+--></div>																												<div class="styledcheckbox "><!--
+	--><a href="#" class="mf_checkbox_wrapper nojsnav" aria-labelledby="label_srch_process_Statements"></a><!--
+	--><input class="checkbox__input" type="checkbox" name="srch_process[]" value="Statements" id="srch_process_Statements"><!--
+	--><label class="checkbox__label radio__label--button" for="srch_process_Statements"></label><!--
+	--><label class="checkbox__label" for="srch_process_Statements" id="label_srch_process_Statements">Statements</label><!--
+--></div>																												<div class="styledcheckbox "><!--
+	--><a href="#" class="mf_checkbox_wrapper nojsnav" aria-labelledby="label_srch_process_tsc"></a><!--
+	--><input class="checkbox__input" type="checkbox" name="srch_process[]" value="tsc" id="srch_process_tsc"><!--
+	--><label class="checkbox__label radio__label--button" for="srch_process_tsc"></label><!--
+	--><label class="checkbox__label" for="srch_process_tsc" id="label_srch_process_tsc">T&amp;Cs</label><!--
+--></div>																		</fieldset>
+																<fieldset id="srch_fieldset_product">
+						<legend>Product</legend>
+																					<div class="styledcheckbox "><!--
+	--><a href="#" class="mf_checkbox_wrapper nojsnav" aria-labelledby="label_srch_product_Account"></a><!--
+	--><input class="checkbox__input" type="checkbox" name="srch_product[]" value="Account" id="srch_product_Account"><!--
+	--><label class="checkbox__label radio__label--button" for="srch_product_Account"></label><!--
+	--><label class="checkbox__label" for="srch_product_Account" id="label_srch_product_Account">Account &amp; Deposits</label><!--
+--></div>																												<div class="styledcheckbox "><!--
+	--><a href="#" class="mf_checkbox_wrapper nojsnav" aria-labelledby="label_srch_product_enbdeiliv-cards"></a><!--
+	--><input class="checkbox__input" type="checkbox" name="srch_product[]" value="enbdeiliv-cards" id="srch_product_enbdeiliv-cards"><!--
+	--><label class="checkbox__label radio__label--button" for="srch_product_enbdeiliv-cards"></label><!--
+	--><label class="checkbox__label" for="srch_product_enbdeiliv-cards" id="label_srch_product_enbdeiliv-cards">Cards</label><!--
+--></div>																												<div class="styledcheckbox " style="display: none;"><!--
+	--><a href="#" class="mf_checkbox_wrapper nojsnav" aria-labelledby="label_srch_product_EI-Finance"></a><!--
+	--><input class="checkbox__input" type="checkbox" name="srch_product[]" value="EI-Finance" id="srch_product_EI-Finance" disabled=""><!--
+	--><label class="checkbox__label radio__label--button" for="srch_product_EI-Finance"></label><!--
+	--><label class="checkbox__label" for="srch_product_EI-Finance" id="label_srch_product_EI-Finance">EI Finance</label><!--
+--></div>																												<div class="styledcheckbox " style="display: none;"><!--
+	--><a href="#" class="mf_checkbox_wrapper nojsnav" aria-labelledby="label_srch_product_EI-Takaful"></a><!--
+	--><input class="checkbox__input" type="checkbox" name="srch_product[]" value="EI-Takaful" id="srch_product_EI-Takaful" disabled=""><!--
+	--><label class="checkbox__label radio__label--button" for="srch_product_EI-Takaful"></label><!--
+	--><label class="checkbox__label" for="srch_product_EI-Takaful" id="label_srch_product_EI-Takaful">EI Takaful</label><!--
+--></div>																												<div class="styledcheckbox "><!--
+	--><a href="#" class="mf_checkbox_wrapper nojsnav" aria-labelledby="label_srch_product_Insurance"></a><!--
+	--><input class="checkbox__input" type="checkbox" name="srch_product[]" value="Insurance" id="srch_product_Insurance"><!--
+	--><label class="checkbox__label radio__label--button" for="srch_product_Insurance"></label><!--
+	--><label class="checkbox__label" for="srch_product_Insurance" id="label_srch_product_Insurance">ENBD Insurance</label><!--
+--></div>																												<div class="styledcheckbox "><!--
+	--><a href="#" class="mf_checkbox_wrapper nojsnav" aria-labelledby="label_srch_product_Loans"></a><!--
+	--><input class="checkbox__input" type="checkbox" name="srch_product[]" value="Loans" id="srch_product_Loans"><!--
+	--><label class="checkbox__label radio__label--button" for="srch_product_Loans"></label><!--
+	--><label class="checkbox__label" for="srch_product_Loans" id="label_srch_product_Loans">ENBD Loans</label><!--
+--></div>																												<div class="styledcheckbox " style="display: none;"><!--
+	--><a href="#" class="mf_checkbox_wrapper nojsnav" aria-labelledby="label_srch_product_foreign-exchange"></a><!--
+	--><input class="checkbox__input" type="checkbox" name="srch_product[]" value="foreign-exchange" id="srch_product_foreign-exchange" disabled=""><!--
+	--><label class="checkbox__label radio__label--button" for="srch_product_foreign-exchange"></label><!--
+	--><label class="checkbox__label" for="srch_product_foreign-exchange" id="label_srch_product_foreign-exchange">Foreign Exchange</label><!--
+--></div>																												<div class="styledcheckbox "><!--
+	--><a href="#" class="mf_checkbox_wrapper nojsnav" aria-labelledby="label_srch_product_packages"></a><!--
+	--><input class="checkbox__input" type="checkbox" name="srch_product[]" value="packages" id="srch_product_packages"><!--
+	--><label class="checkbox__label radio__label--button" for="srch_product_packages"></label><!--
+	--><label class="checkbox__label" for="srch_product_packages" id="label_srch_product_packages">Packages</label><!--
+--></div>																												<div class="styledcheckbox "><!--
+	--><a href="#" class="mf_checkbox_wrapper nojsnav" aria-labelledby="label_srch_product_Wealth"></a><!--
+	--><input class="checkbox__input" type="checkbox" name="srch_product[]" value="Wealth" id="srch_product_Wealth"><!--
+	--><label class="checkbox__label radio__label--button" for="srch_product_Wealth"></label><!--
+	--><label class="checkbox__label" for="srch_product_Wealth" id="label_srch_product_Wealth">Wealth</label><!--
+--></div>																		</fieldset>
+										
+
+	
+				<input type="hidden" name="srch_news" value="" id="h_srch_news">	
+
+	
+				<fieldset id="srch_fieldset_schemas">
+			<legend>Content types</legend>
+			<div class="styledradio "><!--
+	--><a href="#" class="mf_radio_wrapper nojsnav" aria-labelledby="label_srch_schemas_all"></a><!--
+	--><input class="radio__input" type="radio" name="srch_schemas" value="all" id="srch_schemas_all" checked="checked"><!--
+	--><label class="radio__label radio__label--button" for="srch_schemas_all"></label><!--
+	--><label class="radio__label" for="srch_schemas_all" id="label_srch_schemas_all">All</label><!--
+--></div>			<div class="styledradio "><!--
+	--><a href="#" class="mf_radio_wrapper nojsnav" aria-labelledby="label_srch_schemas_landing"></a><!--
+	--><input class="radio__input" type="radio" name="srch_schemas" value="landing" id="srch_schemas_landing"><!--
+	--><label class="radio__label radio__label--button" for="srch_schemas_landing"></label><!--
+	--><label class="radio__label" for="srch_schemas_landing" id="label_srch_schemas_landing">Landing pages</label><!--
+--></div>			<div class="styledradio "><!--
+	--><a href="#" class="mf_radio_wrapper nojsnav" aria-labelledby="label_srch_schemas_custom"></a><!--
+	--><input class="radio__input" type="radio" name="srch_schemas" value="custom" id="srch_schemas_custom"><!--
+	--><label class="radio__label radio__label--button" for="srch_schemas_custom"></label><!--
+	--><label class="radio__label" for="srch_schemas_custom" id="label_srch_schemas_custom">Custom</label><!--
+--></div>			<div class="dependants" data-dependant-on="srch_schemas" data-dependant-val="custom" style="display: none;">
+									<div class="styledcheckbox "><!--
+	--><a href="#" class="mf_checkbox_wrapper nojsnav" aria-labelledby="label_srch_schemas_custom_faq"></a><!--
+	--><input class="checkbox__input" type="checkbox" name="srch_schemas_custom[]" value="faq" id="srch_schemas_custom_faq"><!--
+	--><label class="checkbox__label radio__label--button" for="srch_schemas_custom_faq"></label><!--
+	--><label class="checkbox__label" for="srch_schemas_custom_faq" id="label_srch_schemas_custom_faq">FAQs</label><!--
+--></div>									<div class="styledcheckbox "><!--
+	--><a href="#" class="mf_checkbox_wrapper nojsnav" aria-labelledby="label_srch_schemas_custom_how-to"></a><!--
+	--><input class="checkbox__input" type="checkbox" name="srch_schemas_custom[]" value="how-to" id="srch_schemas_custom_how-to"><!--
+	--><label class="checkbox__label radio__label--button" for="srch_schemas_custom_how-to"></label><!--
+	--><label class="checkbox__label" for="srch_schemas_custom_how-to" id="label_srch_schemas_custom_how-to">How-Tos</label><!--
+--></div>									<div class="styledcheckbox "><!--
+	--><a href="#" class="mf_checkbox_wrapper nojsnav" aria-labelledby="label_srch_schemas_custom_landing-page"></a><!--
+	--><input class="checkbox__input" type="checkbox" name="srch_schemas_custom[]" value="landing-page" id="srch_schemas_custom_landing-page"><!--
+	--><label class="checkbox__label radio__label--button" for="srch_schemas_custom_landing-page"></label><!--
+	--><label class="checkbox__label" for="srch_schemas_custom_landing-page" id="label_srch_schemas_custom_landing-page">Landing pages</label><!--
+--></div>									<div class="styledcheckbox "><!--
+	--><a href="#" class="mf_checkbox_wrapper nojsnav" aria-labelledby="label_srch_schemas_custom_process"></a><!--
+	--><input class="checkbox__input" type="checkbox" name="srch_schemas_custom[]" value="process" id="srch_schemas_custom_process"><!--
+	--><label class="checkbox__label radio__label--button" for="srch_schemas_custom_process"></label><!--
+	--><label class="checkbox__label" for="srch_schemas_custom_process" id="label_srch_schemas_custom_process">Process</label><!--
+--></div>									<div class="styledcheckbox "><!--
+	--><a href="#" class="mf_checkbox_wrapper nojsnav" aria-labelledby="label_srch_schemas_custom_product-brief"></a><!--
+	--><input class="checkbox__input" type="checkbox" name="srch_schemas_custom[]" value="product-brief" id="srch_schemas_custom_product-brief"><!--
+	--><label class="checkbox__label radio__label--button" for="srch_schemas_custom_product-brief"></label><!--
+	--><label class="checkbox__label" for="srch_schemas_custom_product-brief" id="label_srch_schemas_custom_product-brief">Product briefs</label><!--
+--></div>									<div class="styledcheckbox "><!--
+	--><a href="#" class="mf_checkbox_wrapper nojsnav" aria-labelledby="label_srch_schemas_custom_promotion"></a><!--
+	--><input class="checkbox__input" type="checkbox" name="srch_schemas_custom[]" value="promotion" id="srch_schemas_custom_promotion"><!--
+	--><label class="checkbox__label radio__label--button" for="srch_schemas_custom_promotion"></label><!--
+	--><label class="checkbox__label" for="srch_schemas_custom_promotion" id="label_srch_schemas_custom_promotion">Promotions</label><!--
+--></div>							</div>
+		</fieldset>
+	
+	
+	
+				<fieldset id="srch_fieldset_created">
+			<legend>Created date</legend>
+			<div class="styledradio "><!--
+	--><a href="#" class="mf_radio_wrapper nojsnav" aria-labelledby="label_srch_created_all"></a><!--
+	--><input class="radio__input" type="radio" name="srch_created" value="all" id="srch_created_all" checked="checked"><!--
+	--><label class="radio__label radio__label--button" for="srch_created_all"></label><!--
+	--><label class="radio__label" for="srch_created_all" id="label_srch_created_all">All</label><!--
+--></div>			<div class="styledradio "><!--
+	--><a href="#" class="mf_radio_wrapper nojsnav" aria-labelledby="label_srch_created_24h"></a><!--
+	--><input class="radio__input" type="radio" name="srch_created" value="24h" id="srch_created_24h"><!--
+	--><label class="radio__label radio__label--button" for="srch_created_24h"></label><!--
+	--><label class="radio__label" for="srch_created_24h" id="label_srch_created_24h">Last 24h</label><!--
+--></div>			<div class="styledradio "><!--
+	--><a href="#" class="mf_radio_wrapper nojsnav" aria-labelledby="label_srch_created_7d"></a><!--
+	--><input class="radio__input" type="radio" name="srch_created" value="7d" id="srch_created_7d"><!--
+	--><label class="radio__label radio__label--button" for="srch_created_7d"></label><!--
+	--><label class="radio__label" for="srch_created_7d" id="label_srch_created_7d">Last 7 days</label><!--
+--></div>			<div class="styledradio "><!--
+	--><a href="#" class="mf_radio_wrapper nojsnav" aria-labelledby="label_srch_created_28d"></a><!--
+	--><input class="radio__input" type="radio" name="srch_created" value="28d" id="srch_created_28d"><!--
+	--><label class="radio__label radio__label--button" for="srch_created_28d"></label><!--
+	--><label class="radio__label" for="srch_created_28d" id="label_srch_created_28d">Last month</label><!--
+--></div>			<div class="styledradio "><!--
+	--><a href="#" class="mf_radio_wrapper nojsnav" aria-labelledby="label_srch_created_range"></a><!--
+	--><input class="radio__input" type="radio" name="srch_created" value="range" id="srch_created_range"><!--
+	--><label class="radio__label radio__label--button" for="srch_created_range"></label><!--
+	--><label class="radio__label" for="srch_created_range" id="label_srch_created_range">Custom</label><!--
+--></div>
+<div class="dependants" data-dependant-on="srch_created" data-dependant-val="range" style="display: none;">
+	<div class="styleddaterange ">
+		<input type="date" name="srch_created_start" value="2022-01-01" max="2025-05-06" min="2022-06-01" required="" pattern="\d{4}-\d{2}-\d{2}" title="Start date">
+		<input type="date" name="srch_created_end" value="2025-03-19" max="2025-05-06" min="2022-06-01" required="" pattern="\d{4}-\d{2}-\d{2}" title="End date">
+	</div>
+</div>		</fieldset>
+	
+
+	
+				<input type="hidden" name="srch_modified" value="all" id="h_srch_modified">		<input type="hidden" name="srch_modified_range" value="['2022-01-01','2025-05-06']">
+	<input type="hidden" name="srch_modified_start" value="2022-01-01">
+	<input type="hidden" name="srch_modified_end" value="2025-05-06">
+	
+
+	
+				<fieldset id="srch_fieldset_sortby">
+			<legend>Sort by</legend>
+			<div class="styledradio "><!--
+	--><a href="#" class="mf_radio_wrapper nojsnav" aria-labelledby="label_srch_sortby_default"></a><!--
+	--><input class="radio__input" type="radio" name="srch_sortby" value="default" id="srch_sortby_default" checked="checked"><!--
+	--><label class="radio__label radio__label--button" for="srch_sortby_default"></label><!--
+	--><label class="radio__label" for="srch_sortby_default" id="label_srch_sortby_default">Automatic</label><!--
+--></div>			<div class="styledradio "><!--
+	--><a href="#" class="mf_radio_wrapper nojsnav" aria-labelledby="label_srch_sortby_alpha"></a><!--
+	--><input class="radio__input" type="radio" name="srch_sortby" value="alpha" id="srch_sortby_alpha"><!--
+	--><label class="radio__label radio__label--button" for="srch_sortby_alpha"></label><!--
+	--><label class="radio__label" for="srch_sortby_alpha" id="label_srch_sortby_alpha">Alphabetical</label><!--
+--></div>			<div class="styledradio "><!--
+	--><a href="#" class="mf_radio_wrapper nojsnav" aria-labelledby="label_srch_sortby_created"></a><!--
+	--><input class="radio__input" type="radio" name="srch_sortby" value="created" id="srch_sortby_created"><!--
+	--><label class="radio__label radio__label--button" for="srch_sortby_created"></label><!--
+	--><label class="radio__label" for="srch_sortby_created" id="label_srch_sortby_created">Date Created</label><!--
+--></div>			<div class="styledradio "><!--
+	--><a href="#" class="mf_radio_wrapper nojsnav" aria-labelledby="label_srch_sortby_modified"></a><!--
+	--><input class="radio__input" type="radio" name="srch_sortby" value="modified" id="srch_sortby_modified"><!--
+	--><label class="radio__label radio__label--button" for="srch_sortby_modified"></label><!--
+	--><label class="radio__label" for="srch_sortby_modified" id="label_srch_sortby_modified">Date Modified</label><!--
+--></div>		</fieldset>
+						</form>
+          <a href="#" id="clear_search_filters">Clear filters</a>
+				</div>
+				<div id="search-content">
+											<p>Start typing to search</p>
+						<p>Searching uses your current filters visible on the left.</p>
+									</div>
+				<div id="search-rightnav">
+																<h6>My recent searches</h6>
+						<ul>
+															<li><a class="nojsnav" data-term="digital account opening" href="#">digital account opening</a></li>
+															<li><a class="nojsnav" data-term="complaint" href="#">complaint</a></li>
+															<li><a class="nojsnav" data-term="ipp merchant list" href="#">ipp merchant list</a></li>
+															<li><a class="nojsnav" data-term="partial settlement" href="#">partial settlement</a></li>
+															<li><a class="nojsnav" data-term="cheque clearing" href="#">cheque clearing</a></li>
+															<li><a class="nojsnav" data-term="WPS" href="#">WPS</a></li>
+															<li><a class="nojsnav" data-term="Credit facility and CB application dispute" href="#">Credit facility and CB application dispute</a></li>
+															<li><a class="nojsnav" data-term="Credit card payment failure" href="#">Credit card payment failure</a></li>
+															<li><a class="nojsnav" data-term="SMS not received" href="#">SMS not received</a></li>
+															<li><a class="nojsnav" data-term="Bulk cash deposit machine failure" href="#">Bulk cash deposit machine failure</a></li>
+															<li><a class="nojsnav" data-term="Browser issue" href="#">Browser issue</a></li>
+															<li><a class="nojsnav" data-term="Mobile cash withdrawal" href="#">Mobile cash withdrawal</a></li>
+															<li><a class="nojsnav" data-term="Auto reversal failed" href="#">Auto reversal failed</a></li>
+															<li><a class="nojsnav" data-term="AECB Complaints Mailbox" href="#">AECB Complaints Mailbox</a></li>
+															<li><a class="nojsnav" data-term="Account maintenance issues" href="#">Account maintenance issues</a></li>
+															<li><a class="nojsnav" data-term="verification" href="#">verification</a></li>
+															<li><a class="nojsnav" data-term="tourism certificate" href="#">tourism certificate</a></li>
+															<li><a class="nojsnav" data-term="rewards calculator" href="#">rewards calculator</a></li>
+															<li><a class="nojsnav" data-term="rewards calculat" href="#">rewards calculat</a></li>
+															<li><a class="nojsnav" data-term="payment limit" href="#">payment limit</a></li>
+													</ul>
+									</div>
+			</div>
+		</div>		<div id="mainbar">
+			<div class="inner">
+				<a href="/enterprise/enbd"><img src="/enterprise/statics/67adc649/images/enbd-logo.png" id="logo" alt="logo"></a>
+				<label id="search_label">
+					<input type="text" id="search" placeholder="Search">
+					<a href="#" id="search_clear">Close</a>
+				</label>
+													<a href="/enterprise/ei" id="switch_ei" title="Switch to Emirates Islamic">EI</a>
+													<a href="/enterprise/liv" id="switch_liv" title="Switch to Liv">Liv</a>
+								<a href="#" class="nojsnav" id="user_preferences" title="User Preferences">User Preferences</a>
+			</div>
+		</div>
+		<div id="primary_nav">
+			<div class="inner">
+				<a id="pn_home" class="jsnavigable" href="/enterprise/enbd">Home</a>
+				<a id="pn_browse" href="#browse">Browse</a>
+				<a id="pn_glossary" class="jsnavigable" href="/enterprise/enbd/glossary">Glossary</a>
+				<a id="pn_links" class="jsnavigable" href="/enterprise/enbd/links">Links</a>
+				<a id="pn_library" class="jsnavigable" href="/enterprise/enbd/my-library">My Library</a>
+				<a id="pn_news" class="jsnavigable" href="/enterprise/enbd/notifications" data-unread="684">Notifications</a>
+				<a id="pn_history" class="jsnavigable" href="/enterprise/enbd/history">History</a>
+				<a id="pn_suggest" href="#">Suggest Content</a>
+				<a id="pn_bfl" class="jsnavigable" href="/enterprise/enbd/back-from-leave">Back from Leave</a>
+			</div>
+		</div>
+				<div id="mega-menu">
+			<div class="inner">
+														<ul>
+						<li>Products</li>
+													<li><a class="jsnavigable" href="/enterprise/enbd/product/Account">Account &amp; Deposits</a></li>
+													<li><a class="jsnavigable" href="/enterprise/enbd/product/enbdeiliv-cards">Cards</a></li>
+													<li><a class="jsnavigable" href="/enterprise/enbd/product/EI-Finance">EI Finance</a></li>
+													<li><a class="jsnavigable" href="/enterprise/enbd/product/EI-Takaful">EI Takaful</a></li>
+													<li><a class="jsnavigable" href="/enterprise/enbd/product/Insurance">ENBD Insurance</a></li>
+													<li><a class="jsnavigable" href="/enterprise/enbd/product/Loans">ENBD Loans</a></li>
+													<li><a class="jsnavigable" href="/enterprise/enbd/product/foreign-exchange">Foreign Exchange</a></li>
+													<li><a class="jsnavigable" href="/enterprise/enbd/product/packages">Packages</a></li>
+													<li><a class="jsnavigable" href="/enterprise/enbd/product/Wealth">Wealth</a></li>
+											</ul>
+														<ul>
+						<li>Channels</li>
+													<li><a class="jsnavigable" href="/enterprise/enbd/channel/ATM">ATM</a></li>
+													<li><a class="jsnavigable" href="/enterprise/enbd/channel/Branch">Branch</a></li>
+													<li><a class="jsnavigable" href="/enterprise/enbd/channel/Business-Online">businessONLINE</a></li>
+													<li><a class="jsnavigable" href="/enterprise/enbd/channel/CCO">CCO</a></li>
+													<li><a class="jsnavigable" href="/enterprise/enbd/channel/CDM">CDM</a></li>
+													<li><a class="jsnavigable" href="/enterprise/enbd/channel/ITM">ITM</a></li>
+													<li><a class="jsnavigable" href="/enterprise/enbd/channel/Mobile-Banking">Mobile Banking</a></li>
+													<li><a class="jsnavigable" href="/enterprise/enbd/channel/Online-Banking">Online Banking</a></li>
+													<li><a class="jsnavigable" href="/enterprise/enbd/channel/phone-banking-ivr">Phone Banking IVR</a></li>
+													<li><a class="jsnavigable" href="/enterprise/enbd/channel/sms">SMS</a></li>
+													<li><a class="jsnavigable" href="/enterprise/enbd/channel/Website">Website</a></li>
+													<li><a class="jsnavigable" href="/enterprise/enbd/channel/whatsapp">WhatsApp</a></li>
+											</ul>
+														<ul>
+						<li>Systems</li>
+													<li><a class="jsnavigable" href="/enterprise/enbd/system/Base24">Base24</a></li>
+													<li><a class="jsnavigable" href="/enterprise/enbd/system/BPM">BPM</a></li>
+													<li><a class="jsnavigable" href="/enterprise/enbd/system/CRM">CRM</a></li>
+													<li><a class="jsnavigable" href="/enterprise/enbd/system/dcore">DCORE</a></li>
+													<li><a class="jsnavigable" href="/enterprise/enbd/system/EI-Banknet">EI Banknet</a></li>
+													<li><a class="jsnavigable" href="/enterprise/enbd/system/EI-PCMS">EI PCMS</a></li>
+													<li><a class="jsnavigable" href="/enterprise/enbd/system/Finacle">Finacle</a></li>
+													<li><a class="jsnavigable" href="/enterprise/enbd/system/ETC">Finnone</a></li>
+													<li><a class="jsnavigable" href="/enterprise/enbd/system/maktaba">Maktaba</a></li>
+													<li><a class="jsnavigable" href="/enterprise/enbd/system/Sales-Leads">Sales Leads</a></li>
+											</ul>
+														<ul>
+						<li>Processes</li>
+													<li><a class="jsnavigable" href="/enterprise/enbd/process/Application">Application</a></li>
+													<li><a class="jsnavigable" href="/enterprise/enbd/process/CSR">Closure / Settlement / Recoveries</a></li>
+													<li><a class="jsnavigable" href="/enterprise/enbd/process/complaints-feedback">Complaints &amp; Feedback</a></li>
+													<li><a class="jsnavigable" href="/enterprise/enbd/process/Fees-Charges">Fees &amp; Charges</a></li>
+													<li><a class="jsnavigable" href="/enterprise/enbd/process/Letters">Letters</a></li>
+													<li><a class="jsnavigable" href="/enterprise/enbd/process/Maintenance">Maintenance &amp; KYC</a></li>
+													<li><a class="jsnavigable" href="/enterprise/enbd/process/Payments">Payments &amp; Transfers</a></li>
+											</ul>
+														<ul>
+						<li>&nbsp;</li>
+													<li><a class="jsnavigable" href="/enterprise/enbd/process/Rewards">Rewards &amp; Benefits</a></li>
+													<li><a class="jsnavigable" href="/enterprise/enbd/process/Security">Security</a></li>
+													<li><a class="jsnavigable" href="/enterprise/enbd/process/Statements">Statements</a></li>
+													<li><a class="jsnavigable" href="/enterprise/enbd/process/tsc">T&amp;Cs</a></li>
+											</ul>
+							</div>
+		</div>
+    <div id="suggest-content">
+			<div class="inner">
+				<form>
+					<div>
+						Got an idea to improve Ask-KMPRO?<br><br>Tell us here!
+					</div>
+					<textarea name="suggest-content-textarea"></textarea>
+					<input type="submit" value="Submit Suggestion">
+		        </form>
+			</div>
+		</div>
+		<div id="btn-bar" style="display: flex; align-items: center; justify-content: center;">
+    <button id="back-to-top-btn" style="display: block;">
+        <span class="icon"></span>
+        <span class="back-btn-text"> Back to Top</span>
+    </button>
+    <button id="concertina-show-btn" style="display: none;">Expand View</button>
+    <button id="concertina-hide-btn" style="display: block;">Collapse View</button>
+</div>	</header>
+		<div id="main-body" style="padding-top: 6rem;">
+		<div class="inner">
+			
+<div id="filterbar">
+	<form id="filters" action="" method="post">
+	<input type="hidden" name="fltr_canary" value="caged" id="h_fltr_canary">
+	
+												<input type="hidden" name="fltr_division" value="[&quot;CCO&quot;]" id="h_fltr_division">							<input type="hidden" name="fltr_segment" value="[&quot;Business-Banking&quot;,&quot;internal-process&quot;,&quot;Personal-Banking&quot;,&quot;Priority-Banking&quot;,&quot;Private-Banking&quot;]" id="h_fltr_segment">							<input type="hidden" name="fltr_subdept" value="[&quot;enbd-test-subdept&quot;,&quot;business-support&quot;,&quot;businessonline&quot;,&quot;trade-finance&quot;,&quot;collections&quot;,&quot;legal&quot;,&quot;recoveries&quot;,&quot;enbd-priority-banking-cro&quot;,&quot;enbd-priority-banking-csm&quot;,&quot;enbd-psb-rbs-accounts&quot;,&quot;enbd-psb-rbs-auto-loans&quot;,&quot;enbd-psb-rbs-credit-cards&quot;,&quot;enbd-psb-rbs-homes-loans&quot;,&quot;enbd-psb-rbs-personal-loans&quot;,&quot;tanfeeth-rco-rdu&quot;,&quot;enbd-rd-operations&quot;,&quot;enbd-rd-sales&quot;,&quot;enbd-rd-service&quot;,&quot;enbd-cco-inbound&quot;]" id="h_fltr_subdept">																	<input type="hidden" name="fltr_channel" value="" id="h_fltr_channel">							<input type="hidden" name="fltr_system" value="" id="h_fltr_system">							<input type="hidden" name="fltr_process" value="" id="h_fltr_process">							<input type="hidden" name="fltr_product" value="" id="h_fltr_product">						
+
+	
+				<input type="hidden" name="fltr_news" value="" id="h_fltr_news">	
+
+	
+				<input type="hidden" name="fltr_schemas" value="all" id="h_fltr_schemas">	
+	
+	
+				<input type="hidden" name="fltr_created" value="all" id="h_fltr_created">		<input type="hidden" name="fltr_created_range" value="['2022-01-01','2025-05-06']">
+	<input type="hidden" name="fltr_created_start" value="2022-01-01">
+	<input type="hidden" name="fltr_created_end" value="2025-05-06">
+	
+
+	
+				<input type="hidden" name="fltr_modified" value="all" id="h_fltr_modified">		<input type="hidden" name="fltr_modified_range" value="['2022-01-01','2025-05-06']">
+	<input type="hidden" name="fltr_modified_start" value="2022-01-01">
+	<input type="hidden" name="fltr_modified_end" value="2025-05-06">
+	
+
+	
+				<input type="hidden" name="fltr_sortby" value="default" id="h_fltr_sortby">	</form>
+	<div id="meta-data">
+	<h6>Metadata</h6>
+	<dl>
+		
+																						
+		<span>
+			<dt>Content Type</dt>
+			<dd>Process</dd>
+		</span>		
+
+					<span>
+			<dt>System</dt>
+			<dd>None</dd>
+			</span>
+					<span>
+			<dt>Channel</dt>
+			<dd>Mobile Banking</dd><dd>Online Banking</dd>
+			</span>
+					<span>
+			<dt>Process</dt>
+			<dd>Complaints &amp; Feedback</dd>
+			</span>
+					<span>
+			<dt>Segment</dt>
+			<dd>Personal Banking</dd><dd>Priority Banking</dd><dd>Private Banking</dd>
+			</span>
+					<span>
+			<dt>Division</dt>
+			<dd>CCO</dd><dd>Priority Banking</dd>
+			</span>
+					<span>
+			<dt>Product</dt>
+			<dd>None</dd>
+			</span>
+					<span>
+			<dt>Brand</dt>
+			<dd>ENBD</dd>
+			</span>
+					<span>
+			<dt>Subdept</dt>
+			<dd>Call Centre Inbound</dd><dd>ENBD VRM</dd><dd>PRB CRO</dd><dd>PRB CSM</dd><dd>Test tag - ENBD CCO</dd>
+			</span>
+			</dl>
+</div></div>
+
+<div id="content" class="article process">
+		
+			<h1>ENBD X Troubleshooting - Registration and Reset Issues</h1>
+			<!-- <p>This article highlights ENBD X troubleshooting and complaints for registration and migration issues and is intended to guide agents on how to assist customers with troubleshooting their issues and raising complaints as required.</p> -->
+			<h2 class="concertina concertina-major concertina-open" data-field="summaryDetails" data-c="235">Summary</h2><div class="concertina-major-Wrapper" style=""><p>This article highlights ENBD X troubleshooting and complaints for registration and migration issues and is intended to guide agents on how to assist customers with troubleshooting their issues and raising complaints as required.</p></div>
+		
+		<!-- <h2 class="concertina concertina-major concertina-open" data-field="keyPoints" data-c="30">Key points and pre-requisites&nbsp;</h2>
+<p>Before assisting customers with ENBD X Registration / Reset troubleshooting, ensure that the customer has the latest ENBD X version for both iOS and Android which can be checked on their respective App stores and should always be as per latest version released by the bank. Do the below health checks first with the customer:</p>
+<div class="callout callout-important">
+<p>Always check first under Interactions - Online &amp; Mobile tab, Customer Status and accordingly guide customer with the registration issue. <a href="#interactions"><strong>Click here</strong></a> for more details.</p>
+</div>
+<ul>
+<li>Close all apps and launch ENBD X</li>
+<li>Disables/disconnects any VPN on their device prior to opening ENBD X or using any service on their mobile device</li>
+<li>Check the Network connectivity – using strong WiFi, <b>not restricted such as corporate or public WiFi, </b>alternatively to use their mobile data</li>
+<li>Make sure that the customer's mobile phone operating system (Android or iOS) is compatible with the latest version of ENBD X</li>
+<li style="list-style-type: none;">
+<ul type="circle">
+<li>Android – version 9 and upwards</li>
+<li>Apple – iOS 15.0 and upwards</li>
+</ul>
+</li>
+<li>Date of birth should be matching in <a href="/enterprise/enbd/glossary/CRM" target="_blank" class="abbr nojsnav" data-uniqid="681981c644b4d" data-category="enbd_glossary" data-eid="enbd-rbs-gl-crm" data-te="CRM" data-ta="CRM" data-de="Customer Relationship Management (CRM) is a software used by banks in managing customers, from marketing to sales to customer service. CRM helps banks to manage their relationships with existing clients as well as attract new ones by focusing on key issues such as customer retention and acquisition strategies." data-da="يعمل نظام CRM على جمع جميع البيانات التي تم جمعها للعميل وربطها وتحليلها، بما في ذلك معلومات العميل والتفاعلات مع ممثلي الشركة والمشتريات وطلبات الخدمة والأصول والمقترحات/عروض الأسعار. ثم يسمح النظام للمستخدمين بالوصول إلى تلك البيانات وفهم ما حدث في كل نقطة اتصال. من خلال هذا الفهم، يتم تطوير ملف تعريف كامل للعملاء، ويتم إنشاء علاقة عملاء قوية.
+">CRM</a> details – <strong>dd/mm/yyyy format</strong></li>
+<li>Check that the customer is using an active account/card and that the <a href="/enterprise/enbd/glossary/CIF" target="_blank" class="abbr nojsnav" data-uniqid="681981c644de9" data-category="enbd_glossary" data-eid="enbd-rbs-gl-cif" data-te="CIF" data-ta="CIF" data-de="Customer Identification File (CIF) is a computerised file used by banks that stores a customer's personal and account information. CIF contains data such as credit relationships, account ownership information, the number, and types of accounts owned" data-da="ملف تعريف العميل (CIF) هو ملف محوسب تستخدمه البنوك لتخزين المعلومات الشخصية والحسابية للعميل. يحتوي CIF على بيانات مثل العلاقات الائتمانية ومعلومات ملكية الحساب وعدد وأنواع الحسابات المملوكة
+">CIF</a> not suspended or blacklisted</li>
+<li>Jointly owned/operated accounts will not be able to register for Online Banking</li>
+</ul>
+<p>Once the above checks are done, proceed with assisting the customer.</p>
+<div class="callout callout-note">
+<p>For the below error messages, assist the customer accordingly:</p>
+<ul>
+<li>"<strong>User is already registered or you do not have the privileges to register directly from this app.</strong>" - Check the registration status and assist the customer accordingly</li>
+<li>"<strong>Sorry, we are not able to log you in because you have entered invalid credentials&nbsp;or you are not eligible to use this application.</strong>" - Assist the customer with the Reset process</li>
+</ul>
+</div>
+<h2 class="concertina concertina-major">Registration issues and troubleshooting</h2>
+<h4 class="concertina concertina-head-closed">Check channel footprints and customer status in Interactions on CRM</h4>
+<div class="concertina concertina-body">
+<div class="callout callout-important">
+<p>Ensure to check the Channel Footprints on CRM and read the description clearly to understand the reason of the error before raising any <a href="/enterprise/enbd/glossary/SR" target="_blank" class="abbr nojsnav" data-uniqid="681981c645767" data-category="enbd_glossary" data-eid="enbd-rbs-gl-sr" data-te="SR" data-ta="SR" data-de="A Service Request (SR) is a request raised by a bank's agent/employee on behalf of the customer. An SR is raised in the CRM with details of the customer and the issue/ request and tagged to the specific departments that need to resolve the SR." data-da="طلب مقدم من وكيل/موظف مصرفي نيابة عن العميل. يتم طرح SR في CRM مع تفاصيل العميل والمشكلة/الطلب ووضع ملاحظات عليها إلى الأقسام المحددة التي تحتاج إلى حل SR.
+">SR</a>.</p>
+</div>
+<p><a id="interactions"></a>Check in Interactions (<a title="enbd-cfp-custstatus.jpg" href="//askkmpro.sso.verint-km.com/resources/enbd/enbd_library/enbd-cfp-custstatus.jpg"><em>Sample screenshot</em></a>) - Online &amp; Mobile tab if Customer status shows as:</p>
+<ul>
+<li><b>Active</b> – assist customer with Forgot credentials troubleshooting steps
+<ul>
+<li>For Password reset, <a title="Resetting Mobile and Online Banking Password via Digital Channels" href="/enterprise/enbd/enbd_channels/enbd-all-ch-pwd-reset"><strong>click here</strong></a></li>
+<li>For Retrieving user ID, <a title="Retrieving Mobile and Online Banking User ID via Digital Channels" href="/enterprise/enbd/enbd_channels/enbd-all-ch-userid-retrieve"><strong>click here</strong></a></li>
+</ul>
+</li>
+<li><b>Reg_init</b> – Incomplete registration process. Guide the customer through the <a href="#registration_process"><strong>registration process steps</strong></a></li>
+<li><b>Blank</b> – Guide the customer through the <a href="#registration_process"><strong>registration process steps</strong></a></li>
+</ul>
+<p>View the customer's ENBD X registration/reset activity details through CRM channel footprints (<a title="Channel footprint - Reg_Reset" href="//askkmpro.sso.verint-km.com/resources/enbd/enbd_library/enbd-img-chnlft-regreset.pdf"><em>Sample screenshots</em></a><em>)</em></p>
+</div>
+<h4 class="concertina concertina-head-closed">Troubleshooting</h4>
+<div class="concertina concertina-body">
+<p>&nbsp;Ensure to do all the required troubleshooting prior to raising the complaint SR.</p>
+<h4 class="concertina concertina-head-closed">Email verification code not received</h4>
+<div class="concertina concertina-body"><a id="emailnocome"></a><div class="callout callout-important">
+<ul>
+<li>If the customer has a company email address and is not receiving the email verification, please advise them to change the email to a personal one (ie. Hotmail, Gmail, etc.).&nbsp;
+<ul>
+<li>In case the customer is not willing to change the email address, inform them to check with their email service provider if there is any block placed.</li>
+</ul>
+</li>
+</ul>
+</div>
+<p>Confirm with customer if the registered email address appearing for Registration matches with bank records</p>
+<ul>
+<li>If the email is matching
+<ul>
+<li>Ask the customer to check other folders (junk/spam) in their email</li>
+<li>Check email directly from the email address folders by minimizing the ENBD X screen, then go to email folders in the device</li>
+<li>Ask the customer if there are any restrictions/blocks/rules on their email while receiving bulk messages which may cause the issue</li>
+<li>Alternatively, ask the customer to update their email with a different email address</li>
+</ul>
+</li>
+<li>If email is not matching, ask customer to update their&nbsp;<a title="Updating Registered Email Address" href="https://askkmpro.sso.verint-km.com/enterprise/enbd/enbd_channels/enbd-all-ch-email-update">registered email address</a>&nbsp;and try again</li>
+</ul>
+<p>If email is still not received:</p>
+<ul>
+<li>Ask the customer to check their respective email provider settings to ensure that there are no restrictions placed for Emirates NBD</li>
+<li>Advise the customer to retry the process and upon reaching the “Verify email” stage again, stay on that same page</li>
+<li>Then through a laptop/desktop, login to the email domain registered with the bank (ex. Yahoo or Gmail), then click the ‘Verify email’ link</li>
+<li>The customer will then have to look back at ENBD X app where OTP SMS page will appear, and push OTP SMS will be sent</li>
+</ul>
+<p>If the customer is still facing the issue after the above troubleshooting, raise the below request.</p>
+<table class="serviceRequest" style="border-collapse: collapse; border-color: #000000;" border="#000000">
+<thead>
+<tr >
+<td style="text-align: center;"><strong>Type</strong></td>
+<td style="text-align: center;"><strong>Area</strong></td>
+<td style="text-align: center;"><strong>Sub Area</strong></td>
+<td style="text-align: center;"><strong>TAT</strong></td>
+</tr>
+</thead>
+<tbody>
+<tr >
+<td style="text-align: center;">Complaint</td>
+<td style="text-align: center;">Online_Mobile banking access</td>
+<td style="text-align: center;">Registration_Reset issue</td>
+<td style="text-align: center;">2 Working Days</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-note">
+<p>For Smart Pass related issue, <strong><a title="Help with Smart Pass via Call Centre" href="/enterprise/enbd/enbd_miscellaneous/enbd-cco-pr-smart-pass">click here</a></strong>.</p>
+</div>
+<div>
+<p>Advise the customer to send the error screenshot to SRHelpdesk@emiratesnbd.com within 4 hours quoting the Service Request number as the subject of the ema&ZeroWidthSpace;il to proceed with the request.</p>
+<ul>
+<li>Screenshots are mandatory for the above SRs. In case the screenshot is not possible, ensure to capture the date and timestamp of error occurrence</li>
+<li>Ensure to capture the customer's mobile device details</li>
+</ul>
+</div></div>
+<h4 class="concertina concertina-head-closed">Verification Failed</h4>
+<div class="concertina concertina-body"><a id="verificationfailed"></a><p>Ensure to do the below:</p>
+<ul>
+<li>If verification fails, advise the customer to tap the back arrow on the top left hand side of the screen to return back to the verify email page where it should automatically push to the "success" screen, after which the OTP SMS page will appear, and push OTP will be sent</li>
+</ul></div>
+<h4 class="concertina concertina-head-closed">OTP SMS not received</h4>
+<div class="concertina concertina-body"><a id="otpnocome"></a><p>If a customer calls due to not receiving an OTP, check the following:</p>
+<ul>
+<li>If the customer is receiving other SMSs from Emirates NBD</li>
+<li>If the customer is using a dual sim</li>
+<li>If the customer is roaming&nbsp;</li>
+<li>If the customer's registered mobile number is matching the number they are using</li>
+<li>Check if registered mobile number is updated as “preferred” in our system. A “check mark” should be seen (<em><a title="enbd-crm-prefnumber.jpg" href="//askkmpro.sso.verint-km.com/resources/enbd/enbd_library/enbd-crm-prefnumber.jpg">Sample screenshot</a>).</em> If not, then raise the below SR:</li>
+</ul>
+<table class="serviceRequest" style="border-collapse: collapse; border-color: #000000;" border="#000000">
+<thead>
+<tr>
+<td style="text-align: center;"><strong>Type</strong></td>
+<td style="text-align: center;"><strong>Area</strong></td>
+<td style="text-align: center;"><strong>Sub Area</strong></td>
+<td style="text-align: center;"><strong>TAT</strong></td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">Complaint</td>
+<td style="text-align: center;">Account</td>
+<td style="text-align: center;">Account maintenance issues</td>
+<td style="text-align: center;">5 working days</td>
+</tr>
+</tbody>
+</table>
+<p>If all the above checks are done and the issue persists, request the customer to re-initiate the service and to tap "Get Call Back" to receive their OTP via <a href="/enterprise/enbd/glossary/IVR" target="_blank" class="abbr nojsnav" data-uniqid="681981c649b61" data-category="ei_glossary" data-eid="EI-CCO-GLOSSARY-IVR" data-te="IVR" data-ta="IVR" data-de="Interactive Voice Response" data-da="استجابة صوتية تفاعلية">IVR</a>.</p>
+<p>SMS OTP – IVR call back (POM call process) has been introduced for customers who reports issue for SMS OTP not received. This solution should be offered as part of troubleshooting complaints pertaining to any of below 6 services and is applicable for both UAE and International mobile numbers.</p>
+<p><strong>RMA</strong> – Retail Mobile Application&nbsp;</p>
+<p><strong>ROA</strong> – Retail Online Application</p>
+<ul>
+<li>Registration - <a href="/enterprise/enbd/glossary/RMA" target="_blank" class="abbr nojsnav" data-uniqid="681981c64a0c6" data-category="enbd_glossary" data-eid="enbd-all-rma" data-te="RMA" data-ta="" data-de="Relationship Management Agreement" data-da="">RMA</a> and ROA</li>
+<li>Smart Pass Activation - RMA</li>
+<li>Reactivation of Smart Pass - RMA</li>
+<li>Forgot password - RMA and ROA</li>
+<li>Forgot username - RMA and ROA</li>
+<li>Online banking MFA login – ROA</li>
+</ul>
+<p>Please advise customers that while receiving the POM call from the bank's registered mobile number (02 - 301 2222) to authorise the reset process using untrusted devices or Online Banking, they need to listen to the complete recorded message before pressing any buttons:</p>
+<ul>
+<li>Press 3 to authorise the request</li>
+<li>Press 9 if the request is not authorised and should be reported as "Fraud"</li>
+<li>Press 1 to listen to the menu again</li>
+</ul>
+<p><img src="https://askkmpro.sso.verint-km.com/resources/enbd/enbd_library/sms%20callback%20enbdx.jpg" alt="sms callback enbdx.jpg" width="724" height="231"></p></div>
+</div>
+<h2 class="concertina concertina-major">Reset issues and troubleshooting</h2>
+<p>It is mandatory to ask the customer at which stage the failure is happening and the source on which the customer is trying to register on (Mobile or Online Banking), and to mention the same in the SR notes.</p>
+<p>Check under Interactions &gt; Online &amp; Mobile tab if there are any recent logins seen and what is the error message displayed <em>(</em><a title="Channel footprint - Reg_Reset" href="//askkmpro.sso.verint-km.com/resources/enbd/enbd_library/enbd-img-chnlft-regreset.pdf"><em>Sample screenshots</em></a>) . If none, assist the customer based on the mentioned Customer Status as follows:</p>
+<h4 class="concertina concertina-head-closed">Active</h4>
+<div class="concertina concertina-body">
+<p>If status is showing as “Active” <b>but the customer is unable to reset/login</b>, assist customer with Forgot credentials troubleshooting steps:</p>
+<ul>
+<li>For Password reset, <a title="Resetting Mobile and Online Banking Password via Digital Channels" href="/enterprise/enbd/enbd_channels/enbd-all-ch-pwd-reset"><strong>click here</strong></a></li>
+<li>For Retrieving user ID, <a title="Retrieving Mobile and Online Banking User ID via Digital Channels" href="/enterprise/enbd/enbd_channels/enbd-all-ch-userid-retrieve"><strong>click here</strong></a></li>
+</ul>
+<p>It is mandatory to ask customers to do Forgot password<b> first</b>, then to do Forgot username. However, after multiple attempts of resetting it will <b>block the access to login, but status</b> will remain Active <b>on CRM</b>. In such cases, inform the customer to wait for one hour and try forgot credentials once again in the same order.</p>
+</div>
+<h4 class="concertina concertina-head-closed">BLOCKED-INVALID-OTP-ATTEMPTS&nbsp;</h4>
+<div class="concertina concertina-body">
+<p>This status means that customers have entered an invalid OTP SMS multiple times while resetting any of their&nbsp;credentials. Guide the customer to do the steps again. For example:</p>
+<ul>
+<li>If the customer was trying to retrieve their user ID and access <strong>got blocked</strong>, advise the customer to <a title="Resetting Mobile and Online Banking Password via Digital Channels" href="/enterprise/enbd/enbd_channels/enbd-all-ch-pwd-reset"><strong>Reset Password</strong></a> then if required&nbsp;<a title="Retrieving Mobile and Online Banking User ID via Digital Channels" href="/enterprise/enbd/enbd_channels/enbd-all-ch-userid-retrieve"><strong>Retrieve User ID</strong></a> .</li>
+</ul>
+<p>If reset attempts have been exceeded, ask the customer to wait for one hour before trying again.</p>
+</div>
+<h4 class="concertina concertina-head-closed">Blocked by customer</h4>
+<div class="concertina concertina-body">
+<p>This status means that the profile was blocked by CCO via an SR. Check the SR list to validate the same.</p>
+<p>If the customer confirms that no fraud has happened, raise the unblock SR below then proceed to guide the customer to <a title="Resetting Mobile and Online Banking Password via Digital Channels" href="/enterprise/enbd/enbd_channels/enbd-all-ch-pwd-reset"><strong>Reset Password</strong></a> and <a title="Retrieving Mobile and Online Banking User ID via Digital Channels" href="/enterprise/enbd/enbd_channels/enbd-all-ch-userid-retrieve"><strong>Retrieve User ID</strong></a> if required:</p>
+<table class="serviceRequest" style="border-collapse: collapse; border-color: #000000;" border="#000000">
+<thead>
+<tr>
+<td style="text-align: center;"><strong>Type</strong></td>
+<td style="text-align: center;"><strong>Area</strong></td>
+<td style="text-align: center;"><strong>Sub Area</strong></td>
+<td style="text-align: center;"><strong>TAT</strong></td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">Service</td>
+<td style="text-align: center;">Online Mobile Banking</td>
+<td style="text-align: center;">Online banking profile unblock</td>
+<td style="text-align: center;">Instant</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h4 class="concertina concertina-head-closed">Blocked by bank</h4>
+<div class="concertina concertina-body">
+<p>This status means there was a bank initiated block on the customer's profile.&nbsp;</p>
+<p>Check CRM pop-up / SR raised on the customer's profile to identify the nature of the block. For more information, <a title="HRAR/ CDD/ KYC/ EIDA Remediation" href="/enterprise/enbd/enbd_process-cco/enbd-cco-pr-hrarcddkycremediati"><strong>click here</strong></a>.</p>
+<h4 class="concertina concertina-head-closed">Blocked by Bank - HRAR</h4>
+<div class="concertina concertina-body">
+<p>For customers that are unable to login to the ENBD X Mobile/ Online Banking due to the below error message, ensure to follow the below steps:</p>
+<p style="text-align: center;"><strong>“<em>Your account has been temporarily blocked due to pending profile update. kindly check your registered email inbox and reply to: Kycprofileupdate@emiratesnbd.com to resolve the issue. For any further assistance, feel free to contact us</em>”</strong></p>
+<ul>
+<li>Check customers CIF on CRM and see if they received the following pop-up message alert - <strong><a title="CRM popup block.png" href="//askkmpro.sso.verint-km.com/resources/enbd/enbd_library/CRM popup block.png">click here</a></strong></li>
+<li>Check CRM notes on the customers profile to see if the HRAR block is placed</li>
+<li>Refer to the PEGA tool for document information and follow the guidelines mentioned
+<ul>
+<li>For more information on the PEGA tool - <strong><a title="HRAR/ CDD/ KYC/ EIDA Remediation" href="/enterprise/enbd/enbd_process-cco/enbd-cco-pr-hrarcddkycremediati">click here</a></strong></li>
+<li>If you are unable to access PEGA, inform the customer that they will receive a <a href="/enterprise/enbd/glossary/KYC" target="_blank" class="abbr nojsnav" data-uniqid="681981c64d619" data-category="enbd_glossary" data-eid="enbd-rbs-gl-kyc" data-te="KYC" data-ta="KYC" data-de="Know Your Customer (KYC) is a standard due diligence process used by financial institutions and companies to assess and monitor customer risk and verify a customer's identity." data-da="تعرف على عميلك (KYC) هي عملية عناية واجبة قياسية تستخدمها المؤسسات المالية والشركات لتقييم ومراقبة مخاطر العميل والتحقق من هوية العميل.
+">KYC</a> Update Notification email from <a href="mailto:info@emiratesnbd.com">info@emiratesnbd.com</a></li>
+<li>Advice customer to upload the required documents via website (<a href="https://www.emiratesnbd.com/en/help-and-support/kyc?source=search">How to Update KYC | KYC Details Update Support | Emirates NBD</a>) OR they can send an email to <a href="mailto:kycprofileupdate@emiratesnbd.com">kycprofileupdate@emiratesnbd.com</a></li>
+</ul>
+</li>
+<li>Inform the customer that the request will be processed within 10 working days, once they submit all the required documents for the account restrictions to be removed
+<ul>
+<li>If the <a href="/enterprise/enbd/glossary/TAT" target="_blank" class="abbr nojsnav" data-uniqid="681981c64da9f" data-category="enbd_glossary" data-eid="enbd-rbs-gl-tat" data-te="TAT" data-ta="TAT" data-de="Turnaround Time (TAT) is the time it takes to resolve a particular task for the customer by a bank agent/employee. " data-da="هو الوقت الذي يستغرقه حل مهمة معينة للعميل يقوم بها وكيل/موظف مصرفي.
+">TAT</a> has exceeded 10 days and the account is still blocked, send an email to your/ available Team Leader (TL)
+<ul>
+<li>TL will then need to send an email to <a href="mailto:CDDOpsHelpDesk2@EmiratesNBD.com">CDDOpsHelpDesk2@EmiratesNBD.com</a> for further inquiry</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div></div>
+<h4 class="concertina concertina-head-closed">Blocked_CDD</h4>
+<div class="concertina concertina-body"><div class="callout callout-note">
+<p>How to check if limit restriction is removed/<a href="/enterprise/enbd/glossary/CDD" target="_blank" class="abbr nojsnav" data-uniqid="681981c64df7b" data-category="enbd_glossary" data-eid="enbd-cco-gl-cdd" data-te="CDD" data-ta="" data-de="Customer Due Diligence (CDD) is the processes used by financial institutions to collect and evaluate relevant information about a customer or potential customer
+" data-da="التحقق الواجب من العملاء:  هي العمليات التي تستخدمها المؤسسات المالية لجمع وتقييم المعلومات ذات الصلة حول العميل أو العميل المحتمل">CDD</a> is completed:</p>
+<ul>
+<li>Go to Customer 360 page</li>
+<li>On the ribbon, click the drop down icon and select Interactions</li>
+<li>Under Interactions, select Enrolment&nbsp;to view the delivery and CDD completion status</li>
+</ul>
+</div>
+<p><b>If the issue is DAO limit related:</b></p>
+<ul>
+<li>Check transaction limits on CRM (Should not be Zero)
+<ul>
+<li>Search with customer CIF - go to “Interactions” - select “Online &amp; Mobile” tab (trusted device status) &amp; “Enrolment” tab (CDD status &amp; Delivery status)</li>
+</ul>
+</li>
+</ul>
+<p><b>If the issue is related to Debit Card delivery or profile update:</b></p>
+<ul>
+<li>Confirm if the welcome pack is delivered - Debit Card is delivered and activated.</li>
+<li>Confirm if the customer logged in on ENBD X and updated their profile through the blue banner on the home screen.</li>
+<li>If the above steps are followed, the account limit restrictions will be lifted, and the account will be fully operational.</li>
+</ul>
+<p><b>If the issue persists, follow the below troubleshooting based on the scenario then raise the below SR (if required).</b></p>
+<table style="border-color: #000000;" border="#000000" width="1191" cellspacing="0" cellpadding="0">
+<thead>
+<tr >
+<td style="vertical-align: middle;" nowrap="nowrap">
+<p align="center"><b>Scenario </b></p>
+<p align="center"><b>list</b></p>
+</td>
+<td style="vertical-align: middle;" nowrap="nowrap">
+<p align="center"><b>CDD </b></p>
+<p align="center"><b>flag</b></p>
+</td>
+<td style="vertical-align: middle;" nowrap="nowrap">
+<p align="center"><b>Delivery </b></p>
+<p align="center"><b>flag</b></p>
+</td>
+<td style="vertical-align: middle;" nowrap="nowrap">
+<p align="center"><b>User </b></p>
+<p align="center"><b>status</b></p>
+</td>
+<td style="vertical-align: middle;" nowrap="nowrap">
+<p align="center"><b>Created by </b></p>
+<p align="center"><b>system</b></p>
+</td>
+<td style="vertical-align: middle;">
+<p align="center"><b>Action to be performed</b></p>
+</td>
+</tr>
+</thead>
+<tbody>
+<tr >
+<td style="vertical-align: middle;" nowrap="nowrap">
+<p align="center">Scenario 1</p>
+</td>
+<td style="vertical-align: middle;" nowrap="nowrap">
+<p align="center">Pending</p>
+</td>
+<td style="vertical-align: middle;" nowrap="nowrap">
+<p align="center">Pending</p>
+</td>
+<td style="vertical-align: middle;" nowrap="nowrap">
+<p align="center">CDD - BLK</p>
+</td>
+<td style="vertical-align: middle;" nowrap="nowrap">
+<p align="center">RMA</p>
+</td>
+<td style="vertical-align: middle;" valign="bottom">
+<ul>
+<li>Customer to check if they see a banner on ENBD X App to update CDD
+<ul>
+<li>If yes, inform the customer to update the CDD on the app</li>
+<li>If no, advise the customer to visit the branch to update CDD</li>
+</ul>
+</li>
+</ul>
+<p><em>In case delivery flag shows "Pending" even after the card is delivered, raise the below SR and capture the details in the SR notes.</em></p>
+</td>
+</tr>
+<tr >
+<td style="vertical-align: middle;" nowrap="nowrap">
+<p align="center">Scenario 2</p>
+</td>
+<td style="vertical-align: middle;" nowrap="nowrap">
+<p align="center">Pending</p>
+</td>
+<td style="vertical-align: middle;" nowrap="nowrap">
+<p align="center">Pending</p>
+</td>
+<td style="vertical-align: middle;" nowrap="nowrap">
+<p align="center">CDD - BLK</p>
+</td>
+<td style="vertical-align: middle;" nowrap="nowrap">
+<p align="center">TBK</p>
+</td>
+<td style="vertical-align: middle;" valign="bottom">
+<ul>
+<li>When created by TBK system, raise the below SR&nbsp;</li>
+<li>Post deletion of the user profile, customer can do the registration again</li>
+</ul>
+</td>
+</tr>
+<tr >
+<td style="vertical-align: middle;" nowrap="nowrap">
+<p align="center">Scenario 3</p>
+</td>
+<td style="vertical-align: middle;" nowrap="nowrap">
+<p align="center">Completed</p>
+</td>
+<td style="vertical-align: middle;" nowrap="nowrap">
+<p align="center">Pending</p>
+</td>
+<td style="vertical-align: middle;" nowrap="nowrap">
+<p align="center">CDD - BLK</p>
+</td>
+<td style="vertical-align: middle;" nowrap="nowrap">
+<p align="center">RMA</p>
+</td>
+<td style="vertical-align: middle;" valign="bottom">
+<ul>
+<li>If the card is delivered and active but delivery flag shows "Pending", raise the below SR</li>
+<li>If the Debit Card status shows "Sent to <a href="/enterprise/enbd/glossary/NI" target="_blank" class="abbr nojsnav" data-uniqid="681981c651a65" data-category="enbd_glossary" data-eid="enbd-all-ni" data-te="NI" data-ta="" data-de="Network International " data-da="">NI</a>", check the delivery status of the card
+<ul>
+<li>If the delivery is successful, raise the below SR</li>
+<li>If the card hasn't been delivered yet, ask the customer to wait for the delivery (Based on Account opening date and delivery TAT)<br>
+<ul>
+<li>If the TAT is breached, follow the card delivery troubleshoot process</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</td>
+</tr>
+<tr >
+<td style="vertical-align: middle;" nowrap="nowrap">
+<p align="center">Scenario 4</p>
+</td>
+<td style="vertical-align: middle;" nowrap="nowrap">
+<p align="center">Pending</p>
+</td>
+<td style="vertical-align: middle;" nowrap="nowrap">
+<p align="center">Completed</p>
+</td>
+<td style="vertical-align: middle;" nowrap="nowrap">
+<p align="center">CDD - BLK</p>
+</td>
+<td style="vertical-align: middle;" nowrap="nowrap">
+<p align="center">RMA</p>
+</td>
+<td style="vertical-align: middle;" valign="bottom">
+<ul>
+<li>Customer to check if they see a banner on ENBD X App to update CDD - instruct the customer to update the CDD on the app</li>
+<li>If no banner found, raise the below SR</li>
+</ul>
+</td>
+</tr>
+<tr >
+<td style="vertical-align: middle;" nowrap="nowrap">
+<p align="center">Scenario 5</p>
+</td>
+<td style="vertical-align: middle;" nowrap="nowrap">
+<p align="center">Completed</p>
+</td>
+<td style="vertical-align: middle;" nowrap="nowrap">
+<p align="center">Completed</p>
+</td>
+<td style="vertical-align: middle;" nowrap="nowrap">
+<p align="center">CDD - BLK</p>
+</td>
+<td style="vertical-align: middle;" nowrap="nowrap">
+<p align="center">RMA</p>
+</td>
+<td style="vertical-align: middle;" valign="bottom">
+<ul>
+<li>Raise the below SR</li>
+</ul>
+</td>
+</tr>
+<tr >
+<td style="vertical-align: middle;" nowrap="nowrap">
+<p align="center">Scenario 6</p>
+</td>
+<td style="vertical-align: middle;" nowrap="nowrap">
+<p align="center">Completed</p>
+</td>
+<td style="vertical-align: middle;" nowrap="nowrap">
+<p align="center">Completed</p>
+</td>
+<td style="vertical-align: middle;" nowrap="nowrap">
+<p align="center">ACTIVE</p>
+</td>
+<td style="vertical-align: middle;" nowrap="nowrap">
+<p align="center">RMA</p>
+</td>
+<td style="vertical-align: middle;" valign="bottom">
+<ul>
+<li>Check customer account limit in CRM and if limits are not updated, advise the customer to visit the branch for DAO limit lifting</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-note">
+<p>Before submitting the below SR for cases where the delivery flag is "Pending", ensure to mention in the SR notes if the Welcome Pack / Debit Card is delivered to the customer.</p>
+</div>
+<h3><strong>SR to be raised (if required):</strong></h3>
+<table style="border-collapse: collapse;" border="1">
+<thead>
+<tr >
+<td style="text-align: center;">Type</td>
+<td style="text-align: center;">Area</td>
+<td style="text-align: center;">Sub Area</td>
+<td style="text-align: center;">TAT</td>
+</tr>
+</thead>
+<tbody>
+<tr >
+<td style="text-align: center;">Complaint</td>
+<td style="text-align: center;">Digital Account</td>
+<td style="text-align: center;">Transaction related issues</td>
+<td style="text-align: center;">2 working days</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h4 class="concertina concertina-head-closed">Fraud block</h4>
+<div class="concertina concertina-body">
+<p>This status happens when the customer pushes 9 instead of 3 during the POM call while resetting their credentials from an untrusted device or Online Banking.&nbsp;</p>
+<p>Probe that the same is not a<strong> <a title="Help with Fraud Scenarios via Call Centre" href="/enterprise/enbd/enbd_miscellaneous/enbd-cco-pr-fraudscenario">fraud scenario</a></strong> by following the steps under <strong>Retrieve/change credentials for Online Banking or untrusted mobile device</strong> to unblock the customer's profile.</p>
+<p>Once done, and profile is unblocked, the status will change to "Unblock Password Change"</p>
+</div>
+<h4 class="concertina concertina-head-closed">Unblock password change</h4>
+<div class="concertina concertina-body">
+<p>This status means that the customer had their profile unblocked but have not yet done a password reset. In this case, guide the customer to <a title="Resetting Mobile and Online Banking Password via Digital Channels" href="/enterprise/enbd/enbd_channels/enbd-all-ch-pwd-reset"><strong>Reset Password</strong></a>.</p>
+</div>
+<h2 class="concertina concertina-major">Registration steps</h2>
+<p><a id="registration_process"></a>Follow the below steps for ENBD X Registration:</p>
+<ul>
+<li>Select Register now</li>
+<li>Enter active account or card number and date of birth
+<ul>
+<li>Date of birth should be marching in CRM details - dd/mm/yyyy format</li>
+<li>Ensure the account/card status entered are both "Active"</li>
+<li>Ask the customer to read out the EIDA number and match it with the details showing in CRM</li>
+<li>Check the Mode of Operations (<a title="enbd-crm-operationmode.jpg" href="//askkmpro.sso.verint-km.com/resources/enbd/enbd_library/enbd-crm-operationmode.jpg"><em>Sample screenshot</em></a>) as it should not be blank or 99999. <strong>If so, raise the below SR:</strong></li>
+</ul>
+</li>
+</ul>
+<table class="serviceRequest" style="border-collapse: collapse; border-color: #000000;" border="#000000">
+<thead>
+<tr>
+<td style="text-align: center;"><strong>Type</strong></td>
+<td style="text-align: center;"><strong>Area</strong></td>
+<td style="text-align: center;"><strong>Sub Area</strong></td>
+<td style="text-align: center;"><strong>TAT</strong></td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">Complaint</td>
+<td style="text-align: center;">Account</td>
+<td style="text-align: center;">Account maintenance issues</td>
+<td style="text-align: center;">5 working days</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>The customer will then have to click on “Verify email” where it will take them to their registered email domain with the bank (if same is available on the same device), where the “Verify email” link will be provided
+<ul>
+<li>In case email is not received, <a href="#emailnocome"><strong>click here</strong></a></li>
+<li>In case Verification has failed, <a href="#verificationfailed"><strong>click here</strong></a></li>
+</ul>
+</li>
+<li>Enter the OTP SMS received on their registered mobile number with the bank
+<ul>
+<li>In case OTP is not received,&nbsp;<a href="#otpnocome"><strong>click here</strong></a></li>
+</ul>
+</li>
+<li>Create a strong password
+<ul>
+<li>Upper and lower case</li>
+<li>Special characters allowed:&nbsp;@, $, ^, #, !, %, *, ?</li>
+<li>At least 1 number</li>
+<li>At least 8 characters long</li>
+</ul>
+</li>
+<li>The customer will need to <strong><a title="Activating or Reactivating Smart Pass" href="/enterprise/enbd/enbd_channels/enbd-all-ch-smartpass-act">activate their Smart Pass</a></strong>
+<ul>
+<li>In case of any issues with Smart Pass activation, <strong><a title="Help with Smart Pass via Call Centre" href="/enterprise/enbd/enbd_miscellaneous/enbd-cco-pr-smart-pass">click here</a></strong></li>
+</ul>
+</li>
+<li>After successful activation, the customer will need to <strong><a title="ENBD X Troubleshooting - Trusted device" href="/enterprise/enbd/enbd_miscellaneous/enbd-cco-pr-trust-x">make their device trusted</a></strong>
+<ul>
+<li>In case of any issues with making their device trusted, <strong><a title="ENBD X Troubleshooting - Trusted device" href="/enterprise/enbd/enbd_miscellaneous/enbd-cco-pr-trust-x">click here</a></strong></li>
+</ul>
+</li>
+</ul>
+<p><strong>For more details on the Registration process, <a title="Registering for ENBD X " href="/enterprise/enbd/enbd_channels/enbd-all-pr-registerenbdx">click here</a>.</strong></p>
+<div class="callout callout-tip">
+<p>The below SR can be used to trigger an SMS to customers guiding them to the ENBD X How-To videos on our Emirates NBD website:</p>
+<table class="serviceRequest" style="border-collapse: collapse; border-color: #000000;" border="#000000">
+<thead>
+<tr>
+<td style="text-align: center;"><strong>Type</strong></td>
+<td style="text-align: center;"><strong>Area</strong></td>
+<td style="text-align: center;"><strong>Sub Area</strong></td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">Internal</td>
+<td style="text-align: center;">Digital Adoption</td>
+<td style="text-align: center;">Service Adoption - SMS</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 class="concertina concertina-major">Complaint SR</h2>
+<div class="callout callout-important">
+<p><strong>Do not raise this complaint SR at the start of the call, only after all troubleshooting steps are exhausted based on the customer's issue.</strong></p>
+</div>
+<p>If all the above troubleshooting steps fail to assist the customer and they are still facing a "<strong>technical issue</strong>", raise the below SR and ensure to include the following:</p>
+<ul>
+<li>Mention the&nbsp;<strong>exact</strong> troubleshooting done on the call (do&nbsp;<strong>not</strong> mention "All troubleshooting is done")</li>
+<li>Clear notes explaining the customer's issue
+<ul>
+<li>If the customer is facing issues to register, mention why</li>
+<li>If the customer insists on raising the complain, mention why</li>
+</ul>
+</li>
+</ul>
+<table class="serviceRequest" style="border-collapse: collapse; border-color: #000000;" border="#000000">
+<thead>
+<tr>
+<td style="text-align: center;"><strong>Type</strong></td>
+<td style="text-align: center;"><strong>Area</strong></td>
+<td style="text-align: center;"><strong>Sub Area</strong></td>
+<td style="text-align: center;"><strong>TAT</strong></td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">Complaint</td>
+<td style="text-align: center;">Online_Mobile banking access</td>
+<td style="text-align: center;">Registration_Reset issue</td>
+<td style="text-align: center;">2 working days</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-important">
+<p>Advise the customer to send a screenshot without cropping the time from their registered email address with the bank, and to mention the SR number in the subject to&nbsp;<a href="mailto:SRHelpDesk@EmiratesNBD.com">SRHelpDesk@EmiratesNBD.com</a>&nbsp;within 24 hours otherwise the bank reserves the rights to close the SR.</p>
+</div> -->
+					<h2 class="concertina concertina-major concertina-open" data-field="keyPoints" data-c="30">Key points and pre-requisites&nbsp;</h2><div class="concertina-major-Wrapper"><p>Before assisting customers with ENBD X Registration / Reset troubleshooting, ensure that the customer has the latest ENBD X version for both iOS and Android which can be checked on their respective App stores and should always be as per latest version released by the bank. Do the below health checks first with the customer:</p><div class="callout callout-important">
+<p>Always check first under Interactions - Online &amp; Mobile tab, Customer Status and accordingly guide customer with the registration issue. <a href="#interactions"><strong>Click here</strong></a> for more details.</p>
+</div><ul>
+<li>Close all apps and launch ENBD X</li>
+<li>Disables/disconnects any VPN on their device prior to opening ENBD X or using any service on their mobile device</li>
+<li>Check the Network connectivity – using strong WiFi, <b>not restricted such as corporate or public WiFi, </b>alternatively to use their mobile data</li>
+<li>Make sure that the customer's mobile phone operating system (Android or iOS) is compatible with the latest version of ENBD X</li>
+<li style="list-style-type: none;">
+<ul type="circle">
+<li>Android – version 9 and upwards</li>
+<li>Apple – iOS 15.0 and upwards</li>
+</ul>
+</li>
+<li>Date of birth should be matching in <a href="/enterprise/enbd/glossary/CRM" target="_blank" class="abbr nojsnav" data-uniqid="681981c644b4d" data-category="enbd_glossary" data-eid="enbd-rbs-gl-crm" data-te="CRM" data-ta="CRM" data-de="Customer Relationship Management (CRM) is a software used by banks in managing customers, from marketing to sales to customer service. CRM helps banks to manage their relationships with existing clients as well as attract new ones by focusing on key issues such as customer retention and acquisition strategies." data-da="يعمل نظام CRM على جمع جميع البيانات التي تم جمعها للعميل وربطها وتحليلها، بما في ذلك معلومات العميل والتفاعلات مع ممثلي الشركة والمشتريات وطلبات الخدمة والأصول والمقترحات/عروض الأسعار. ثم يسمح النظام للمستخدمين بالوصول إلى تلك البيانات وفهم ما حدث في كل نقطة اتصال. من خلال هذا الفهم، يتم تطوير ملف تعريف كامل للعملاء، ويتم إنشاء علاقة عملاء قوية.
+">CRM</a> details – <strong>dd/mm/yyyy format</strong></li>
+<li>Check that the customer is using an active account/card and that the <a href="/enterprise/enbd/glossary/CIF" target="_blank" class="abbr nojsnav" data-uniqid="681981c644de9" data-category="enbd_glossary" data-eid="enbd-rbs-gl-cif" data-te="CIF" data-ta="CIF" data-de="Customer Identification File (CIF) is a computerised file used by banks that stores a customer's personal and account information. CIF contains data such as credit relationships, account ownership information, the number, and types of accounts owned" data-da="ملف تعريف العميل (CIF) هو ملف محوسب تستخدمه البنوك لتخزين المعلومات الشخصية والحسابية للعميل. يحتوي CIF على بيانات مثل العلاقات الائتمانية ومعلومات ملكية الحساب وعدد وأنواع الحسابات المملوكة
+">CIF</a> not suspended or blacklisted</li>
+<li>Jointly owned/operated accounts will not be able to register for Online Banking</li>
+</ul><p>Once the above checks are done, proceed with assisting the customer.</p><div class="callout callout-note">
+<p>For the below error messages, assist the customer accordingly:</p>
+<ul>
+<li>"<strong>User is already registered or you do not have the privileges to register directly from this app.</strong>" - Check the registration status and assist the customer accordingly</li>
+<li>"<strong>Sorry, we are not able to log you in because you have entered invalid credentials&nbsp;or you are not eligible to use this application.</strong>" - Assist the customer with the Reset process</li>
+</ul>
+</div></div>
+
+
+
+
+
+<h2 class="concertina concertina-major concertina-open">Registration issues and troubleshooting</h2><div class="concertina-major-Wrapper" style=""><h4 class="concertina concertina-head-open">Check channel footprints and customer status in Interactions on CRM</h4><div class="concertina concertina-body" style="">
+<div class="callout callout-important">
+<p>Ensure to check the Channel Footprints on CRM and read the description clearly to understand the reason of the error before raising any <a href="/enterprise/enbd/glossary/SR" target="_blank" class="abbr nojsnav" data-uniqid="681981c645767" data-category="enbd_glossary" data-eid="enbd-rbs-gl-sr" data-te="SR" data-ta="SR" data-de="A Service Request (SR) is a request raised by a bank's agent/employee on behalf of the customer. An SR is raised in the CRM with details of the customer and the issue/ request and tagged to the specific departments that need to resolve the SR." data-da="طلب مقدم من وكيل/موظف مصرفي نيابة عن العميل. يتم طرح SR في CRM مع تفاصيل العميل والمشكلة/الطلب ووضع ملاحظات عليها إلى الأقسام المحددة التي تحتاج إلى حل SR.
+">SR</a>.</p>
+</div>
+<p><a id="interactions"></a>Check in Interactions (<a title="enbd-cfp-custstatus.jpg" href="//askkmpro.sso.verint-km.com/resources/enbd/enbd_library/enbd-cfp-custstatus.jpg"><em>Sample screenshot</em></a>) - Online &amp; Mobile tab if Customer status shows as:</p>
+<ul>
+<li><b>Active</b> – assist customer with Forgot credentials troubleshooting steps
+<ul>
+<li>For Password reset, <a title="Resetting Mobile and Online Banking Password via Digital Channels" href="/enterprise/enbd/enbd_channels/enbd-all-ch-pwd-reset"><strong>click here</strong></a></li>
+<li>For Retrieving user ID, <a title="Retrieving Mobile and Online Banking User ID via Digital Channels" href="/enterprise/enbd/enbd_channels/enbd-all-ch-userid-retrieve"><strong>click here</strong></a></li>
+</ul>
+</li>
+<li><b>Reg_init</b> – Incomplete registration process. Guide the customer through the <a href="#registration_process"><strong>registration process steps</strong></a></li>
+<li><b>Blank</b> – Guide the customer through the <a href="#registration_process"><strong>registration process steps</strong></a></li>
+</ul>
+<p>View the customer's ENBD X registration/reset activity details through CRM channel footprints (<a title="Channel footprint - Reg_Reset" href="//askkmpro.sso.verint-km.com/resources/enbd/enbd_library/enbd-img-chnlft-regreset.pdf"><em>Sample screenshots</em></a><em>)</em></p>
+</div><h4 class="concertina concertina-head-open">Troubleshooting</h4><div class="concertina concertina-body" style="">
+<p>&nbsp;Ensure to do all the required troubleshooting prior to raising the complaint SR.</p>
+<h4 class="concertina concertina-head-open">Email verification code not received</h4>
+<div class="concertina concertina-body" style=""><a id="emailnocome"></a><div class="callout callout-important">
+<ul>
+<li>If the customer has a company email address and is not receiving the email verification, please advise them to change the email to a personal one (ie. Hotmail, Gmail, etc.).&nbsp;
+<ul>
+<li>In case the customer is not willing to change the email address, inform them to check with their email service provider if there is any block placed.</li>
+</ul>
+</li>
+</ul>
+</div>
+<p>Confirm with customer if the registered email address appearing for Registration matches with bank records</p>
+<ul>
+<li>If the email is matching
+<ul>
+<li>Ask the customer to check other folders (junk/spam) in their email</li>
+<li>Check email directly from the email address folders by minimizing the ENBD X screen, then go to email folders in the device</li>
+<li>Ask the customer if there are any restrictions/blocks/rules on their email while receiving bulk messages which may cause the issue</li>
+<li>Alternatively, ask the customer to update their email with a different email address</li>
+</ul>
+</li>
+<li>If email is not matching, ask customer to update their&nbsp;<a title="Updating Registered Email Address" href="https://askkmpro.sso.verint-km.com/enterprise/enbd/enbd_channels/enbd-all-ch-email-update">registered email address</a>&nbsp;and try again</li>
+</ul>
+<p>If email is still not received:</p>
+<ul>
+<li>Ask the customer to check their respective email provider settings to ensure that there are no restrictions placed for Emirates NBD</li>
+<li>Advise the customer to retry the process and upon reaching the “Verify email” stage again, stay on that same page</li>
+<li>Then through a laptop/desktop, login to the email domain registered with the bank (ex. Yahoo or Gmail), then click the ‘Verify email’ link</li>
+<li>The customer will then have to look back at ENBD X app where OTP SMS page will appear, and push OTP SMS will be sent</li>
+</ul>
+<p>If the customer is still facing the issue after the above troubleshooting, raise the below request.</p>
+<table class="serviceRequest" style="border-collapse: collapse; border-color: #000000;" border="#000000">
+<thead>
+<tr>
+<td style="text-align: center;"><strong>Type</strong></td>
+<td style="text-align: center;"><strong>Area</strong></td>
+<td style="text-align: center;"><strong>Sub Area</strong></td>
+<td style="text-align: center;"><strong>TAT</strong></td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">Complaint</td>
+<td style="text-align: center;">Online_Mobile banking access</td>
+<td style="text-align: center;">Registration_Reset issue</td>
+<td style="text-align: center;">2 Working Days</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-note">
+<p>For Smart Pass related issue, <strong><a title="Help with Smart Pass via Call Centre" href="/enterprise/enbd/enbd_miscellaneous/enbd-cco-pr-smart-pass">click here</a></strong>.</p>
+</div>
+<div>
+<p>Advise the customer to send the error screenshot to SRHelpdesk@emiratesnbd.com within 4 hours quoting the Service Request number as the subject of the ema&ZeroWidthSpace;il to proceed with the request.</p>
+<ul>
+<li>Screenshots are mandatory for the above SRs. In case the screenshot is not possible, ensure to capture the date and timestamp of error occurrence</li>
+<li>Ensure to capture the customer's mobile device details</li>
+</ul>
+</div></div>
+<h4 class="concertina concertina-head-open">Verification Failed</h4>
+<div class="concertina concertina-body" style=""><a id="verificationfailed"></a><p>Ensure to do the below:</p>
+<ul>
+<li>If verification fails, advise the customer to tap the back arrow on the top left hand side of the screen to return back to the verify email page where it should automatically push to the "success" screen, after which the OTP SMS page will appear, and push OTP will be sent</li>
+</ul></div>
+<h4 class="concertina concertina-head-open">OTP SMS not received</h4>
+<div class="concertina concertina-body" style=""><a id="otpnocome"></a><p>If a customer calls due to not receiving an OTP, check the following:</p>
+<ul>
+<li>If the customer is receiving other SMSs from Emirates NBD</li>
+<li>If the customer is using a dual sim</li>
+<li>If the customer is roaming&nbsp;</li>
+<li>If the customer's registered mobile number is matching the number they are using</li>
+<li>Check if registered mobile number is updated as “preferred” in our system. A “check mark” should be seen (<em><a title="enbd-crm-prefnumber.jpg" href="//askkmpro.sso.verint-km.com/resources/enbd/enbd_library/enbd-crm-prefnumber.jpg">Sample screenshot</a>).</em> If not, then raise the below SR:</li>
+</ul>
+<table class="serviceRequest" style="border-collapse: collapse; border-color: #000000;" border="#000000">
+<thead>
+<tr>
+<td style="text-align: center;"><strong>Type</strong></td>
+<td style="text-align: center;"><strong>Area</strong></td>
+<td style="text-align: center;"><strong>Sub Area</strong></td>
+<td style="text-align: center;"><strong>TAT</strong></td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">Complaint</td>
+<td style="text-align: center;">Account</td>
+<td style="text-align: center;">Account maintenance issues</td>
+<td style="text-align: center;">5 working days</td>
+</tr>
+</tbody>
+</table>
+<p>If all the above checks are done and the issue persists, request the customer to re-initiate the service and to tap "Get Call Back" to receive their OTP via <a href="/enterprise/enbd/glossary/IVR" target="_blank" class="abbr nojsnav" data-uniqid="681981c649b61" data-category="ei_glossary" data-eid="EI-CCO-GLOSSARY-IVR" data-te="IVR" data-ta="IVR" data-de="Interactive Voice Response" data-da="استجابة صوتية تفاعلية">IVR</a>.</p>
+<p>SMS OTP – IVR call back (POM call process) has been introduced for customers who reports issue for SMS OTP not received. This solution should be offered as part of troubleshooting complaints pertaining to any of below 6 services and is applicable for both UAE and International mobile numbers.</p>
+<p><strong>RMA</strong> – Retail Mobile Application&nbsp;</p>
+<p><strong>ROA</strong> – Retail Online Application</p>
+<ul>
+<li>Registration - <a href="/enterprise/enbd/glossary/RMA" target="_blank" class="abbr nojsnav" data-uniqid="681981c64a0c6" data-category="enbd_glossary" data-eid="enbd-all-rma" data-te="RMA" data-ta="" data-de="Relationship Management Agreement" data-da="">RMA</a> and ROA</li>
+<li>Smart Pass Activation - RMA</li>
+<li>Reactivation of Smart Pass - RMA</li>
+<li>Forgot password - RMA and ROA</li>
+<li>Forgot username - RMA and ROA</li>
+<li>Online banking MFA login – ROA</li>
+</ul>
+<p>Please advise customers that while receiving the POM call from the bank's registered mobile number (02 - 301 2222) to authorise the reset process using untrusted devices or Online Banking, they need to listen to the complete recorded message before pressing any buttons:</p>
+<ul>
+<li>Press 3 to authorise the request</li>
+<li>Press 9 if the request is not authorised and should be reported as "Fraud"</li>
+<li>Press 1 to listen to the menu again</li>
+</ul>
+<p><img src="https://askkmpro.sso.verint-km.com/resources/enbd/enbd_library/sms%20callback%20enbdx.jpg" alt="sms callback enbdx.jpg" width="724" height="231"></p></div>
+</div></div>
+
+
+
+
+<h2 class="concertina concertina-major concertina-open">Reset issues and troubleshooting</h2><div class="concertina-major-Wrapper" style=""><p>It is mandatory to ask the customer at which stage the failure is happening and the source on which the customer is trying to register on (Mobile or Online Banking), and to mention the same in the SR notes.</p><p>Check under Interactions &gt; Online &amp; Mobile tab if there are any recent logins seen and what is the error message displayed <em>(</em><a title="Channel footprint - Reg_Reset" href="//askkmpro.sso.verint-km.com/resources/enbd/enbd_library/enbd-img-chnlft-regreset.pdf"><em>Sample screenshots</em></a>) . If none, assist the customer based on the mentioned Customer Status as follows:</p><h4 class="concertina concertina-head-open">Active</h4><div class="concertina concertina-body" style="">
+<p>If status is showing as “Active” <b>but the customer is unable to reset/login</b>, assist customer with Forgot credentials troubleshooting steps:</p>
+<ul>
+<li>For Password reset, <a title="Resetting Mobile and Online Banking Password via Digital Channels" href="/enterprise/enbd/enbd_channels/enbd-all-ch-pwd-reset"><strong>click here</strong></a></li>
+<li>For Retrieving user ID, <a title="Retrieving Mobile and Online Banking User ID via Digital Channels" href="/enterprise/enbd/enbd_channels/enbd-all-ch-userid-retrieve"><strong>click here</strong></a></li>
+</ul>
+<p>It is mandatory to ask customers to do Forgot password<b> first</b>, then to do Forgot username. However, after multiple attempts of resetting it will <b>block the access to login, but status</b> will remain Active <b>on CRM</b>. In such cases, inform the customer to wait for one hour and try forgot credentials once again in the same order.</p>
+</div><h4 class="concertina concertina-head-open">BLOCKED-INVALID-OTP-ATTEMPTS&nbsp;</h4><div class="concertina concertina-body" style="">
+<p>This status means that customers have entered an invalid OTP SMS multiple times while resetting any of their&nbsp;credentials. Guide the customer to do the steps again. For example:</p>
+<ul>
+<li>If the customer was trying to retrieve their user ID and access <strong>got blocked</strong>, advise the customer to <a title="Resetting Mobile and Online Banking Password via Digital Channels" href="/enterprise/enbd/enbd_channels/enbd-all-ch-pwd-reset"><strong>Reset Password</strong></a> then if required&nbsp;<a title="Retrieving Mobile and Online Banking User ID via Digital Channels" href="/enterprise/enbd/enbd_channels/enbd-all-ch-userid-retrieve"><strong>Retrieve User ID</strong></a> .</li>
+</ul>
+<p>If reset attempts have been exceeded, ask the customer to wait for one hour before trying again.</p>
+</div><h4 class="concertina concertina-head-open">Blocked by customer</h4><div class="concertina concertina-body" style="">
+<p>This status means that the profile was blocked by CCO via an SR. Check the SR list to validate the same.</p>
+<p>If the customer confirms that no fraud has happened, raise the unblock SR below then proceed to guide the customer to <a title="Resetting Mobile and Online Banking Password via Digital Channels" href="/enterprise/enbd/enbd_channels/enbd-all-ch-pwd-reset"><strong>Reset Password</strong></a> and <a title="Retrieving Mobile and Online Banking User ID via Digital Channels" href="/enterprise/enbd/enbd_channels/enbd-all-ch-userid-retrieve"><strong>Retrieve User ID</strong></a> if required:</p>
+<table class="serviceRequest" style="border-collapse: collapse; border-color: #000000;" border="#000000">
+<thead>
+<tr>
+<td style="text-align: center;"><strong>Type</strong></td>
+<td style="text-align: center;"><strong>Area</strong></td>
+<td style="text-align: center;"><strong>Sub Area</strong></td>
+<td style="text-align: center;"><strong>TAT</strong></td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">Service</td>
+<td style="text-align: center;">Online Mobile Banking</td>
+<td style="text-align: center;">Online banking profile unblock</td>
+<td style="text-align: center;">Instant</td>
+</tr>
+</tbody>
+</table>
+</div><h4 class="concertina concertina-head-open">Blocked by bank</h4><div class="concertina concertina-body" style="">
+<p>This status means there was a bank initiated block on the customer's profile.&nbsp;</p>
+<p>Check CRM pop-up / SR raised on the customer's profile to identify the nature of the block. For more information, <a title="HRAR/ CDD/ KYC/ EIDA Remediation" href="/enterprise/enbd/enbd_process-cco/enbd-cco-pr-hrarcddkycremediati"><strong>click here</strong></a>.</p>
+<h4 class="concertina concertina-head-open">Blocked by Bank - HRAR</h4>
+<div class="concertina concertina-body" style="">
+<p>For customers that are unable to login to the ENBD X Mobile/ Online Banking due to the below error message, ensure to follow the below steps:</p>
+<p style="text-align: center;"><strong>“<em>Your account has been temporarily blocked due to pending profile update. kindly check your registered email inbox and reply to: Kycprofileupdate@emiratesnbd.com to resolve the issue. For any further assistance, feel free to contact us</em>”</strong></p>
+<ul>
+<li>Check customers CIF on CRM and see if they received the following pop-up message alert - <strong><a title="CRM popup block.png" href="//askkmpro.sso.verint-km.com/resources/enbd/enbd_library/CRM popup block.png">click here</a></strong></li>
+<li>Check CRM notes on the customers profile to see if the HRAR block is placed</li>
+<li>Refer to the PEGA tool for document information and follow the guidelines mentioned
+<ul>
+<li>For more information on the PEGA tool - <strong><a title="HRAR/ CDD/ KYC/ EIDA Remediation" href="/enterprise/enbd/enbd_process-cco/enbd-cco-pr-hrarcddkycremediati">click here</a></strong></li>
+<li>If you are unable to access PEGA, inform the customer that they will receive a <a href="/enterprise/enbd/glossary/KYC" target="_blank" class="abbr nojsnav" data-uniqid="681981c64d619" data-category="enbd_glossary" data-eid="enbd-rbs-gl-kyc" data-te="KYC" data-ta="KYC" data-de="Know Your Customer (KYC) is a standard due diligence process used by financial institutions and companies to assess and monitor customer risk and verify a customer's identity." data-da="تعرف على عميلك (KYC) هي عملية عناية واجبة قياسية تستخدمها المؤسسات المالية والشركات لتقييم ومراقبة مخاطر العميل والتحقق من هوية العميل.
+">KYC</a> Update Notification email from <a href="mailto:info@emiratesnbd.com">info@emiratesnbd.com</a></li>
+<li>Advice customer to upload the required documents via website (<a href="https://www.emiratesnbd.com/en/help-and-support/kyc?source=search">How to Update KYC | KYC Details Update Support | Emirates NBD</a>) OR they can send an email to <a href="mailto:kycprofileupdate@emiratesnbd.com">kycprofileupdate@emiratesnbd.com</a></li>
+</ul>
+</li>
+<li>Inform the customer that the request will be processed within 10 working days, once they submit all the required documents for the account restrictions to be removed
+<ul>
+<li>If the <a href="/enterprise/enbd/glossary/TAT" target="_blank" class="abbr nojsnav" data-uniqid="681981c64da9f" data-category="enbd_glossary" data-eid="enbd-rbs-gl-tat" data-te="TAT" data-ta="TAT" data-de="Turnaround Time (TAT) is the time it takes to resolve a particular task for the customer by a bank agent/employee. " data-da="هو الوقت الذي يستغرقه حل مهمة معينة للعميل يقوم بها وكيل/موظف مصرفي.
+">TAT</a> has exceeded 10 days and the account is still blocked, send an email to your/ available Team Leader (TL)
+<ul>
+<li>TL will then need to send an email to <a href="mailto:CDDOpsHelpDesk2@EmiratesNBD.com">CDDOpsHelpDesk2@EmiratesNBD.com</a> for further inquiry</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div></div><h4 class="concertina concertina-head-open">Blocked_CDD</h4><div class="concertina concertina-body" style=""><div class="callout callout-note">
+<p>How to check if limit restriction is removed/<a href="/enterprise/enbd/glossary/CDD" target="_blank" class="abbr nojsnav" data-uniqid="681981c64df7b" data-category="enbd_glossary" data-eid="enbd-cco-gl-cdd" data-te="CDD" data-ta="" data-de="Customer Due Diligence (CDD) is the processes used by financial institutions to collect and evaluate relevant information about a customer or potential customer
+" data-da="التحقق الواجب من العملاء:  هي العمليات التي تستخدمها المؤسسات المالية لجمع وتقييم المعلومات ذات الصلة حول العميل أو العميل المحتمل">CDD</a> is completed:</p>
+<ul>
+<li>Go to Customer 360 page</li>
+<li>On the ribbon, click the drop down icon and select Interactions</li>
+<li>Under Interactions, select Enrolment&nbsp;to view the delivery and CDD completion status</li>
+</ul>
+</div>
+<p><b>If the issue is DAO limit related:</b></p>
+<ul>
+<li>Check transaction limits on CRM (Should not be Zero)
+<ul>
+<li>Search with customer CIF - go to “Interactions” - select “Online &amp; Mobile” tab (trusted device status) &amp; “Enrolment” tab (CDD status &amp; Delivery status)</li>
+</ul>
+</li>
+</ul>
+<p><b>If the issue is related to Debit Card delivery or profile update:</b></p>
+<ul>
+<li>Confirm if the welcome pack is delivered - Debit Card is delivered and activated.</li>
+<li>Confirm if the customer logged in on ENBD X and updated their profile through the blue banner on the home screen.</li>
+<li>If the above steps are followed, the account limit restrictions will be lifted, and the account will be fully operational.</li>
+</ul>
+<p><b>If the issue persists, follow the below troubleshooting based on the scenario then raise the below SR (if required).</b></p>
+<table style="border-color: #000000;" border="#000000" width="1191" cellspacing="0" cellpadding="0">
+<thead>
+<tr>
+<td style="vertical-align: middle;" nowrap="nowrap">
+<p align="center"><b>Scenario </b></p>
+<p align="center"><b>list</b></p>
+</td>
+<td style="vertical-align: middle;" nowrap="nowrap">
+<p align="center"><b>CDD </b></p>
+<p align="center"><b>flag</b></p>
+</td>
+<td style="vertical-align: middle;" nowrap="nowrap">
+<p align="center"><b>Delivery </b></p>
+<p align="center"><b>flag</b></p>
+</td>
+<td style="vertical-align: middle;" nowrap="nowrap">
+<p align="center"><b>User </b></p>
+<p align="center"><b>status</b></p>
+</td>
+<td style="vertical-align: middle;" nowrap="nowrap">
+<p align="center"><b>Created by </b></p>
+<p align="center"><b>system</b></p>
+</td>
+<td style="vertical-align: middle;">
+<p align="center"><b>Action to be performed</b></p>
+</td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="vertical-align: middle;" nowrap="nowrap">
+<p align="center">Scenario 1</p>
+</td>
+<td style="vertical-align: middle;" nowrap="nowrap">
+<p align="center">Pending</p>
+</td>
+<td style="vertical-align: middle;" nowrap="nowrap">
+<p align="center">Pending</p>
+</td>
+<td style="vertical-align: middle;" nowrap="nowrap">
+<p align="center">CDD - BLK</p>
+</td>
+<td style="vertical-align: middle;" nowrap="nowrap">
+<p align="center">RMA</p>
+</td>
+<td style="vertical-align: middle;" valign="bottom">
+<ul>
+<li>Customer to check if they see a banner on ENBD X App to update CDD
+<ul>
+<li>If yes, inform the customer to update the CDD on the app</li>
+<li>If no, advise the customer to visit the branch to update CDD</li>
+</ul>
+</li>
+</ul>
+<p><em>In case delivery flag shows "Pending" even after the card is delivered, raise the below SR and capture the details in the SR notes.</em></p>
+</td>
+</tr>
+<tr>
+<td style="vertical-align: middle;" nowrap="nowrap">
+<p align="center">Scenario 2</p>
+</td>
+<td style="vertical-align: middle;" nowrap="nowrap">
+<p align="center">Pending</p>
+</td>
+<td style="vertical-align: middle;" nowrap="nowrap">
+<p align="center">Pending</p>
+</td>
+<td style="vertical-align: middle;" nowrap="nowrap">
+<p align="center">CDD - BLK</p>
+</td>
+<td style="vertical-align: middle;" nowrap="nowrap">
+<p align="center">TBK</p>
+</td>
+<td style="vertical-align: middle;" valign="bottom">
+<ul>
+<li>When created by TBK system, raise the below SR&nbsp;</li>
+<li>Post deletion of the user profile, customer can do the registration again</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td style="vertical-align: middle;" nowrap="nowrap">
+<p align="center">Scenario 3</p>
+</td>
+<td style="vertical-align: middle;" nowrap="nowrap">
+<p align="center">Completed</p>
+</td>
+<td style="vertical-align: middle;" nowrap="nowrap">
+<p align="center">Pending</p>
+</td>
+<td style="vertical-align: middle;" nowrap="nowrap">
+<p align="center">CDD - BLK</p>
+</td>
+<td style="vertical-align: middle;" nowrap="nowrap">
+<p align="center">RMA</p>
+</td>
+<td style="vertical-align: middle;" valign="bottom">
+<ul>
+<li>If the card is delivered and active but delivery flag shows "Pending", raise the below SR</li>
+<li>If the Debit Card status shows "Sent to <a href="/enterprise/enbd/glossary/NI" target="_blank" class="abbr nojsnav" data-uniqid="681981c651a65" data-category="enbd_glossary" data-eid="enbd-all-ni" data-te="NI" data-ta="" data-de="Network International " data-da="">NI</a>", check the delivery status of the card
+<ul>
+<li>If the delivery is successful, raise the below SR</li>
+<li>If the card hasn't been delivered yet, ask the customer to wait for the delivery (Based on Account opening date and delivery TAT)<br>
+<ul>
+<li>If the TAT is breached, follow the card delivery troubleshoot process</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td style="vertical-align: middle;" nowrap="nowrap">
+<p align="center">Scenario 4</p>
+</td>
+<td style="vertical-align: middle;" nowrap="nowrap">
+<p align="center">Pending</p>
+</td>
+<td style="vertical-align: middle;" nowrap="nowrap">
+<p align="center">Completed</p>
+</td>
+<td style="vertical-align: middle;" nowrap="nowrap">
+<p align="center">CDD - BLK</p>
+</td>
+<td style="vertical-align: middle;" nowrap="nowrap">
+<p align="center">RMA</p>
+</td>
+<td style="vertical-align: middle;" valign="bottom">
+<ul>
+<li>Customer to check if they see a banner on ENBD X App to update CDD - instruct the customer to update the CDD on the app</li>
+<li>If no banner found, raise the below SR</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td style="vertical-align: middle;" nowrap="nowrap">
+<p align="center">Scenario 5</p>
+</td>
+<td style="vertical-align: middle;" nowrap="nowrap">
+<p align="center">Completed</p>
+</td>
+<td style="vertical-align: middle;" nowrap="nowrap">
+<p align="center">Completed</p>
+</td>
+<td style="vertical-align: middle;" nowrap="nowrap">
+<p align="center">CDD - BLK</p>
+</td>
+<td style="vertical-align: middle;" nowrap="nowrap">
+<p align="center">RMA</p>
+</td>
+<td style="vertical-align: middle;" valign="bottom">
+<ul>
+<li>Raise the below SR</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td style="vertical-align: middle;" nowrap="nowrap">
+<p align="center">Scenario 6</p>
+</td>
+<td style="vertical-align: middle;" nowrap="nowrap">
+<p align="center">Completed</p>
+</td>
+<td style="vertical-align: middle;" nowrap="nowrap">
+<p align="center">Completed</p>
+</td>
+<td style="vertical-align: middle;" nowrap="nowrap">
+<p align="center">ACTIVE</p>
+</td>
+<td style="vertical-align: middle;" nowrap="nowrap">
+<p align="center">RMA</p>
+</td>
+<td style="vertical-align: middle;" valign="bottom">
+<ul>
+<li>Check customer account limit in CRM and if limits are not updated, advise the customer to visit the branch for DAO limit lifting</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-note">
+<p>Before submitting the below SR for cases where the delivery flag is "Pending", ensure to mention in the SR notes if the Welcome Pack / Debit Card is delivered to the customer.</p>
+</div>
+<h3><strong>SR to be raised (if required):</strong></h3>
+<table style="border-collapse: collapse;" border="1">
+<thead>
+<tr>
+<td style="text-align: center;">Type</td>
+<td style="text-align: center;">Area</td>
+<td style="text-align: center;">Sub Area</td>
+<td style="text-align: center;">TAT</td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">Complaint</td>
+<td style="text-align: center;">Digital Account</td>
+<td style="text-align: center;">Transaction related issues</td>
+<td style="text-align: center;">2 working days</td>
+</tr>
+</tbody>
+</table>
+</div><h4 class="concertina concertina-head-open">Fraud block</h4><div class="concertina concertina-body" style="">
+<p>This status happens when the customer pushes 9 instead of 3 during the POM call while resetting their credentials from an untrusted device or Online Banking.&nbsp;</p>
+<p>Probe that the same is not a<strong> <a title="Help with Fraud Scenarios via Call Centre" href="/enterprise/enbd/enbd_miscellaneous/enbd-cco-pr-fraudscenario">fraud scenario</a></strong> by following the steps under <strong>Retrieve/change credentials for Online Banking or untrusted mobile device</strong> to unblock the customer's profile.</p>
+<p>Once done, and profile is unblocked, the status will change to "Unblock Password Change"</p>
+</div><h4 class="concertina concertina-head-open">Unblock password change</h4><div class="concertina concertina-body" style="">
+<p>This status means that the customer had their profile unblocked but have not yet done a password reset. In this case, guide the customer to <a title="Resetting Mobile and Online Banking Password via Digital Channels" href="/enterprise/enbd/enbd_channels/enbd-all-ch-pwd-reset"><strong>Reset Password</strong></a>.</p>
+</div></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h2 class="concertina concertina-major concertina-open">Registration steps</h2><div class="concertina-major-Wrapper" style=""><p><a id="registration_process"></a>Follow the below steps for ENBD X Registration:</p><ul>
+<li>Select Register now</li>
+<li>Enter active account or card number and date of birth
+<ul>
+<li>Date of birth should be marching in CRM details - dd/mm/yyyy format</li>
+<li>Ensure the account/card status entered are both "Active"</li>
+<li>Ask the customer to read out the EIDA number and match it with the details showing in CRM</li>
+<li>Check the Mode of Operations (<a title="enbd-crm-operationmode.jpg" href="//askkmpro.sso.verint-km.com/resources/enbd/enbd_library/enbd-crm-operationmode.jpg"><em>Sample screenshot</em></a>) as it should not be blank or 99999. <strong>If so, raise the below SR:</strong></li>
+</ul>
+</li>
+</ul><table class="serviceRequest" style="border-collapse: collapse; border-color: #000000;" border="#000000">
+<thead>
+<tr>
+<td style="text-align: center;"><strong>Type</strong></td>
+<td style="text-align: center;"><strong>Area</strong></td>
+<td style="text-align: center;"><strong>Sub Area</strong></td>
+<td style="text-align: center;"><strong>TAT</strong></td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">Complaint</td>
+<td style="text-align: center;">Account</td>
+<td style="text-align: center;">Account maintenance issues</td>
+<td style="text-align: center;">5 working days</td>
+</tr>
+</tbody>
+</table><ul>
+<li>The customer will then have to click on “Verify email” where it will take them to their registered email domain with the bank (if same is available on the same device), where the “Verify email” link will be provided
+<ul>
+<li>In case email is not received, <a href="#emailnocome"><strong>click here</strong></a></li>
+<li>In case Verification has failed, <a href="#verificationfailed"><strong>click here</strong></a></li>
+</ul>
+</li>
+<li>Enter the OTP SMS received on their registered mobile number with the bank
+<ul>
+<li>In case OTP is not received,&nbsp;<a href="#otpnocome"><strong>click here</strong></a></li>
+</ul>
+</li>
+<li>Create a strong password
+<ul>
+<li>Upper and lower case</li>
+<li>Special characters allowed:&nbsp;@, $, ^, #, !, %, *, ?</li>
+<li>At least 1 number</li>
+<li>At least 8 characters long</li>
+</ul>
+</li>
+<li>The customer will need to <strong><a title="Activating or Reactivating Smart Pass" href="/enterprise/enbd/enbd_channels/enbd-all-ch-smartpass-act">activate their Smart Pass</a></strong>
+<ul>
+<li>In case of any issues with Smart Pass activation, <strong><a title="Help with Smart Pass via Call Centre" href="/enterprise/enbd/enbd_miscellaneous/enbd-cco-pr-smart-pass">click here</a></strong></li>
+</ul>
+</li>
+<li>After successful activation, the customer will need to <strong><a title="ENBD X Troubleshooting - Trusted device" href="/enterprise/enbd/enbd_miscellaneous/enbd-cco-pr-trust-x">make their device trusted</a></strong>
+<ul>
+<li>In case of any issues with making their device trusted, <strong><a title="ENBD X Troubleshooting - Trusted device" href="/enterprise/enbd/enbd_miscellaneous/enbd-cco-pr-trust-x">click here</a></strong></li>
+</ul>
+</li>
+</ul><p><strong>For more details on the Registration process, <a title="Registering for ENBD X " href="/enterprise/enbd/enbd_channels/enbd-all-pr-registerenbdx">click here</a>.</strong></p><div class="callout callout-tip">
+<p>The below SR can be used to trigger an SMS to customers guiding them to the ENBD X How-To videos on our Emirates NBD website:</p>
+<table class="serviceRequest" style="border-collapse: collapse; border-color: #000000;" border="#000000">
+<thead>
+<tr>
+<td style="text-align: center;"><strong>Type</strong></td>
+<td style="text-align: center;"><strong>Area</strong></td>
+<td style="text-align: center;"><strong>Sub Area</strong></td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">Internal</td>
+<td style="text-align: center;">Digital Adoption</td>
+<td style="text-align: center;">Service Adoption - SMS</td>
+</tr>
+</tbody>
+</table>
+</div></div>
+
+
+
+
+
+
+<h2 class="concertina concertina-major concertina-open">Complaint SR</h2><div class="concertina-major-Wrapper" style=""><div class="callout callout-important">
+<p><strong>Do not raise this complaint SR at the start of the call, only after all troubleshooting steps are exhausted based on the customer's issue.</strong></p>
+</div><p>If all the above troubleshooting steps fail to assist the customer and they are still facing a "<strong>technical issue</strong>", raise the below SR and ensure to include the following:</p><ul>
+<li>Mention the&nbsp;<strong>exact</strong> troubleshooting done on the call (do&nbsp;<strong>not</strong> mention "All troubleshooting is done")</li>
+<li>Clear notes explaining the customer's issue
+<ul>
+<li>If the customer is facing issues to register, mention why</li>
+<li>If the customer insists on raising the complain, mention why</li>
+</ul>
+</li>
+</ul><table class="serviceRequest" style="border-collapse: collapse; border-color: #000000;" border="#000000">
+<thead>
+<tr>
+<td style="text-align: center;"><strong>Type</strong></td>
+<td style="text-align: center;"><strong>Area</strong></td>
+<td style="text-align: center;"><strong>Sub Area</strong></td>
+<td style="text-align: center;"><strong>TAT</strong></td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">Complaint</td>
+<td style="text-align: center;">Online_Mobile banking access</td>
+<td style="text-align: center;">Registration_Reset issue</td>
+<td style="text-align: center;">2 working days</td>
+</tr>
+</tbody>
+</table><div class="callout callout-important">
+<p>Advise the customer to send a screenshot without cropping the time from their registered email address with the bank, and to mention the SR number in the subject to&nbsp;<a href="mailto:SRHelpDesk@EmiratesNBD.com">SRHelpDesk@EmiratesNBD.com</a>&nbsp;within 24 hours otherwise the bank reserves the rights to close the SR.</p>
+</div></div>
+
+
+
+
+
+	</div>
+
+<div id="rightnav">
+	<div id="article-controls" data-entryuid="befcxyj5ak4dcieqa3jxoim2as">
+	<a href="#" id="controls-landing-pages" title="Landing pages" class="">Landing Pages</a>
+	<a href="#" id="controls-library" title="Add to My Library" class="">My Library</a>
+	<a href="#" id="controls-thumbsup" title="This is helpful" data-vote="%27statistic%27%3d%27entry-vote%27%0a%27entry-uid%27%3d%27befcxyj5ak4dcieqa3jxoim2as%27%0a%27vote%27%3d%271%27%0a%27client%27%3d%27enbd%27%0a%27usergroup%27%3d%27%27">Thumbs up</a>
+	<a href="#" id="controls-thumbsdown" title="This isn't helpful" data-vote="%27statistic%27%3d%27entry-vote%27%0a%27entry-uid%27%3d%27befcxyj5ak4dcieqa3jxoim2as%27%0a%27vote%27%3d%270%27%0a%27client%27%3d%27enbd%27%0a%27usergroup%27%3d%27%27">Thumbs down</a>
+	<a href="#" id="controls-feedback" title="What do you think?">Feedback</a>
+	<div id="content-landing-pages">
+					<p>This page is part of the following landing pages:</p>
+			<ul>
+									<li><a href="/enterprise/enbd/enbd_miscellaneous/enbd-cco-lp-enbdx-ts">ENBD X Troubleshooting and Complaints</a></li>
+							</ul>
+			</div>
+	<div id="content-feedback">
+		<p>Does this article need clarification? Tell us.<br>Is it the article others should aspire to be? Tell us that too!</p>    
+    <input type="hidden" name="entry-ref" value="M9VF33FH1SPRCD4EKH1KLLNCI6">
+    <input type="hidden" name="entry-cat" value="enbd_miscellaneous">
+		<textarea></textarea>
+		<input type="submit" value="Submit Feedback">
+	</div>
+	
+</div>	<div id="related-articles">
+	<h6>Related Articles</h6>
+	<ul class="listing listing-related-articles">
+					<li class="" data-schema="process" data-created="1721630769" data-modified="1730186845">
+																<a class="jsnavigable listing-link" href="/enterprise/enbd/ei_process-cco/enbd-ei-liv-cco-resolve">RESOLVE - Service Quality Evaluation</a>
+							<div class="summary">In July 2024, Service Quality released a new version of the evaluation form. The new RESOLVE evaluation form has a focus on customer experience and a new scoring mechanism. Another new feature includes the addition of the customer CSAT score.</div>
+						<div class="extras">
+									<div class="modified" title="Last modified">29th Oct 2024</div>
+													<div class="created" title="Created">22nd Jul 2024</div>
+													<div class="schema schema-process" title="Process">process</div>
+													<a href="#" title="Add to My Library" class="bookmark " data-entryuid="bwfppqahqugjj74rwludl25t2s">Bookmark</a>
+											</div>
+		</li>
+					<li class="" data-schema="process" data-created="1659420930" data-modified="1745822733">
+																<a class="jsnavigable listing-link" href="/enterprise/enbd/enbd_process-cco/enbd-cco-pr-acptelectroniceida">Acceptance of Electronic Emirates ID</a>
+							<div class="summary">Due to the changes, they have stopped issuing any physical card, and only the digital version of the EIDA card will be available through ICA UAE smart application.
+Customers can download the digital copy from the ICA UAE Smart Application and present it to open the account or performing any other maintenance…</div>
+						<div class="extras">
+									<div class="modified" title="Last modified">28th Apr 2025</div>
+													<div class="created" title="Created">2nd Aug 2022</div>
+													<div class="schema schema-process" title="Process">process</div>
+													<a href="#" title="Add to My Library" class="bookmark " data-entryuid="a4hps4j2rfls4bxwz5lqa77nno">Bookmark</a>
+											</div>
+		</li>
+					<li class="" data-schema="product-brief" data-created="1737443833" data-modified="1745819532">
+																<a class="jsnavigable listing-link" href="/enterprise/enbd/enbd_process-cco/enbd-visaflexi-portal">Visa Flexi Benefits Portal</a>
+							<div class="summary">This article highlights key information in order to assist customers on any queries regarding the Visa Flexi Credit Card benefits selection portal.</div>
+						<div class="extras">
+									<div class="modified" title="Last modified">28th Apr 2025</div>
+													<div class="created" title="Created">21st Jan 2025</div>
+													<div class="schema schema-product-brief" title="Product-brief">product-brief</div>
+													<a href="#" title="Add to My Library" class="bookmark " data-entryuid="cf4ya5lqaqxm5ekfmfmiv3npkg">Bookmark</a>
+											</div>
+		</li>
+					<li class="" data-schema="process" data-created="1661769144" data-modified="1745819566">
+																<a class="jsnavigable listing-link" href="/enterprise/enbd/enbd_process-cco/enbd-cco-pr-leadcommonscenarios">Lead For Common Scenarios</a>
+							<div class="summary">Personal Loan
+
+Salary Requirement – AED 5,000 per month
+Agent does not require to check other eligibility criteria for customer, only to capture Lead Request.
+Verification is not required to capture Lead Request
+
+
+Home Improvement Cash Loans is a type of Personal Loan and not a Home Loan.
+
+ 
+PSB Personal…</div>
+						<div class="extras">
+									<div class="modified" title="Last modified">28th Apr 2025</div>
+													<div class="created" title="Created">29th Aug 2022</div>
+													<div class="schema schema-process" title="Process">process</div>
+													<a href="#" title="Add to My Library" class="bookmark " data-entryuid="a6np7wfqysckh6ooofujjt2xro">Bookmark</a>
+											</div>
+		</li>
+					<li class="" data-schema="product-brief" data-created="1687499906" data-modified="1746094324">
+																<a class="jsnavigable listing-link" href="/enterprise/enbd/enbd_product/enbd-all-pd-acct-emirati">Emirati package</a>
+							<div class="summary">Ramsatna Wehda
+An exclusive package for Emirati customers 
+ 
+ </div>
+						<div class="extras">
+									<div class="modified" title="Last modified">1st May 2025</div>
+													<div class="created" title="Created">23rd Jun 2023</div>
+													<div class="schema schema-product-brief" title="Product-brief">product-brief</div>
+													<a href="#" title="Add to My Library" class="bookmark " data-entryuid="awmjyhte7tjdn7qmfxot7trhm2">Bookmark</a>
+											</div>
+		</li>
+	</ul>
+
+</div>
+</div>
+
+		</div>
+	</div>
+	<div id="toaster" class="min">
+    <div id="toaster_flag">
+      <a href="#" class="lozenger">Urgent Notification</a>
+      <a href="#" class="counter">50</a>
+    </div>
+		<div id="toaster_controls">
+			<a href="#" id="toaster_prev">&lt;</a> 
+			<span id="toaster_counter">1/50</span>
+			<a href="#" id="toaster_next">&gt;</a> 
+			<a href="#" id="toaster_toggle">x</a> 
+		</div>
+		<div id="toaster_wrap">
+							<div class="notification current" data-uid="cn4f6askpb56qva7trfcubfpvg">
+					<a class="jsnavigable" target="_blank" href="/enterprise/enbd/enbd_urgent-notifications/enbd-cco-urgnoti-rewflushfail">Rewards Flushing Failure</a>
+											<p>    Issue:  Kindly note that due to a technical issue at the back end, there was a halt on the flushing process due to which a set number of customers were impacted. The technical team is working closely with vendor to see if the issue can be resolved in the next few days.     Advise on action:  Check…</p>
+									</div>
+							<div class="notification" data-uid="cmxfqu44rbdx7cm6qeo4lfvlpc">
+					<a class="jsnavigable" target="_blank" href="/enterprise/enbd/enbd_urgent-notifications/enbd-all-urgnoti-pmtibco-may25">Planned Maintenance: TIBCO Service Continuity Test, Saturday 03 May 2025, 01:00 AM - 03:00 AM (GST)</a>
+											<p>    Issue: Due to a planned maintenance activity, services accessible via BAWABA (Banking) and Tibco will be unavailable during the below downtime: Start and end date and time: Saturday 3 May 2025, from 01:00 AM till 03:00 AM (GST)     Impact:&nbsp;Please see below list under Additional Information …</p>
+									</div>
+							<div class="notification" data-uid="cmppkcppii6fzfhwcnpxwizyog">
+					<a class="jsnavigable" target="_blank" href="/enterprise/enbd/enbd_urgent-notifications/enbd-unoti-fycfail-25apr25">Own Account Transfer Issue - Foreign Currency Failing</a>
+											<p>    Status - Resolved     Issue: &nbsp;  Important !!! Kindly note that the issue has been resolved!!! OK &nbsp; &nbsp; &nbsp; An issue has been identified where own account transfers in same foreign currencies are failing. For example, USD to USD or GBP to GBP account. The team is working closely to…</p>
+									</div>
+							<div class="notification" data-uid="cmouhtkxluganl3ujew4tpi3rw">
+					<a class="jsnavigable" target="_blank" href="/enterprise/enbd/enbd_urgent-notifications/enbd-cco-urgnoti-p1dupdebit">P1 Incident - Duplicate Debits of Loan EMI</a>
+											<p>    Status: Ongoing     Issue: Kindly note that a number of ENBD customers have experienced duplicate debits of their loan EMIs. The technical teams are actively working on identifying and processing the necessary reversals.     Advise on action:  Inform customers accordingly Refrain from raising any…</p>
+									</div>
+							<div class="notification" data-uid="cmkewevj5j5tv4lhu26g2mz6ig">
+					<a class="jsnavigable" target="_blank" href="/enterprise/enbd/enbd_urgent-notifications/enbd-unoti-browseissue-23apr25">Online Banking on Browser Issue - 23 April 2025 (Resolved)</a>
+											<p>    Status - Resolved     Issue: &nbsp;  Important !!! Kindly note that the issue has been resolved!!! OK &nbsp; &nbsp; &nbsp; An issue has been identified where customers will not be able to login to browser using Online Banking, as post Smart Pass successful authentication, the screen on the browser…</p>
+									</div>
+							<div class="notification" data-uid="cmhvejaogolhc7yo7jcd5zf5fo">
+					<a class="jsnavigable" target="_blank" href="/enterprise/enbd/enbd_urgent-notifications/enbd-unoti-wrongsmsissue">Incorrect SMS Shared with Customers Issue - 22 April 2025</a>
+											<p>    Status - Ongoing     Issue: An issue has been identified where some customers receive a Debit SMS instead of Credit SMS and vice versa. The issue is isolated&nbsp;only to SMS communication, but the actual transaction is successful. The team are working on resolving the issue by 1 May 2025.     Advise…</p>
+									</div>
+							<div class="notification" data-uid="cmhjrgocilirxek524ndslvirc">
+					<a class="jsnavigable" target="_blank" href="/enterprise/enbd/enbd_urgent-notifications/enbd-unoti-drfail-22apr25">P1 Incident - DirectRemit Intermittent Failures - 22 April 2025 (Resolved)</a>
+											<p>    Status - Resolved &nbsp;  Important !!! Kindly note that the issue has been resolved!!! OK &nbsp; &nbsp; &nbsp;     Issue: Kindly note that a P1 incident has been reported where DirectRemit transactions initiated by customers are intermittently failing. The team is working to restore the services…</p>
+									</div>
+							<div class="notification" data-uid="cmf3cx3ens334afosg2k4hqemg">
+					<a class="jsnavigable" target="_blank" href="/enterprise/enbd/enbd_urgent-notifications/enbd-all-urgnoti-drfail-apr25">P2 Incident - DirectRemit Intermittent Failures - 21 April 2025 - (Resolved)</a>
+											<p>    Issue: &nbsp;  Important !!! Kindly note that the issue has been resolved!!! OK &nbsp; &nbsp; &nbsp; Kindly note that a P2 incident has been reported where DirectRemit transactions initiated by customers are intermittently failing. The team is working to restore the services at the soonest.     Advise…</p>
+									</div>
+							<div class="notification" data-uid="cm5oysnsm3j7mvpgk6eecrsrv6">
+					<a class="jsnavigable" target="_blank" href="/enterprise/enbd/enbd_urgent-notifications/enbd-all-urgnoti-dewa-apr25">Planned Maintenance - DEWA Payment Services (Saturday, 19th April 2025)</a>
+											<p>    Issue: Due to a scheduled maintenance activity, DEWA payment service via Mobile and Online Banking and ATM/CDMs will not be available during the below downtime:  Start date and time: Saturday 19 April 2025, 12:00 AM GST End date and time:Saturday 19 April 2025, 05:00 AM GST      Impact: Mobile Banking,…</p>
+									</div>
+							<div class="notification" data-uid="cm5om7fpl6g5ggdovwot5sgtqc">
+					<a class="jsnavigable" target="_blank" href="/enterprise/enbd/enbd_urgent-notifications/enbd-all-urgnoti-empow-apr25">Planned Maintenance - Empower Payment Services (Sunday, 20th April 2025)</a>
+											<p>    Issue: Due to a scheduled maintenance activity, Empower payment service via Mobile and Online Banking and ATM/CDMs will not be available during the below downtime:  Start date and time: Sunday 20 April 2025, 07:00 PM GST End date and time:Sunday 20 April 2025, 10:00 PM GST      Impact: Mobile Banking,…</p>
+									</div>
+							<div class="notification" data-uid="cm5ms2i3lf6toi2k6rfu6d5voc">
+					<a class="jsnavigable" target="_blank" href="/enterprise/enbd/enbd_urgent-notifications/enbd-cco-urgnoti-pakdown-0425">National Bank Down Time Error (Host Link Down)</a>
+											<p>    Issue: Due to the Host Link of National Bank of Pakistan being down, there will be a delay in DirectRemit (payment processing) to Pakistan until further notice.     Advise on action:  Kindly inform customer accordingly Avoid raising complaint SRs for the same           .concertina-major-Wrapper {…</p>
+									</div>
+							<div class="notification" data-uid="cm5eh6jkwilgzxhei7ojhaza66">
+					<a class="jsnavigable" target="_blank" href="/enterprise/enbd/enbd_urgent-notifications/enbd-unoti-finaclemigration">Migration from FinnOne to Finacle - 19 to 20 April, 2025</a>
+											<p>    Notification: The Bank is upgrading their core system - All active loan accounts (personal loans, auto loans and mortgages) currently maintained in the FinnOne System will be migrated to Finacle by Monday, 21 April 2025. This migration is scheduled for the following time:  Start date and time: Saturday,…</p>
+									</div>
+							<div class="notification" data-uid="cm32dd5ubh2dhu4qme7a3zauhc">
+					<a class="jsnavigable" target="_blank" href="/enterprise/enbd/enbd_urgent-notifications/enbd-all-urgnoti-pm-tech-apr25">Planned Maintenance - PowerBi - Saturday 19 April16:00 to 19:00 PM 2025 (GST)</a>
+											<p>    Issue Description:Data Warehouse Network Maintenance Downtime Start Date &amp; Time: Saturday 19 April 2025 - 04:00 PM GST Downtime End Date &amp; Time: Saturday 19 April 2025 - 07:00 PM GST     Impact:  PowerBi and Tableau reports/dashboards will be unavailable      Advice on Actions:  ENBD Technology…</p>
+									</div>
+							<div class="notification" data-uid="cm2jiyqtmtljtofhsej27qkig6">
+					<a class="jsnavigable" target="_blank" href="/enterprise/enbd/enbd_urgent-notifications/enbd-unoti-p2-firco17apr25">P2 Incident - Intermittent Payment Failure during Firco Payment Screening (Resolved)</a>
+											<p>    Status: Resolved &nbsp;  Important !!! Kindly note that the issue has been resolved!!! OK &nbsp; &nbsp; &nbsp; Issue: Payments initiated from channels/systems are intermittently failing during Firco payment screening. The team is working to restore the services at the soonest.     Impacted Channels…</p>
+									</div>
+							<div class="notification" data-uid="cm2fcjg2muvmwu6ewzrwtfww3k">
+					<a class="jsnavigable" target="_blank" href="/enterprise/enbd/enbd_urgent-notifications/enbd-unoti-phdt-19apr25">Planned Maintenance - Payment Hub Emirates NBD and Emirates Islamic - Sunday 20 April 2025, 00:30 AM - 04:30 AM (GST)</a>
+											<p>    Issue: Due to a Payment Hub Database Maintenance Activity, there will be a downtime to payment services during the following timings: Start and end date and time: Sunday 20 April 2025, from 00:30 AM - 04:30 AM&nbsp; (GST)     Impacted Channels - Online and Mobile Channel Payment Services     Advise…</p>
+									</div>
+							<div class="notification" data-uid="cly7wusemrceprf4gwfunnivp6">
+					<a class="jsnavigable" target="_blank" href="/enterprise/enbd/enbd_urgent-notifications/enbd-unoti-pmnetroute-19apr25">Planned Maintenance: Network Routing Uplift - Saturday 19 April 2025 - 03:00 AM to 07:00 AM (GST)</a>
+											<p>    Issue: Due to a planned maintenance activity at Abu Dhabi Data Centre, multiple services will experience intermittent downtime during the following hours:  Start and end date and time: Saturday 19 April 2025, from 03:00 AM till 06:00 AM (GST)      Impact: See Additional Information for list of impacted…</p>
+									</div>
+							<div class="notification" data-uid="cltdk2kb3whhd5crzvpi5bqqi6">
+					<a class="jsnavigable" target="_blank" href="/enterprise/enbd/enbd_urgent-notifications/enbd-cco-urgnoti-p1issue-apr25">P1 Incident - Issue with Transfers/ DAO through Mobile Banking App (Resolved)</a>
+											<p>    Status: Resolved &nbsp;  Important !!! Kindly note that the issue has been resolved!!! OK &nbsp; &nbsp; &nbsp;     Issue: We have identified an issue on ENBD X/ Liv X where customers are unable to make transfers or Digital Account Opening through the App. The technical team is currently working towards…</p>
+									</div>
+							<div class="notification" data-uid="clsvqoghyl4yqw52w6kes3xurs">
+					<a class="jsnavigable" target="_blank" href="/enterprise/enbd/enbd_urgent-notifications/enbd-unoti-p2inttrans-14apr25">P2 Incident - International Transfers Service Interruption - 14 April, 2025</a>
+											<p>    Issue: A subset of customers are unable to initiate payments due to IBAN and Swift Code mismatch. The teams are working closely to restore the service as soon as possible.     Impacted channels:&nbsp;businessONLINE     Advise on action:  Advise customers accordingly Avoid raising SRs for the same…</p>
+									</div>
+							<div class="notification" data-uid="clkyh3svely6lb7xp4zijg36q6">
+					<a class="jsnavigable" target="_blank" href="/enterprise/enbd/liv_urgent-notifications/liv-unoti-dirrem-phili-13apr">DirectRemit Philippines Downtime - Planned Maintenance</a>
+											<p>    Issue Description:&nbsp;Due to a planned maintenance activity, there will be a downtime affecting DirectRemit transactions routed to the Philippines. Transactions will be queued and processed after the below window:  Start and end date and time: Sunday 13th April 2025, from 05:00 PM till 10:00 PM…</p>
+									</div>
+							<div class="notification" data-uid="clid4y767yzd7e3l22bkb653f2">
+					<a class="jsnavigable" target="_blank" href="/enterprise/enbd/enbd_urgent-notifications/enbd-unoti-tibcodt-13apr25">Planned Maintenance - TIBCO Service Continuity Test - Sunday 13 April 2025, 01:00 AM - 03:00 AM (GST)</a>
+											<p>    Issue: Due to a planned maintenance activity, services accessible via BAWABA (Banking) and Tibco will be unavailable during the below downtime: Start and end date and time: Sunday 13 April 2025, from 01:00 AM till 03:00 AM (GST)     Impact:&nbsp;Please see below list under Additional Information…</p>
+									</div>
+							<div class="notification" data-uid="clicqvufbaydlaxuxzqrwhqa3g">
+					<a class="jsnavigable" target="_blank" href="/enterprise/enbd/enbd_urgent-notifications/enbd-unoti-phdt-11apr25">Planned Maintenance - Payment Hub Database Maintenance Emirates NBD - Saturday 12 April 2025, 12:30 AM - 01:30 AM (GST)</a>
+											<p>    Issue: Due to a Payment Hub Database Maintenance Activity, Online and Mobile payment services will be impacted during the below downtime: Start and end date and time: Saturday 12 April 2025, from 12:30 AM to 1:30 AM (GST)     Impact: Online and Mobile channels payment services     Advise on action:…</p>
+									</div>
+							<div class="notification" data-uid="cliccrqkspgway3jx3qgu5livc">
+					<a class="jsnavigable" target="_blank" href="/enterprise/enbd/enbd_urgent-notifications/enbd-unoti-empwrdt-11apr25">Planned Maintenance - Empower Infrastructure Patching - Friday, 11 April 20:00 - Saturday 12 April 03:30, 2025 (GST)</a>
+											<p>    Issue: Due to a planned maintenance activity, Empower processing will commence after the following downtime:  Start date and time: Friday 11 April 2025, 08:00 PM GST End date and time: Saturday 12 April 2025, 3:30 AM (GST)      Impact: Empower&nbsp;     Advise on action:  Advise staff accordingly…</p>
+									</div>
+							<div class="notification" data-uid="clg7r7fatav763yuiol4nm3maw">
+					<a class="jsnavigable" target="_blank" href="/enterprise/enbd/enbd_urgent-notifications/enbd-unoti-fewadt-11apr25">Planned Maintenance - FEWA Payment Network Upgrade - Friday 11 April 20:00 - 23:59 AM 2025 (GST)</a>
+											<p>    Issue: Due to a planned maintenance activity, FEWA Payments will be unavailable during the below downtime: Start and End date and time:&nbsp;Friday 11 April 2025, from 08:00 PM till 11:59 PM (GST)     Impact: ENBD FEWA Payments     Advise on action:  Advise customers to make their payments before…</p>
+									</div>
+							<div class="notification" data-uid="cld662iaoskpmxz3b5g3xfadtw">
+					<a class="jsnavigable" target="_blank" href="/enterprise/enbd/enbd_urgent-notifications/enbd-unoti-tempdrdt-5apr25">DirectRemit Downtime - Temporary Service Disruption at Faysal Bank - 4 April 2025</a>
+											<p>    Issue: There was a DirectRemit service disruption through Faysal Bank on April 4, 2025 for a duration of approximately 5 hours (2:00 PM to 7:00 PM UAE time). In the report, around 600 transactions were showing as rejected or in process.     Advise on action:  Kindly handle customer queries accordingly…</p>
+									</div>
+							<div class="notification" data-uid="cld5getomud4uw2a3rbduewjko">
+					<a class="jsnavigable" target="_blank" href="/enterprise/enbd/enbd_urgent-notifications/enbd-unoti-drfailfraud-28mar">DirectRemit Return Reason - Suspected Fraud - 28 March 2025</a>
+											<p>    Issue: Some DirectRemit transactions are being returned with&nbsp;reason Suspected Fraud. This is because customer documents are not updated with the Indian Banks.&nbsp;     Advise on action:  Inform customers to update their documents with their Indian banks and to try again Avoid raising any SRs…</p>
+									</div>
+							<div class="notification" data-uid="ckwc336zhtyo3ibwvtynodefo6">
+					<a class="jsnavigable" target="_blank" href="/enterprise/enbd/enbd_urgent-notifications/enbd-unoti-tnpissue-3mar25">Transfers and Payments Issue - Service Interruption (Resolved)</a>
+											<p>    Issue: Due to a remittance issue, NPSS AANI payments are being interrupted, and outward local payment flow is being routed via IPI. For inward flow, the amount will be auto reversed to the originating bank customers. The team is working closely on the issue to be restored at the soonest.&nbsp; Update:…</p>
+									</div>
+							<div class="notification" data-uid="ckhf74tpi3p7xsevuupc4ij372">
+					<a class="jsnavigable" target="_blank" href="/enterprise/enbd/enbd_urgent-notifications/enbd-cco-urgnoti-whatsapp-mar25">P1 Incident - Issue with WhatsApp Banking Services (Resolved)</a>
+											<p>    Status: RESOLVED     Issue: We have identified an issue where customer’s are unable to access WhatsApp banking services due to an issue with service provider Infobip. Technical teams are currently working towards restoring the issue at the earliest.     Advise on action:  Handle customer queries…</p>
+									</div>
+							<div class="notification" data-uid="ck7gqndmsqmurkrczpic4in6zg">
+					<a class="jsnavigable" target="_blank" href="/enterprise/enbd/enbd_urgent-notifications/enbd-cco-urgnoti-wpsissue-mar25">P2 Incident - Delay in WPS Processing (Resolved)</a>
+											<p>    Status: RESOLVED     P2 Incident Issue: There was an issue where a subset of inward WPS files from CBUAE were not moving to PH due to issues in miNiFi. This was leading to delay in salary processing (WPS) and therefore incoming credits to customers. The technical team is investigating the issue and…</p>
+									</div>
+							<div class="notification" data-uid="ck4yulw5z5n7frzl4z76oszlh2">
+					<a class="jsnavigable" target="_blank" href="/enterprise/enbd/enbd_urgent-notifications/enbd-all-urgnoti-txnerror-mar25">ENBD X Issue - Transaction Error Message (Resolved)</a>
+											<p>    Status: RESOLVED     Issue: We have identified an issue where some users are getting the error "Something went wrong" while attempting to initiate transaction(s) on the ENBD X Mobile App. The technical team is investigating the issue and working towards resolving this at the earliest.     Advise…</p>
+									</div>
+							<div class="notification" data-uid="cjv4dqnxum2hfc3v7ffubpfktw">
+					<a class="jsnavigable" target="_blank" href="/enterprise/enbd/enbd_urgent-notifications/enbd-cco-ph13-210325">Planned Maintenance - Payment Hub Pack 13 Release to Emirates NBD and Emirates Islamic Saturday, 22 March, 2025 00:30 AM - 04:30 AM (GST)</a>
+											<p>    Issue Description: Payment Hub Pack 13 Release to Emirates NBD and Emirates Islamic Downtime Start Date &amp; Time: Saturday 22 March 2025 - 12:30 AM GST Downtime End Date &amp; Time: Saturday 22 March 2025 - 04:30 AM GST     Impact:  Mobile and Online Banking channels payments will be impacted for…</p>
+									</div>
+							<div class="notification" data-uid="cjsbzye4wvcgqainouf4atjjbc">
+					<a class="jsnavigable" target="_blank" href="/enterprise/enbd/enbd_urgent-notifications/enbd-all-urgnoti-xissue-200325">ENBD X Issue - Intermittent Slowness (Resolved)</a>
+											<p>    Status:  ENBD X Mobile App - Resolved Online Banking - Resolved     Issue: We have identified an issue where customers are experiencing intermittent slowness while accessing the ENBD X and Online Banking applications. While ENBD X Mobile App has been resolved, the issue with Online Banking still…</p>
+									</div>
+							<div class="notification" data-uid="cjqd46grjb4uwcr7jkzgz67zfc">
+					<a class="jsnavigable" target="_blank" href="/enterprise/enbd/enbd_urgent-notifications/enbd-all-urgnoti-em-200325">Emergency Maintenance - Multiple Services Thursday, 20 March 2025, 02:00 AM to 03:00 AM (GST)</a>
+											<p>    Issue Description: Emergency Maintenance for Redis Platform. Downtime of 5 minutes during the below timings Downtime Start Date &amp; Time: Thursday, 20 March 2025 - 02:00 GST Downtime End Date &amp; Time: Thursday, 20 March 2025 - 03:00 GST     Impact:  Multiple services will be impacted for 5 minutes…</p>
+									</div>
+							<div class="notification" data-uid="cjq7p4j222hekq5cxtf63bhd2o">
+					<a class="jsnavigable" target="_blank" href="/enterprise/enbd/enbd_urgent-notifications/enbd-cco-urgnoti-ccfail-mar25">ENBD Credit Card Payment Displaying Failed on ENBD X </a>
+											<p>    Status: Issue Ongoing     Issue: We have identified an issue where payments towards Credit Card (own or other ENBD card) are being displayed as "FAILED" on the ENBD X App when viewing it under Transaction details tab. However, in reality the payment has been successfully posted on the Credit Card.…</p>
+									</div>
+							<div class="notification" data-uid="cjq5wphdfrzcms5k6lt37ohis6">
+					<a class="jsnavigable" target="_blank" href="/enterprise/enbd/enbd_urgent-notifications/enbd-all-urgnoti-plm-200325">Planned Maintenance - Emirates NBD (UAE) and Emirates Islamic X-Platform Service Continuity Test Thursday, 20 March 2025, 02:00 AM to 03:00 AM (GST)</a>
+											<p>    Issue Description: Planned maintenance - X-Platform Regulatory Continuity Switchover Test to Meydan Data Centre Downtime Start Date &amp; Time: Thursday, 20 March 2025 - 02:00 AM GST Downtime End Date &amp; Time: Thursday, 20 March 2025 - 03:00 AM GST     Impact:  Online and Mobile App services will…</p>
+									</div>
+							<div class="notification" data-uid="cjd7bbvd2a3la6lqa6bzmzd2x2">
+					<a class="jsnavigable" target="_blank" href="/enterprise/enbd/enbd_urgent-notifications/enbd-unoti-intlphmaint">Payment Hub Pack 12 Release to International instance - Saturday 15 March 2025 00:30 - 04:30 (GST)</a>
+											<p>    Issue: Payment Hub Pack 12 Deployment to International Entities, which comprises changes and problem ticket fixes. Downtime: Saturday, 15&nbsp;March 2025, 00:30 AM to 04:30 AM (GST) impacting Online and Mobile channels payment services for International Entities     Advise on action: Advise customers…</p>
+									</div>
+							<div class="notification" data-uid="cjaklqv2yibxkpctv22x7vz2fo">
+					<a class="jsnavigable" target="_blank" href="/enterprise/enbd/enbd_urgent-notifications/enbd-all-urgnoti-pm-130325">Planned Maintenance - Customer Onboarding (FSK) screening Saturday 15th March 2025, 10:00 PM to Sunday 16th March 08:00 AM (GST)</a>
+											<p>    Issue Description:Customer Onboarding Screening (FSK) Service Continuity Test to Meydan Data Centre Downtime Start Date &amp; Time: Saturday 15 March 2025 - 12:00 AM GST Downtime End Date &amp; Time: Saturday 15 March 2025 - 02:00 AM GST     Impact:  New To Bank and Existing To Bank screening requests…</p>
+									</div>
+							<div class="notification" data-uid="cj64v3dsvmwytahnpouaibnwds">
+					<a class="jsnavigable" target="_blank" href="/enterprise/enbd/enbd_urgent-notifications/enbd-unoti-pmswift-15mar25">Planned Maintenance - SWIFT Version Upgrade - 15 March 2025 10:00 PM to 16 March 08:00 AM (GST)</a>
+											<p>    Issue description:&nbsp;SWIFT Application and Operating System Upgrade to V7.7 and RHEL 8.  Downtime 1 Start and end Date &amp; Time: Saturday 15 March 2025 from 10:00 PM to 11:30 PM (GST) Downtime 2 Start and end Date &amp; Time: Sunday 16 March 2025 from 04:00 AM to 08:00 AM (GST)      Impact:…</p>
+									</div>
+							<div class="notification" data-uid="cj3pccbmogpgdvimqsppklz7n6">
+					<a class="jsnavigable" target="_blank" href="/enterprise/enbd/enbd_urgent-notifications/enbd-unoti-efsreversal-11mar25">Early Settlement Fee Reversal Cases - 11 March 2025</a>
+											<p>    Issue: The team has identified 144 cases where excess Early Settlement Fee has been approved for reversal. Communications have been shared with these customers on the same. Refer to the below file: \\buzzfs\KM-Pro-Repository\ENBD\EFS Reversals by AST - 11_03_2025\ESF Reversal Cases Updated by AST.xlsx…</p>
+									</div>
+							<div class="notification" data-uid="ciysicsmocnzelnbx37xot2bas">
+					<a class="jsnavigable" target="_blank" href="/enterprise/enbd/enbd_urgent-notifications/enbd-unoti-intermitslow-8mar25">P1 Incident - Systems Intermittent Slowness - 8 March 2025 (Resolved)</a>
+											<p>    Issue: Proactive alerts received indicating intermittent slowness across multiple applications. Team has identified impact to ENBD X, VCAS OTP and TBK. Verification inflight for BO and the underlying services. Technical teams are engaged for investigation and service restoration.     Advise on action:…</p>
+									</div>
+							<div class="notification" data-uid="ciyrzcv3uhwb3ceh6zvykvyqlw">
+					<a class="jsnavigable" target="_blank" href="/enterprise/enbd/enbd_urgent-notifications/enbd-unoti-mctransfail-9mar">Intermittent Failure - Mastercard Transaction Failure - 9 March 2025 (Resolved)</a>
+											<p>    Issue: There is an intermittent failure for Mastercard transactions and there may be transactions getting declined or not processed. This is a global issue with Mastercard, and team is working for a resolution at the soonest.     Advise on action:  Handle customer queries accordingly Avoid raising…</p>
+									</div>
+							<div class="notification" data-uid="ciosd5out2tfkre4me2famjvws">
+					<a class="jsnavigable" target="_blank" href="/enterprise/enbd/enbd_urgent-notifications/enbd-cco-urgnoti-ph12-060325">Planned Maintenance - Payment Hub Pack 12 Release to Emirates NBD and Emirates Islamic Saturday, 8 March, 2025 12:30 AM - 04:30 AM (GST)</a>
+											<p>    Issue Description: Payment Hub Pack 12 Release to Emirates NBD and Emirates Islamic Downtime Start Date &amp; Time: Saturday 8 March 2025 - 12:30 AM GST Downtime End Date &amp; Time: Saturday 8 March 2025 - 04:30 AM GST     Impact:  Mobile and Online Banking channels payments will be impacted   …</p>
+									</div>
+							<div class="notification" data-uid="cimattubczvkg7lsm7q6agvw2w">
+					<a class="jsnavigable" target="_blank" href="/enterprise/enbd/enbd_urgent-notifications/enbd-cco-urgnoti-pm-050325">Planned Maintenance: Me-Mobile (KSA, EGY, LON and IND) Service Continuity Test Thursday 6th March 04:00 - 06:30 2025 (GST)</a>
+											<p>    Issue Description: Payment Hub - Me-Mobile Service Continuity Test (International Instance) Downtime Start Date &amp; Time: Thursday 06 March 2025 - 04:00 AM GST Downtime End Date &amp; Time: Thursday 06 March 2025 - 06:30 AM GST     Impact:  Online e-commerce and mobile channels SMS delivery will…</p>
+									</div>
+							<div class="notification" data-uid="cih2nn2py7ogpq6h5v5hhjpt2w">
+					<a class="jsnavigable" target="_blank" href="/enterprise/enbd/enbd_urgent-notifications/enbd-unoti-phintl-5mar25">Planned Maintenance: Payment Hub (International Instance) Service Continuity Test Wednesday 5th March 00:30 - 04:30 2025</a>
+											<p>    Issue Description: Payment Hub (International Instance) Service Continuity Test Downtime Start Date &amp; Time: Wednesday 05 March 2025 - 12:30 AM GST Downtime End Date &amp; Time: Wednesday 05 March 2025 - 04:30 AM GST     Impact:  Mobile and Online Banking channels payments will be impacted  Impacted…</p>
+									</div>
+							<div class="notification" data-uid="ciguxlur3yqn53n4kuerregmdw">
+					<a class="jsnavigable" target="_blank" href="/enterprise/enbd/enbd_urgent-notifications/enbd-unoti-ccappenbdx-fail">PI Incident - Credit Card Application Journey Intermittent Failure (Resolved)</a>
+											<p>    Status: Resolved     Issue: Credit Card application journey is failing intermittently on ENBD X. Technical teams are actively working to restore the issue as soon as possible.     Advise on action: Advise customers accordingly and avoid raising&nbsp;any SRs for the same.          .concertina-major-Wrapper…</p>
+									</div>
+							<div class="notification" data-uid="ci7dycsyxzayxgxb43iucjojbo">
+					<a class="jsnavigable" target="_blank" href="/enterprise/enbd/enbd_urgent-notifications/enbd-unoti-drphilpak-fail">DirectRemit Failure - Pakistan &amp; Philippines</a>
+											<p>    Issue: The team has noticed that DirectRemit transactions to Pakistan an Philippines are failing with the reason “Host Timeout”. Upon checking few sample transactions, customer account is also debited. IT is working on the issue to have the same resolved at the soonest.     Advise on action:…</p>
+									</div>
+							<div class="notification" data-uid="ci6tw5evqwyexxsbumnvn7qj6s">
+					<a class="jsnavigable" target="_blank" href="/enterprise/enbd/enbd_urgent-notifications/enbd-unoti-tanfthtoenbdserv">Tanfeeth Transitions to ENBD Services</a>
+											<p>    Update: As you are aware, with the launch of Emirates NBD Global Services, Tanfeeth has been rebranded and will now be known as ENBD Services. As we move forward, please ensure that all references to Tanfeeth are updated to ENBD Services in your internal communications. As a part of this transition,…</p>
+									</div>
+							<div class="notification" data-uid="ci6qsxubxlfdj3ujbiovspod2c">
+					<a class="jsnavigable" target="_blank" href="/enterprise/enbd/enbd_urgent-notifications/enbd-unoti-minreqenbdx">Important Update on ENBD X iOS (iPhone) Users</a>
+											<p>    Update: Effective 24 March 2025, ENBD X will not be accessible on devices operating with iOS 14 and earlier.&nbsp;     Advise on action:  In case of queries, inform customers that as Mobile Phone providers upgrade their devices, apps, and system software, we keep ourselves up to date with these changes…</p>
+									</div>
+							<div class="notification" data-uid="ci4jg5c5fzezcpdk6yi25vhsrk">
+					<a class="jsnavigable" target="_blank" href="/enterprise/enbd/enbd_urgent-notifications/enbd-unoti-ph12release-2mar25">Planned Maintenance - Payment Hub Pack 12 Release to ENBD and EI Instances - Sunday 2 March 2025 00:30 - 04:30 (GST) - Postponed</a>
+											<p>    Issue Description:&nbsp;Payment Hub Pack 12 Release Downtime Start Date &amp; Time: Sunday 02 March 2025 - 12:30 AM GST Downtime End Date &amp; Time: Sunday 02 March 2025 - 04:30 AM GST     Impact:  Mobile and Online Banking channels payments will be impacted      Advise on action:  Advise customer…</p>
+									</div>
+							<div class="notification" data-uid="ci4e34egfpkvxomrn6hhz3iwzw">
+					<a class="jsnavigable" target="_blank" href="/enterprise/enbd/enbd_urgent-notifications/enbd-unoti-p1transnack">P1 Incident - Outward and Inward Transfers Failures and Delays - 27 February 2025</a>
+											<p>    Issue: Kindly note that there are intermittent issues reported for local payment transfers as follows:  Outward local payments are intermittently failing due to NACK from CBUAE Delay in Inward and outward local payments due to queue built up at Firco      Advise on action:  Inform customers of the…</p>
+									</div>
+							<div class="notification" data-uid="ci47ywzv2qspspsydwfa6wvhyg">
+					<a class="jsnavigable" target="_blank" href="/enterprise/enbd/enbd_urgent-notifications/enbd-unoti-hlsrenbdx">Home Loan Servicing Journeys Available on Mobile and Online Banking</a>
+											<p>    Update: Kindly note that customers will now be able to request for Home Loan services through Mobile and Online Banking. The services available are as follows:  Insurance assignment query Reschedule review - EMI date or funding account change Reschedule review - Tenure Amendments on title deed General…</p>
+									</div>
+					</div>
+	</div>	<img src="/action/logStatistics?action1=%27category%27%3d%27enbd_miscellaneous%27%0a%27statistic%27%3d%27entry-view%27%0a%27entry-uid%27%3d%27befcxyj5ak4dcieqa3jxoim2as%27%0a%27client%27%3d%27enbd%27%0a%27usergroup%27%3d%27%27" width="1" height="1" alt="" class="statsImage">
+
+</body></html>
