@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>We Own It - Media Gallery</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- GLightbox CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
+
+  <!-- Plyr CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/plyr@3.7.8/dist/plyr.min.css" />
+  
+  <style>
+    body { font-family: 'Plus Jakarta Sans', sans-serif; background: #f9fafb; }
+  </style>
+</head>
+<body class="min-h-screen p-6">
+
+  <div class="text-center mb-8">
+    <h1 class="text-4xl font-bold text-gray-800">🎉 We Own It - Event Media Gallery</h1>
+    <p class="text-gray-500 mt-2">Scroll to load more photos</p>
+  </div>
+
+  <!-- Gallery Grid -->
+  <div id="gallery" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"></div>
+  <div id="loader" class="text-center my-4 hidden">Loading...</div>
+
+  <!-- GLightbox & Plyr Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/plyr@3.7.8/dist/plyr.min.js"></script>
+  
+  <script>
+    // SharePoint configuration
+    const SP_SITE_URL = 'https://yourtenant.sharepoint.com/sites/YourSite';
+    const LIBRARY_PATH = '/sites/YourSite/Shared Documents/weownitPhotos';
+    const PAGE_SIZE = 100;
+    let nextPageUrl = `${SP_SITE_URL}/_api/web/GetFolderByServerRelativeUrl('${encodeURIComponent(LIBRARY_PATH)}')/Files?$select=Name,ServerRelativeUrl&$top=${PAGE_SIZE}`;
+    const headers = { 'Accept': 'application/json;odata=nometadata' };
+    const gallery = document.getElementById('gallery');
+    const loader = document.getElementById('loader');
+    let isLoading = false;
+
+    function shouldLoadMore() {
+      return window.innerHeight + window.scrollY >= document.body.offsetHeight - 500;
+    }
+
+    async function loadNextBatch() {
+      if (!nextPageUrl || isLoading) return;
+      isLoading = true;
+      loader.classList.remove('hidden');
+      try {
+        const res = await fetch(nextPageUrl, { headers });
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const data = await res.json();
+        const files = data.value;
+        const images = files.filter(file => /\.(jpe?g|png|webp)$/i.test(file.Name));
+        images.forEach(file => renderCard(file));
+        if (data['@odata.nextLink']) {
+          nextPageUrl = data['@odata.nextLink'];
+        } else {
+          nextPageUrl = null;
+        }
+        // Re-init lightbox for new items
+        GLightbox({ selector: '.glightbox' });
+      } catch (err) {
+        console.error('Pagination error:', err);
+      } finally {
+        isLoading = false;
+        loader.classList.add('hidden');
+      }
+    }
+
+    function renderCard(file) {
+      const fullUrl = `${SP_SITE_URL}${file.ServerRelativeUrl}`;
+      const card = document.createElement('div');
+      card.className = 'relative group';
+      card.innerHTML = `
+        <a href="${fullUrl}" class="glightbox" data-gallery="media">
+          <img src="${fullUrl}" loading="lazy"
+               class="w-full h-48 object-cover rounded-lg shadow-md"
+               alt="${file.Name}" />
+        </a>
+        <a href="${fullUrl}" download
+           class="absolute top-2 right-2 bg-white p-2 rounded-full shadow hover:bg-gray-100">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+          </svg>
+        </a>
+      `;
+      gallery.appendChild(card);
+    }
+
+    window.addEventListener('scroll', () => { if (shouldLoadMore()) loadNextBatch(); });
+    document.addEventListener('DOMContentLoaded', () => { loadNextBatch(); });
+  </script>
+
+</body>
+</html>
