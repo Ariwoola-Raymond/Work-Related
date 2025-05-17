@@ -1,0 +1,202 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>KM Chatbot Issue Submission</title>
+  <!-- Bootstrap CSS -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.5.0/dist/css/bootstrap.min.css"
+    rel="stylesheet">
+  <!-- FilePond CSS for image uploads -->
+  <link
+    href="https://unpkg.com/filepond/dist/filepond.css"
+    rel="stylesheet">
+  <style>
+    .form-section { margin-bottom: 2rem; }
+    .form-section h5 { border-bottom: 1px solid #ddd; padding-bottom: .5rem; }
+  </style>
+</head>
+<body class="bg-light py-4">
+  <div class="container">
+    <h2 class="mb-4">Submit KM Chatbot Issue</h2>
+    <form id="issueForm">
+      <!-- 1. Issue Details -->
+      <div class="form-section">
+        <h5>Issue Details</h5>
+        <div class="row g-3">
+          <div class="col-md-3">
+            <label for="date" class="form-label">Date</label>
+            <input type="text" id="date" class="form-control" disabled>
+          </div>
+          <div class="col-md-3">
+            <label for="issueId" class="form-label">ID</label>
+            <input type="text" id="issueId" class="form-control" disabled>
+          </div>
+          <div class="col-md-6">
+            <label for="reportedBy" class="form-label">Reported By</label>
+            <input type="text" id="reportedBy" class="form-control" disabled>
+          </div>
+        </div>
+        <div class="mt-3">
+          <label for="repository" class="form-label">Repository <span class="text-danger">*</span></label>
+          <select id="repository" class="form-select" required>
+            <option value="">Choose…</option>
+            <option>enbd_miscellaneous</option>
+            <option>enbd_ccms</option>
+            <!-- etc. -->
+          </select>
+        </div>
+      </div>
+
+      <!-- 2. Chatbot Interaction -->
+      <div class="form-section">
+        <h5>Chatbot Interaction</h5>
+        <div class="mb-3">
+          <label for="question" class="form-label">Question <span class="text-danger">*</span></label>
+          <textarea id="question" class="form-control" rows="2" required></textarea>
+        </div>
+        <div class="mb-3 row gx-3">
+          <div class="col-md-6">
+            <label for="expected" class="form-label">Expected Response <span class="text-danger">*</span></label>
+            <textarea id="expected" class="form-control" rows="2" required></textarea>
+          </div>
+          <div class="col-md-6">
+            <label for="genai" class="form-label">GenAI Response <span class="text-danger">*</span></label>
+            <textarea id="genai" class="form-control" rows="2" required></textarea>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. User Feedback -->
+      <div class="form-section">
+        <h5>User Feedback</h5>
+        <div class="mb-3">
+          <label for="userComments" class="form-label">Comments (optional)</label>
+          <textarea id="userComments" class="form-control" rows="2"></textarea>
+        </div>
+      </div>
+
+      <!-- 4. Testing & Resolution -->
+      <div class="form-section">
+        <h5>Testing & Resolution</h5>
+        <div class="row gy-3">
+          <div class="col-md-4">
+            <label class="form-label">Retested?</label>
+            <div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" name="retested" type="radio" value="Yes" required>
+                <label class="form-check-label">Yes</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" name="retested" type="radio" value="No">
+                <label class="form-check-label">No</label>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <label class="form-label">Issue Fixed?</label>
+            <div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" name="fixed" type="radio" value="Yes" required>
+                <label class="form-check-label">Yes</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" name="fixed" type="radio" value="No">
+                <label class="form-check-label">No</label>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <label for="retestComments" class="form-label">Retest Comments (optional)</label>
+            <textarea id="retestComments" class="form-control" rows="1"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5. Internal Comments -->
+      <div class="form-section">
+        <h5>Internal Comments & Priority</h5>
+        <div class="mb-3">
+          <label for="groupComments" class="form-label">Group Digital Office Comments</label>
+          <textarea id="groupComments" class="form-control" rows="1"></textarea>
+        </div>
+        <div class="row gy-3">
+          <div class="col-md-3">
+            <label for="priority" class="form-label">Priority <span class="text-danger">*</span></label>
+            <select id="priority" class="form-select" required>
+              <option value="">Choose…</option>
+              <option>High</option>
+              <option>Medium</option>
+              <option>Low</option>
+            </select>
+          </div>
+          <div class="col-md-3">
+            <label for="qaStatus" class="form-label">QA Status <span class="text-danger">*</span></label>
+            <select id="qaStatus" class="form-select" required>
+              <option value="">Choose…</option>
+              <option>Pending</option>
+              <option>In Progress</option>
+              <option>Complete</option>
+            </select>
+          </div>
+          <div class="col-md-6">
+            <label for="qaComments" class="form-label">QA Comments</label>
+            <textarea id="qaComments" class="form-control" rows="1"></textarea>
+          </div>
+        </div>
+        <div class="mt-3">
+          <label for="businessComments" class="form-label">Business Comments</label>
+          <textarea id="businessComments" class="form-control" rows="1"></textarea>
+        </div>
+      </div>
+
+      <!-- 6. Attachments -->
+      <div class="form-section">
+        <h5>Images & Descriptions</h5>
+        <input type="file"
+               class="filepond"
+               name="images"
+               id="images"
+               multiple
+               data-max-file-size="5MB"
+               data-instant-upload="false" />
+      </div>
+
+      <button type="submit" class="btn btn-primary">Submit Issue</button>
+    </form>
+  </div>
+
+  <!-- Dependencies -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.5.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/filepond/dist/filepond.js"></script>
+
+  <script>
+    // 1) Auto-populate Date, ID, and Reported By
+    document.addEventListener('DOMContentLoaded', () => {
+      // Date
+      document.getElementById('date').value = new Date().toLocaleDateString();
+      // ID (simple timestamp-based)
+      document.getElementById('issueId').value = 'KM-' + Date.now();
+      // Reported By: assume SharePoint provides user’s name in _spPageContextInfo
+      const user = window._spPageContextInfo?.userDisplayName || 'Unknown User';
+      document.getElementById('reportedBy').value = user;
+      // Initialize FilePond
+      FilePond.create(document.querySelector('input[type="file"]'), {
+        allowImagePreview: true,
+        imagePreviewMaxHeight: 120
+      });
+    });
+
+    // 2) Handle form submission
+    document.getElementById('issueForm').addEventListener('submit', e => {
+      e.preventDefault();
+      const formData = new FormData(e.target);
+      // TODO: POST formData to your SharePoint‐backed API
+      console.log('Will send to SharePoint list:', Object.fromEntries(formData));
+      alert('Issue submitted! Thank you.');
+      e.target.reset();
+    });
+  </script>
+</body>
+</html
