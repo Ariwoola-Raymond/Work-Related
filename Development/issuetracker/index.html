@@ -13,8 +13,68 @@
     href="https://unpkg.com/filepond/dist/filepond.css"
     rel="stylesheet">
   <style>
-    .form-section { margin-bottom: 2rem; }
-    .form-section h5 { border-bottom: 1px solid #ddd; padding-bottom: .5rem; }
+    body {
+      background: linear-gradient(120deg, #f8fafc 0%, #e9ecef 100%);
+      min-height: 100vh;
+    }
+    .form-section {
+      margin-bottom: 2.5rem;
+      background: #fff;
+      border-radius: 1rem;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+      padding: 2rem 1.5rem 1.5rem 1.5rem;
+    }
+    .form-section h5 {
+      border-bottom: 2px solid #e3e6ea;
+      padding-bottom: .7rem;
+      margin-bottom: 1.5rem;
+      font-weight: 600;
+      color: #2d3a4b;
+      letter-spacing: 0.5px;
+    }
+    label.form-label, .form-check-label {
+      font-weight: 500;
+      color: #34495e;
+    }
+    .form-control, .form-select {
+      border-radius: .5rem;
+      border: 1px solid #d1d5db;
+      background: #f9fafb;
+      transition: border-color 0.2s;
+    }
+    .form-control:focus, .form-select:focus {
+      border-color: #4f8cff;
+      box-shadow: 0 0 0 2px #e3f0ff;
+      background: #fff;
+    }
+    .form-check-input:checked {
+      background-color: #4f8cff;
+      border-color: #4f8cff;
+    }
+    .btn-primary {
+      background: linear-gradient(90deg, #4f8cff 0%, #1e6fff 100%);
+      border: none;
+      border-radius: .5rem;
+      font-weight: 600;
+      padding: .7rem 2.5rem;
+      box-shadow: 0 2px 8px rgba(79,140,255,0.08);
+      transition: background 0.2s;
+    }
+    .btn-primary:hover {
+      background: linear-gradient(90deg, #1e6fff 0%, #4f8cff 100%);
+    }
+    .text-danger {
+      font-weight: 700;
+      font-size: 1.1em;
+    }
+    textarea.form-control {
+      min-height: 60px;
+    }
+    @media (max-width: 600px) {
+      .form-section {
+        padding: 1rem;
+      }
+    }
   </style>
 </head>
 <body class="bg-light py-4">
@@ -199,4 +259,4 @@
     });
   </script>
 </body>
-</html
+</html>

@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>KM Chatbot Issue Submission</title>
+    <!-- Tailwind CSS (via CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Dropzone.js CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/dropzone.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-gray-100 py-8">
+    <div class="max-w-4xl mx-auto px-4">
+        <h1 class="text-3xl font-bold text-gray-800 mb-6">Submit KM Chatbot Issue</h1>
+        <form id="issueForm" class="space-y-6">
+
+            <!-- 1. Issue Details -->
+            <div class="bg-white rounded-2xl shadow-lg p-6">
+                <h2 class="text-xl font-semibold text-gray-700 mb-4">Issue Details</h2>
+                <div class="grid gap-4 md:grid-cols-3">
+                    <div>
+                        <label for="date" class="block text-gray-600 mb-1">Date</label>
+                        <input id="date" disabled
+                            class="w-full border border-gray-300 rounded-lg px-3 py-2 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-400" />
+                    </div>
+                    <div>
+                        <label for="issueId" class="block text-gray-600 mb-1">ID</label>
+                        <input id="issueId" disabled
+                            class="w-full border border-gray-300 rounded-lg px-3 py-2 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-400" />
+                    </div>
+                    <div>
+                        <label for="reportedBy" class="block text-gray-600 mb-1">Reported By</label>
+                        <input id="reportedBy" disabled
+                            class="w-full border border-gray-300 rounded-lg px-3 py-2 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-400" />
+                    </div>
+                </div>
+                <div class="mt-4">
+                    <label for="repository" class="block text-gray-600 mb-1">
+                        Repository <span class="text-red-500">*</span>
+                    </label>
+                    <select id="repository" required
+                        class="w-full border border-gray-300 rounded-lg px-3 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-blue-400">
+                        <option value="">Choose…</option>
+                        <option>enbd_miscellaneous</option>
+                        <option>enbd_ccms</option>
+                        <!-- etc. -->
+                    </select>
+                </div>
+            </div>
+
+            <!-- 2. Chatbot Interaction -->
+            <div class="bg-white rounded-2xl shadow-lg p-6">
+                <h2 class="text-xl font-semibold text-gray-700 mb-4">Chatbot Interaction</h2>
+                <div class="space-y-4">
+                    <div>
+                        <label for="question" class="block text-gray-600 mb-1">
+                            Question <span class="text-red-500">*</span>
+                        </label>
+                        <textarea id="question" rows="2" required
+                            class="w-full border border-gray-300 rounded-lg px-3 py-2 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-400"></textarea>
+                    </div>
+                    <div class="grid gap-4 md:grid-cols-2">
+                        <div>
+                            <label for="expected" class="block text-gray-600 mb-1">
+                                Expected Response <span class="text-red-500">*</span>
+                            </label>
+                            <textarea id="expected" rows="2" required
+                                class="w-full border border-gray-300 rounded-lg px-3 py-2 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-400"></textarea>
+                        </div>
+                        <div>
+                            <label for="genai" class="block text-gray-600 mb-1">
+                                GenAI Response <span class="text-red-500">*</span>
+                            </label>
+                            <textarea id="genai" rows="2" required
+                                class="w-full border border-gray-300 rounded-lg px-3 py-2 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-400"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. User Feedback -->
+            <div class="bg-white rounded-2xl shadow-lg p-6">
+                <h2 class="text-xl font-semibold text-gray-700 mb-4">User Feedback</h2>
+                <label for="userComments" class="block text-gray-600 mb-1">Comments (optional)</label>
+                <textarea id="userComments" rows="2"
+                    class="w-full border border-gray-300 rounded-lg px-3 py-2 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-400"></textarea>
+            </div>
+
+            <!-- 4. Testing & Resolution -->
+            <div class="bg-white rounded-2xl shadow-lg p-6">
+                <h2 class="text-xl font-semibold text-gray-700 mb-4">Testing & Resolution</h2>
+                <div class="grid gap-4 md:grid-cols-3">
+                    <div>
+                        <p class="text-gray-600 mb-1">Retested? <span class="text-red-500">*</span></p>
+                        <div class="flex items-center space-x-4">
+                            <label class="inline-flex items-center">
+                                <input type="radio" name="retested" value="Yes" required
+                                    class="form-radio text-blue-500" />
+                                <span class="ml-2">Yes</span>
+                            </label>
+                            <label class="inline-flex items-center">
+                                <input type="radio" name="retested" value="No" class="form-radio text-blue-500" />
+                                <span class="ml-2">No</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div>
+                        <p class="text-gray-600 mb-1">Issue Fixed? <span class="text-red-500">*</span></p>
+                        <div class="flex items-center space-x-4">
+                            <label class="inline-flex items-center">
+                                <input type="radio" name="fixed" value="Yes" required
+                                    class="form-radio text-blue-500" />
+                                <span class="ml-2">Yes</span>
+                            </label>
+                            <label class="inline-flex items-center">
+                                <input type="radio" name="fixed" value="No" class="form-radio text-blue-500" />
+                                <span class="ml-2">No</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div>
+                        <label for="retestComments" class="block text-gray-600 mb-1">Retest Comments (optional)</label>
+                        <textarea id="retestComments" rows="1"
+                            class="w-full border border-gray-300 rounded-lg px-3 py-2 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-400"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 5. Internal Comments & Priority -->
+            <div class="bg-white rounded-2xl shadow-lg p-6">
+                <h2 class="text-xl font-semibold text-gray-700 mb-4">Internal Comments & Priority</h2>
+                <div class="space-y-4">
+                    <div>
+                        <label for="groupComments" class="block text-gray-600 mb-1">Group Digital Office
+                            Comments</label>
+                        <textarea id="groupComments" rows="1"
+                            class="w-full border border-gray-300 rounded-lg px-3 py-2 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-400"></textarea>
+                    </div>
+                    <div class="grid gap-4 md:grid-cols-3">
+                        <div>
+                            <label for="priority" class="block text-gray-600 mb-1">
+                                Priority <span class="text-red-500">*</span>
+                            </label>
+                            <select id="priority" required
+                                class="w-full border border-gray-300 rounded-lg px-3 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-blue-400">
+                                <option value="">Choose…</option>
+                                <option>High</option>
+                                <option>Medium</option>
+                                <option>Low</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="qaStatus" class="block text-gray-600 mb-1">
+                                QA Status <span class="text-red-500">*</span>
+                            </label>
+                            <select id="qaStatus" required
+                                class="w-full border border-gray-300 rounded-lg px-3 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-blue-400">
+                                <option value="">Choose…</option>
+                                <option>Pending</option>
+                                <option>In Progress</option>
+                                <option>Complete</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="qaComments" class="block text-gray-600 mb-1">QA Comments</label>
+                            <textarea id="qaComments" rows="1"
+                                class="w-full border border-gray-300 rounded-lg px-3 py-2 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-400"></textarea>
+                        </div>
+                    </div>
+                    <div>
+                        <label for="businessComments" class="block text-gray-600 mb-1">Business Comments</label>
+                        <textarea id="businessComments" rows="1"
+                            class="w-full border border-gray-300 rounded-lg px-3 py-2 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-400"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 6. Attachments -->
+            <div class="bg-white rounded-2xl shadow-lg p-6">
+                <h2 class="text-xl font-semibold text-gray-700 mb-4">Attachments</h2>
+                <div id="dropzone" class="dropzone border-2 border-dashed border-gray-300 rounded-lg p-6 text-center">
+                    <p class="text-gray-500">Drag & drop images here, or click to select files</p>
+                </div>
+            </div>
+
+            <!-- Submit -->
+            <button type="submit"
+                class="w-full md:w-auto bg-blue-600 text-white font-semibold rounded-lg px-6 py-3 hover:bg-blue-700 transition">
+                Submit Issue
+            </button>
+        </form>
+    </div>
+
+    <!-- Dropzone.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/min/dropzone.min.js"></script>
+    <script>
+
+
+
+
+
+    </script>
+
+    <script>
+        // Grab references
+        const form = document.getElementById('issueForm');
+        const submitBtn = form.querySelector('button[type="submit"]');
+
+        // 1) Disable by default
+        submitBtn.disabled = true;
+
+        // 2) Toggle based on validity
+        const toggleSubmit = () => {
+            // form.checkValidity() returns false if any required field is empty/invalid
+            submitBtn.disabled = !form.checkValidity();
+        };
+
+        form.addEventListener('input', toggleSubmit);
+        form.addEventListener('change', toggleSubmit);
+
+        // Disable auto discover, then initialize
+        Dropzone.autoDiscover = false;
+        const dz = new Dropzone("#dropzone", {
+            url: "#",           // will wire to SharePoint later
+            autoProcessQueue: false,
+            maxFilesize: 5,     // MB
+            acceptedFiles: "image/*"
+        });
+
+        // Auto-populate date, ID, reportedBy
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('date').value = new Date().toLocaleDateString();
+            document.getElementById('issueId').value = 'KM-' + Date.now();
+            const user = window._spPageContextInfo?.userDisplayName || 'Unknown User';
+            document.getElementById('reportedBy').value = user;
+        });
+
+
+        // 3) On submit, immediately disable & show “Submitting…”
+        form.addEventListener('submit', e => {
+            // Prevent default only if you’re doing async posting here.
+            e.preventDefault();
+
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Submitting…';
+
+            // Then proceed to your SharePoint API call...
+
+            // gather and send form data + files to your SharePoint flow...
+            alert('Issue submitted!');
+            e.target.reset();
+            dz.removeAllFiles();
+            // When done, you can reset the button or redirect.
+        });
+
+    </script>
+</body>
+
+</html>

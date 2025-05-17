@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>KM Chatbot Issue Submission</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Dropzone.js -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/dropzone.min.css" rel="stylesheet">
+
+    <!-- Toastify.js -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css" />
+
+    <style>
+        /* Hide all steps by default */
+        .form-step {
+            display: none;
+        }
+
+        .form-step.active {
+            display: block;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100 py-8">
+
+    <div class="max-w-4xl mx-auto px-4">
+
+        <h1 class="text-3xl font-bold text-gray-800 mb-6">
+            Submit KM Chatbot Issue
+        </h1>
+
+        <!-- Progress Bar -->
+        <div class="mb-6">
+            <div class="w-full bg-gray-200 rounded-full h-2">
+                <div id="progress" class="bg-blue-600 h-2 rounded-full" style="width:0%"></div>
+            </div>
+            <p class="text-right text-sm text-gray-600 mt-1">
+                Step <span id="currentStep">1</span> of <span id="totalSteps">6</span>
+            </p>
+        </div>
+
+        <form id="issueForm" class="space-y-6 bg-white rounded-2xl shadow-lg p-6">
+
+            <!-- STEP 1: Issue Details -->
+            <div class="form-step active" data-step="1">
+                <h2 class="text-xl font-semibold text-gray-700 mb-4">Issue Details</h2>
+                <div class="grid gap-4 md:grid-cols-3">
+                    <div>
+                        <label for="date" class="block text-gray-600 mb-1">Date</label>
+                        <input id="date" disabled
+                            class="w-full border border-gray-300 rounded-lg px-3 py-2 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-400" />
+                    </div>
+                    <div>
+                        <label for="issueId" class="block text-gray-600 mb-1">ID</label>
+                        <input id="issueId" disabled
+                            class="w-full border border-gray-300 rounded-lg px-3 py-2 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-400" />
+                    </div>
+                    <div>
+                        <label for="reportedBy" class="block text-gray-600 mb-1">Reported By</label>
+                        <input id="reportedBy" disabled
+                            class="w-full border border-gray-300 rounded-lg px-3 py-2 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-400" />
+                    </div>
+                </div>
+                <div class="mt-4">
+                    <label for="repository" class="block text-gray-600 mb-1">
+                        Repository <span class="text-red-500">*</span>
+                    </label>
+                    <select id="repository" required
+                        class="w-full border border-gray-300 rounded-lg px-3 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-blue-400">
+                        <option value="">Choose…</option>
+                        <option>enbd_miscellaneous</option>
+                        <option>enbd_ccms</option>
+                        <!-- etc. -->
+                    </select>
+                </div>
+            </div>
+
+            <!-- STEP 2: Chatbot Interaction -->
+            <div class="form-step" data-step="2">
+                <h2 class="text-xl font-semibold text-gray-700 mb-4">Chatbot Interaction</h2>
+                <div class="space-y-4">
+                    <div>
+                        <label for="question" class="block text-gray-600 mb-1">
+                            Question <span class="text-red-500">*</span>
+                        </label>
+                        <textarea id="question" rows="2" required
+                            class="w-full border border-gray-300 rounded-lg px-3 py-2 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-400"></textarea>
+                    </div>
+                    <div class="grid gap-4 md:grid-cols-2">
+                        <div>
+                            <label for="expected" class="block text-gray-600 mb-1">
+                                Expected Response <span class="text-red-500">*</span>
+                            </label>
+                            <textarea id="expected" rows="2" required
+                                class="w-full border border-gray-300 rounded-lg px-3 py-2 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-400"></textarea>
+                        </div>
+                        <div>
+                            <label for="genai" class="block text-gray-600 mb-1">
+                                GenAI Response <span class="text-red-500">*</span>
+                            </label>
+                            <textarea id="genai" rows="2" required
+                                class="w-full border border-gray-300 rounded-lg px-3 py-2 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-400"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STEP 3: User Feedback -->
+            <div class="form-step" data-step="3">
+                <h2 class="text-xl font-semibold text-gray-700 mb-4">User Feedback</h2>
+                <label for="userComments" class="block text-gray-600 mb-1">
+                    Comments <span class="text-gray-500">(optional)</span>
+                </label>
+                <textarea id="userComments" rows="3"
+                    class="w-full border border-gray-300 rounded-lg px-3 py-2 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-400"
+                    data-storage-key="userComments"></textarea>
+                <p class="text-sm text-gray-500 mt-1">
+                    <span id="counter-userComments">0</span>/500 chars
+                </p>
+            </div>
+
+            <!-- STEP 4: Testing & Resolution -->
+            <div class="form-step" data-step="4">
+                <h2 class="text-xl font-semibold text-gray-700 mb-4">Testing & Resolution</h2>
+                <!-- Retested & Fixed radios -->
+                <div class="grid gap-4 md:grid-cols-3">
+                    <div>
+                        <p class="text-gray-600 mb-1">Retested? <span class="text-red-500">*</span></p>
+                        <div class="flex items-center space-x-4">
+                            <label class="inline-flex items-center">
+                                <input type="radio" name="retested" value="Yes" required
+                                    class="form-radio text-blue-500" />
+                                <span class="ml-2">Yes</span>
+                            </label>
+                            <label class="inline-flex items-center">
+                                <input type="radio" name="retested" value="No" class="form-radio text-blue-500" />
+                                <span class="ml-2">No</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div>
+                        <p class="text-gray-600 mb-1">Issue Fixed? <span class="text-red-500">*</span></p>
+                        <div class="flex items-center space-x-4">
+                            <label class="inline-flex items-center">
+                                <input type="radio" name="fixed" value="Yes" required
+                                    class="form-radio text-blue-500" />
+                                <span class="ml-2">Yes</span>
+                            </label>
+                            <label class="inline-flex items-center">
+                                <input type="radio" name="fixed" value="No" class="form-radio text-blue-500" />
+                                <span class="ml-2">No</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div id="retestSection" class="mt-4 hidden">
+                    <label for="retestComments" class="block text-gray-600 mb-1">
+                        Retest Comments (optional)
+                    </label>
+                    <textarea id="retestComments" rows="2"
+                        class="w-full border border-gray-300 rounded-lg px-3 py-2 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-400"
+                        data-storage-key="retestComments"></textarea>
+                    <p class="text-sm text-gray-500 mt-1">
+                        <span id="counter-retestComments">0</span>/300 chars
+                    </p>
+                </div>
+            </div>
+
+            <!-- STEP 5: Internal Comments & Priority -->
+            <div class="form-step" data-step="5">
+                <h2 class="text-xl font-semibold text-gray-700 mb-4">
+                    Internal Comments & Priority
+                </h2>
+                <div class="space-y-4">
+                    <div>
+                        <label for="groupComments" class="block text-gray-600 mb-1">Group Digital Office
+                            Comments</label>
+                        <textarea id="groupComments" rows="1"
+                            class="w-full border border-gray-300 rounded-lg px-3 py-2 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-400"></textarea>
+                    </div>
+                    <div class="grid gap-4 md:grid-cols-3">
+                        <div>
+                            <label for="priority" class="block text-gray-600 mb-1">
+                                Priority <span class="text-red-500">*</span>
+                            </label>
+                            <select id="priority" required
+                                class="w-full border border-gray-300 rounded-lg px-3 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-blue-400">
+                                <option value="">Choose…</option>
+                                <option>High</option>
+                                <option>Medium</option>
+                                <option>Low</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="qaStatus" class="block text-gray-600 mb-1">
+                                QA Status <span class="text-red-500">*</span>
+                            </label>
+                            <select id="qaStatus" required
+                                class="w-full border border-gray-300 rounded-lg px-3 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-blue-400">
+                                <option value="">Choose…</option>
+                                <option>Pending</option>
+                                <option>In Progress</option>
+                                <option>Complete</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="qaComments" class="block text-gray-600 mb-1">QA Comments</label>
+                            <textarea id="qaComments" rows="1"
+                                class="w-full border border-gray-300 rounded-lg px-3 py-2 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-400"></textarea>
+                        </div>
+                    </div>
+                    <div>
+                        <label for="businessComments" class="block text-gray-600 mb-1">Business Comments</label>
+                        <textarea id="businessComments" rows="1"
+                            class="w-full border border-gray-300 rounded-lg px-3 py-2 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-400"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STEP 6: Attachments -->
+            <div class="form-step" data-step="6">
+                <h2 class="text-xl font-semibold text-gray-700 mb-4">Attachments</h2>
+                <div id="dropzone" class="dropzone border-2 border-dashed border-gray-300 rounded-lg p-6 text-center">
+                    <p class="text-gray-500">
+                        Drag & drop images here, or click to select files
+                    </p>
+                </div>
+            </div>
+
+            <!-- Navigation Buttons -->
+            <div class="flex justify-between">
+                <button type="button" id="prevBtn"
+                    class="bg-gray-300 text-gray-700 font-semibold rounded-lg px-6 py-3 hover:bg-gray-400 transition"
+                    disabled>Previous</button>
+                <button type="button" id="nextBtn"
+                    class="bg-blue-600 text-white font-semibold rounded-lg px-6 py-3 hover:bg-blue-700 transition">
+                    Next
+                </button>
+                <button type="submit" id="submitBtn"
+                    class="bg-green-600 text-white font-semibold rounded-lg px-6 py-3 hover:bg-green-700 transition hidden">
+                    Submit Issue
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Dependencies -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/min/dropzone.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
+    <script>
+        // --- Wizard Setup ---
+        const steps = Array.from(document.querySelectorAll('.form-step'));
+        const total = steps.length;
+        let current = 1;
+        document.getElementById('totalSteps').textContent = total;
+        const progress = el => {
+            const pct = (current / total) * 100;
+            document.getElementById('progress').style.width = pct + '%';
+            document.getElementById('currentStep').textContent = current;
+        };
+
+        const showStep = n => {
+            steps.forEach(s => s.classList.remove('active'));
+            steps[n - 1].classList.add('active');
+            document.getElementById('prevBtn').disabled = (n === 1);
+            document.getElementById('nextBtn').classList.toggle('hidden', n === total);
+            document.getElementById('submitBtn').classList.toggle('hidden', n < total);
+            progress();
+        };
+
+        document.getElementById('nextBtn').addEventListener('click', () => {
+            // validate current step’s required fields
+            const inputs = steps[current - 1].querySelectorAll('[required]');
+            for (let inp of inputs) {
+                if (!inp.checkValidity()) {
+                    inp.reportValidity();
+                    return;
+                }
+            }
+            current = Math.min(current + 1, total);
+            showStep(current);
+        });
+        document.getElementById('prevBtn').addEventListener('click', () => {
+            current = Math.max(current - 1, 1);
+            showStep(current);
+        });
+
+        // --- LocalStorage Drafting & Counters ---
+        const draftFields = document.querySelectorAll('[data-storage-key]');
+        draftFields.forEach(field => {
+            const key = field.dataset.storageKey;
+            // load saved value
+            const saved = localStorage.getItem(key);
+            if (saved) field.value = saved;
+            // update counter if present
+            const counter = document.getElementById(`counter-${key}`);
+            const updateCounter = () => {
+                if (counter) counter.textContent = field.value.length;
+            };
+            updateCounter();
+            // save on input
+            field.addEventListener('input', () => {
+                localStorage.setItem(key, field.value);
+                updateCounter();
+            });
+        });
+
+        // --- Conditional Retest Comments ---
+        document.getElementsByName('retested').forEach(radio => {
+            radio.addEventListener('change', e => {
+                document.getElementById('retestSection')
+                    .classList.toggle('hidden', e.target.value !== 'Yes');
+            });
+        });
+
+        // --- Initialize Dropzone (no auto-upload) ---
+        Dropzone.autoDiscover = false;
+        new Dropzone('#dropzone', {
+            url: '#', autoProcessQueue: false,
+            maxFilesize: 5, acceptedFiles: 'image/*'
+        });
+
+        // --- Auto-populate & Final Submit ---
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('date').value = new Date().toLocaleDateString();
+            document.getElementById('issueId').value = 'KM-' + Date.now();
+            const user = window._spPageContextInfo?.userDisplayName || 'Unknown User';
+            document.getElementById('reportedBy').value = user;
+            progress();
+        });
+
+        document.getElementById('issueForm')
+            .addEventListener('submit', e => {
+                e.preventDefault();
+                // TODO: send form + files to SharePoint…
+
+                // On success:
+                Toastify({
+                    text: "Issue successfully submitted!",
+                    duration: 3000,
+                    gravity: "top",
+                    position: "right",
+                    backgroundColor: "#38a169"
+                }).showToast();
+
+                // Clear draft & reset
+                draftFields.forEach(f => localStorage.removeItem(f.dataset.storageKey));
+                e.target.reset();
+                current = 1; showStep(current);
+            });
+    </script>
+</body>
+
+</html>
