@@ -62,15 +62,18 @@
                     </div>
                     <div>
                         <label for="reportedBy" class="block text-gray-600 mb-1">Reported By</label>
-                        <input id="reportedBy" disabled
+                        <input id="reportedBy" maxlength="100" data-storage-key="reportedBy"
                             class="w-full border border-gray-300 rounded-lg px-3 py-2 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-400" />
+                        <p class="text-sm text-gray-500 mt-1">
+                            <span id="counter-reportedBy">0</span>/100 chars
+                        </p>
                     </div>
                 </div>
                 <div class="mt-4">
                     <label for="repository" class="block text-gray-600 mb-1">
                         Repository <span class="text-red-500">*</span>
                     </label>
-                    <select id="repository" required
+                    <select id="repository" data-storage-key="repository" required
                         class="w-full border border-gray-300 rounded-lg px-3 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-blue-400">
                         <option value="">Choose…</option>
                         <option>enbd_miscellaneous</option>
@@ -88,23 +91,32 @@
                         <label for="question" class="block text-gray-600 mb-1">
                             Question <span class="text-red-500">*</span>
                         </label>
-                        <textarea id="question" rows="2" required
+                        <textarea id="question" rows="2" maxlength="250" data-storage-key="question" required
                             class="w-full border border-gray-300 rounded-lg px-3 py-2 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-400"></textarea>
+                        <p class="text-sm text-gray-500 mt-1">
+                            <span id="counter-question">0</span>/250 chars
+                        </p>
                     </div>
                     <div class="grid gap-4 md:grid-cols-2">
                         <div>
                             <label for="expected" class="block text-gray-600 mb-1">
                                 Expected Response <span class="text-red-500">*</span>
                             </label>
-                            <textarea id="expected" rows="2" required
+                            <textarea id="expected" rows="2" maxlength="250" data-storage-key="expected" required
                                 class="w-full border border-gray-300 rounded-lg px-3 py-2 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-400"></textarea>
+                            <p class="text-sm text-gray-500 mt-1">
+                                <span id="counter-expected">0</span>/250 chars
+                            </p>
                         </div>
                         <div>
                             <label for="genai" class="block text-gray-600 mb-1">
                                 GenAI Response <span class="text-red-500">*</span>
                             </label>
-                            <textarea id="genai" rows="2" required
+                            <textarea id="genai" rows="2" maxlength="250" data-storage-key="genai" required
                                 class="w-full border border-gray-300 rounded-lg px-3 py-2 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-400"></textarea>
+                            <p class="text-sm text-gray-500 mt-1">
+                                <span id="counter-genai">0</span>/250 chars
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -116,9 +128,13 @@
                 <label for="userComments" class="block text-gray-600 mb-1">
                     Comments <span class="text-gray-500">(optional)</span>
                 </label>
-                <textarea id="userComments" rows="3"
+                <textarea
+                    id="userComments"
+                    rows="3"
+                    maxlength="500"
+                    data-storage-key="userComments"
                     class="w-full border border-gray-300 rounded-lg px-3 py-2 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-400"
-                    data-storage-key="userComments"></textarea>
+                ></textarea>
                 <p class="text-sm text-gray-500 mt-1">
                     <span id="counter-userComments">0</span>/500 chars
                 </p>
@@ -133,12 +149,13 @@
                         <p class="text-gray-600 mb-1">Retested? <span class="text-red-500">*</span></p>
                         <div class="flex items-center space-x-4">
                             <label class="inline-flex items-center">
-                                <input type="radio" name="retested" value="Yes" required
+                                <input type="radio" name="retested" value="Yes" data-storage-key="retested" required
                                     class="form-radio text-blue-500" />
                                 <span class="ml-2">Yes</span>
                             </label>
                             <label class="inline-flex items-center">
-                                <input type="radio" name="retested" value="No" class="form-radio text-blue-500" />
+                                <input type="radio" name="retested" value="No" data-storage-key="retested"
+                                    class="form-radio text-blue-500" />
                                 <span class="ml-2">No</span>
                             </label>
                         </div>
@@ -147,12 +164,13 @@
                         <p class="text-gray-600 mb-1">Issue Fixed? <span class="text-red-500">*</span></p>
                         <div class="flex items-center space-x-4">
                             <label class="inline-flex items-center">
-                                <input type="radio" name="fixed" value="Yes" required
+                                <input type="radio" name="fixed" value="Yes" data-storage-key="fixed" required
                                     class="form-radio text-blue-500" />
                                 <span class="ml-2">Yes</span>
                             </label>
                             <label class="inline-flex items-center">
-                                <input type="radio" name="fixed" value="No" class="form-radio text-blue-500" />
+                                <input type="radio" name="fixed" value="No" data-storage-key="fixed"
+                                    class="form-radio text-blue-500" />
                                 <span class="ml-2">No</span>
                             </label>
                         </div>
@@ -162,9 +180,13 @@
                     <label for="retestComments" class="block text-gray-600 mb-1">
                         Retest Comments (optional)
                     </label>
-                    <textarea id="retestComments" rows="2"
+                    <textarea
+                        id="retestComments"
+                        rows="2"
+                        maxlength="300"
+                        data-storage-key="retestComments"
                         class="w-full border border-gray-300 rounded-lg px-3 py-2 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-400"
-                        data-storage-key="retestComments"></textarea>
+                    ></textarea>
                     <p class="text-sm text-gray-500 mt-1">
                         <span id="counter-retestComments">0</span>/300 chars
                     </p>
@@ -188,7 +210,7 @@
                             <label for="priority" class="block text-gray-600 mb-1">
                                 Priority <span class="text-red-500">*</span>
                             </label>
-                            <select id="priority" required
+                            <select id="priority" data-storage-key="priority" required
                                 class="w-full border border-gray-300 rounded-lg px-3 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-blue-400">
                                 <option value="">Choose…</option>
                                 <option>High</option>
@@ -200,7 +222,7 @@
                             <label for="qaStatus" class="block text-gray-600 mb-1">
                                 QA Status <span class="text-red-500">*</span>
                             </label>
-                            <select id="qaStatus" required
+                            <select id="qaStatus" data-storage-key="qaStatus" required
                                 class="w-full border border-gray-300 rounded-lg px-3 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-blue-400">
                                 <option value="">Choose…</option>
                                 <option>Pending</option>
@@ -294,21 +316,43 @@
         // --- LocalStorage Drafting & Counters ---
         const draftFields = document.querySelectorAll('[data-storage-key]');
         draftFields.forEach(field => {
-            const key = field.dataset.storageKey;
-            // load saved value
-            const saved = localStorage.getItem(key);
-            if (saved) field.value = saved;
-            // update counter if present
-            const counter = document.getElementById(`counter-${key}`);
-            const updateCounter = () => {
-                if (counter) counter.textContent = field.value.length;
-            };
+          const key = field.dataset.storageKey;
+          const max = parseInt(field.getAttribute('maxlength'));
+
+          // load saved draft
+          const saved = localStorage.getItem(key);
+          if (saved !== null) {
+            if (field.tagName === 'SELECT') {
+              field.value = saved;
+            } else if (field.type === 'radio' || field.type === 'checkbox') {
+              field.checked = saved === 'true';
+            } else {
+              field.value = saved;
+            }
+          }
+
+          // counter element
+          const counter = document.getElementById(`counter-${key}`);
+          const updateCounter = () => counter && (counter.textContent = field.value.length);
+
+          // initial count
+          updateCounter();
+
+          // Save on input/change, trim overflow if needed
+          const saveValue = () => {
+            if (max && field.value.length > max) {
+              field.value = field.value.slice(0, max);
+            }
             updateCounter();
-            // save on input
-            field.addEventListener('input', () => {
-                localStorage.setItem(key, field.value);
-                updateCounter();
-            });
+            if (field.type === 'radio' || field.type === 'checkbox') {
+              localStorage.setItem(key, field.checked);
+            } else {
+              localStorage.setItem(key, field.value);
+            }
+          };
+
+          field.addEventListener('input', saveValue);
+          field.addEventListener('change', saveValue);
         });
 
         // --- Conditional Retest Comments ---
@@ -348,12 +392,36 @@
                     position: "right",
                     backgroundColor: "#38a169"
                 }).showToast();
-
                 // Clear draft & reset
                 draftFields.forEach(f => localStorage.removeItem(f.dataset.storageKey));
                 e.target.reset();
                 current = 1; showStep(current);
             });
+
+        // --- Enable/Disable Submit Button Based on Form Validity ---
+        const form = document.getElementById('issueForm');
+        const submitBtn = document.getElementById('submitBtn');
+
+        // Helper to toggle submit button
+        function toggleSubmitBtn() {
+            // Only enable on last step and if form is valid
+            const isLastStep = current === total;
+            submitBtn.disabled = !(isLastStep && form.checkValidity());
+        }
+
+        // Listen for input/change on all fields to re-check validity
+        form.addEventListener('input', toggleSubmitBtn);
+        form.addEventListener('change', toggleSubmitBtn);
+
+        // Also check on step change
+        const originalShowStep = showStep;
+        showStep = function(n) {
+            originalShowStep(n);
+            toggleSubmitBtn();
+        };
+
+        // Initial state
+        toggleSubmitBtn();
     </script>
 </body>
 
