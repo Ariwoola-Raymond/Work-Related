@@ -1,0 +1,17 @@
+# Ignore all image files in the repository
+*.jpg
+*.jpeg
+*.png
+*.gif
+*.webp
+*.bmp
+*.tiff
+
+# Optionally, ignore images in specific folders (e.g., assets/photos/)
+assets/photos/*.jpg
+assets/photos/*.jpeg
+assets/photos/*.png
+assets/photos/*.gif
+assets/photos/*.webp
+assets/photos/*.bmp
+assets/photos/*.tiff
