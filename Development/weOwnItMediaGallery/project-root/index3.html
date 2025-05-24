@@ -27,6 +27,12 @@
     div#loader {
       margin-top: -7rem;
     }
+
+    /* Greyscale effect for selected images */
+    .group.selected img {
+      filter: grayscale(1) brightness(0.85);
+      transition: filter 0.2s;
+    }
   </style>
 </head>
 
@@ -141,11 +147,12 @@
       checkboxes.forEach(cb => {
         const card = cb.closest('.group');
         const checkmark = card.querySelector('.checkmark');
+        const img = card.querySelector('img');
         if (cb.checked) {
-          card.classList.add('ring', 'ring-blue-500', 'ring-2');
+          card.classList.add('ring', 'ring-blue-500', 'ring-2', 'selected');
           checkmark.classList.remove('hidden');
         } else {
-          card.classList.remove('ring', 'ring-blue-500', 'ring-2');
+          card.classList.remove('ring', 'ring-blue-500', 'ring-2', 'selected');
           checkmark.classList.add('hidden');
         }
         // Disable unchecked checkboxes if at limit
