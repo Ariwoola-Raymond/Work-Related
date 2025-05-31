@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>We Own It 2025</title>
+    <!-- Tailwind CSS -->
+    <script
+        src="https://workplace.emiratesnbd.com/sites/GCE/public/SiteAssets/javascript/third-party/tailwinds3.4.16.js"></script>
+
+    <!-- GLightbox CSS -->
+    <link rel="stylesheet"
+        href="https://workplace.emiratesnbd.com/sites/GCE/public/SiteAssets/css/third-party/glightbox.min.css" />
+
+        
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: #f9fafb;
+        }
+
+        #gallery {
+            padding-bottom: 10rem;
+        }
+
+        div#loader {
+            margin-top: -7rem;
+        }
+
+        /* Greyscale effect for selected images */
+        .group.selected img {
+            filter: grayscale(1) brightness(0.85);
+            transition: filter 0.2s;
+        }
+    </style>
+</head>
+
+
+<body class="min-h-screen p-6">
+    <!-- required: SharePoint FormDigest -->
+    <form runat="server">
+        <SharePoint:FormDigest runat="server"></SharePoint:FormDigest>
+    </form>
+
+
+    <div class="text-center mb-8">
+        <h1 class="text-4xl font-bold text-gray-800">We Own It - Event Media Gallery</h1>
+        <p class="text-gray-500 mt-2">Scroll to load more photos</p>
+    </div>
+
+    <!-- Gallery Grid -->
+    <form id="printForm">
+        <div id="gallery" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"></div>
+    </form>
+    <div id="loader" class="text-center my-4 hidden">Loading...</div>
+
+    <!-- Fixed Submit Button -->
+    <div id="fixedBar" class="fixed bottom-0 left-0 w-full bg-white border-t border-gray-200 py-4 z-50 shadow-lg">
+        <div class="max-w-3xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 px-4">
+            <div class="flex flex-col items-center sm:items-start">
+                <div id="selectionCount" class="text-blue-700 font-semibold">
+                    0 out of 3 selected
+                </div>
+                <div id="selectionWarning" class="text-red-600 font-semibold hidden text-sm mt-1">
+                    You can select up to 3 images only.
+                </div>
+            </div>
+            <button id="submitBtn" form="printForm" type="submit"
+                class="bg-blue-600 text-white px-6 py-2 rounded-lg font-semibold shadow hover:bg-blue-700 transition w-full sm:w-auto">
+                Submit Selected for Print
+            </button>
+        </div>
+    </div>
+
+    <!-- GLightbox & Plyr Scripts -->
+    <script
+        src="https://workplace.emiratesnbd.com/sites/GCE/public/SiteAssets/javascript/third-party/glightbox.min.js"></script>
+
+    <script>
+
+        const MAX_SELECTION = 3;
+
+        const SP_SITE_URL = 'https://workplace.emiratesnbd.com/sites/GCE/public';
+        const LIBRARY_PATH = 'weownitgallery/';
+        const PAGE_SIZE = 100;
+        let nextPageUrl = `${SP_SITE_URL}/_api/web/GetFolderByServerRelativeUrl('${encodeURIComponent(LIBRARY_PATH)}')/Files?$select=Name,ServerRelativeUrl&$top=${PAGE_SIZE}`;
+        const headers = { 'Accept': 'application/json;odata=nometadata' };
+        let isLoading = false;
+
+        const gallery = document.getElementById('gallery');
+        const selectionWarning = document.getElementById('selectionWarning');
+        const selectionCount = document.getElementById('selectionCount');
+        const fixedBar = document.getElementById('fixedBar');
+        const submitBtn = document.getElementById('submitBtn');
+        const LOCAL_STORAGE_KEY = 'woi_gallery_submitted';
+
+
+        // Check if user already submitted
+        const alreadySubmitted = localStorage.getItem(LOCAL_STORAGE_KEY) === 'true';
+
+        function renderCard(file) {
+            const fullUrl = file.ServerRelativeUrl;
+            const name = file.Name;
+            const card = document.createElement('div');
+            card.className = 'relative group transition';
+            card.innerHTML = `
+        <label class="block cursor-pointer">
+          <input type="checkbox" name="selectedImages" value="${name}" class="image-checkbox absolute top-2 left-2 z-10 w-5 h-5 accent-blue-600 rounded border-gray-300 shadow focus:ring-2 focus:ring-blue-500" ${alreadySubmitted ? 'style="display:none"' : ''}/>
+          <span class="absolute top-2 left-8 bg-white px-2 py-1 rounded text-xs shadow text-gray-700 opacity-80">${name}</span>
+          <a href="${fullUrl}" class="glightbox" data-gallery="media">
+            <img src="${fullUrl}" loading="lazy"
+                 class="w-full h-48 object-cover rounded-lg shadow-md mt-6 transition" alt="${name}" />
+          </a>
+          <a href="${fullUrl}" download
+             class="absolute top-2 right-2 bg-white p-2 rounded-full shadow hover:bg-gray-100">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+            </svg>
+          </a>
+          <span class="checkmark absolute top-2 left-2 z-20 hidden pointer-events-none">
+            <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+            </svg>
+          </span>
+        </label>
+      `;
+            gallery.appendChild(card);
+        }
+
+        // Render all images at once for local testing
+
+
+        // Re-init lightbox
+        GLightbox({ selector: '.glightbox' });
+
+        function updateSelectionUI() {
+            const checkboxes = document.querySelectorAll('.image-checkbox');
+            const checked = document.querySelectorAll('.image-checkbox:checked');
+            const atLimit = checked.length >= MAX_SELECTION;
+
+            // Update selection count text
+            selectionCount.textContent = `${checked.length} out of ${MAX_SELECTION} selected`;
+
+            checkboxes.forEach(cb => {
+                const card = cb.closest('.group');
+                const checkmark = card.querySelector('.checkmark');
+                const img = card.querySelector('img');
+                if (cb.checked) {
+                    card.classList.add('ring', 'ring-blue-500', 'ring-2', 'selected');
+                    checkmark.classList.remove('hidden');
+                } else {
+                    card.classList.remove('ring', 'ring-blue-500', 'ring-2', 'selected');
+                    checkmark.classList.add('hidden');
+                }
+                // Disable unchecked checkboxes if at limit
+                if (!cb.checked) {
+                    cb.disabled = atLimit;
+                    cb.classList.toggle('opacity-50', atLimit);
+                    cb.classList.toggle('cursor-not-allowed', atLimit);
+                } else {
+                    cb.disabled = false;
+                    cb.classList.remove('opacity-50', 'cursor-not-allowed');
+                }
+            });
+
+            // Show/hide warning
+            if (atLimit) {
+                selectionWarning.classList.remove('hidden');
+            } else {
+                selectionWarning.classList.add('hidden');
+            }
+        }
+
+        if (!alreadySubmitted) {
+            gallery.addEventListener('change', function (e) {
+                if (e.target && e.target.matches('input[type="checkbox"].image-checkbox')) {
+                    updateSelectionUI();
+                }
+            });
+
+
+            async function loadNextBatch() {
+                if (!nextPageUrl || isLoading) return;
+                isLoading = true;
+                loader.classList.remove('hidden');
+                try {
+                    const res = await fetch(nextPageUrl, { headers });
+                    const data = await res.json();
+                    const files = data.value.filter(file => /\.(jpe?g|png|webp)$/i.test(file.Name));
+                    files.forEach(file => renderCard(file));
+                    nextPageUrl = data['@odata.nextLink'] || null;
+                    GLightbox({ selector: '.glightbox' });
+                    updateSelectionUI();
+                } catch (err) {
+                    console.error('Error loading images:', err);
+                } finally {
+                    isLoading = false;
+                    loader.classList.add('hidden');
+                }
+            }
+
+            window.addEventListener('scroll', () => {
+                if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 500) {
+                    loadNextBatch();
+                }
+            });
+
+            document.addEventListener('DOMContentLoaded', () => { loadNextBatch(); });
+
+
+            // Initial UI update (in case of pre-checked)
+            updateSelectionUI();
+
+            // Handle form submission
+            document.getElementById('printForm').addEventListener('submit', function (e) {
+                e.preventDefault();
+                const selected = Array.from(document.querySelectorAll('input[name="selectedImages"]:checked'))
+                    .map(cb => cb.value);
+                if (selected.length === 0) {
+                    alert('Please select at least one image.');
+                    return;
+                }
+                if (selected.length > MAX_SELECTION) {
+                    alert('You can select up to 3 images only.');
+                    return;
+                }
+                // Mark as submitted in localStorage
+                localStorage.setItem(LOCAL_STORAGE_KEY, 'true');
+                // Disable button and reload after a short delay
+                submitBtn.disabled = true;
+                submitBtn.textContent = "Submitted!";
+                console.log('Selected images for print:', selected);
+                setTimeout(() => {
+                    window.location.reload();
+                }, 1200);
+            });
+        } else {
+            // Hide selection UI and submit button if already submitted
+            if (fixedBar) fixedBar.style.display = 'none';
+            // Hide checkboxes
+            document.querySelectorAll('.image-checkbox').forEach(cb => cb.style.display = 'none');
+        }
+    </script>
+</body>
+
+</html>
