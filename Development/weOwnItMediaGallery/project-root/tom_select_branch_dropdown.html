@@ -1,0 +1,103 @@
+
+<!-- Include Tom Select CSS & JS -->
+<link href="https://cdn.jsdelivr.net/npm/tom-select@2.2.2/dist/css/tom-select.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/tom-select@2.2.2/dist/js/tom-select.complete.min.js"></script>
+
+<!-- Branch Dropdown -->
+<label class="block mb-4">
+  <span class="text-gray-700 text-sm">Select Your Branch</span>
+  <select id="branchSelect" placeholder="Start typing..." autocomplete="off" class="block w-full border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-300">
+    <option value="" disabled selected>Select your branch</option>
+    <option value='{"Branch Name": "Ajman Main Branch", "Branch Location": "Emirates NBD Building, Sheikh Rashid Bin Humaid St, Al Sawan, Ajman"}'>Ajman Main Branch - Emirates NBD Building, Sheikh Rashid Bin Humaid St, Al Sawan, Ajman</option>
+<option value='{"Branch Name": "Matajer Al Quoz Branch", "Branch Location": "Ground Floor, Matajer Al Qouz Mall, Al Quoz area, Sharjah"}'>Matajer Al Quoz Branch - Ground Floor, Matajer Al Qouz Mall, Al Quoz area, Sharjah</option>
+<option value='{"Branch Name": "Ajman City Centre Branch", "Branch Location": "Ground Floor, Ajman City Centre, Ittihad Road, Jurf Industrial 3, Ajman"}'>Ajman City Centre Branch - Ground Floor, Ajman City Centre, Ittihad Road, Jurf Industrial 3, Ajman</option>
+<option value='{"Branch Name": "Sharjah Main Branch", "Branch Location": "Ground Floor, Emirates NBD Building, Immigration Road, Al Qassimia Area, Sharjah"}'>Sharjah Main Branch - Ground Floor, Emirates NBD Building, Immigration Road, Al Qassimia Area, Sharjah</option>
+<option value='{"Branch Name": "Al Zahia City Centre Branch", "Branch Location": "Ground Floor, City Centre Al Zahia, Sheikh Mohammad Bin Zayed Road, Sharjah"}'>Al Zahia City Centre Branch - Ground Floor, City Centre Al Zahia, Sheikh Mohammad Bin Zayed Road, Sharjah</option>
+<option value='{"Branch Name": "Sharjah City Center Branch", "Branch Location": "1st Floor, Sharjah City Center, Al Wahda Street, Sharjah"}'>Sharjah City Center Branch - 1st Floor, Sharjah City Center, Al Wahda Street, Sharjah</option>
+<option value='{"Branch Name": "Sahara Mall Branch", "Branch Location": "Unit 1 C, Basement Parking, Sahara Centre,Al Ittihad Street, Al Nahda Area, Sharjah"}'>Sahara Mall Branch - Unit 1 C, Basement Parking, Sahara Centre,Al Ittihad Street, Al Nahda Area, Sharjah</option>
+<option value='{"Branch Name": "Al Qusais Branch", "Branch Location": "Damascus St, Near Dubai Grand Hotel, Al Qusais, Dubai"}'>Al Qusais Branch - Damascus St, Near Dubai Grand Hotel, Al Qusais, Dubai</option>
+<option value='{"Branch Name": "Al Qiyadah Branch", "Branch Location": "Al Ittihad Rd, next to Dubai Police Head Quarters, Dubai"}'>Al Qiyadah Branch - Al Ittihad Rd, next to Dubai Police Head Quarters, Dubai</option>
+<option value='{"Branch Name": "Al Twar Branch", "Branch Location": "Dubai Airport Free Zone, East Admin Bldg, Ground Floor, Al Twar Area, Al Qusais, Dubai"}'>Al Twar Branch - Dubai Airport Free Zone, East Admin Bldg, Ground Floor, Al Twar Area, Al Qusais, Dubai</option>
+<option value='{"Branch Name": "Hamriya Branch", "Branch Location": "Ground Floor, Union Cooperative Hyper Market, Hamriya Shopping Complex, Hor Al Anz, Dubai"}'>Hamriya Branch - Ground Floor, Union Cooperative Hyper Market, Hamriya Shopping Complex, Hor Al Anz, Dubai</option>
+<option value='{"Branch Name": "Mizher Mall Branch", "Branch Location": "Mizher Mall, Al Mizher First Area, Dubai."}'>Mizher Mall Branch - Mizher Mall, Al Mizher First Area, Dubai.</option>
+<option value='{"Branch Name": "Al Muraqqabat Branch", "Branch Location": "Emirates NBD Building, Mezzanine Floor, Hor Al Anz Road, Dubai"}'>Al Muraqqabat Branch - Emirates NBD Building, Mezzanine Floor, Hor Al Anz Road, Dubai</option>
+<option value='{"Branch Name": "Dubai Airport T3 Branch", "Branch Location": "Dubai Airport Terminal 3 Departure, Airport Road, Dubai"}'>Dubai Airport T3 Branch - Dubai Airport Terminal 3 Departure, Airport Road, Dubai</option>
+<option value='{"Branch Name": "Emirates Airline HQ Branch", "Branch Location": "Second Floor Atrium, Emirates Group Headquarters, Airport Road, Dubai"}'>Emirates Airline HQ Branch - Second Floor Atrium, Emirates Group Headquarters, Airport Road, Dubai</option>
+<option value='{"Branch Name": "Group Head Office Branch", "Branch Location": "Ground Floor, Emirates NBD Group Head Office, Baniyas Road, Deira, Dubai"}'>Group Head Office Branch - Ground Floor, Emirates NBD Group Head Office, Baniyas Road, Deira, Dubai</option>
+<option value='{"Branch Name": "Deira City Centre Branch", "Branch Location": "Ground Floor, Deira City Centre, Al Ittihad Road, Dubai"}'>Deira City Centre Branch - Ground Floor, Deira City Centre, Al Ittihad Road, Dubai</option>
+<option value='{"Branch Name": "Deira Branch", "Branch Location": "Ground Floor, new Emirates NBD Building at Abra Rd, Deira, Dubai"}'>Deira Branch - Ground Floor, new Emirates NBD Building at Abra Rd, Deira, Dubai</option>
+<option value='{"Branch Name": "Rashidiya Branch", "Branch Location": "Rashidiya Central Market, Rashidiya, Dubai"}'>Rashidiya Branch - Rashidiya Central Market, Rashidiya, Dubai</option>
+<option value='{"Branch Name": "Al Fahidi Branch", "Branch Location": "Al Fahidi St, Bur Dubai, Dubai"}'>Al Fahidi Branch - Al Fahidi St, Bur Dubai, Dubai</option>
+<option value='{"Branch Name": "Dubai Courts Branch", "Branch Location": "Ground Floor, Dubai Courts, Riyadh Road, Dubai"}'>Dubai Courts Branch - Ground Floor, Dubai Courts, Riyadh Road, Dubai</option>
+<option value='{"Branch Name": "Bank Street Branch", "Branch Location": "Ground Floor, Burjuman Shopping Center, Khalid Bin Waleed Street, Bur Dubai, Dubai"}'>Bank Street Branch - Ground Floor, Burjuman Shopping Center, Khalid Bin Waleed Street, Bur Dubai, Dubai</option>
+<option value='{"Branch Name": "Dubai Festival City Branch", "Branch Location": "Ground Floor, Dubai Festival Mall, IKEA Building, Al Badia, Dubai"}'>Dubai Festival City Branch - Ground Floor, Dubai Festival Mall, IKEA Building, Al Badia, Dubai</option>
+<option value='{"Branch Name": "Mirdif City Centre Branch", "Branch Location": "Ground Floor, North Entrance, Mirdif City Centre, Dubai"}'>Mirdif City Centre Branch - Ground Floor, North Entrance, Mirdif City Centre, Dubai</option>
+<option value='{"Branch Name": "Oud Metha Branch", "Branch Location": "Ground Floor, Gulf Residence Building, Oud Metha Road, Dubai"}'>Oud Metha Branch - Ground Floor, Gulf Residence Building, Oud Metha Road, Dubai</option>
+<option value='{"Branch Name": "Al Mankhool Branch", "Branch Location": "Nashwan Building, Al Mankhool Rd, Dubai"}'>Al Mankhool Branch - Nashwan Building, Al Mankhool Rd, Dubai</option>
+<option value='{"Branch Name": "Wafi Mall Branch", "Branch Location": "Ground Floor, Atrium, Wafi Mall, Al Garhoud, Dubai"}'>Wafi Mall Branch - Ground Floor, Atrium, Wafi Mall, Al Garhoud, Dubai</option>
+<option value='{"Branch Name": "Umm Al Quwain Branch", "Branch Location": "King Faisal Road, Al Raas B, Umm Al Quwain, Near Umm Al Quwain Hospital, Umm Al Quwain"}'>Umm Al Quwain Branch - King Faisal Road, Al Raas B, Umm Al Quwain, Near Umm Al Quwain Hospital, Umm Al Quwain</option>
+<option value='{"Branch Name": "Ras Al Khor Branch", "Branch Location": "Civil Defense Bldg, Ras Al Khor Fruit & Vegetable Market, Al Aweer, Dubai"}'>Ras Al Khor Branch - Civil Defense Bldg, Ras Al Khor Fruit & Vegetable Market, Al Aweer, Dubai</option>
+<option value='{"Branch Name": "Al Satwa Branch", "Branch Location": "2nd Floor, Al Badaa St, Satwa Road, Dubai"}'>Al Satwa Branch - 2nd Floor, Al Badaa St, Satwa Road, Dubai</option>
+<option value='{"Branch Name": "Emirates Towers Branch", "Branch Location": "Upper Level, The Boulevard, Emirates Towers , Sheikh Zayed Road, Dubai"}'>Emirates Towers Branch - Upper Level, The Boulevard, Emirates Towers , Sheikh Zayed Road, Dubai</option>
+<option value='{"Branch Name": "Sheikh Zayed Road Branch", "Branch Location": "Ground Floor, Saeed Tower, Sheikh Zayed Rd, Dubai"}'>Sheikh Zayed Road Branch - Ground Floor, Saeed Tower, Sheikh Zayed Rd, Dubai</option>
+<option value='{"Branch Name": "Sharjah AlSuyouh Branch", "Branch Location": "Ground Floor, Suyoh Mall, Maleha Road, Sharjah"}'>Sharjah AlSuyouh Branch - Ground Floor, Suyoh Mall, Maleha Road, Sharjah</option>
+<option value='{"Branch Name": "Al Aweer Branch", "Branch Location": "Emirates NBD Building, Al Aweer Area, Oman-Hatta Road, Dubai"}'>Al Aweer Branch - Emirates NBD Building, Al Aweer Area, Oman-Hatta Road, Dubai</option>
+<option value='{"Branch Name": "Dubai Design District Branch", "Branch Location": "Shop No. R01, Ground Floor, Dubai Design District, Dubai"}'>Dubai Design District Branch - Shop No. R01, Ground Floor, Dubai Design District, Dubai</option>
+<option value='{"Branch Name": "Jumeirah Beach Road Branch", "Branch Location": "Jumeira 1 - Jumeira Beach Road -before Mercato Mall"}'>Jumeirah Beach Road Branch - Jumeira 1 - Jumeira Beach Road -before Mercato Mall</option>
+<option value='{"Branch Name": "Dubai Mall Branch", "Branch Location": "Lower Ground Floor, Dubai Mall, Emaar Blvd, Dubai"}'>Dubai Mall Branch - Lower Ground Floor, Dubai Mall, Emaar Blvd, Dubai</option>
+<option value='{"Branch Name": "Burj Khalifa Branch", "Branch Location": "1st Floor, Boulevard Plaza Tower 2, Mohammed Bin Rashid Boulevard, Dubai"}'>Burj Khalifa Branch - 1st Floor, Boulevard Plaza Tower 2, Mohammed Bin Rashid Boulevard, Dubai</option>
+<option value='{"Branch Name": "Nad Al Shiba Branch", "Branch Location": "Dubai-Al Ain Highway, Next to EPPCO Petrol Station, Dubai"}'>Nad Al Shiba Branch - Dubai-Al Ain Highway, Next to EPPCO Petrol Station, Dubai</option>
+<option value='{"Branch Name": "Jumeirah Branch", "Branch Location": "Emirates NBD Building, Al Wasl Rd Intersection, Umm Suquiem 3, Jumeirah, Dubai"}'>Jumeirah Branch - Emirates NBD Building, Al Wasl Rd Intersection, Umm Suquiem 3, Jumeirah, Dubai</option>
+<option value='{"Branch Name": "Business Bay Branch", "Branch Location": "Ground Floor, Bldg. # 2, Bay Square, Al Asayel Road, Business Bay , Dubai"}'>Business Bay Branch - Ground Floor, Bldg. # 2, Bay Square, Al Asayel Road, Business Bay , Dubai</option>
+<option value='{"Branch Name": "Dubai Silicon Oasis Branch", "Branch Location": "EG 09-10, Ground floor, Dubai Silicon Oasis Head Quarter Building, Dubai"}'>Dubai Silicon Oasis Branch - EG 09-10, Ground floor, Dubai Silicon Oasis Head Quarter Building, Dubai</option>
+<option value='{"Branch Name": "Umm Suqeim Branch", "Branch Location": "Ground Floor, Spinneys Al Wasl Branch, Umm Suquiem Road, Dubai"}'>Umm Suqeim Branch - Ground Floor, Spinneys Al Wasl Branch, Umm Suquiem Road, Dubai</option>
+<option value='{"Branch Name": "Al Quoz Branch", "Branch Location": "Ground Floor, Al Shafar Building, Sheikh Zayed Road, Al Quoz 1, Dubai \u2013 UAE"}'>Al Quoz Branch - Ground Floor, Al Shafar Building, Sheikh Zayed Road, Al Quoz 1, Dubai – UAE</option>
+<option value='{"Branch Name": "Dubai Hills Mall Branch", "Branch Location": "Ground Floor, Parking Entrance \u2013 E, Dubai Hills Mall, Umm Suqeim Street, Hadaeq Sheikh Mohammed Bin Rashid, Dubai"}'>Dubai Hills Mall Branch - Ground Floor, Parking Entrance – E, Dubai Hills Mall, Umm Suqeim Street, Hadaeq Sheikh Mohammed Bin Rashid, Dubai</option>
+<option value='{"Branch Name": "Emirates Mall Branch", "Branch Location": "Entrance C, Ground Floor, Mall of the Emirates, Al Barsha, Dubai"}'>Emirates Mall Branch - Entrance C, Ground Floor, Mall of the Emirates, Al Barsha, Dubai</option>
+<option value='{"Branch Name": "Al Barsha Branch", "Branch Location": "Emirates NBD Building, Al Barsha 2, Dubai"}'>Al Barsha Branch - Emirates NBD Building, Al Barsha 2, Dubai</option>
+<option value='{"Branch Name": "The Greens Branch", "Branch Location": "Ground Floor, Onyx Tower 2, The Greens, Dubai"}'>The Greens Branch - Ground Floor, Onyx Tower 2, The Greens, Dubai</option>
+<option value='{"Branch Name": "Dubai Media City Branch", "Branch Location": "CNBC Building 7, Dubai Media City, Dubai"}'>Dubai Media City Branch - CNBC Building 7, Dubai Media City, Dubai</option>
+<option value='{"Branch Name": "Jumeirah Beach Residence Branch", "Branch Location": "Unit No. GM07, Bahar The Walk, Jumeirah Beach Residence, Dubai"}'>Jumeirah Beach Residence Branch - Unit No. GM07, Bahar The Walk, Jumeirah Beach Residence, Dubai</option>
+<option value='{"Branch Name": "Jumeirah Lake Towers Branch", "Branch Location": "Ground Floor, Al Mas Tower, Jumeirah Lake Towers Area, Dubai"}'>Jumeirah Lake Towers Branch - Ground Floor, Al Mas Tower, Jumeirah Lake Towers Area, Dubai</option>
+<option value='{"Branch Name": "Ibn Battuta Mall Branch", "Branch Location": "Ground Floor, Persia Court, IBN Battuta Shopping Mall, Jebel Ali, Dubai"}'>Ibn Battuta Mall Branch - Ground Floor, Persia Court, IBN Battuta Shopping Mall, Jebel Ali, Dubai</option>
+<option value='{"Branch Name": "Jebel Ali Branch", "Branch Location": "Jebel Ali Free Zone, Next to CBD and HSBC"}'>Jebel Ali Branch - Jebel Ali Free Zone, Next to CBD and HSBC</option>
+<option value='{"Branch Name": "Ras Al-Khaimah Corniche Branch", "Branch Location": "Yousef Obaid Al Neaimi Building, Corniche Street, Ras Al-Khaimah"}'>Ras Al-Khaimah Corniche Branch - Yousef Obaid Al Neaimi Building, Corniche Street, Ras Al-Khaimah</option>
+<option value='{"Branch Name": "Fujairah Main Branch", "Branch Location": "Sheikh Hamad Bin Abdullah Street, Town Centre 3, Fujairah,Opposite Al Diar Siji Hotel, Fujairah"}'>Fujairah Main Branch - Sheikh Hamad Bin Abdullah Street, Town Centre 3, Fujairah,Opposite Al Diar Siji Hotel, Fujairah</option>
+<option value='{"Branch Name": "Hatta Branch", "Branch Location": "Emirates NBD Building, opposite Hatta Hotel, Dubai-Hatta Road, Dubai"}'>Hatta Branch - Emirates NBD Building, opposite Hatta Hotel, Dubai-Hatta Road, Dubai</option>
+<option value='{"Branch Name": "Deerfields Mall Branch", "Branch Location": "Lower Ground Floor, Deerfields Mall, Albahiya Street, Abu Dhabi"}'>Deerfields Mall Branch - Lower Ground Floor, Deerfields Mall, Albahiya Street, Abu Dhabi</option>
+<option value='{"Branch Name": "Al Ain Main Branch - Hazza Bin Zayed Stadium", "Branch Location": "Unit 4B, Ground floor, Hazza bin Zayed Stadium- Al Ain"}'>Al Ain Main Branch - Hazza Bin Zayed Stadium - Unit 4B, Ground floor, Hazza bin Zayed Stadium- Al Ain</option>
+<option value='{"Branch Name": "Yas Mall Branch", "Branch Location": "G Floor, Yas Mall, Yas Island, Abu Dhabi"}'>Yas Mall Branch - G Floor, Yas Mall, Yas Island, Abu Dhabi</option>
+<option value='{"Branch Name": "Al Ain Khalifa Street Branch", "Branch Location": "Sheikh Khalifa Bin Zayed St, (in front of Burjeel Hospital), Al Ain"}'>Al Ain Khalifa Street Branch - Sheikh Khalifa Bin Zayed St, (in front of Burjeel Hospital), Al Ain</option>
+<option value='{"Branch Name": "Reem Mall Branch", "Branch Location": "L1, Reem Mall, Al Reem Island, Abu Dhabi"}'>Reem Mall Branch - L1, Reem Mall, Al Reem Island, Abu Dhabi</option>
+<option value='{"Branch Name": "Tourist Club Branch", "Branch Location": "Ground Floor, Al Balooshi Tower, Zayed The Second St, Abu Dhabi"}'>Tourist Club Branch - Ground Floor, Al Balooshi Tower, Zayed The Second St, Abu Dhabi</option>
+<option value='{"Branch Name": "Al Muroor Branch", "Branch Location": "New Airport Road, Muroor, Abu Dhabi"}'>Al Muroor Branch - New Airport Road, Muroor, Abu Dhabi</option>
+<option value='{"Branch Name": "Abu Dhabi Main office Branch", "Branch Location": "Ground floor, Capital Plaza tower, Abu Dhabi"}'>Abu Dhabi Main office Branch - Ground floor, Capital Plaza tower, Abu Dhabi</option>
+<option value='{"Branch Name": "Electra Street Branch", "Branch Location": "Electra Street Branch, Al Owais Building - Shaikh Zayed Second Street - near LLH Hospital - Al Danah - Zone 1 - Abu Dhabi"}'>Electra Street Branch - Electra Street Branch, Al Owais Building - Shaikh Zayed Second Street - near LLH Hospital - Al Danah - Zone 1 - Abu Dhabi</option>
+<option value='{"Branch Name": "Khalifa Branch", "Branch Location": "Ground Floor, Al Neem Building, Shaikh Khalifa street, Abu Dhabi"}'>Khalifa Branch - Ground Floor, Al Neem Building, Shaikh Khalifa street, Abu Dhabi</option>
+<option value='{"Branch Name": "Khalidiya Branch", "Branch Location": "Nayel and bin Harmal Tower, Zayed 1st Street, Al Khalidiya Area, Abu Dhabi"}'>Khalidiya Branch - Nayel and bin Harmal Tower, Zayed 1st Street, Al Khalidiya Area, Abu Dhabi</option>
+<option value='{"Branch Name": "Dalma Mall Branch", "Branch Location": "Shop Nos. GR-133 & GR 134, Ground Floor, Dalma Mall, Mussafah Area, Abu Dhabi"}'>Dalma Mall Branch - Shop Nos. GR-133 & GR 134, Ground Floor, Dalma Mall, Mussafah Area, Abu Dhabi</option>
+
+  </select>
+</label>
+
+<!-- Hidden Inputs to Auto-Fill -->
+<input type="text" id="branchName" class="hidden" />
+<input type="text" id="branchLocation" class="hidden" />
+
+<script>
+  new TomSelect("#branchSelect", {
+    maxOptions: 1000,
+    valueField: 'value',
+    searchField: ['text'],
+    onChange: function(value) {
+      if (!value) return;
+      try {
+        const branch = JSON.parse(value);
+        document.getElementById('branchName').value = branch["Branch Name"];
+        document.getElementById('branchLocation").value = branch["Branch Location"];
+      } catch (err) {
+        console.error("Failed to parse selected branch", err);
+      }
+    }
+  });
+</script>

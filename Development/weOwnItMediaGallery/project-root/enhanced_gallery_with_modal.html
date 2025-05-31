@@ -36,7 +36,8 @@
   </style>
 </head>
 
-<body class="min-h-screen p-6" data-sp-site="https://yourtenant.sharepoint.com/sites/YourSite" data-library-path="/sites/YourSite/Shared Documents/weownitPhotos">
+<body class="min-h-screen p-6" data-sp-site="https://yourtenant.sharepoint.com/sites/YourSite"
+  data-library-path="/sites/YourSite/Shared Documents/weownitPhotos">
 
   <div class="text-center mb-8">
     <h1 class="text-4xl font-bold text-gray-800">🎉 We Own It - Event Media Gallery</h1>
@@ -197,10 +198,11 @@
     window.loadNextBatch = loadNextBatch;
 
     // ====== FORM HANDLING ======
+
     function handleFormSubmission(e) {
       e.preventDefault();
-      const selected = Array.from(document.querySelectorAll('input[name="selectedImages"]:checked'))
-        .map(cb => cb.value);
+      const selected = Array.from(document.querySelectorAll('input[name="selectedImages"]:checked')).map(cb => cb.value);
+
       if (selected.length === 0) {
         alert('Please select at least one image.');
         return;
@@ -209,16 +211,57 @@
         alert('You can select up to 3 images only.');
         return;
       }
-      // Mark as submitted in localStorage
+
+      // Store selected temporarily and show modal
+      window.selectedImagesForPrint = selected;
+      openModal();
+      return; // <--- This is important!
+    }
+    if (selected.length > MAX_SELECTION) {
+      alert('You can select up to 3 images only.');
+      return;
+    }
+    // Mark as submitted in localStorage
+    localStorage.setItem(LOCAL_STORAGE_KEY, 'true');
+    // Disable button and reload after a short delay
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Submitted!";
+    console.log('Selected images for print:', selected);
+    setTimeout(() => {
+      window.location.reload();
+    }, 1200);
+
+    function openModal() {
+      document.getElementById('addressModal').classList.remove('hidden');
+    }
+
+    function closeModal() {
+      document.getElementById('addressModal').classList.add('hidden');
+    }
+
+    function submitDetails() {
+      const branchName = document.getElementById('branchName').value.trim();
+      const branchLocation = document.getElementById('branchLocation').value.trim();
+
+      if (!branchName || !branchLocation) {
+        alert('Please enter both Branch Name and Branch Location.');
+        return;
+      }
+
+      console.log('Selected Images:', window.selectedImagesForPrint);
+      console.log('Branch Name:', branchName);
+      console.log('Branch Location:', branchLocation);
+
       localStorage.setItem(LOCAL_STORAGE_KEY, 'true');
-      // Disable button and reload after a short delay
       submitBtn.disabled = true;
       submitBtn.textContent = "Submitted!";
-      console.log('Selected images for print:', selected);
+
+      closeModal();
       setTimeout(() => {
         window.location.reload();
       }, 1200);
     }
+
 
     // ====== INIT ======
     function initGallery() {
@@ -247,6 +290,37 @@
     document.addEventListener('DOMContentLoaded', initGallery);
   </script>
 
+
+  <!-- Modal -->
+  <div id="addressModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+    <div class="bg-white rounded-lg shadow-lg max-w-md w-full p-6">
+      <h2 class="text-xl font-bold mb-4 text-gray-800">📍 Delivery Details</h2>
+      <p class="text-sm text-gray-600 mb-4">Please enter your branch name and location so we know where to send your
+        photos.</p>
+
+      <label class="block mb-3">
+        <span class="text-gray-700 text-sm">Branch Name</span>
+        <input type="text" id="branchName"
+          class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-300"
+          placeholder="e.g. Dubai Mall Branch" />
+      </label>
+
+      <label class="block mb-4">
+        <span class="text-gray-700 text-sm">Branch Location</span>
+        <input type="text" id="branchLocation"
+          class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-300"
+          placeholder="e.g. Downtown Dubai" />
+      </label>
+
+      <div class="flex justify-end gap-3">
+        <button onclick="closeModal()"
+          class="bg-gray-200 text-gray-700 px-4 py-2 rounded hover:bg-gray-300">Cancel</button>
+        <button onclick="submitDetails()"
+          class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Submit</button>
+      </div>
+    </div>
+  </div>
 </body>
+
 
 </html>
