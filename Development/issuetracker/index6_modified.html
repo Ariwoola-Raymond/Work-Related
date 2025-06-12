@@ -6,9 +6,12 @@
     <title>KM Chatbot Issue Submission</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
-    <link href="https://workplace.emiratesnbd.com/sites/GCE/public/SiteAssets/css/third-party/tailwind3.4.16.css" rel="stylesheet">
-    <link href="https://workplace.emiratesnbd.com/sites/GCE/public/SiteAssets/css/third-party/dropzone.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap"
+        rel="stylesheet">
+    <link href="https://workplace.emiratesnbd.com/sites/GCE/public/SiteAssets/css/third-party/tailwind3.4.16.css"
+        rel="stylesheet">
+    <link href="https://workplace.emiratesnbd.com/sites/GCE/public/SiteAssets/css/third-party/dropzone.min.css"
+        rel="stylesheet">
     <style>
         body {
             padding-bottom: 3rem;
@@ -46,9 +49,9 @@
 </head>
 
 <body class="bg-gray-100">
-<div id="loadingOverlay" class="fixed inset-0 bg-white bg-opacity-90 z-50 hidden flex items-center justify-center">
-    <div class="animate-spin rounded-full h-20 w-20 border-t-4 border-blue-500 border-solid"></div>
-</div>
+    <div id="loadingOverlay" class="fixed inset-0 bg-white bg-opacity-90 z-50 hidden flex items-center justify-center">
+        <div class="animate-spin rounded-full h-20 w-20 border-t-4 border-blue-500 border-solid"></div>
+    </div>
     <!-- required: SharePoint FormDigest -->
     <form runat="server">
         <SharePoint:FormDigest runat="server"></SharePoint:FormDigest>
@@ -68,7 +71,7 @@
                 <div class="grid gap-4 md:grid-cols-3">
                     <div>
                         <label for="date" class="block text-gray-600 mb-1">Date</label>
-                        <input id="date" type="date" max=""
+                        <input id="date" type="date" max="" required
                             class="w-full border border-gray-300 rounded-lg px-3 py-2 bg-gray-50" />
                     </div>
                     <div>
@@ -88,12 +91,16 @@
                 <h2 class="text-xl font-semibold text-gray-700 mb-4">Chatbot Interaction</h2>
                 <div class="space-y-4">
                     <div>
-                        <label for="question" class="block text-gray-600 mb-1">Question <span class="text-red-500">*</span></label>
-                        <textarea id="question" rows="2" required class="w-full border border-gray-300 rounded-lg px-3 py-2 bg-gray-50"></textarea>
+                        <label for="question" class="block text-gray-600 mb-1">Question <span
+                                class="text-red-500">*</span></label>
+                        <textarea id="question" rows="2" required
+                            class="w-full border border-gray-300 rounded-lg px-3 py-2 bg-gray-50"></textarea>
                     </div>
                     <div>
-                        <label for="expected" class="block text-gray-600 mb-1">Expected Response <span class="text-red-500">*</span></label>
-                        <textarea id="expected" rows="2" required class="w-full border border-gray-300 rounded-lg px-3 py-2 bg-gray-50"></textarea>
+                        <label for="expected" class="block text-gray-600 mb-1">Expected Response <span
+                                class="text-red-500">*</span></label>
+                        <textarea id="expected" rows="2" required
+                            class="w-full border border-gray-300 rounded-lg px-3 py-2 bg-gray-50"></textarea>
                     </div>
                 </div>
             </div>
@@ -105,19 +112,20 @@
                 </div>
             </div>
 
-            <button type="submit" class="w-full md:w-auto bg-blue-600 text-white font-semibold rounded-lg px-6 py-3 hover:bg-blue-700">
+            <button type="submit"
+                class="w-full md:w-auto bg-blue-600 text-white font-semibold rounded-lg px-6 py-3 hover:bg-blue-700">
                 Submit Issue
             </button>
         </form>
     </div>
 
-    <script src="https://workplace.emiratesnbd.com/sites/GCE/public/SiteAssets/javascript/third-party/tailwinds3.4.16.js"></script>
-    <script src="https://workplace.emiratesnbd.com/sites/GCE/public/SiteAssets/javascript/third-party/dropzone.min.js"></script>
+    <script
+        src="https://workplace.emiratesnbd.com/sites/GCE/public/SiteAssets/javascript/third-party/tailwinds3.4.16.js"></script>
+    <script
+        src="https://workplace.emiratesnbd.com/sites/GCE/public/SiteAssets/javascript/third-party/dropzone.min.js"></script>
     <script>
         Dropzone.autoDiscover = false;
         const dz = new Dropzone("#dropzone", {
-dz.on("addedfile", toggleSubmit);
-dz.on("removedfile", toggleSubmit);
             url: "#",
             autoProcessQueue: false,
             maxFilesize: 5,
@@ -135,6 +143,8 @@ dz.on("removedfile", toggleSubmit);
                     <a data-dz-remove class="dz-remove absolute top-1 right-1 bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center hover:bg-red-600" title="Remove file">&times;</a>
                 </div>`
         });
+
+
 
         document.addEventListener('paste', function (event) {
             const items = event.clipboardData.items;
@@ -158,12 +168,22 @@ dz.on("removedfile", toggleSubmit);
 
         const form = document.getElementById('issueForm');
         const submitBtn = form.querySelector('button[type="submit"]');
-        submitBtn.disabled = true;
 
         const toggleSubmit = () => {
             const hasFiles = dz.files.length > 0;
             submitBtn.disabled = !(form.checkValidity() && hasFiles);
-        }; // override
+        };
+
+        function checkIfDateIsFilled() {
+            const dateInput = document.getElementById('date'); // Assuming your date input has the ID 'date'
+            if (dateInput.value === '') {
+                console.log("The date input field is empty.");
+                return false;
+            } else {
+                console.log("The date input field has a value: " + dateInput.value);
+                return true;
+            }
+        }
 
         form.addEventListener('input', toggleSubmit);
         form.addEventListener('change', toggleSubmit);
@@ -263,6 +283,9 @@ dz.on("removedfile", toggleSubmit);
             }
         });
 
+        dz.on("addedfile", toggleSubmit);
+        dz.on("removedfile", toggleSubmit);
+
         const dateInput = document.getElementById('date');
         const today = new Date();
         const year = today.getFullYear();
@@ -283,4 +306,5 @@ dz.on("removedfile", toggleSubmit);
         }
     </script>
 </body>
+
 </html>
