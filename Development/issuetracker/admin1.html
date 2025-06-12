@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>KM Chatbot Admin Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://workplace.emiratesnbd.com/sites/GCE/public/SiteAssets/css/third-party/tailwind3.4.16.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100 min-h-screen p-6">
+    <h1 class="text-3xl font-bold text-gray-800 text-center mb-8">KM Chatbot Issues - Admin Dashboard</h1>
+
+    <div class="overflow-x-auto">
+        <table class="min-w-full bg-white rounded-lg shadow">
+            <thead class="bg-blue-600 text-white">
+                <tr>
+                    <th class="py-3 px-4 text-left">Ticket ID</th>
+                    <th class="py-3 px-4 text-left">Date</th>
+                    <th class="py-3 px-4 text-left">Reported By</th>
+                    <th class="py-3 px-4 text-left">Question</th>
+                    <th class="py-3 px-4 text-left">Attachments</th>
+                </tr>
+            </thead>
+            <tbody id="issueTable" class="text-gray-700">
+                <!-- JavaScript will populate rows here -->
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Modal -->
+    <div id="adminModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
+        <div class="bg-white rounded-lg shadow-xl w-full max-w-lg p-6 relative">
+            <button id="closeModal" class="absolute top-2 right-4 text-gray-500 hover:text-gray-800">&times;</button>
+            <h2 class="text-xl font-semibold text-gray-800 mb-4">Update Ticket</h2>
+            <form id="adminForm" class="space-y-4">
+                <div>
+                    <label class="block text-gray-600 mb-1">Ticket ID</label>
+                    <input id="modalTicketId" type="text" class="w-full border border-gray-300 rounded px-3 py-2 bg-gray-50" readonly>
+                </div>
+                <div>
+                    <label class="block text-gray-600 mb-1">Admin Notes</label>
+                    <textarea id="adminNotes" rows="3" class="w-full border border-gray-300 rounded px-3 py-2 bg-gray-50"></textarea>
+                </div>
+                <div>
+                    <label class="block text-gray-600 mb-1">Status</label>
+                    <select id="adminStatus" class="w-full border border-gray-300 rounded px-3 py-2 bg-gray-50">
+                        <option>Open</option>
+                        <option>In Progress</option>
+                        <option>Closed</option>
+                    </select>
+                </div>
+                <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Save</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const table = document.getElementById('issueTable');
+        const modal = document.getElementById('adminModal');
+        const modalTicketId = document.getElementById('modalTicketId');
+        const adminNotes = document.getElementById('adminNotes');
+        const adminStatus = document.getElementById('adminStatus');
+        const closeModal = document.getElementById('closeModal');
+        const form = document.getElementById('adminForm');
+
+        const siteUrl = _spPageContextInfo.webServerRelativeUrl;
+
+        async function fetchIssues() {
+            const response = await fetch(`${siteUrl}/_api/web/lists/getbytitle('kmchatbottracker')/items`, {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json;odata=verbose'
+                }
+            });
+
+            const data = await response.json();
+            return data.d.results;
+        }
+
+        function populateTable(issues) {
+            issues.forEach(issue => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td class="py-2 px-4 text-blue-600 font-semibold cursor-pointer hover:underline">${issue.Title}</td>
+                    <td class="py-2 px-4">${issue.issueDate || ''}</td>
+                    <td class="py-2 px-4">${issue.ReportedBy || ''}</td>
+                    <td class="py-2 px-4">${issue.Question?.substring(0, 50) || ''}...</td>
+                    <td class="py-2 px-4">
+                        ${(issue.AttachmentLinks || '').split('\n').map(link => link ? `<a href="${link}" class="text-blue-500 underline" target="_blank">Image</a>` : '').join(', ')}
+                    </td>
+                `;
+                row.querySelector('td').addEventListener('click', () => {
+                    modalTicketId.value = issue.Title;
+                    adminNotes.value = issue.AdminNotes || '';
+                    adminStatus.value = issue.Status || 'Open';
+                    modal.dataset.itemId = issue.ID;
+                    modal.classList.remove('hidden');
+                });
+                table.appendChild(row);
+            });
+        }
+
+        closeModal.addEventListener('click', () => {
+            modal.classList.add('hidden');
+        });
+
+        form.addEventListener('submit', async e => {
+            e.preventDefault();
+            const digest = document.getElementById('__REQUESTDIGEST').value;
+            const itemId = modal.dataset.itemId;
+            await fetch(`${siteUrl}/_api/web/lists/getbytitle('kmchatbottracker')/items(${itemId})`, {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json;odata=verbose',
+                    'Content-Type': 'application/json;odata=verbose',
+                    'X-RequestDigest': digest,
+                    'X-HTTP-Method': 'MERGE',
+                    'IF-MATCH': '*'
+                },
+                body: JSON.stringify({
+                    __metadata: { type: 'SP.Data.KmchatbottrackerListItem' },
+                    AdminNotes: adminNotes.value,
+                    Status: adminStatus.value
+                })
+            });
+            alert('Issue updated successfully');
+            modal.classList.add('hidden');
+            location.reload();
+        });
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const issues = await fetchIssues();
+            populateTable(issues);
+        });
+    </script>
+
+    <form style="display:none" runat="server">
+        <SharePoint:FormDigest runat="server" />
+    </form>
+</body>
+
+</html>
