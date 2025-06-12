@@ -6,12 +6,9 @@
     <title>KM Chatbot Issue Submission</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap"
-        rel="stylesheet">
-    <link href="https://workplace.emiratesnbd.com/sites/GCE/public/SiteAssets/css/third-party/tailwind3.4.16.css"
-        rel="stylesheet">
-    <link href="https://workplace.emiratesnbd.com/sites/GCE/public/SiteAssets/css/third-party/dropzone.min.css"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
+    <link href="https://workplace.emiratesnbd.com/sites/GCE/public/SiteAssets/css/third-party/tailwind3.4.16.css" rel="stylesheet">
+    <link href="https://workplace.emiratesnbd.com/sites/GCE/public/SiteAssets/css/third-party/dropzone.min.css" rel="stylesheet">
     <style>
         body {
             padding-bottom: 3rem;
@@ -52,37 +49,30 @@
     <div id="loadingOverlay" class="fixed inset-0 bg-white bg-opacity-90 z-50 hidden flex items-center justify-center">
         <div class="animate-spin rounded-full h-20 w-20 border-t-4 border-blue-500 border-solid"></div>
     </div>
-    <!-- required: SharePoint FormDigest -->
     <form runat="server">
         <SharePoint:FormDigest runat="server"></SharePoint:FormDigest>
     </form>
     <div class="enbdlOGO">
-        <img class="ml-8"
-            src="https://www.emiratesnbd.com/-/media/enbd/images/logos/horizontal_logo.svg?la=en&hash=A33654369475CF9B1FA76FEB570F9B9D"
-            alt="Emirates NBD">
+        <img class="ml-8" src="https://www.emiratesnbd.com/-/media/enbd/images/logos/horizontal_logo.svg?la=en&hash=A33654369475CF9B1FA76FEB570F9B9D" alt="Emirates NBD">
     </div>
 
     <div class="max-w-4xl mx-auto px-4">
         <h1 class="text-3xl font-bold text-center text-gray-800 mb-6 py-4">Submit KM Chatbot Issue</h1>
         <form id="issueForm" class="space-y-6">
-
             <div class="bg-white rounded-2xl shadow-lg p-6">
                 <h2 class="text-xl font-semibold text-gray-700 mb-4">Issue Details</h2>
                 <div class="grid gap-4 md:grid-cols-3">
                     <div>
                         <label for="date" class="block text-gray-600 mb-1">Date</label>
-                        <input id="date" type="date" max="" required
-                            class="w-full border border-gray-300 rounded-lg px-3 py-2 bg-gray-50" />
+                        <input id="date" type="date" max="" required class="w-full border border-gray-300 rounded-lg px-3 py-2 bg-gray-50" />
                     </div>
                     <div>
                         <label for="issueId" class="block text-gray-600 mb-1">ID</label>
-                        <input id="issueId" disabled
-                            class="w-full border border-gray-300 rounded-lg px-3 py-2 bg-gray-50" />
+                        <input id="issueId" disabled class="w-full border border-gray-300 rounded-lg px-3 py-2 bg-gray-50" />
                     </div>
                     <div>
                         <label for="reportedBy" class="block text-gray-600 mb-1">Reported By</label>
-                        <input id="reportedBy" disabled
-                            class="w-full border border-gray-300 rounded-lg px-3 py-2 bg-gray-50" />
+                        <input id="reportedBy" disabled class="w-full border border-gray-300 rounded-lg px-3 py-2 bg-gray-50" />
                     </div>
                 </div>
             </div>
@@ -91,16 +81,12 @@
                 <h2 class="text-xl font-semibold text-gray-700 mb-4">Chatbot Interaction</h2>
                 <div class="space-y-4">
                     <div>
-                        <label for="question" class="block text-gray-600 mb-1">Question <span
-                                class="text-red-500">*</span></label>
-                        <textarea id="question" rows="2" required
-                            class="w-full border border-gray-300 rounded-lg px-3 py-2 bg-gray-50"></textarea>
+                        <label for="question" class="block text-gray-600 mb-1">Question <span class="text-red-500">*</span></label>
+                        <textarea id="question" rows="2" required class="w-full border border-gray-300 rounded-lg px-3 py-2 bg-gray-50"></textarea>
                     </div>
                     <div>
-                        <label for="expected" class="block text-gray-600 mb-1">Expected Response <span
-                                class="text-red-500">*</span></label>
-                        <textarea id="expected" rows="2" required
-                            class="w-full border border-gray-300 rounded-lg px-3 py-2 bg-gray-50"></textarea>
+                        <label for="expected" class="block text-gray-600 mb-1">Expected Response <span class="text-red-500">*</span></label>
+                        <textarea id="expected" rows="2" required class="w-full border border-gray-300 rounded-lg px-3 py-2 bg-gray-50"></textarea>
                     </div>
                 </div>
             </div>
@@ -112,17 +98,14 @@
                 </div>
             </div>
 
-            <button type="submit"
-                class="w-full md:w-auto bg-blue-600 text-white font-semibold rounded-lg px-6 py-3 hover:bg-blue-700">
+            <button type="submit" class="w-full md:w-auto bg-blue-600 text-white font-semibold rounded-lg px-6 py-3 hover:bg-blue-700">
                 Submit Issue
             </button>
         </form>
     </div>
 
-    <script
-        src="https://workplace.emiratesnbd.com/sites/GCE/public/SiteAssets/javascript/third-party/tailwinds3.4.16.js"></script>
-    <script
-        src="https://workplace.emiratesnbd.com/sites/GCE/public/SiteAssets/javascript/third-party/dropzone.min.js"></script>
+    <script src="https://workplace.emiratesnbd.com/sites/GCE/public/SiteAssets/javascript/third-party/tailwinds3.4.16.js"></script>
+    <script src="https://workplace.emiratesnbd.com/sites/GCE/public/SiteAssets/javascript/third-party/dropzone.min.js"></script>
     <script>
         Dropzone.autoDiscover = false;
         const dz = new Dropzone("#dropzone", {
@@ -132,19 +115,8 @@
             acceptedFiles: "image/*",
             previewsContainer: "#dropzone",
             addRemoveLinks: true,
-            previewTemplate: `
-                <div class="dz-preview dz-file-preview mb-4 relative bg-white rounded-lg shadow p-2">
-                    <div class="dz-image rounded overflow-hidden">
-                        <img data-dz-thumbnail class="w-full h-auto object-cover" />
-                    </div>
-                    <div class="dz-details text-sm text-gray-600 mt-2">
-                        <span data-dz-name></span> (<span data-dz-size></span>)
-                    </div>
-                    <a data-dz-remove class="dz-remove absolute top-1 right-1 bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center hover:bg-red-600" title="Remove file">&times;</a>
-                </div>`
+            previewTemplate: `<div class="dz-preview dz-file-preview mb-4 relative bg-white rounded-lg shadow p-2"><div class="dz-image rounded overflow-hidden"><img data-dz-thumbnail class="w-full h-auto object-cover" /></div><div class="dz-details text-sm text-gray-600 mt-2"><span data-dz-name></span> (<span data-dz-size></span>)</div><a data-dz-remove class="dz-remove absolute top-1 right-1 bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center hover:bg-red-600" title="Remove file">&times;</a></div>`
         });
-
-
 
         document.addEventListener('paste', function (event) {
             const items = event.clipboardData.items;
@@ -174,17 +146,6 @@
             submitBtn.disabled = !(form.checkValidity() && hasFiles);
         };
 
-        function checkIfDateIsFilled() {
-            const dateInput = document.getElementById('date'); // Assuming your date input has the ID 'date'
-            if (dateInput.value === '') {
-                console.log("The date input field is empty.");
-                return false;
-            } else {
-                console.log("The date input field has a value: " + dateInput.value);
-                return true;
-            }
-        }
-
         form.addEventListener('input', toggleSubmit);
         form.addEventListener('change', toggleSubmit);
 
@@ -199,7 +160,6 @@
                 const question = document.getElementById('question').value;
                 const expected = document.getElementById('expected').value;
                 const date = document.getElementById('date').value;
-
                 const digest = document.getElementById('__REQUESTDIGEST').value;
                 const siteUrl = _spPageContextInfo.webServerRelativeUrl;
 
@@ -223,33 +183,36 @@
                 const itemData = await itemResponse.json();
                 const itemId = itemData.d.ID;
 
-                const uploadedImageLinks = [];
-                for (const file of dz.files) {
-                    const uploadUrl = `${siteUrl}/_api/web/GetFolderByServerRelativeUrl('chatbotissuesgallery')/Files/add(overwrite=true, url='${issueId}-${file.name}')`;
-                    const reader = new FileReader();
-
-                    const fileBuffer = await new Promise((resolve, reject) => {
-                        reader.onload = () => resolve(reader.result);
+                const uploadPromises = dz.files.map(file => {
+                    return new Promise((resolve, reject) => {
+                        const reader = new FileReader();
+                        reader.onload = async () => {
+                            try {
+                                const uniqueName = `${issueId}-${Date.now()}-${file.name}`;
+                                const uploadUrl = `${siteUrl}/_api/web/GetFolderByServerRelativeUrl('chatbotissuesgallery')/Files/add(overwrite=true, url='${uniqueName}')`;
+                                const uploadResp = await fetch(uploadUrl, {
+                                    method: "POST",
+                                    headers: {
+                                        "Accept": "application/json;odata=verbose",
+                                        "X-RequestDigest": digest
+                                    },
+                                    body: reader.result
+                                });
+                                const fileData = await uploadResp.json();
+                                resolve(fileData.d.ServerRelativeUrl);
+                            } catch (err) {
+                                reject(err);
+                            }
+                        };
                         reader.onerror = reject;
                         reader.readAsArrayBuffer(file);
                     });
+                });
 
-                    const uploadResp = await fetch(uploadUrl, {
-                        method: "POST",
-                        headers: {
-                            "Accept": "application/json;odata=verbose",
-                            "X-RequestDigest": digest
-                        },
-                        body: fileBuffer
-                    });
-
-                    const fileData = await uploadResp.json();
-                    uploadedImageLinks.push(fileData.d.ServerRelativeUrl);
-                }
+                const uploadedImageLinks = await Promise.all(uploadPromises);
 
                 if (uploadedImageLinks.length > 0) {
                     const linksText = uploadedImageLinks.map(url => `${window.location.origin}${url}`).join('\n');
-
                     await fetch(`${siteUrl}/_api/web/lists/getbytitle('kmchatbottracker')/items(${itemId})`, {
                         method: "POST",
                         headers: {
@@ -293,17 +256,6 @@
         const day = String(today.getDate()).padStart(2, '0');
         const currentDate = `${year}-${month}-${day}`;
         dateInput.setAttribute('max', currentDate);
-
-        function num2Date() {
-            const now = Date.now();
-            const date = new Date(now);
-            return {
-                date: date,
-                toUTCString: date.toUTCString(),
-                toLocaleString: date.toLocaleString(),
-                toISOString: date.toISOString()
-            }
-        }
     </script>
 </body>
 
