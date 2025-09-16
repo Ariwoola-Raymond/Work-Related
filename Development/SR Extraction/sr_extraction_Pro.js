@@ -3,6 +3,9 @@
  *  CONFIG
  *  ========================= */
 const REUSE_CONTINGENCY_FOR_SCENARIO = true; // true => put Scenario text into "Contingency" column; false => add a separate "Scenario" column
+// Toggle ASCII-style sanitization (curly quotes, dashes, bullets -> plain equivalents).
+// Set to false to keep original Unicode characters (BOM still ensures proper UTF-8 in Excel >= 2016).
+const ENABLE_EXCEL_SANITIZE = true;
 
 /** =========================
  *  MAIN
@@ -134,7 +137,9 @@ async function processFiles() {
         base.push(newSrTemplate);
         base.push(isFlagged);
 
-        csv += base.map(v => csvEscape(sanitizeForExcel(v))).join(",") + "\n";
+        csv += base
+          .map(v => ENABLE_EXCEL_SANITIZE ? csvEscape(sanitizeForExcel(v)) : csvEscape(v))
+          .join(",") + "\n";
       });
     });
   }
