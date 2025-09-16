@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>SR Extractor (Excel-proof)</title>
+  <style>
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; padding: 16px; }
+    .row { display: flex; gap: 12px; align-items: center; }
+    button { padding: 8px 14px; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <div class="row">
+    <input id="fileInput" type="file" multiple />
+    <button id="runBtn">Process</button>
+  </div>
+
+  <script>
+  document.getElementById('runBtn').addEventListener('click', processFiles);
+
+  async function processFiles() {
+    const fileInput = document.getElementById('fileInput');
+    const files = fileInput.files;
+    if (!files || files.length === 0) { alert('Please select files to process'); return; }
+
+    // We want exactly these 5 inner SR columns
+    const EXPECTED_DATA_COLUMNS = 5; // [Type, Area, Sub Area, TAT, Contingency]
+
+    // CSV header (metadata + inner SR cols + flag)
+    let csv = "Entity,Category,Title,Article_ID,Path,Type,Area,Sub Area,TAT,Contingency,NewSRTemplate\n";
+
+    for (const file of files) {
+      const html = await readFile(file);
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(html, 'text/html');
+
+      const tables = doc.querySelectorAll('table');
+      tables.forEach(table => {
+        const isFlagged = table.classList.contains('serviceRequest') ? "YES" : "NO";
+
+        // ---- Header mapping (supports th/td) ----
+        const headerCells = table.querySelectorAll('thead tr th, thead tr td');
+        const headers = Array.from(headerCells).map(h => (h.textContent || '').trim().toLowerCase());
+
+        const want = {
+          type:        /(^(request\s*)?type$)/i,
+          area:        /^area$/i,
+          subArea:     /^(sub\s*area|sub\s*type|sub-?area)$/i,
+          tat:         /^tat$/i,
+          contingency: /^contingency$/i
+        };
+
+        let colIndex = {};
+        if (headers.length) {
+          headers.forEach((h, i) => {
+            if (want.type.test(h))          colIndex.type = i;
+            else if (want.area.test(h))     colIndex.area = i;
+            else if (want.subArea.test(h))  colIndex.subArea = i;
+            else if (want.tat.test(h))      colIndex.tat = i;
+            else if (want.contingency.test(h)) colIndex.contingency = i;
+          });
+        }
+
+        const bodyRows = table.querySelectorAll('tbody tr');
+
+        // Heuristic: first column looks like a narrative "Scenario" cell?
+        function looksLikeScenarioCell(txt) {
+          const t = (txt || '').trim();
+          if (!t) return false;
+          return t.length > 25 || /\.\s|\(|\)|:|,/.test(t);
+        }
+
+        if (!colIndex.type || !colIndex.area || !colIndex.subArea) {
+          // Infer positions assuming an extra leading column (often "Scenario")
+          let offset = 0;
+          if (bodyRows.length) {
+            const firstCells = Array.from(bodyRows[0].querySelectorAll('td')).map(td => (td.textContent || '').trim());
+            if (firstCells.length >= 6 && looksLikeScenarioCell(firstCells[0])) {
+              offset = 1; // skip first column entirely
+            }
+          }
+          colIndex = {
+            type:        offset + 0,
+            area:        offset + 1,
+            subArea:     offset + 2,
+            tat:         offset + 3,
+            contingency: offset + 4
+          };
+        }
+
+        // Basic validation on column counts
+        const maxIdx = Math.max(colIndex.type, colIndex.area, colIndex.subArea, colIndex.tat, colIndex.contingency);
+        const hasEnoughCols = Array.from(bodyRows).some(tr => tr.querySelectorAll('td').length > maxIdx);
+        if (!hasEnoughCols) return; // skip malformed tables
+
+        // ---- Metadata extraction via <dt>/<dd> climbing ----
+        let title = findDDUpwards(table, "title") ?? "Unknown Title";
+        let articleId = findDDUpwards(table, "id") ?? "Unknown ID";
+        let articleCategory = findDDUpwards(table, "location") ?? "Unknown Category";
+
+        const cleanArticleCategory = extractKey(articleCategory) ?? articleCategory;
+        const entity = (cleanArticleCategory.split('_')[0] || "").trim();
+        const articleURL = `https://askkmpro.sso.verint-km.com/enterprise/${cleanText(entity)}/${cleanText(cleanArticleCategory)}/${cleanText(articleId)}`;
+
+        // ---- Rows ----
+        bodyRows.forEach(tr => {
+          const tds = tr.querySelectorAll('td');
+          if (!tds.length) return;
+
+          const pick = (idx) => {
+            const cell = tds[idx];
+            if (!cell) return '';
+            // If cells might contain HTML tags, prefer innerHTML → textOnly
+            return cleanText(textOnly(cell.innerHTML));
+          };
+
+          const type        = pick(colIndex.type);
+          const area        = pick(colIndex.area);
+          const subArea     = pick(colIndex.subArea);
+          const tat         = pick(colIndex.tat);
+          const contingency = pick(colIndex.contingency);
+
+          // Normalize title path a bit (safe ASCII)
+          const titlePath = cleanText(
+            (title || '').replace(/\s*-\s*/g, '/').replace(/\s+/g, ' ').trim()
+          );
+
+          csv += [
+            entity,
+            cleanArticleCategory,
+            titlePath,
+            articleId,
+            articleURL,
+            type,
+            area,
+            subArea,
+            tat,
+            contingency,
+            isFlagged
+          ].map(csvEscape).join(',') + '\n';
+        });
+      });
+    }
+
+    downloadCSV(csv);
+  }
+
+  // ----- Helpers -----
+
+  // Excel-proof text sanitizer → plain ASCII
+  function cleanText(s) {
+    if (s == null) return '';
+    return String(s)
+      .replace(/[\u2018\u2019\u02BC]/g, "'")   // smart single quotes
+      .replace(/[\u201C\u201D]/g, '"')         // smart double quotes
+      .replace(/\u2013|\u2014/g, '-')          // en/em dash
+      .replace(/\u2022/g, '*')                 // bullet
+      .replace(/\u2026/g, '...')               // ellipsis
+      .replace(/\u00A0/g, ' ')                 // NBSP
+      .replace(/\s+/g, ' ')
+      .replace(/[^\x20-\x7E]/g, '')            // strip non-ASCII
+      .trim();
+  }
+
+  function csvEscape(s) {
+    s = cleanText(s); // sanitize BEFORE quoting
+    return /[",\n]/.test(s) ? `"${s.replace(/"/g, '""')}"` : s;
+  }
+
+  function textOnly(html) {
+    const tmp = document.createElement('div');
+    tmp.innerHTML = html;
+    return tmp.textContent || '';
+  }
+
+  function readFile(file) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = e => resolve(e.target.result);
+      reader.onerror = e => reject(e);
+      reader.readAsText(file);
+    });
+  }
+
+  function downloadCSV(content) {
+    const blob = new Blob([content], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'combined_serviceRequests.csv';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  }
+
+  function findDDUpwards(startNode, dtLabelLower) {
+    let current = startNode;
+    const target = String(dtLabelLower || '').toLowerCase();
+    while (current) {
+      const dts = current.querySelectorAll('dt');
+      for (const dt of dts) {
+        if ((dt.textContent || '').trim().toLowerCase() === target) {
+          const dd = dt.nextElementSibling;
+          if (dd && dd.tagName === 'DD') return (dd.textContent || '').trim();
+        }
+      }
+      current = current.parentElement;
+    }
+    return null;
+  }
+
+  // Pull a key like ".../endb/<key>/..." or "endb: <key>"
+  function extractKey(input) {
+    if (!input) return null;
+    let m = input.match(/\/endb\/([\w-]+)/i);
+    if (m) return m[1];
+    m = input.match(/endb[:\s]+([\w-]+)/i);
+    return m ? m[1] : null;
+  }
+  </script>
+</body>
+</html>
