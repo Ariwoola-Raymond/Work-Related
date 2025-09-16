@@ -27,7 +27,8 @@ async function processFiles() {
     headerCols = headerCols.filter(h => h !== "Scenario");
   }
 
-  let csv = headerCols.join(",") + "\n";
+  // Prepend UTF-8 BOM so that Excel auto-detects UTF-8 instead of guessing ANSI
+  let csv = '\uFEFF' + headerCols.join(",") + "\n";
 
   for (const file of files) {
     const html = await readFile(file);
@@ -133,7 +134,7 @@ async function processFiles() {
         base.push(newSrTemplate);
         base.push(isFlagged);
 
-        csv += base.map(csvEscape).join(",") + "\n";
+        csv += base.map(v => csvEscape(sanitizeForExcel(v))).join(",") + "\n";
       });
     });
   }
@@ -295,6 +296,22 @@ function csvEscape(s) {
   s = (s ?? "").toString();
   if (/[",\n]/.test(s)) return '"' + s.replace(/"/g, '""') + '"';
   return s;
+}
+
+// Replace common Unicode punctuation that often appears corrupted (mojibake) in Excel when encoding is mis-detected
+// This is defensive; with the BOM Excel should decode correctly, but this keeps output ASCII-friendly.
+function sanitizeForExcel(s) {
+  if (s == null) return '';
+  return s
+    .replace(/[\u2018\u2019\u201A\u201B]/g, "'") // curly/single quotes
+    .replace(/[\u201C\u201D\u201E]/g, '"')       // curly double quotes
+    .replace(/[\u2013\u2014\u2015]/g, '-')       // dashes
+    .replace(/\u2022/g, '*')                      // bullet
+    .replace(/\u00A0/g, ' ')                      // NBSP
+    .replace(/[\u2026]/g, '...')                  // ellipsis
+    .replace(/[\u2122]/g, 'TM')                   // trademark
+    .replace(/[\u00AE]/g, '(R)')                  // registered
+    .replace(/[\u00A9]/g, '(C)');                 // copyright
 }
 
 function downloadCSV(content) {
