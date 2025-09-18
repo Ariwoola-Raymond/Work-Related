@@ -49,6 +49,19 @@
   .hit{ background:#365bd6; color:#eaf1ff; padding:0 3px; border-radius:3px }
     .footer-actions{ display:flex; gap:10px; align-items:center; justify-content: space-between; margin-top:10px }
     .stat{ color:#cfe0ff; font-size:12px }
+    /* Table view */
+    .resultsToolbar{ display:flex; flex-wrap:wrap; gap:10px; align-items:center; justify-content: space-between; margin-top:14px }
+    .segmented{ display:inline-flex; border:1px solid var(--border); border-radius:10px; overflow:hidden }
+    .segmented button{ background:#0f1a33; border:none; color:#cfe0ff; padding:8px 12px; cursor:pointer }
+    .segmented button.selected{ background:#1b2b56 }
+    .tableWrap{ margin-top:10px; border:1px solid var(--border); border-radius:10px; overflow:auto; max-height: 65vh; background:#0d1630 }
+    table.dataTable{ width:100%; border-collapse: collapse; font-size:12px; }
+    .dataTable th, .dataTable td{ border-bottom:1px solid var(--border); padding:8px 10px; white-space: nowrap; text-overflow: ellipsis; overflow: hidden; }
+    .dataTable th{ position:sticky; top:0; background:#111c3d; color:#eaf1ff; cursor:pointer; }
+    .dataTable tr:nth-child(even){ background:#0e1834 }
+    .dataTable tr:hover{ background:#152046 }
+    .paginate{ display:flex; gap:8px; align-items:center }
+    .paginate button{ padding:6px 10px }
   </style>
 </head>
 <body>
@@ -124,7 +137,30 @@
       </div>
     </div>
 
+    <div class="resultsToolbar">
+      <div class="segmented">
+        <button id="btnViewTable" class="selected" onclick="setViewMode('table')">Table</button>
+        <button id="btnViewCards" onclick="setViewMode('cards')">Cards</button>
+      </div>
+      <div class="row">
+        <input id="globalFilter" type="text" placeholder="Search results" oninput="onFilterChange(this.value)"/>
+        <label>Rows per page
+          <select id="pageSize" onchange="onPageSizeChange(this.value)">
+            <option>25</option>
+            <option selected>50</option>
+            <option>100</option>
+            <option>200</option>
+          </select>
+        </label>
+        <div class="paginate">
+          <button onclick="prevPage()">Prev</button>
+          <span id="pageInfo" class="stat"></span>
+          <button onclick="nextPage()">Next</button>
+        </div>
+      </div>
+    </div>
     <div id="results" class="results"></div>
+    <div id="resultsTableWrap" class="tableWrap" style="display:none"></div>
   </div>
 
   <script>
@@ -160,6 +196,8 @@ const EVERYTHING_PRESET = {
 const PRESET_STORAGE_KEY = 'srExtractorPresetsV1';
 const CUSTOM_PRESET_ID = 'custom';
 let PRESETS = [];
+let VIEW_MODE = 'table';
+const TABLE_STATE = { filter: '', sortIndex: null, sortDir: 'asc', page: 1, perPage: 50 };
 
 // Runtime aggregation
 let CURRENT_RESULTS = []; // Array<{ id, meta, rows, include }>
@@ -585,11 +623,31 @@ window.addEventListener('DOMContentLoaded', () => {
 });
 
 function renderResults() {
+  const cardsContainer = document.getElementById('results');
+  const tableWrap = document.getElementById('resultsTableWrap');
+  const btnTable = document.getElementById('btnViewTable');
+  const btnCards = document.getElementById('btnViewCards');
+
+  if (VIEW_MODE === 'table') {
+    btnTable.classList.add('selected'); btnCards.classList.remove('selected');
+    cardsContainer.style.display = 'none';
+    tableWrap.style.display = 'block';
+    renderResultsTable();
+  } else {
+    btnCards.classList.add('selected'); btnTable.classList.remove('selected');
+    tableWrap.style.display = 'none';
+    cardsContainer.style.display = 'grid';
+    renderResultsCards();
+  }
+}
+
+function renderResultsCards(){
   const container = document.getElementById('results');
   container.innerHTML = '';
   let totalRows = 0;
-  CURRENT_RESULTS.forEach((item, idx) => {
-    totalRows += item.rows.length;
+  CURRENT_RESULTS.forEach((item) => { totalRows += item.rows.length; });
+  setStats({ rows: totalRows });
+  CURRENT_RESULTS.forEach((item) => {
     const card = document.createElement('div');
     card.className = 'card';
     const m = item.meta;
@@ -602,47 +660,96 @@ function renderResults() {
       <span>Category: ${csvEscape(m.cleanArticleCategory)}</span>
       <span>Rows: ${item.rows.length}</span>
     `;
-
     const toggle = document.createElement('label');
     toggle.style.margin = '6px 0';
     const cb = document.createElement('input');
-    cb.type = 'checkbox';
-    cb.checked = item.include;
-    cb.onchange = () => { item.include = cb.checked; updateDownloadState(); };
+    cb.type = 'checkbox'; cb.checked = item.include;
+    cb.onchange = () => { item.include = cb.checked; updateDownloadState(); renderResults(); };
     toggle.appendChild(cb);
     toggle.appendChild(document.createTextNode(' Include in CSV'));
-
-    const preview = document.createElement('div');
-    preview.className = 'preview';
-    const table = document.createElement('table');
-    table.className = 'previewTable';
-    const thead = document.createElement('thead');
-    const thr = document.createElement('tr');
-    headersForCSV().forEach(h => {
-      const th = document.createElement('th'); th.textContent = h; thr.appendChild(th);
-    });
+    const preview = document.createElement('div'); preview.className = 'preview';
+    const table = document.createElement('table'); table.className = 'previewTable';
+    const thead = document.createElement('thead'); const thr = document.createElement('tr');
+    headersForCSV().forEach(h => { const th = document.createElement('th'); th.textContent = h; thr.appendChild(th); });
     thead.appendChild(thr);
     const tbody = document.createElement('tbody');
     item.rows.slice(0,5).forEach(r => {
       const tr = document.createElement('tr');
       const cells = previewCellsFromRow(r);
-      cells.forEach(cell => { const td = document.createElement('td');
-        if (cell.html) { td.innerHTML = cell.html; } else { td.textContent = cell.value; }
-        tr.appendChild(td);
-      });
+      cells.forEach(cell => { const td = document.createElement('td'); if (cell.html) td.innerHTML = cell.html; else td.textContent = cell.value; tr.appendChild(td); });
       tbody.appendChild(tr);
     });
-    table.appendChild(thead); table.appendChild(tbody);
-    preview.appendChild(table);
-
-    card.appendChild(title);
-    card.appendChild(meta);
-    card.appendChild(toggle);
-    card.appendChild(preview);
+    table.appendChild(thead); table.appendChild(tbody); preview.appendChild(table);
+    card.appendChild(title); card.appendChild(meta); card.appendChild(toggle); card.appendChild(preview);
     container.appendChild(card);
   });
-  setStats({ rows: totalRows });
 }
+
+function getIncludedRows(){
+  const inc = CURRENT_RESULTS.filter(r => r.include);
+  const rows = [];
+  inc.forEach(item => item.rows.forEach(r => rows.push(r)));
+  return rows;
+}
+
+function renderResultsTable(){
+  const wrap = document.getElementById('resultsTableWrap');
+  const headers = headersForCSV();
+  const allRows = getIncludedRows();
+  // Filtering
+  const filter = (TABLE_STATE.filter || '').toLowerCase();
+  let rows = !filter ? allRows : allRows.filter(r => Object.values(r).some(v => String(v||'').toLowerCase().includes(filter)));
+  // Sorting
+  if (TABLE_STATE.sortIndex != null){
+    const idx = TABLE_STATE.sortIndex; const key = headers[idx];
+    rows = rows.slice().sort((a,b)=>{
+      const av = csvRowFromObj(a)[idx] || ''; const bv = csvRowFromObj(b)[idx] || '';
+      return TABLE_STATE.sortDir === 'asc' ? String(av).localeCompare(String(bv)) : String(bv).localeCompare(String(av));
+    });
+  }
+  // Pagination
+  const per = TABLE_STATE.perPage; const total = rows.length; const pages = Math.max(1, Math.ceil(total / per));
+  if (TABLE_STATE.page > pages) TABLE_STATE.page = pages;
+  const start = (TABLE_STATE.page - 1) * per; const end = start + per;
+  const pageRows = rows.slice(start, end);
+  document.getElementById('pageInfo').textContent = `Page ${TABLE_STATE.page} / ${pages} — ${total} rows`;
+
+  // Build table HTML
+  const tbl = document.createElement('table'); tbl.className='dataTable';
+  const thead = document.createElement('thead'); const thr = document.createElement('tr');
+  headers.forEach((h, i)=>{
+    const th = document.createElement('th'); th.textContent = h;
+    th.onclick = () => onHeaderSort(i);
+    if (TABLE_STATE.sortIndex === i){ th.textContent = h + (TABLE_STATE.sortDir==='asc' ? ' ▲' : ' ▼'); }
+    thr.appendChild(th);
+  });
+  thead.appendChild(thr);
+  const tbody = document.createElement('tbody');
+  pageRows.forEach(r => {
+    const tr = document.createElement('tr');
+    const cells = previewCellsFromRow(r); // reuse highlighting
+    cells.forEach(cell => { const td = document.createElement('td'); if (cell.html) td.innerHTML=cell.html; else td.textContent = cell.value; tr.appendChild(td); });
+    tbody.appendChild(tr);
+  });
+  tbl.appendChild(thead); tbl.appendChild(tbody);
+  wrap.innerHTML=''; wrap.appendChild(tbl);
+  // Update stats
+  setStats({ rows: allRows.length });
+}
+
+function setViewMode(mode){
+  VIEW_MODE = mode; renderResults();
+}
+
+function onFilterChange(val){ TABLE_STATE.filter = val; TABLE_STATE.page = 1; renderResultsTable(); }
+function onPageSizeChange(val){ TABLE_STATE.perPage = parseInt(val,10)||50; TABLE_STATE.page = 1; renderResultsTable(); }
+function onHeaderSort(index){
+  if (TABLE_STATE.sortIndex === index){ TABLE_STATE.sortDir = TABLE_STATE.sortDir === 'asc' ? 'desc' : 'asc'; }
+  else { TABLE_STATE.sortIndex = index; TABLE_STATE.sortDir = 'asc'; }
+  renderResultsTable();
+}
+function nextPage(){ TABLE_STATE.page += 1; renderResultsTable(); }
+function prevPage(){ TABLE_STATE.page = Math.max(1, TABLE_STATE.page - 1); renderResultsTable(); }
 
 function updateDownloadState(){
   const anyIncluded = CURRENT_RESULTS.some(r => r.include);
