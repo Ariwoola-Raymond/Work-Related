@@ -76,8 +76,8 @@
         <div class="group">
           <h4>SR Filter Keywords</h4>
           <div class="row">
-            <input type="text" id="optKeywords" placeholder="comma-separated e.g. comp, request, service req" value="comp"/>
-            <span class="stat">Matches within Type column (contains)</span>
+            <input type="text" id="optKeywords" placeholder="comma or space-separated; * for prefix e.g. comp*, card" value="comp*, cco*, internal*, misc*, serv*, balance*, billed*, card*, cash*, cheque*, credit*, email*, enable*, statement*, installment*, ipp*, west*"/>
+            <span class="stat">Matches in Type (contains / prefix with *)</span>
           </div>
         </div>
       </div>
@@ -105,7 +105,7 @@
 let REUSE_CONTINGENCY_FOR_SCENARIO = true;
 let ENABLE_EXCEL_SANITIZE = true;
 let APPLY_SR_KEYWORD_FILTER = true;
-let SR_KEYWORDS = ['comp']; // substring contains, case-insensitive
+let SR_KEYWORDS = ['comp*','cco*','internal*','misc*','serv*','balance*','billed*','card*','cash*','cheque*','credit*','email*','enable*','statement*','installment*','ipp*','west*']; // supports * prefix wildcard
 
 // Runtime aggregation
 let CURRENT_RESULTS = []; // Array<{ id, meta, rows, include }>
@@ -123,7 +123,7 @@ async function processFiles() {
   REUSE_CONTINGENCY_FOR_SCENARIO = document.getElementById('optReuseScenario').checked;
   ENABLE_EXCEL_SANITIZE = document.getElementById('optSanitize').checked;
   APPLY_SR_KEYWORD_FILTER = document.getElementById('optFilterSR').checked;
-  SR_KEYWORDS = document.getElementById('optKeywords').value.split(',').map(s => s.trim().toLowerCase()).filter(Boolean);
+  SR_KEYWORDS = parseKeywords(document.getElementById('optKeywords').value);
 
   CURRENT_RESULTS = [];
   AGG_ROWS = [];
@@ -367,7 +367,7 @@ function tableLooksLikeSR(rows, map) {
       const tds = tr.querySelectorAll('td');
       if (!tds.length) continue;
       const val = normalizeCell(tds[typeIdx]).toLowerCase();
-      if (val && SR_KEYWORDS.some(k => val.includes(k))) return true;
+      if (val && matchesKeywords(val)) return true;
     }
     return false;
   }
@@ -376,7 +376,29 @@ function tableLooksLikeSR(rows, map) {
     const tds = tr.querySelectorAll('td');
     for (const td of tds) {
       const val = normalizeCell(td).toLowerCase();
-      if (val && SR_KEYWORDS.some(k => val.includes(k))) return true;
+      if (val && matchesKeywords(val)) return true;
+    }
+  }
+  return false;
+}
+
+function parseKeywords(str){
+  return (str || '')
+    .split(/[\s,]+/)
+    .map(s => s.trim().toLowerCase())
+    .filter(Boolean)
+    .filter((v, i, a) => a.indexOf(v) === i); // dedupe
+}
+
+function matchesKeywords(val){
+  for (const kw of SR_KEYWORDS) {
+    if (!kw) continue;
+    if (kw === '*') return true;
+    if (kw.endsWith('*')) {
+      const prefix = kw.slice(0, -1);
+      if (prefix && val.startsWith(prefix)) return true;
+    } else {
+      if (val.includes(kw)) return true;
     }
   }
   return false;
