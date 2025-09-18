@@ -23,7 +23,7 @@ async function processFiles() {
     "Entity","Category","Title","Article_ID","Path",
     "Type","Area","Sub Area","TAT",
     REUSE_CONTINGENCY_FOR_SCENARIO ? "Contingency" : "Contingency","Scenario",
-    "NewSRTemplate","IsFlagged"
+    "NewSRTemplate","NewSRFlagged"
   ];
   if (REUSE_CONTINGENCY_FOR_SCENARIO) {
     // When reusing Contingency, drop explicit Scenario column
@@ -143,7 +143,6 @@ async function processFiles() {
       });
     });
   }
-
   downloadCSV(csv);
 }
 

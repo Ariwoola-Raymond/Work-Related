@@ -4,220 +4,625 @@
   <meta charset="utf-8" />
   <title>SR Extractor (Excel-proof)</title>
   <style>
-    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; padding: 16px; }
-    .row { display: flex; gap: 12px; align-items: center; }
-    button { padding: 8px 14px; cursor: pointer; }
+    :root{
+      --bg:#0b1020; --panel:#121a2b; --muted:#6b7a99; --text:#e6ecff; --accent:#7aa2ff; --accent-2:#22c55e; --warn:#f59e0b; --danger:#ef4444;
+      --border: #22304d; --chip:#1a2440; --chip-text:#d2dcff; --card:#0f1628; --shadow:rgba(10,14,25,.35);
+    }
+    *{box-sizing:border-box}
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin:0; color:var(--text); background: radial-gradient(1200px 600px at 10% -10%, #16213a, transparent 60%), radial-gradient(1200px 600px at 110% 10%, #101a32, transparent 60%), var(--bg); }
+    header{position:sticky;top:0;z-index:10;background:linear-gradient(180deg, rgba(11,16,32,.95) 0%, rgba(11,16,32,.75) 100%);backdrop-filter: blur(6px); border-bottom:1px solid var(--border)}
+    .wrap{max-width:1100px;margin:0 auto;padding:16px 20px}
+    .row { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+    .panel{background:var(--panel); border:1px solid var(--border); border-radius:12px; padding:14px 16px; box-shadow: 0 6px 18px var(--shadow)}
+    .controls{ display:grid; grid-template-columns: 1.2fr 1fr; gap:12px; }
+    .controls .group{ background:var(--card); border:1px solid var(--border); padding:12px; border-radius:10px }
+    .controls h4{margin:0 0 8px 0;color:#cbd6ff;font-weight:600}
+    label{ display:flex; align-items:center; gap:8px; color:var(--muted); font-size:13px }
+    input[type="text"], input[type="number"], select{ background:#0c1326; border:1px solid var(--border); color:var(--text); padding:8px 10px; border-radius:8px; min-width: 260px }
+    input[type="checkbox"]{ transform: translateY(1px) }
+    button { padding: 10px 14px; cursor: pointer; border-radius:9px; border:1px solid var(--border); background: linear-gradient(180deg,#18264a,#14203f); color:var(--text) }
+    button.primary{ background: linear-gradient(180deg, #1a3a7a, #162e61); border-color:#1f3d74 }
+    button.success{ background: linear-gradient(180deg, #1d6f46, #135a39); border-color:#1b6141 }
+    button:disabled{ opacity:.5; cursor:not-allowed }
+
+    .badges{display:flex; gap:6px; flex-wrap: wrap}
+    .badge{ background:var(--chip); color:var(--chip-text); border:1px solid var(--border); padding:4px 8px; font-size:12px; border-radius:999px }
+
+    .results{ margin-top:16px; display:grid; grid-template-columns: repeat(auto-fill,minmax(320px,1fr)); gap:14px }
+    .card{ background:linear-gradient(180deg, #121b32, #0f1628); border:1px solid var(--border); border-radius:12px; padding:12px; box-shadow: 0 8px 22px var(--shadow) }
+    .card h3{ margin:0 0 6px 0; font-size:16px; color:#eaf1ff }
+    .meta{ color:var(--muted); font-size:12px; display:flex; gap:8px; flex-wrap: wrap }
+    .preview{ border-top:1px dashed var(--border); margin-top:8px; padding-top:8px }
+    table.previewTable{ width:100%; border-collapse: collapse; font-size:12px }
+    .previewTable th, .previewTable td{ border-bottom:1px solid var(--border); padding:6px 8px; text-align:left; vertical-align: top; }
+    .previewTable th{ color:#cbd6ff; background:#101733 }
+    .chip{ padding:2px 8px; border-radius:999px; font-size:11px; border:1px solid var(--border); background:#0e1934; color:#cfe0ff }
+    .footer-actions{ display:flex; gap:10px; align-items:center; justify-content: space-between; margin-top:10px }
+    .stat{ color:#cfe0ff; font-size:12px }
   </style>
 </head>
 <body>
-  <div class="row">
-    <input id="fileInput" type="file" multiple />
-    <button id="runBtn">Process</button>
+  <header>
+    <div class="wrap">
+      <div class="row" style="justify-content:space-between">
+        <div class="row">
+          <strong style="font-size:18px">SR Extractor Pro</strong>
+          <span class="badge">Excel-proof UTF‑8</span>
+          <span class="badge">Messy-table tolerant</span>
+        </div>
+        <div class="row">
+          <button id="downloadBtn" class="success" disabled onclick="downloadCurrentCSV()">Download CSV</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="wrap">
+    <div class="panel">
+      <div class="row">
+        <input id="fileInput" type="file" multiple accept=".html"/>
+        <button id="runBtn" class="primary" onclick="processFiles()">Process</button>
+        <span id="progress" class="stat"></span>
+      </div>
+      <div class="controls" style="margin-top:12px">
+        <div class="group">
+          <h4>Extraction Options</h4>
+          <div class="row">
+            <label><input type="checkbox" id="optReuseScenario" checked/>Reuse Contingency for Scenario</label>
+            <label><input type="checkbox" id="optSanitize" checked/>Excel sanitize punctuation</label>
+            <label><input type="checkbox" id="optFilterSR" checked/>Apply SR keyword filter</label>
+          </div>
+        </div>
+        <div class="group">
+          <h4>SR Filter Keywords</h4>
+          <div class="row">
+            <input type="text" id="optKeywords" placeholder="comma-separated e.g. comp, request, service req" value="comp"/>
+            <span class="stat">Matches within Type column (contains)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-actions">
+      <div class="badges">
+        <span class="badge" id="statFiles">No files</span>
+        <span class="badge" id="statTables">No tables</span>
+        <span class="badge" id="statRows">No rows</span>
+      </div>
+      <div class="row">
+        <button id="downloadBtn2" class="success" disabled onclick="downloadCurrentCSV()">Download CSV</button>
+      </div>
+    </div>
+
+    <div id="results" class="results"></div>
   </div>
 
   <script>
-  document.getElementById('runBtn').addEventListener('click', processFiles);
 
-  async function processFiles() {
-    const fileInput = document.getElementById('fileInput');
-    const files = fileInput.files;
-    if (!files || files.length === 0) { alert('Please select files to process'); return; }
+/** =========================
+ *  CONFIG (controlled via UI)
+ *  ========================= */
+let REUSE_CONTINGENCY_FOR_SCENARIO = true;
+let ENABLE_EXCEL_SANITIZE = true;
+let APPLY_SR_KEYWORD_FILTER = true;
+let SR_KEYWORDS = ['comp']; // substring contains, case-insensitive
 
-    // We want exactly these 5 inner SR columns
-    const EXPECTED_DATA_COLUMNS = 5; // [Type, Area, Sub Area, TAT, Contingency]
+// Runtime aggregation
+let CURRENT_RESULTS = []; // Array<{ id, meta, rows, include }>
+let AGG_ROWS = []; // flattened rows for CSV
 
-    // CSV header (metadata + inner SR cols + flag)
-    let csv = "Entity,Category,Title,Article_ID,Path,Type,Area,Sub Area,TAT,Contingency,NewSRTemplate\n";
+/** =========================
+ *  MAIN
+ *  ========================= */
+async function processFiles() {
+  const fileInput = document.getElementById('fileInput');
+  const files = fileInput?.files || [];
+  if (!files.length) { alert('Please select files to process'); return; }
 
-    for (const file of files) {
-      const html = await readFile(file);
-      const parser = new DOMParser();
-      const doc = parser.parseFromString(html, 'text/html');
+  // Read options from UI
+  REUSE_CONTINGENCY_FOR_SCENARIO = document.getElementById('optReuseScenario').checked;
+  ENABLE_EXCEL_SANITIZE = document.getElementById('optSanitize').checked;
+  APPLY_SR_KEYWORD_FILTER = document.getElementById('optFilterSR').checked;
+  SR_KEYWORDS = document.getElementById('optKeywords').value.split(',').map(s => s.trim().toLowerCase()).filter(Boolean);
 
-      const tables = doc.querySelectorAll('table');
-      tables.forEach(table => {
-        const isFlagged = table.classList.contains('serviceRequest') ? "YES" : "NO";
+  CURRENT_RESULTS = [];
+  AGG_ROWS = [];
+  setStats({ files: files.length, tables: 0, rows: 0 });
+  setProgress('Processing…');
+  toggleDownload(false);
 
-        // ---- Header mapping (supports th/td) ----
-        const headerCells = table.querySelectorAll('thead tr th, thead tr td');
-        const headers = Array.from(headerCells).map(h => (h.textContent || '').trim().toLowerCase());
+  let totalTables = 0;
+  let totalRows = 0;
 
-        const want = {
-          type:        /(^(request\s*)?type$)/i,
-          area:        /^area$/i,
-          subArea:     /^(sub\s*area|sub\s*type|sub-?area)$/i,
-          tat:         /^tat$/i,
-          contingency: /^contingency$/i
+  for (const file of files) {
+    const html = await readFile(file);
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(html, "text/html");
+
+    const tables = doc.querySelectorAll("table");
+    tables.forEach((table, tIndex) => {
+      // ---------- METADATA (Title / ID / Location-Category) ----------
+      const title = findMetaNearby(table, "title") || "Unknown Title";
+      const articleId = findMetaNearby(table, "id") || "Unknown ID";
+      const articleCategory = findMetaNearby(table, "location") || "Unknown Category";
+      const cleanArticleCategory = extractKey(articleCategory) ?? articleCategory;
+      const entity = (cleanArticleCategory.split("_")[0] || "").trim();
+      const articleURL = `https://askkmpro.sso.verint-km.com/enterprise/${entity}/${cleanArticleCategory}/${articleId}`;
+
+      // ---------- HEADER MAPPING ----------
+      const map = buildColumnMapEnhanced(table);
+      if (!map) return; // unrecoverable
+
+      // Gather rows (support tables that lack <tbody>)
+      const bodyRows = table.querySelectorAll("tbody tr");
+      const rows = bodyRows.length ? bodyRows : table.querySelectorAll("tr");
+
+      // SR keyword filter: decide if this table is SR-like
+      if (APPLY_SR_KEYWORD_FILTER && !tableLooksLikeSR(rows, map)) {
+        return; // skip non-SR tables
+      }
+
+      const isFlagged = table.classList.contains("serviceRequest") ? "YES" : "NO";
+      const extracted = [];
+
+      rows.forEach(tr => {
+        const tds = tr.querySelectorAll("td");
+        if (!tds.length) return;
+        // Skip header-ish rows inside tbody or body when tables are messy
+        const headerishCells = tr.querySelectorAll('td,th');
+        if (rowLooksLikeHeader(headerishCells)) return;
+
+        const pick = (idx) => {
+          const td = tds[idx];
+          return td ? normalizeCell(td) : "";
         };
 
-        let colIndex = {};
-        if (headers.length) {
-          headers.forEach((h, i) => {
-            if (want.type.test(h))          colIndex.type = i;
-            else if (want.area.test(h))     colIndex.area = i;
-            else if (want.subArea.test(h))  colIndex.subArea = i;
-            else if (want.tat.test(h))      colIndex.tat = i;
-            else if (want.contingency.test(h)) colIndex.contingency = i;
-          });
+        // Extract core SR fields with safety
+        const type    = safePick(pick, map.idx.type);
+        const area    = safePick(pick, map.idx.area);
+        const subArea = safePick(pick, map.idx.subArea);
+        const tat     = safePick(pick, map.idx.tat);
+
+        // Scenario handling
+        let scenario = "";
+        if (map.idx.scenario != null) {
+          scenario = safePick(pick, map.idx.scenario);
+        } else if (map.offsetScenario && tds.length > 0) {
+          scenario = normalizeCell(tds[0]);
         }
 
-        const bodyRows = table.querySelectorAll('tbody tr');
+        // Contingency (if a real column exists)
+        let contingency = "";
+        if (map.idx.contingency != null) contingency = safePick(pick, map.idx.contingency);
 
-        // Heuristic: first column looks like a narrative "Scenario" cell?
-        function looksLikeScenarioCell(txt) {
-          const t = (txt || '').trim();
-          if (!t) return false;
-          return t.length > 25 || /\.\s|\(|\)|:|,/.test(t);
+        // New SR Template detection (by mapped header or heuristics per row)
+        let newSrTemplate = "";
+        if (map.idx.newSrTemplate != null) {
+          newSrTemplate = safePick(pick, map.idx.newSrTemplate);
+        } else {
+          newSrTemplate = detectTemplateCell(tr) || "";
         }
 
-        if (!colIndex.type || !colIndex.area || !colIndex.subArea) {
-          // Infer positions assuming an extra leading column (often "Scenario")
-          let offset = 0;
-          if (bodyRows.length) {
-            const firstCells = Array.from(bodyRows[0].querySelectorAll('td')).map(td => (td.textContent || '').trim());
-            if (firstCells.length >= 6 && looksLikeScenarioCell(firstCells[0])) {
-              offset = 1; // skip first column entirely
-            }
-          }
-          colIndex = {
-            type:        offset + 0,
-            area:        offset + 1,
-            subArea:     offset + 2,
-            tat:         offset + 3,
-            contingency: offset + 4
-          };
-        }
+        // Skip obviously empty SR rows (no core fields)
+        if (!type && !area && !subArea && !tat && !contingency && !scenario && !newSrTemplate) return;
 
-        // Basic validation on column counts
-        const maxIdx = Math.max(colIndex.type, colIndex.area, colIndex.subArea, colIndex.tat, colIndex.contingency);
-        const hasEnoughCols = Array.from(bodyRows).some(tr => tr.querySelectorAll('td').length > maxIdx);
-        if (!hasEnoughCols) return; // skip malformed tables
+        // Title path normalization
+        const titlePath = (title || "").replace(/\s*-\s*/g, "/").replace(/\s+/g, " ").trim();
 
-        // ---- Metadata extraction via <dt>/<dd> climbing ----
-        let title = findDDUpwards(table, "title") ?? "Unknown Title";
-        let articleId = findDDUpwards(table, "id") ?? "Unknown ID";
-        let articleCategory = findDDUpwards(table, "location") ?? "Unknown Category";
-
-        const cleanArticleCategory = extractKey(articleCategory) ?? articleCategory;
-        const entity = (cleanArticleCategory.split('_')[0] || "").trim();
-        const articleURL = `https://askkmpro.sso.verint-km.com/enterprise/${cleanText(entity)}/${cleanText(cleanArticleCategory)}/${cleanText(articleId)}`;
-
-        // ---- Rows ----
-        bodyRows.forEach(tr => {
-          const tds = tr.querySelectorAll('td');
-          if (!tds.length) return;
-
-          const pick = (idx) => {
-            const cell = tds[idx];
-            if (!cell) return '';
-            // If cells might contain HTML tags, prefer innerHTML → textOnly
-            return cleanText(textOnly(cell.innerHTML));
-          };
-
-          const type        = pick(colIndex.type);
-          const area        = pick(colIndex.area);
-          const subArea     = pick(colIndex.subArea);
-          const tat         = pick(colIndex.tat);
-          const contingency = pick(colIndex.contingency);
-
-          // Normalize title path a bit (safe ASCII)
-          const titlePath = cleanText(
-            (title || '').replace(/\s*-\s*/g, '/').replace(/\s+/g, ' ').trim()
-          );
-
-          csv += [
-            entity,
-            cleanArticleCategory,
-            titlePath,
-            articleId,
-            articleURL,
-            type,
-            area,
-            subArea,
-            tat,
-            contingency,
-            isFlagged
-          ].map(csvEscape).join(',') + '\n';
-        });
+        const rowObj = {
+          entity,
+          cleanArticleCategory,
+          titlePath,
+          articleId,
+          articleURL,
+          type,
+          area,
+          subArea,
+          tat,
+          scenario,
+          contingency,
+          newSrTemplate,
+          isFlagged
+        };
+        extracted.push(rowObj);
       });
-    }
 
-    downloadCSV(csv);
-  }
+      if (!extracted.length) return;
 
-  // ----- Helpers -----
-
-  // Excel-proof text sanitizer → plain ASCII
-  function cleanText(s) {
-    if (s == null) return '';
-    return String(s)
-      .replace(/[\u2018\u2019\u02BC]/g, "'")   // smart single quotes
-      .replace(/[\u201C\u201D]/g, '"')         // smart double quotes
-      .replace(/\u2013|\u2014/g, '-')          // en/em dash
-      .replace(/\u2022/g, '*')                 // bullet
-      .replace(/\u2026/g, '...')               // ellipsis
-      .replace(/\u00A0/g, ' ')                 // NBSP
-      .replace(/\s+/g, ' ')
-      .replace(/[^\x20-\x7E]/g, '')            // strip non-ASCII
-      .trim();
-  }
-
-  function csvEscape(s) {
-    s = cleanText(s); // sanitize BEFORE quoting
-    return /[",\n]/.test(s) ? `"${s.replace(/"/g, '""')}"` : s;
-  }
-
-  function textOnly(html) {
-    const tmp = document.createElement('div');
-    tmp.innerHTML = html;
-    return tmp.textContent || '';
-  }
-
-  function readFile(file) {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.onload = e => resolve(e.target.result);
-      reader.onerror = e => reject(e);
-      reader.readAsText(file);
+      const id = `${file.name}#${tIndex}`;
+      CURRENT_RESULTS.push({
+        id,
+        include: true,
+        meta: { fileName: file.name, title, articleId, cleanArticleCategory, entity, articleURL },
+        rows: extracted
+      });
+      totalTables += 1;
+      totalRows += extracted.length;
     });
   }
 
-  function downloadCSV(content) {
-    const blob = new Blob([content], { type: 'text/csv;charset=utf-8;' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'combined_serviceRequests.csv';
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
+  renderResults();
+  setStats({ files: files.length, tables: totalTables, rows: totalRows });
+  setProgress(totalTables ? `Found ${totalTables} SR table${totalTables>1?'s':''}` : 'No SR tables found');
+  toggleDownload(totalTables > 0);
+}
+
+/** =========================
+ *  COLUMN MAPPING & HEURISTICS
+ *  ========================= */
+function buildColumnMapEnhanced(table) {
+  // Collect a candidate header row: thead if present, else first row if it looks header-ish
+  const theadCells = table.querySelectorAll("thead tr th, thead tr td");
+  let headerCells = theadCells.length ? theadCells : null;
+
+  if (!headerCells) {
+    const firstRow = table.querySelector("tr");
+    if (firstRow) {
+      const cells = firstRow.querySelectorAll("td,th");
+      if (rowLooksLikeHeader(cells)) headerCells = cells;
+    }
   }
 
-  function findDDUpwards(startNode, dtLabelLower) {
-    let current = startNode;
-    const target = String(dtLabelLower || '').toLowerCase();
-    while (current) {
-      const dts = current.querySelectorAll('dt');
-      for (const dt of dts) {
-        if ((dt.textContent || '').trim().toLowerCase() === target) {
-          const dd = dt.nextElementSibling;
-          if (dd && dd.tagName === 'DD') return (dd.textContent || '').trim();
+  const want = {
+    type:        /(^(request\s*)?type$)|(^type$)/i,
+    area:        /^area$/i,
+    subArea:     /^(sub[\s-]*area|sub[\s-]*type)$/i,
+    tat:         /^tat$/i,
+    contingency: /^contingency$/i,
+    scenario:    /^scenario$/i,
+    newSrTemplate: /(new\s*sr\s*template|new\s*service\s*request\s*template|^template$)/i
+  };
+
+  const idx = {
+    type: null,
+    area: null,
+    subArea: null,
+    tat: null,
+    contingency: null,
+    scenario: null,
+    newSrTemplate: null
+  };
+
+  if (headerCells) {
+    [...headerCells].forEach((cell, i) => {
+      const t = normalizeText(cell.textContent);
+      if (want.type.test(t)) idx.type = i;
+      else if (want.area.test(t)) idx.area = i;
+      else if (want.subArea.test(t)) idx.subArea = i;
+      else if (want.tat.test(t)) idx.tat = i;
+      else if (want.contingency.test(t)) idx.contingency = i;
+      else if (want.scenario.test(t)) idx.scenario = i;
+      else if (want.newSrTemplate.test(t)) idx.newSrTemplate = i;
+    });
+  }
+
+  // If core fields aren’t mapped, infer by offset (skip Scenario-like first col)
+  let offsetScenario = false;
+  const bodyRows = table.querySelectorAll("tbody tr");
+  const rows = bodyRows.length ? bodyRows : table.querySelectorAll("tr");
+  if ((idx.type == null || idx.area == null || idx.subArea == null) && rows.length) {
+    const firstRowWithTds = [...rows].find(r => r.querySelectorAll('td').length);
+    const firstCells = firstRowWithTds ? firstRowWithTds.querySelectorAll('td') : [];
+    const n = firstCells.length;
+
+    if (n >= 4 && looksLikeScenarioCell(normalizeCell(firstCells[0]))) {
+      offsetScenario = true;
+      idx.type = idx.type ?? 1;
+      idx.area = idx.area ?? 2;
+      idx.subArea = idx.subArea ?? 3;
+      idx.tat = idx.tat ?? (n > 4 ? 4 : null);
+    } else if (n === 3) {
+      // 3-column minimal tables: Type | Area | Sub Area
+      idx.type = idx.type ?? 0;
+      idx.area = idx.area ?? 1;
+      idx.subArea = idx.subArea ?? 2;
+      idx.tat = idx.tat ?? null;
+    } else if (n >= 4) {
+      // Assume Type | Area | Sub Area | TAT
+      idx.type = idx.type ?? 0;
+      idx.area = idx.area ?? 1;
+      idx.subArea = idx.subArea ?? 2;
+      idx.tat = idx.tat ?? 3;
+    } else if (n === 2) {
+      // Very sparse, still try to capture Type/Area
+      idx.type = idx.type ?? 0;
+      idx.area = idx.area ?? 1;
+      idx.subArea = idx.subArea ?? null;
+      idx.tat = idx.tat ?? null;
+    } else if (n === 1) {
+      // Single column, treat as Type
+      idx.type = idx.type ?? 0;
+    }
+  }
+
+  // Minimal requirement: at least one of the core fields (preferably Type)
+  if (idx.type == null && idx.area == null && idx.subArea == null) return null;
+
+  return { idx, offsetScenario };
+}
+
+function rowLooksLikeHeader(cells) {
+  const texts = [...cells].map(c => normalizeText(c.textContent));
+  const score =
+    (texts.some(t => /(^(request\s*)?type$)|(^type$)/i.test(t)) ? 1 : 0) +
+    (texts.some(t => /^area$/i.test(t)) ? 1 : 0) +
+    (texts.some(t => /^(sub[\s-]*area|sub[\s-]*type)$/i.test(t)) ? 1 : 0);
+  return score >= 2; // at least two header keywords present
+}
+
+function looksLikeScenarioCell(t) {
+  if (!t) return false;
+  // Heuristics: long sentence-like text (e.g., “Customer is facing an issue …”)
+  return t.length > 25 || /\.\s|:|,|\(|\)/.test(t);
+}
+
+/** =========================
+ *  SR FILTERING & RENDERING
+ *  ========================= */
+function tableLooksLikeSR(rows, map) {
+  // Prefer scanning Type column values
+  const typeIdx = map.idx.type;
+  if (typeIdx != null) {
+    for (const tr of rows) {
+      const tds = tr.querySelectorAll('td');
+      if (!tds.length) continue;
+      const val = normalizeCell(tds[typeIdx]).toLowerCase();
+      if (val && SR_KEYWORDS.some(k => val.includes(k))) return true;
+    }
+    return false;
+  }
+  // Fallback: scan all cells (coarser)
+  for (const tr of rows) {
+    const tds = tr.querySelectorAll('td');
+    for (const td of tds) {
+      const val = normalizeCell(td).toLowerCase();
+      if (val && SR_KEYWORDS.some(k => val.includes(k))) return true;
+    }
+  }
+  return false;
+}
+
+function renderResults() {
+  const container = document.getElementById('results');
+  container.innerHTML = '';
+  let totalRows = 0;
+  CURRENT_RESULTS.forEach((item, idx) => {
+    totalRows += item.rows.length;
+    const card = document.createElement('div');
+    card.className = 'card';
+    const m = item.meta;
+    const title = document.createElement('h3');
+    title.textContent = `${m.title || 'Untitled'} — ${m.fileName}`;
+    const meta = document.createElement('div');
+    meta.className = 'meta';
+    meta.innerHTML = `
+      <span>ID: ${csvEscape(m.articleId)}</span>
+      <span>Category: ${csvEscape(m.cleanArticleCategory)}</span>
+      <span>Rows: ${item.rows.length}</span>
+    `;
+
+    const toggle = document.createElement('label');
+    toggle.style.margin = '6px 0';
+    const cb = document.createElement('input');
+    cb.type = 'checkbox';
+    cb.checked = item.include;
+    cb.onchange = () => { item.include = cb.checked; updateDownloadState(); };
+    toggle.appendChild(cb);
+    toggle.appendChild(document.createTextNode(' Include in CSV'));
+
+    const preview = document.createElement('div');
+    preview.className = 'preview';
+    const table = document.createElement('table');
+    table.className = 'previewTable';
+    const thead = document.createElement('thead');
+    const thr = document.createElement('tr');
+    headersForCSV().forEach(h => {
+      const th = document.createElement('th'); th.textContent = h; thr.appendChild(th);
+    });
+    thead.appendChild(thr);
+    const tbody = document.createElement('tbody');
+    item.rows.slice(0,5).map(r => csvRowFromObj(r)).forEach(arr => {
+      const tr = document.createElement('tr');
+      arr.forEach(v => { const td = document.createElement('td'); td.textContent = v; tr.appendChild(td); });
+      tbody.appendChild(tr);
+    });
+    table.appendChild(thead); table.appendChild(tbody);
+    preview.appendChild(table);
+
+    card.appendChild(title);
+    card.appendChild(meta);
+    card.appendChild(toggle);
+    card.appendChild(preview);
+    container.appendChild(card);
+  });
+  setStats({ rows: totalRows });
+}
+
+function updateDownloadState(){
+  const anyIncluded = CURRENT_RESULTS.some(r => r.include);
+  toggleDownload(anyIncluded);
+}
+
+function toggleDownload(enabled){
+  document.getElementById('downloadBtn').disabled = !enabled;
+  document.getElementById('downloadBtn2').disabled = !enabled;
+}
+
+function setStats(partial){
+  if (partial.files != null) document.getElementById('statFiles').textContent = `${partial.files} file${partial.files===1?'':'s'}`;
+  if (partial.tables != null) document.getElementById('statTables').textContent = `${partial.tables} table${partial.tables===1?'':'s'}`;
+  if (partial.rows != null) document.getElementById('statRows').textContent = `${partial.rows} row${partial.rows===1?'':'s'}`;
+}
+
+function setProgress(text){
+  document.getElementById('progress').textContent = text || '';
+}
+
+function headersForCSV(){
+  const base = ["Entity","Category","Title","Article_ID","Path","Type","Area","Sub Area","TAT"];
+  const tail = REUSE_CONTINGENCY_FOR_SCENARIO ? ["Contingency","NewSRTemplate","NewSRFlagged"] : ["Contingency","Scenario","NewSRTemplate","NewSRFlagged"];
+  return [...base, ...tail];
+}
+
+function csvRowFromObj(r){
+  const contingencyOut = REUSE_CONTINGENCY_FOR_SCENARIO ? (r.scenario || r.contingency || '') : (r.contingency || '');
+  const scenarioOut = REUSE_CONTINGENCY_FOR_SCENARIO ? undefined : (r.scenario || '');
+  const parts = [
+    r.entity,
+    r.cleanArticleCategory,
+    r.titlePath,
+    r.articleId,
+    r.articleURL,
+    r.type,
+    r.area,
+    r.subArea,
+    r.tat,
+  ];
+  if (REUSE_CONTINGENCY_FOR_SCENARIO) {
+    parts.push(contingencyOut);
+  } else {
+    parts.push(contingencyOut); // contingency
+    parts.push(scenarioOut);    // scenario
+  }
+  parts.push(r.newSrTemplate);
+  parts.push(r.isFlagged);
+  return parts.map(v => (ENABLE_EXCEL_SANITIZE ? sanitizeForExcel(v) : v) || '');
+}
+
+function buildCSVContent(){
+  const header = headersForCSV();
+  let csv = '\uFEFF' + header.join(',') + '\n';
+  CURRENT_RESULTS.filter(r => r.include).forEach(item => {
+    item.rows.forEach(r => {
+      const row = csvRowFromObj(r).map(csvEscape).join(',');
+      csv += row + '\n';
+    });
+  });
+  return csv;
+}
+
+function downloadCurrentCSV(){
+  const csv = buildCSVContent();
+  downloadCSV(csv);
+}
+
+/** =========================
+ *  HELPERS
+ *  ========================= */
+function extractKey(input) {
+  if (!input) return null;
+  // try "/endb/<key>" first
+  let m = input.match(/\/endb\/([\w-]+)/i);
+  if (m) return m[1];
+  // then "endb: <key>"
+  m = input.match(/endb[:\s]+([\w-]+)/i);
+  return m ? m[1] : null;
+}
+
+function normalizeText(s) {
+  return (s || "")
+    .replace(/\u00A0/g, " ")   // NBSP -> space
+    .replace(/\s+/g, " ")
+    .trim()
+    .toLowerCase();
+}
+
+function normalizeCell(td) {
+  // Prefer visible text; fall back to link href if content is empty
+  let txt = (td.textContent || "").replace(/\u00A0/g, " ").replace(/\s+/g, " ").trim();
+  if (!txt) {
+    const a = td.querySelector("a[href]");
+    if (a) txt = a.href || "";
+  }
+  return txt;
+}
+
+function safePick(pickFn, idx) {
+  return (idx != null) ? pickFn(idx) : "";
+}
+
+function detectTemplateCell(tr) {
+  // Look for explicit template mentions or links
+  const tds = tr.querySelectorAll("td");
+  for (const td of tds) {
+    const text = normalizeText(td.textContent);
+    if (/template/.test(text)) {
+      const link = td.querySelector("a[href]");
+      return link ? (link.href || link.textContent || "").trim() : (td.textContent || "").trim();
+    }
+    const a = td.querySelector("a[href]");
+    if (a && /template|\.docx$|\.xlsx$|\.xls$|\.pdf$/i.test(a.href || "")) {
+      return a.href;
+    }
+  }
+  return "";
+}
+
+function csvEscape(s) {
+  s = (s ?? "").toString();
+  if (/[",\n]/.test(s)) return '"' + s.replace(/"/g, '""') + '"';
+  return s;
+}
+
+// Replace common Unicode punctuation that often appears corrupted (mojibake) in Excel when encoding is mis-detected
+// This is defensive; with the BOM Excel should decode correctly, but this keeps output ASCII-friendly.
+function sanitizeForExcel(s) {
+  if (s == null) return '';
+  return s
+    .replace(/[\u2018\u2019\u201A\u201B]/g, "'") // curly/single quotes
+    .replace(/[\u201C\u201D\u201E]/g, '"')       // curly double quotes
+    .replace(/[\u2013\u2014\u2015]/g, '-')       // dashes
+    .replace(/\u2022/g, '*')                      // bullet
+    .replace(/\u00A0/g, ' ')                      // NBSP
+    .replace(/[\u2026]/g, '...')                  // ellipsis
+    .replace(/[\u2122]/g, 'TM')                   // trademark
+    .replace(/[\u00AE]/g, '(R)')                  // registered
+    .replace(/[\u00A9]/g, '(C)');                 // copyright
+}
+
+function downloadCSV(content) {
+  const blob = new Blob([content], { type: "text/csv;charset=utf-8;" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "combined_serviceRequests.csv";
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+
+function readFile(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = e => resolve(e.target.result);
+    reader.onerror = e => reject(e);
+    reader.readAsText(file);
+  });
+}
+
+/** =========================
+ *  METADATA SCRAPER (dt/dd up the DOM)
+ *  ========================= */
+function findMetaNearby(startNode, key) {
+  const target = (key || "").toLowerCase();
+  let node = startNode;
+  let safety = 0;
+  while (node && safety++ < 20) {
+    const dts = node.querySelectorAll("dt");
+    for (const dt of dts) {
+      if (normalizeText(dt.textContent) === target) {
+        const dd = dt.nextElementSibling;
+        if (dd && dd.tagName === "DD") {
+          return (dd.textContent || "").replace(/\u00A0/g, " ").replace(/\s+/g, " ").trim();
         }
       }
-      current = current.parentElement;
     }
-    return null;
+    node = node.parentElement;
   }
+  return null;
+}
 
-  // Pull a key like ".../endb/<key>/..." or "endb: <key>"
-  function extractKey(input) {
-    if (!input) return null;
-    let m = input.match(/\/endb\/([\w-]+)/i);
-    if (m) return m[1];
-    m = input.match(/endb[:\s]+([\w-]+)/i);
-    return m ? m[1] : null;
-  }
   </script>
 </body>
 </html>
