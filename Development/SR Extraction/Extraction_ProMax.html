@@ -94,6 +94,11 @@
             <label><input type="checkbox" id="optReuseScenario" checked/>Reuse Contingency for Scenario</label>
             <label><input type="checkbox" id="optSanitize" checked/>Excel sanitize punctuation</label>
             <label><input type="checkbox" id="optFilterSR" checked/>Apply SR keyword filter</label>
+            <label><input type="checkbox" id="optKeepOnlyMatching"/>Keep only matching rows</label>
+            <label><input type="checkbox" id="optExcludeSparse" checked/>Exclude 1–2 column tables</label>
+            <label>Min matches per table
+              <input type="number" id="optMinMatches" min="1" value="2" style="width:80px"/>
+            </label>
           </div>
         </div>
         <div class="group">
@@ -172,6 +177,9 @@ let REUSE_CONTINGENCY_FOR_SCENARIO = true;
 let ENABLE_EXCEL_SANITIZE = true;
 let APPLY_SR_KEYWORD_FILTER = true;
 let SR_KEYWORDS = ['comp*','cco*','internal*','misc*','serv*','balance*','billed*','card*','cash*','cheque*','credit*','email*','enable*','statement*','installment*','ipp*','west*']; // supports * prefix wildcard
+let KEEP_ONLY_MATCHING_ROWS = false;
+let EXCLUDE_SPARSE_TABLES = true;
+let MIN_MATCHING_ROWS = 2;
 
 const DEFAULT_PRESET = {
   id: 'default',
@@ -215,6 +223,9 @@ async function processFiles() {
   REUSE_CONTINGENCY_FOR_SCENARIO = document.getElementById('optReuseScenario').checked;
   ENABLE_EXCEL_SANITIZE = document.getElementById('optSanitize').checked;
   APPLY_SR_KEYWORD_FILTER = document.getElementById('optFilterSR').checked;
+  KEEP_ONLY_MATCHING_ROWS = document.getElementById('optKeepOnlyMatching').checked;
+  EXCLUDE_SPARSE_TABLES = document.getElementById('optExcludeSparse').checked;
+  MIN_MATCHING_ROWS = Math.max(1, parseInt(document.getElementById('optMinMatches').value, 10) || 1);
   SR_KEYWORDS = getCurrentKeywords();
 
   CURRENT_RESULTS = [];
@@ -232,7 +243,7 @@ async function processFiles() {
     const doc = parser.parseFromString(html, "text/html");
 
     const tables = doc.querySelectorAll("table");
-    tables.forEach((table, tIndex) => {
+  tables.forEach((table, tIndex) => {
       // ---------- METADATA (Title / ID / Location-Category) ----------
       const title = findMetaNearby(table, "title") || "Unknown Title";
       const articleId = findMetaNearby(table, "id") || "Unknown ID";
@@ -249,9 +260,14 @@ async function processFiles() {
       const bodyRows = table.querySelectorAll("tbody tr");
       const rows = bodyRows.length ? bodyRows : table.querySelectorAll("tr");
 
-      // SR keyword filter: decide if this table is SR-like
-      if (APPLY_SR_KEYWORD_FILTER && !tableLooksLikeSR(rows, map)) {
-        return; // skip non-SR tables
+      // Early sparse table exclusion if enabled
+      if (EXCLUDE_SPARSE_TABLES && isSparseTable(rows)) {
+        return;
+      }
+      // Evaluate SR-likeness and row-level matches
+      const evalRes = evaluateTable(rows, map);
+      if (APPLY_SR_KEYWORD_FILTER && !evalRes.qualifies) {
+        return; // skip non-SR tables per rules
       }
 
       const isFlagged = table.classList.contains("serviceRequest") ? "YES" : "NO";
@@ -263,6 +279,12 @@ async function processFiles() {
         // Skip header-ish rows inside tbody or body when tables are messy
         const headerishCells = tr.querySelectorAll('td,th');
         if (rowLooksLikeHeader(headerishCells)) return;
+
+        // If enabled, keep only rows that matched the SR keywords
+        if (APPLY_SR_KEYWORD_FILTER && KEEP_ONLY_MATCHING_ROWS) {
+          const isMatch = evalRes.matchMap.get(tr) === true;
+          if (!isMatch) return;
+        }
 
         const pick = (idx) => {
           const td = tds[idx];
@@ -472,6 +494,50 @@ function tableLooksLikeSR(rows, map) {
     }
   }
   return false;
+}
+
+// Stricter evaluator with row-level match map and thresholds
+function evaluateTable(rows, map){
+  const res = { qualifies: true, matchCount: 0, totalRows: 0, matchMap: new Map() };
+  // Optionally exclude sparse tables (1–2 columns) before matching
+  if (EXCLUDE_SPARSE_TABLES) {
+    const firstRow = [...rows].find(r => r.querySelectorAll('td').length);
+    const n = firstRow ? firstRow.querySelectorAll('td').length : 0;
+    if (n > 0 && n <= 2) {
+      res.qualifies = false;
+      return res;
+    }
+  }
+  const typeIdx = map.idx.type;
+  for (const tr of rows) {
+    const cells = tr.querySelectorAll('td,th');
+    if (!cells.length) continue;
+    if (rowLooksLikeHeader(cells)) continue;
+    res.totalRows += 1;
+    let matched = false;
+    if (APPLY_SR_KEYWORD_FILTER) {
+      if (typeIdx != null) {
+        const tds = tr.querySelectorAll('td');
+        if (tds.length > typeIdx) {
+          const val = normalizeCell(tds[typeIdx]).toLowerCase();
+          if (val && matchesKeywords(val)) matched = true;
+        }
+      } else {
+        // fallback: scan all tds
+        const tds = tr.querySelectorAll('td');
+        for (const td of tds) {
+          const val = normalizeCell(td).toLowerCase();
+          if (val && matchesKeywords(val)) { matched = true; break; }
+        }
+      }
+    }
+    res.matchMap.set(tr, matched);
+    if (matched) res.matchCount += 1;
+  }
+  if (APPLY_SR_KEYWORD_FILTER) {
+    res.qualifies = res.matchCount >= MIN_MATCHING_ROWS;
+  }
+  return res;
 }
 
 function parseKeywords(str){
@@ -925,6 +991,12 @@ function applyBulkKeywords(){
 /** =========================
  *  HELPERS
  *  ========================= */
+function isSparseTable(rows){
+  const firstRow = [...rows].find(r => r.querySelectorAll('td').length);
+  const n = firstRow ? firstRow.querySelectorAll('td').length : 0;
+  return n > 0 && n <= 2;
+}
+
 function extractKey(input) {
   if (!input) return null;
   // try "/endb/<key>" first
