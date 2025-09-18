@@ -14,10 +14,10 @@
     .wrap{max-width:1100px;margin:0 auto;padding:16px 20px}
     .row { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
     .panel{background:var(--panel); border:1px solid var(--border); border-radius:12px; padding:14px 16px; box-shadow: 0 6px 18px var(--shadow)}
-    .controls{ display:grid; grid-template-columns: 1.2fr 1fr; gap:12px; }
+  .controls{ display:grid; grid-template-columns: 1.2fr 1fr; gap:12px; }
     .controls .group{ background:var(--card); border:1px solid var(--border); padding:12px; border-radius:10px }
     .controls h4{margin:0 0 8px 0;color:#cbd6ff;font-weight:600}
-    label{ display:flex; align-items:center; gap:8px; color:var(--muted); font-size:13px }
+  label{ display:flex; align-items:center; gap:8px; color:var(--muted); font-size:13px }
     input[type="text"], input[type="number"], select{ background:#0c1326; border:1px solid var(--border); color:var(--text); padding:8px 10px; border-radius:8px; min-width: 260px }
     input[type="checkbox"]{ transform: translateY(1px) }
     button { padding: 10px 14px; cursor: pointer; border-radius:9px; border:1px solid var(--border); background: linear-gradient(180deg,#18264a,#14203f); color:var(--text) }
@@ -37,6 +37,13 @@
     .previewTable th, .previewTable td{ border-bottom:1px solid var(--border); padding:6px 8px; text-align:left; vertical-align: top; }
     .previewTable th{ color:#cbd6ff; background:#101733 }
     .chip{ padding:2px 8px; border-radius:999px; font-size:11px; border:1px solid var(--border); background:#0e1934; color:#cfe0ff }
+  .chips{ display:flex; flex-wrap:wrap; gap:6px; margin-top:8px }
+  .chip-btn{ display:inline-flex; gap:6px; align-items:center; padding:4px 8px; background:#102048; color:#d8e4ff; border:1px solid #253863; border-radius:999px; font-size:12px }
+  .chip-btn button{ background:transparent; border:none; color:#9db7ff; cursor:pointer; padding:0 4px }
+  .chip-input{ display:flex; gap:8px; margin-top:8px }
+  .chip-input input{ flex:1 }
+  .preset-row{ display:flex; gap:8px; align-items:center; flex-wrap:wrap }
+  .preset-row select{ min-width:220px }
     .footer-actions{ display:flex; gap:10px; align-items:center; justify-content: space-between; margin-top:10px }
     .stat{ color:#cfe0ff; font-size:12px }
   </style>
@@ -75,9 +82,18 @@
         </div>
         <div class="group">
           <h4>SR Filter Keywords</h4>
-          <div class="row">
-            <input type="text" id="optKeywords" placeholder="comma or space-separated; * for prefix e.g. comp*, card" value="comp*, cco*, internal*, misc*, serv*, balance*, billed*, card*, cash*, cheque*, credit*, email*, enable*, statement*, installment*, ipp*, west*"/>
-            <span class="stat">Matches in Type (contains / prefix with *)</span>
+          <div class="preset-row">
+            <select id="keywordPresetSelect" onchange="onPresetChange(this.value)"></select>
+            <button onclick="saveCustomPreset()">Save as Custom</button>
+            <button onclick="resetToDefaultPreset()">Reset to Default</button>
+          </div>
+          <div class="chip-input">
+            <input type="text" id="keywordInput" placeholder="Add keyword (supports * prefix, Enter to add)"/>
+            <button onclick="addKeywordFromInput()">Add</button>
+          </div>
+          <div id="keywordChips" class="chips"></div>
+          <div class="row" style="margin-top:6px">
+            <span class="stat">Matches in Type primarily; * means prefix</span>
           </div>
         </div>
       </div>
@@ -107,6 +123,15 @@ let ENABLE_EXCEL_SANITIZE = true;
 let APPLY_SR_KEYWORD_FILTER = true;
 let SR_KEYWORDS = ['comp*','cco*','internal*','misc*','serv*','balance*','billed*','card*','cash*','cheque*','credit*','email*','enable*','statement*','installment*','ipp*','west*']; // supports * prefix wildcard
 
+const DEFAULT_PRESET = {
+  id: 'default',
+  name: 'Default (curated)',
+  keywords: [...SR_KEYWORDS]
+};
+const PRESET_STORAGE_KEY = 'srExtractorPresetsV1';
+const CUSTOM_PRESET_ID = 'custom';
+let PRESETS = [];
+
 // Runtime aggregation
 let CURRENT_RESULTS = []; // Array<{ id, meta, rows, include }>
 let AGG_ROWS = []; // flattened rows for CSV
@@ -123,7 +148,7 @@ async function processFiles() {
   REUSE_CONTINGENCY_FOR_SCENARIO = document.getElementById('optReuseScenario').checked;
   ENABLE_EXCEL_SANITIZE = document.getElementById('optSanitize').checked;
   APPLY_SR_KEYWORD_FILTER = document.getElementById('optFilterSR').checked;
-  SR_KEYWORDS = parseKeywords(document.getElementById('optKeywords').value);
+  SR_KEYWORDS = getCurrentKeywords();
 
   CURRENT_RESULTS = [];
   AGG_ROWS = [];
@@ -403,6 +428,122 @@ function matchesKeywords(val){
   }
   return false;
 }
+
+/** =========================
+ *  PRESETS & CHIPS UI
+ *  ========================= */
+function loadPresets(){
+  try{
+    const raw = localStorage.getItem(PRESET_STORAGE_KEY);
+    if (raw){
+      const parsed = JSON.parse(raw);
+      if (Array.isArray(parsed) && parsed.length){
+        PRESETS = parsed;
+      } else {
+        PRESETS = [DEFAULT_PRESET];
+      }
+    } else {
+      PRESETS = [DEFAULT_PRESET];
+    }
+  }catch(e){ PRESETS = [DEFAULT_PRESET]; }
+  renderPresetSelect();
+  // Select custom if exists else default
+  const hasCustom = PRESETS.find(p => p.id === CUSTOM_PRESET_ID);
+  const selectedId = hasCustom ? CUSTOM_PRESET_ID : 'default';
+  setCurrentPreset(selectedId);
+}
+
+function savePresets(){
+  try{ localStorage.setItem(PRESET_STORAGE_KEY, JSON.stringify(PRESETS)); }catch(e){}
+}
+
+function renderPresetSelect(){
+  const sel = document.getElementById('keywordPresetSelect');
+  sel.innerHTML = '';
+  PRESETS.forEach(p => {
+    const opt = document.createElement('option');
+    opt.value = p.id; opt.textContent = p.name; sel.appendChild(opt);
+  });
+}
+
+function onPresetChange(presetId){
+  setCurrentPreset(presetId);
+}
+
+function setCurrentPreset(presetId){
+  const preset = PRESETS.find(p => p.id === presetId) || DEFAULT_PRESET;
+  SR_KEYWORDS = preset.keywords.slice();
+  renderChips();
+  // Update select value to reflect current
+  const sel = document.getElementById('keywordPresetSelect');
+  if (sel) sel.value = preset.id;
+}
+
+function renderChips(){
+  const holder = document.getElementById('keywordChips');
+  holder.innerHTML = '';
+  SR_KEYWORDS.forEach((kw, index) => {
+    const el = document.createElement('span');
+    el.className = 'chip-btn';
+    const txt = document.createElement('span'); txt.textContent = kw;
+    const btn = document.createElement('button'); btn.textContent = '×'; btn.title = 'Remove';
+    btn.onclick = () => { removeKeyword(index); };
+    el.appendChild(txt); el.appendChild(btn);
+    holder.appendChild(el);
+  });
+}
+
+function addKeywordFromInput(){
+  const inp = document.getElementById('keywordInput');
+  const raw = inp.value || '';
+  const list = parseKeywords(raw);
+  if (!list.length) return;
+  for (const k of list){ addKeyword(k); }
+  inp.value = '';
+}
+
+function addKeyword(kw){
+  kw = (kw||'').toLowerCase().trim();
+  if (!kw) return;
+  if (!SR_KEYWORDS.includes(kw)){
+    SR_KEYWORDS.push(kw);
+    renderChips();
+  }
+}
+
+function removeKeyword(idx){
+  SR_KEYWORDS.splice(idx,1);
+  renderChips();
+}
+
+function getCurrentKeywords(){
+  return SR_KEYWORDS.slice();
+}
+
+function saveCustomPreset(){
+  const existing = PRESETS.find(p => p.id === CUSTOM_PRESET_ID);
+  if (existing){
+    existing.keywords = getCurrentKeywords();
+  } else {
+    PRESETS.push({ id: CUSTOM_PRESET_ID, name: 'Custom', keywords: getCurrentKeywords() });
+  }
+  savePresets();
+  renderPresetSelect();
+  setCurrentPreset(CUSTOM_PRESET_ID);
+}
+
+function resetToDefaultPreset(){
+  setCurrentPreset('default');
+}
+
+// Initialize presets/chips on load
+window.addEventListener('DOMContentLoaded', () => {
+  loadPresets();
+  const input = document.getElementById('keywordInput');
+  input.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter'){ e.preventDefault(); addKeywordFromInput(); }
+  });
+});
 
 function renderResults() {
   const container = document.getElementById('results');
