@@ -97,7 +97,7 @@
             <label><input type="checkbox" id="optKeepOnlyMatching"/>Keep only matching rows</label>
             <label><input type="checkbox" id="optExcludeSparse" checked/>Exclude 1–2 column tables</label>
             <label>Min matches per table
-              <input type="number" id="optMinMatches" min="1" value="2" style="width:80px"/>
+              <input type="number" id="optMinMatches" min="1" value="1" style="width:80px"/>
             </label>
           </div>
         </div>
@@ -179,7 +179,7 @@ let APPLY_SR_KEYWORD_FILTER = true;
 let SR_KEYWORDS = ['comp*','cco*','internal*','misc*','serv*','balance*','billed*','card*','cash*','cheque*','credit*','email*','enable*','statement*','installment*','ipp*','west*']; // supports * prefix wildcard
 let KEEP_ONLY_MATCHING_ROWS = false;
 let EXCLUDE_SPARSE_TABLES = true;
-let MIN_MATCHING_ROWS = 2;
+let MIN_MATCHING_ROWS = 1;
 
 const DEFAULT_PRESET = {
   id: 'default',
@@ -554,7 +554,7 @@ function matchesKeywords(val){
     if (kw === '*') return true;
     if (kw.endsWith('*')) {
       const prefix = kw.slice(0, -1);
-      if (prefix && val.startsWith(prefix)) return true;
+      if (prefix && val.includes(prefix)) return true;
     } else {
       if (val.includes(kw)) return true;
     }
@@ -906,18 +906,18 @@ function highlightMatches(text){
   const lower = text.toLowerCase();
   // Find all matching segments according to SR_KEYWORDS
   let segments = [];
-  for (const kw of SR_KEYWORDS){
-    if (!kw) continue;
-    if (kw === '*') continue;
-    if (kw.endsWith('*')){
-      const prefix = kw.slice(0,-1);
-      if (!prefix) continue;
-      if (lower.startsWith(prefix)){
-        segments.push({start:0, end:prefix.length});
-      }
-    } else {
-      const idx = lower.indexOf(kw);
-      if (idx !== -1){ segments.push({start:idx, end:idx+kw.length}); }
+  for (const rawKw of SR_KEYWORDS){
+    if (!rawKw || rawKw === '*') continue;
+    const isWild = rawKw.endsWith('*');
+    const needle = (isWild ? rawKw.slice(0,-1) : rawKw).toLowerCase();
+    if (!needle) continue;
+    // Find all occurrences (global contains)
+    let from = 0;
+    while (true){
+      const idx = lower.indexOf(needle, from);
+      if (idx === -1) break;
+      segments.push({ start: idx, end: idx + needle.length });
+      from = idx + needle.length;
     }
   }
   if (!segments.length) return escapeHtml(text);
