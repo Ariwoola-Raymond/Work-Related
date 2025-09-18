@@ -6,7 +6,7 @@
   <style>
     :root{
       --bg:#0b1020; --panel:#121a2b; --muted:#6b7a99; --text:#e6ecff; --accent:#7aa2ff; --accent-2:#22c55e; --warn:#f59e0b; --danger:#ef4444;
-      --border: #22304d; --chip:#1a2440; --chip-text:#d2dcff; --card:#0f1628; --shadow:rgba(10,14,25,.35);
+      --border:#22304d; --chip:#1a2440; --chip-text:#d2dcff; --card:#0f1628; --shadow:rgba(10,14,25,.35);
     }
     *{box-sizing:border-box}
     body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin:0; color:var(--text); background: radial-gradient(1200px 600px at 10% -10%, #16213a, transparent 60%), radial-gradient(1200px 600px at 110% 10%, #101a32, transparent 60%), var(--bg); }
@@ -44,6 +44,9 @@
   .chip-input input{ flex:1 }
   .preset-row{ display:flex; gap:8px; align-items:center; flex-wrap:wrap }
   .preset-row select{ min-width:220px }
+  .bulk-panel{ display:none; margin-top:8px }
+  .bulk-panel textarea{ width:100%; min-height:90px; background:#0c1326; color:#e6ecff; border:1px solid var(--border); border-radius:8px; padding:8px }
+  .hit{ background:#365bd6; color:#eaf1ff; padding:0 3px; border-radius:3px }
     .footer-actions{ display:flex; gap:10px; align-items:center; justify-content: space-between; margin-top:10px }
     .stat{ color:#cfe0ff; font-size:12px }
   </style>
@@ -86,12 +89,23 @@
             <select id="keywordPresetSelect" onchange="onPresetChange(this.value)"></select>
             <button onclick="saveCustomPreset()">Save as Custom</button>
             <button onclick="resetToDefaultPreset()">Reset to Default</button>
+            <button onclick="triggerImportKeywords()">Import JSON</button>
+            <button onclick="exportKeywords()">Export JSON</button>
+            <button onclick="toggleBulkPanel()">Bulk Paste</button>
+            <input id="keywordImportFile" type="file" accept="application/json,.json" style="display:none"/>
           </div>
           <div class="chip-input">
             <input type="text" id="keywordInput" placeholder="Add keyword (supports * prefix, Enter to add)"/>
             <button onclick="addKeywordFromInput()">Add</button>
           </div>
           <div id="keywordChips" class="chips"></div>
+          <div id="bulkPastePanel" class="bulk-panel">
+            <textarea id="bulkTextarea" placeholder="Paste keywords here (space or comma-separated)"></textarea>
+            <div class="row" style="margin-top:6px">
+              <button onclick="applyBulkKeywords()">Apply</button>
+              <button onclick="toggleBulkPanel()">Close</button>
+            </div>
+          </div>
           <div class="row" style="margin-top:6px">
             <span class="stat">Matches in Type primarily; * means prefix</span>
           </div>
@@ -127,6 +141,21 @@ const DEFAULT_PRESET = {
   id: 'default',
   name: 'Default (curated)',
   keywords: [...SR_KEYWORDS]
+};
+const MINIMAL_PRESET = {
+  id: 'minimal',
+  name: 'Minimal (core terms)',
+  keywords: ['comp*','serv*','card*']
+};
+const STRICT_PRESET = {
+  id: 'strict',
+  name: 'Strict (curated full)',
+  keywords: [...SR_KEYWORDS]
+};
+const EVERYTHING_PRESET = {
+  id: 'everything',
+  name: 'Everything (no filter)',
+  keywords: []
 };
 const PRESET_STORAGE_KEY = 'srExtractorPresetsV1';
 const CUSTOM_PRESET_ID = 'custom';
@@ -435,17 +464,21 @@ function matchesKeywords(val){
 function loadPresets(){
   try{
     const raw = localStorage.getItem(PRESET_STORAGE_KEY);
+    const builtins = [DEFAULT_PRESET, MINIMAL_PRESET, STRICT_PRESET, EVERYTHING_PRESET];
     if (raw){
       const parsed = JSON.parse(raw);
-      if (Array.isArray(parsed) && parsed.length){
-        PRESETS = parsed;
+      if (Array.isArray(parsed)){
+        const map = new Map();
+        for (const p of builtins) map.set(p.id, p);
+        for (const p of parsed) if (p && p.id) map.set(p.id, p);
+        PRESETS = Array.from(map.values());
       } else {
-        PRESETS = [DEFAULT_PRESET];
+        PRESETS = builtins;
       }
     } else {
-      PRESETS = [DEFAULT_PRESET];
+      PRESETS = builtins;
     }
-  }catch(e){ PRESETS = [DEFAULT_PRESET]; }
+  }catch(e){ PRESETS = [DEFAULT_PRESET, MINIMAL_PRESET, STRICT_PRESET, EVERYTHING_PRESET]; }
   renderPresetSelect();
   // Select custom if exists else default
   const hasCustom = PRESETS.find(p => p.id === CUSTOM_PRESET_ID);
@@ -473,6 +506,12 @@ function onPresetChange(presetId){
 function setCurrentPreset(presetId){
   const preset = PRESETS.find(p => p.id === presetId) || DEFAULT_PRESET;
   SR_KEYWORDS = preset.keywords.slice();
+    // Everything preset disables filter checkbox, others enable it
+    const isEverything = preset.id === 'everything';
+    const filterToggle = document.getElementById('optFilterSR');
+    if (filterToggle){
+      filterToggle.checked = !isEverything;
+    }
   renderChips();
   // Update select value to reflect current
   const sel = document.getElementById('keywordPresetSelect');
@@ -584,9 +623,13 @@ function renderResults() {
     });
     thead.appendChild(thr);
     const tbody = document.createElement('tbody');
-    item.rows.slice(0,5).map(r => csvRowFromObj(r)).forEach(arr => {
+    item.rows.slice(0,5).forEach(r => {
       const tr = document.createElement('tr');
-      arr.forEach(v => { const td = document.createElement('td'); td.textContent = v; tr.appendChild(td); });
+      const cells = previewCellsFromRow(r);
+      cells.forEach(cell => { const td = document.createElement('td');
+        if (cell.html) { td.innerHTML = cell.html; } else { td.textContent = cell.value; }
+        tr.appendChild(td);
+      });
       tbody.appendChild(tr);
     });
     table.appendChild(thead); table.appendChild(tbody);
@@ -667,6 +710,109 @@ function buildCSVContent(){
 function downloadCurrentCSV(){
   const csv = buildCSVContent();
   downloadCSV(csv);
+}
+
+function previewCellsFromRow(r){
+  const parts = csvRowFromObj(r);
+  const headers = headersForCSV();
+  // We will highlight matches only in Type (and Area/Sub Area as a nice bonus)
+  const indexMap = {};
+  headers.forEach((h,i)=> indexMap[h]=i);
+  const fieldsToCheck = ['Type','Area','Sub Area'];
+  return parts.map((v, i) => {
+    const h = headers[i];
+    if (fieldsToCheck.includes(h) && v){
+      const html = highlightMatches(String(v));
+      return { html };
+    }
+    return { value: v };
+  });
+}
+
+function highlightMatches(text){
+  const lower = text.toLowerCase();
+  // Find all matching segments according to SR_KEYWORDS
+  let segments = [];
+  for (const kw of SR_KEYWORDS){
+    if (!kw) continue;
+    if (kw === '*') continue;
+    if (kw.endsWith('*')){
+      const prefix = kw.slice(0,-1);
+      if (!prefix) continue;
+      if (lower.startsWith(prefix)){
+        segments.push({start:0, end:prefix.length});
+      }
+    } else {
+      const idx = lower.indexOf(kw);
+      if (idx !== -1){ segments.push({start:idx, end:idx+kw.length}); }
+    }
+  }
+  if (!segments.length) return escapeHtml(text);
+  // Merge overlapping segments
+  segments.sort((a,b)=> a.start - b.start);
+  const merged = [];
+  for (const s of segments){
+    if (!merged.length || s.start > merged[merged.length-1].end){ merged.push({...s}); }
+    else { merged[merged.length-1].end = Math.max(merged[merged.length-1].end, s.end); }
+  }
+  // Build HTML
+  let out = '';
+  let cursor = 0;
+  for (const s of merged){
+    if (cursor < s.start) out += escapeHtml(text.slice(cursor, s.start));
+    out += '<span class="hit">' + escapeHtml(text.slice(s.start, s.end)) + '</span>';
+    cursor = s.end;
+  }
+  if (cursor < text.length) out += escapeHtml(text.slice(cursor));
+  return out;
+}
+
+function escapeHtml(s){
+  return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;','\'':'&#39;'}[c]));
+}
+
+function triggerImportKeywords(){
+  const inp = document.getElementById('keywordImportFile');
+  inp.onchange = async () => {
+    const f = inp.files && inp.files[0];
+    if (!f) return;
+    try{
+      const text = await f.text();
+      const json = JSON.parse(text);
+      applyImportedKeywords(json);
+    }catch(e){ alert('Invalid JSON file'); }
+    finally{ inp.value=''; }
+  };
+  inp.click();
+}
+
+function applyImportedKeywords(json){
+  // Accept either { keywords: [] } or [..] directly
+  let list = Array.isArray(json) ? json : (Array.isArray(json.keywords) ? json.keywords : null);
+  if (!list){ alert('JSON must be an array or {keywords: []}'); return; }
+  const parsed = list.map(x=>String(x||'').toLowerCase().trim()).filter(Boolean);
+  SR_KEYWORDS = Array.from(new Set(parsed));
+  renderChips();
+}
+
+function exportKeywords(){
+  const data = { keywords: SR_KEYWORDS };
+  const blob = new Blob([JSON.stringify(data,null,2)], {type:'application/json'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a'); a.href=url; a.download='sr_keywords.json'; document.body.appendChild(a); a.click(); document.body.removeChild(a); URL.revokeObjectURL(url);
+}
+
+function toggleBulkPanel(){
+  const panel = document.getElementById('bulkPastePanel');
+  panel.style.display = (panel.style.display === 'none' || !panel.style.display) ? 'block' : 'none';
+}
+
+function applyBulkKeywords(){
+  const ta = document.getElementById('bulkTextarea');
+  const parsed = parseKeywords(ta.value);
+  if (!parsed.length){ alert('No keywords found'); return; }
+  SR_KEYWORDS = Array.from(new Set(parsed));
+  renderChips();
 }
 
 /** =========================
